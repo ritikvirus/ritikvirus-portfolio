@@ -1,5 +1,6 @@
 ---
 import MapLocation from '@/components/home/MapLocation'
+import NowPlaying from '@/components/home/NowPlaying'
 import { Location } from '../icons/Location'
 ---
 
@@ -14,7 +15,9 @@ import { Location } from '../icons/Location'
     <MapLocation className='rounded-3xl' client:only='react' />
   </div>
   <div class='col-span-2 grid grid-cols-8 grid-rows-3 gap-4'>
-    <div class='col-span-5 row-span-1 bg-red-400'></div>
+    <div class='col-span-5 row-span-1 bg-red-400'>
+      <NowPlaying />
+    </div>
     <div class='col-span-3 row-span-1 bg-red-400'></div>
 
     <div class='col-span-full row-span-2 grid grid-cols-3 gap-4'>
