@@ -4,7 +4,7 @@ import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
 
 import { cn } from '@/lib/utils'
 
-export interface DockProps extends VariantProps<typeof dockVariants> {
+export interface DockProps {
   className?: string
   magnification?: number
   distance?: number
@@ -15,11 +15,7 @@ export interface DockProps extends VariantProps<typeof dockVariants> {
 const DEFAULT_MAGNIFICATION = 60
 const DEFAULT_DISTANCE = 140
 
-const dockVariants = cva(
-  'mx-auto w-max mt-8 h-[58px] p-2 flex gap-2 rounded-full border supports-backdrop-blur:bg-black/10 backdrop-blur-md border-slate-800'
-)
-
-const Dock = React.forwardRef<HTMLDivElement, DockProps>(
+const Dock = React.forwardRef<HTMLUListElement, DockProps>(
   (
     {
       className,
@@ -45,7 +41,7 @@ const Dock = React.forwardRef<HTMLDivElement, DockProps>(
     }
 
     return (
-      <motion.div
+      <motion.ul
         ref={ref}
         onMouseMove={(e) => {
           mouseX.set(e.pageX)
@@ -66,14 +62,17 @@ const Dock = React.forwardRef<HTMLDivElement, DockProps>(
           document.addEventListener('mousemove', mouseEventHandler)
         }}
         {...props}
-        className={cn(dockVariants({ className }), {
-          'items-start': direction === 'top',
-          'items-center': direction === 'middle',
-          'items-end': direction === 'bottom'
-        })}
+        className={cn(
+          'supports-backdrop-blur:bg-black/10 mx-auto flex h-[58px] w-max rounded-full border border-slate-800 p-2 backdrop-blur-md',
+          {
+            'items-start': direction === 'top',
+            'items-center': direction === 'middle',
+            'items-end': direction === 'bottom'
+          }
+        )}
       >
         {renderChildren()}
-      </motion.div>
+      </motion.ul>
     )
   }
 )
@@ -99,7 +98,7 @@ const DockIcon = ({
   children,
   ...props
 }: DockIconProps) => {
-  const ref = useRef<HTMLDivElement>(null)
+  const ref = useRef<HTMLLIElement>(null)
 
   const distanceCalc = useTransform(mouseX, (val: number) => {
     const bounds = ref.current?.getBoundingClientRect() ?? { x: 0, width: 0 }
@@ -110,7 +109,7 @@ const DockIcon = ({
   let widthSync = useTransform(
     distanceCalc,
     [-distance, 0, distance],
-    [40, magnification, 40]
+    [48, magnification, 48]
   )
 
   let width = useSpring(widthSync, {
@@ -120,7 +119,7 @@ const DockIcon = ({
   })
 
   return (
-    <motion.div
+    <motion.li
       ref={ref}
       style={{ width }}
       className={cn(
@@ -130,10 +129,10 @@ const DockIcon = ({
       {...props}
     >
       {children}
-    </motion.div>
+    </motion.li>
   )
 }
 
 DockIcon.displayName = 'DockIcon'
 
-export { Dock, DockIcon, dockVariants }
+export { Dock, DockIcon }

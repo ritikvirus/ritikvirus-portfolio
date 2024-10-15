@@ -1,16 +1,16 @@
 ---
-import Ramen from '../icons/Ramen.astro'
-import Bed from '../icons/Bed.astro'
-import Laptop from '../icons/Laptop.astro'
-import Design from '../icons/Design.astro'
-import Repeat from '../icons/Repeat.astro'
+import { Github } from '../icons/Github'
+import { LinkedIn } from '../icons/LinkedIn'
+import { Gitlab } from '../icons/Gitlab'
+import { Scroll } from '../icons/Scroll'
+import { Mail } from '../icons/Mail'
 
 const KEYS = [
-  { key: 'KeyE', icon: Ramen, tooltip: 'Eat' },
-  { key: 'KeyS', icon: Bed, tooltip: 'Sleep' },
-  { key: 'KeyD', icon: Design, tooltip: 'Design' },
-  { key: 'KeyC', icon: Laptop, tooltip: 'Code' },
-  { key: 'KeyR', icon: Repeat, tooltip: 'Repeat' }
+  { key: 'KeyE', icon: Github, tooltip: 'Github' },
+  { key: 'KeyS', icon: LinkedIn, tooltip: 'LinkedIn' },
+  { key: 'KeyD', icon: Gitlab, tooltip: 'Gitlab' },
+  { key: 'KeyC', icon: Scroll, tooltip: 'Resume' },
+  { key: 'KeyR', icon: Mail, tooltip: 'Email' }
 ]
 ---
 
@@ -55,7 +55,7 @@ const KEYS = [
   )
 </script>
 
-<div class='flex max-xs:flex-col'>
+<div class='flex items-start text-center max-xs:flex-col'>
   <div class='board'>
     {
       KEYS.map(({ key, icon: Icon, tooltip }) => (
@@ -69,15 +69,19 @@ const KEYS = [
       ))
     }
   </div>
-  <div class='mx-auto w-fit' data-tooltip="See what I've typed">
-    <div
-      class='absolute h-full w-full translate-x-[12%] translate-y-[16%] -skew-x-12 bg-gradient-to-tr from-[#ff4430] via-[#d66d30] to-[#da8d6a] blur-md'
-    >
-    </div>
-    <div class='key-position flex items-center justify-center'>
+  <div data-tooltip="See what I've typed">
+    <div class='key-position peer flex items-center justify-center'>
       <button class='key call-to-action'>
         <p class='call-to-action-content'>Explore more</p>
       </button>
+    </div>
+    <div
+      class:list={[
+        'absolute top-0 h-full w-full translate-x-[12%] translate-y-[16%] -skew-x-12 blur-md',
+        '-z-10 bg-gradient-to-tr from-[#96efcb] to-[rgba(239,_255,_193,_1)] opacity-50',
+        'transition-all peer-hover:opacity-75'
+      ]}
+    >
     </div>
   </div>
 </div>
@@ -86,15 +90,15 @@ const KEYS = [
 
 <style>
   :root {
-    --background-2: #000;
-    --background-3: #282828;
+    --background-2: #000000;
+    --background-3: #232b34;
     --contrast: #fff;
     --size: 5rem; /* keycap size */
   }
 
   svg {
-    width: 2.75rem;
-    height: 2.75rem;
+    width: 2.25rem;
+    height: 2.25rem;
   }
 
   @media (max-width: 640px) {
@@ -103,8 +107,8 @@ const KEYS = [
     }
 
     svg {
-      width: 1.75rem;
-      height: 1.75rem;
+      width: 1.5rem;
+      height: 1.5rem;
     }
   }
 
@@ -118,7 +122,7 @@ const KEYS = [
 
   .key.call-to-action {
     width: 160px;
-    color: #ff774e;
+    color: rgba(239, 255, 193, 1);
     font-size: 14px;
     font-weight: 500;
     text-transform: uppercase;
@@ -134,7 +138,7 @@ const KEYS = [
     left: 0;
     top: 50%;
     margin: 10px 15%;
-    background: #ff774e;
+    background: rgba(239, 255, 193, 1);
     height: 1.5px;
     transition: 0.3s ease-out;
   }

@@ -3,16 +3,14 @@ import { HandWaving } from './icons/HandWaving'
 import { Briefcase } from './icons/Briefcase'
 import { ChatTeardropDots } from './icons/ChatTeardrop'
 import { Bookmarks } from './icons/Bookmarks'
-import { Github } from './icons/Github'
-import { LinkedIn } from './icons/LinkedIn'
-import { Envelope } from './icons/Envelope'
-import { Separator } from './ui/separator'
-import { Tooltip } from './ui/tooltip'
 import { useEffect, useRef, useState } from 'react'
 import { HandPalm } from './icons/HandPalm'
 import { cn } from '@/lib/utils'
 
-const bottomNavigationItems = [
+import './BottomNavigationBar.css'
+import { useNavTooltipHandler } from './useNavTooltipHandler'
+
+export const bottomNavigationItems = [
   {
     name: 'Hi 👋',
     icon: HandWaving,
@@ -40,41 +38,31 @@ const bottomNavigationItems = [
   }
 ]
 
-const socialMediaItems = [
-  {
-    name: 'Email',
-    icon: Envelope,
-    href: ''
-  },
-  {
-    name: 'LinkedIn',
-    icon: LinkedIn,
-    href: ''
-  },
-  {
-    name: 'Github',
-    icon: Github,
-    href: ''
-  }
-]
-
 const BottomNavigationBar = () => {
   const [currentPath, setCurrentPath] = useState('')
 
   const scrollY = useRef(0)
   const [show, setShow] = useState(true)
 
+  useNavTooltipHandler()
+
   useEffect(() => {
     setCurrentPath(window.location.pathname)
 
-    window.addEventListener('scroll', handleScroll)
-
-    document.addEventListener('astro:page-load', () => {
+    const handlePathChange = () => {
       const pathname = window.location.pathname
       setCurrentPath(pathname)
-    })
+
+      // hide the tooltip when the page is loaded
+      const tip = document.querySelector<HTMLDivElement>('.tip')
+      tip?.style.setProperty('--show', '0')
+    }
+
+    document.addEventListener('astro:page-load', handlePathChange)
+    window.addEventListener('scroll', handleScroll)
 
     return () => {
+      document.removeEventListener('astro:page-load', handlePathChange)
       window.removeEventListener('scroll', handleScroll)
     }
   }, [])
@@ -89,38 +77,39 @@ const BottomNavigationBar = () => {
   }
 
   return (
-    <div
-      className={cn(
-        'fixed left-1/2 z-10 -translate-x-1/2 transition-all duration-500',
-        {
+    <>
+      <nav
+        onPointerMove={() => {
+          // remove the css variable which force tooltip to be hidden
+          const tip = document.querySelector<HTMLDivElement>('.tip')
+          tip?.style.removeProperty('--show')
+        }}
+        className={cn('nav', 'fixed transition-all duration-500', {
           'bottom-8 max-xs:bottom-4': show,
           '-bottom-20': !show
-        }
-      )}
-    >
-      <Dock direction='middle'>
-        {bottomNavigationItems.map(({ name, icon: Icon, href }) => (
-          <DockIcon key={name}>
-            <a href={href}>
-              <Tooltip content={name}>
+        })}
+      >
+        <Dock direction='middle'>
+          {bottomNavigationItems.map(({ name, icon: Icon, href }) => (
+            <DockIcon key={name}>
+              <a href={href}>
                 <Icon className='size-6' />
-              </Tooltip>
-            </a>
-            {currentPath === href && (
-              <div className='absolute bottom-2 size-1 rounded-full bg-orange-600'></div>
-            )}
-          </DockIcon>
-        ))}
-        {/* <Separator orientation='vertical' className='h-full' />
-        {socialMediaItems.map(({ name, icon: Icon, href }) => (
-          <DockIcon key={name}>
-            <Tooltip content={name}>
-              <Icon className='size-6' />
-            </Tooltip>
-          </DockIcon>
-        ))} */}
-      </Dock>
-    </div>
+              </a>
+              {currentPath === href && (
+                <div className='absolute bottom-2 size-1 rounded-full bg-emerald-200'></div>
+              )}
+            </DockIcon>
+          ))}
+        </Dock>
+      </nav>
+      <div className='tip' aria-hidden='true'>
+        <div className='tip__track'>
+          {bottomNavigationItems.map(({ name }) => (
+            <div key={name}>{name}</div>
+          ))}
+        </div>
+      </div>
+    </>
   )
 }
 
