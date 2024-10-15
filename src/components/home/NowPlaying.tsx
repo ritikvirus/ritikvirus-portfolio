@@ -1,11 +1,13 @@
-import React from 'react'
-
-const NOW_PLAYING_ENDPOINT =
-  'https://api.spotify.com/v1/me/player/currently-playing'
-const TOKEN_ENDPOINT = 'https://accounts.spotify.com/api/token'
+const fetchData = async () => {
+  const res = await fetch('/api/spotify')
+  return res.json()
+}
 
 const NowPlaying = () => {
-  return <div>NowPlaying</div>
+  const data = 'data'
+
+  console.log('>>', data)
+  return <div>{JSON.stringify(data, null, 2)}</div>
 }
 
 export default NowPlaying
