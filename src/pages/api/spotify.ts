@@ -31,7 +31,6 @@ export const getAccessToken = async (
 }
 
 export const GET: APIRoute = async () => {
-  console.log('masokk')
   try {
     const { access_token } = await getAccessToken(
       import.meta.env.SPOTIFY_CLIENT_ID,
@@ -57,7 +56,6 @@ export const GET: APIRoute = async () => {
       songUrl: item.external_urls.spotify as string,
       title: item.name as string
     }
-    console.log({ spotifyData })
 
     const options = {
       status: 200,
