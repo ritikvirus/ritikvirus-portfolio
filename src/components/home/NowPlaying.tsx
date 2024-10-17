@@ -25,10 +25,15 @@ const NowPlaying = (props: Props) => {
         props.className
       )}
     >
-      <div className='inline-block aspect-square h-full rounded-full bg-slate-400'></div>
-      <div className='space-y-2 tracking-wide'>
-        <p>After Hours</p>
-        <p className='text-sm text-neutral-400'>The Weeknd</p>
+      {/* <img
+        src={mockData.albumImageUrl}
+        alt='Last Played Song Album Image'
+        className='inline-block aspect-square h-full rounded-2xl bg-slate-400'
+      /> */}
+      <div className='inline-block aspect-square h-full rounded-2xl bg-slate-400'></div>
+      <div className='space-y-2 tracking-widest'>
+        <p className='text-xs uppercase text-neutral-400'>{mockData.artist}</p>
+        <p className='font-medium tracking-wider'>{mockData.title}</p>
       </div>
     </div>
   )
