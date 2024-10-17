@@ -1,10 +1,10 @@
 ---
-import MapLocation from '@/components/home/MapLocation'
-import NowPlaying from '@/components/home/NowPlaying'
-import TypingSpeed from '@/components/home/TypingSpeed'
+import BentoItemMapLocation from './bento/BentoItemMapLocation'
+import NowPlaying from './bento/BentoItemNowPlaying'
+import TypingSpeed from './bento/BentoItemTypingSpeed'
 import { Location } from '../icons/Location'
 import { Spotify } from '../icons/Spotify'
-import BentoBadge from './BentoBadge'
+import BentoBadge from './bento/BentoBadge'
 import { Monkeytype } from '../icons/Monkeytype'
 ---
 
@@ -29,10 +29,7 @@ import { Monkeytype } from '../icons/Monkeytype'
           icon: 'group-hover:text-green-400'
         }}
       />
-      <NowPlaying
-        client:only='react'
-        className='rounded-3xl border border-slate-700'
-      />
+      <NowPlaying client:only='react' />
     </div>
 
     <div class='col-span-3 row-span-1 bg-red-400 max-md:col-span-8'>tips</div>

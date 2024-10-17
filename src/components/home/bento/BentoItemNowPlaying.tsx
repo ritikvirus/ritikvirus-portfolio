@@ -1,6 +1,7 @@
 import { cn, fetcher } from '@/lib/utils'
 import type { SpotifyData } from '@/types'
 import useSWR from 'swr'
+import BentoCard from './BentoCard'
 
 const mockData: SpotifyData = {
   albumImageUrl:
@@ -27,11 +28,8 @@ const NowPlaying = (props: Props) => {
   // )
 
   return (
-    <div
-      className={cn(
-        'flex h-full items-center gap-6 bg-[#11161D] p-3',
-        props.className
-      )}
+    <BentoCard
+      className={cn('flex h-full items-center gap-6 p-3', props.className)}
     >
       <div className='relative aspect-square h-full'>
         <img
@@ -48,7 +46,7 @@ const NowPlaying = (props: Props) => {
           {mockData.title}
         </p>
       </div>
-    </div>
+    </BentoCard>
   )
 }
 

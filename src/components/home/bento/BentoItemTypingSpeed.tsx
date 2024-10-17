@@ -1,6 +1,7 @@
-import { Timer } from '../icons/Timer'
-import { Target } from '../icons/Target'
-import { Translate } from '../icons/Translate'
+import { Timer } from '../../icons/Timer'
+import { Target } from '../../icons/Target'
+import { Translate } from '../../icons/Translate'
+import BentoCard from './BentoCard'
 
 const mockData: TypingDetailProps[] = [
   { icon: Timer, category: 'time', value: '30s' },
@@ -28,7 +29,7 @@ const TypingDetail = ({ category, icon: Icon, value }: TypingDetailProps) => {
 
 const TypingSpeed = () => {
   return (
-    <div className='h-full place-content-end space-y-2 rounded-3xl border border-slate-700 bg-[#11161D] p-5'>
+    <BentoCard className='h-full place-content-end space-y-2 p-5'>
       <div className='flex items-baseline gap-2'>
         <p className='text-7xl font-medium leading-none'>128</p>
         <p>WPM</p>
@@ -38,7 +39,7 @@ const TypingSpeed = () => {
           <TypingDetail {...item} />
         ))}
       </div>
-    </div>
+    </BentoCard>
   )
 }
 
