@@ -36,7 +36,7 @@ const NowPlaying = (props: Props) => {
       <div className='relative aspect-square h-full'>
         <img
           src={mockData.albumImageUrl}
-          alt='Last Played Song Album Image'
+          alt='Last Played Song'
           className='absolute rounded-xl'
         />
       </div>

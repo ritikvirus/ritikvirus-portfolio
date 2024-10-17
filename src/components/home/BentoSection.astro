@@ -5,6 +5,7 @@ import TypingSpeed from '@/components/home/TypingSpeed'
 import { Location } from '../icons/Location'
 import { Spotify } from '../icons/Spotify'
 import BentoBadge from './BentoBadge'
+import { Monkeytype } from '../icons/Monkeytype'
 ---
 
 <div class='grid grid-cols-3 gap-4 max-md:grid-cols-1'>
@@ -24,7 +25,7 @@ import BentoBadge from './BentoBadge'
       <BentoBadge
         icon={Spotify}
         className={{
-          component: 'absolute right-4 top-4',
+          component: 'absolute right-3 top-3',
           icon: 'group-hover:text-green-400'
         }}
       />
@@ -37,7 +38,15 @@ import BentoBadge from './BentoBadge'
     <div class='col-span-3 row-span-1 bg-red-400 max-md:col-span-8'>tips</div>
 
     <div class='col-span-full row-span-2 grid grid-cols-7 gap-4'>
-      <div class='col-span-3 bg-red-400 max-md:col-span-7'>
+      <div class='relative col-span-3 max-md:col-span-7'>
+        <BentoBadge
+          icon={Monkeytype}
+          text='Typing Speed'
+          className={{
+            component: 'absolute left-3 top-3',
+            icon: 'group-hover:text-green-400'
+          }}
+        />
         <TypingSpeed client:only='react' />
       </div>
       <div class='col-span-4 bg-red-400 max-md:col-span-7'>stack</div>
