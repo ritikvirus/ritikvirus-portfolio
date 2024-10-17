@@ -10,7 +10,7 @@ import BentoBadge from './BentoBadge'
 <div class='grid grid-cols-3 gap-4 max-md:grid-cols-1'>
   <div class='relative col-span-1 aspect-square'>
     <BentoBadge
-      className='absolute left-4 top-4'
+      className={{ component: 'absolute left-4 top-4' }}
       text='Location'
       icon={Location}
     />
@@ -20,8 +20,14 @@ import BentoBadge from './BentoBadge'
   <div
     class='col-span-2 grid grid-cols-8 grid-rows-3 gap-4 max-md:grid-rows-none'
   >
-    <div class='relative col-span-5 row-span-1 max-md:col-span-8'>
-      <BentoBadge icon={Spotify} className='absolute right-4 top-4' />
+    <div class='group relative col-span-5 row-span-1 max-md:col-span-8'>
+      <BentoBadge
+        icon={Spotify}
+        className={{
+          component: 'absolute right-4 top-4',
+          icon: 'group-hover:text-green-400'
+        }}
+      />
       <NowPlaying
         client:only='react'
         className='rounded-3xl border border-slate-700'

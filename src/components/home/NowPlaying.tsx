@@ -18,22 +18,35 @@ interface Props {
 const NowPlaying = (props: Props) => {
   // const { data, error } = useSWR<SpotifyData>('/api/spotify', fetcher)
 
+  // return (
+  //   <img
+  //     src={mockData.albumImageUrl}
+  //     alt='Last Played Song Album Image'
+  //     className='h-full w-auto rounded-xl object-cover'
+  //   />
+  // )
+
   return (
     <div
       className={cn(
-        'flex h-full items-center gap-6 bg-[#11161D] p-4',
+        'flex h-full items-center gap-6 bg-[#11161D] p-3',
         props.className
       )}
     >
-      {/* <img
-        src={mockData.albumImageUrl}
-        alt='Last Played Song Album Image'
-        className='inline-block aspect-square h-full rounded-2xl bg-slate-400'
-      /> */}
-      <div className='inline-block aspect-square h-full rounded-2xl bg-slate-400'></div>
-      <div className='space-y-2 tracking-widest'>
-        <p className='text-xs uppercase text-neutral-400'>{mockData.artist}</p>
-        <p className='font-medium tracking-wider'>{mockData.title}</p>
+      <div className='relative aspect-square h-full'>
+        <img
+          src={mockData.albumImageUrl}
+          alt='Last Played Song Album Image'
+          className='absolute rounded-xl'
+        />
+      </div>
+      <div className='space-y-2 overflow-hidden tracking-wider'>
+        <p className='block overflow-hidden text-ellipsis whitespace-nowrap pr-12 text-xs uppercase text-neutral-400'>
+          {mockData.artist}
+        </p>
+        <p className='block overflow-hidden text-ellipsis whitespace-nowrap font-medium'>
+          {mockData.title}
+        </p>
       </div>
     </div>
   )
