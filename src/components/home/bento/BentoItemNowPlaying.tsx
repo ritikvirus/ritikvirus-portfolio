@@ -16,7 +16,7 @@ interface Props {
   className?: string
 }
 
-const NowPlaying = (props: Props) => {
+const BentoItemNowPlaying = (props: Props) => {
   // const { data, error } = useSWR<SpotifyData>('/api/spotify', fetcher)
 
   // return (
@@ -50,4 +50,4 @@ const NowPlaying = (props: Props) => {
   )
 }
 
-export default NowPlaying
+export default BentoItemNowPlaying

@@ -44,10 +44,11 @@ const ZoomButton = (props: ZoomButtonProps) => {
   )
 }
 
-interface MapLocationProps {
+interface Props {
   className?: string
 }
-const MapLocation = ({ className }: MapLocationProps) => {
+
+const BentoItemMapLocation = ({ className }: Props) => {
   const mapRef = useRef<MapLeaflet>(null)
   const [currentZoom, setCurrentZoom] = useState(
     mapRef.current?.getZoom() ?? MAX_ZOOM
@@ -121,4 +122,4 @@ const MapLocation = ({ className }: MapLocationProps) => {
   )
 }
 
-export default MapLocation
+export default BentoItemMapLocation

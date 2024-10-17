@@ -1,11 +1,14 @@
 ---
-import BentoItemMapLocation from './bento/BentoItemMapLocation'
-import NowPlaying from './bento/BentoItemNowPlaying'
-import TypingSpeed from './bento/BentoItemTypingSpeed'
-import { Location } from '../icons/Location'
-import { Spotify } from '../icons/Spotify'
 import BentoBadge from './bento/BentoBadge'
+import BentoItemMapLocation from './bento/BentoItemMapLocation'
+import BentoItemNowPlaying from './bento/BentoItemNowPlaying'
+import BentoItemTechStack from './bento/BentoItemTechStack'
+import BentoItemTypingSpeed from './bento/BentoItemTypingSpeed'
+
+import { Location } from '../icons/Location'
 import { Monkeytype } from '../icons/Monkeytype'
+import { Spotify } from '../icons/Spotify'
+import { Stack } from '../icons/Stack'
 ---
 
 <div class='grid grid-cols-3 gap-4 max-md:grid-cols-1'>
@@ -15,7 +18,7 @@ import { Monkeytype } from '../icons/Monkeytype'
       text='Location'
       icon={Location}
     />
-    <!-- <MapLocation className='rounded-3xl' client:only='react' /> -->
+    <!-- <BentoItemMapLocation className='rounded-3xl' client:only='react' /> -->
   </div>
 
   <div
@@ -29,7 +32,7 @@ import { Monkeytype } from '../icons/Monkeytype'
           icon: 'group-hover:text-green-400'
         }}
       />
-      <NowPlaying client:only='react' />
+      <BentoItemNowPlaying client:only='react' />
     </div>
 
     <div class='col-span-3 row-span-1 bg-red-400 max-md:col-span-8'>tips</div>
@@ -40,13 +43,21 @@ import { Monkeytype } from '../icons/Monkeytype'
           icon={Monkeytype}
           text='Typing Speed'
           className={{
-            component: 'absolute left-3 top-3',
-            icon: 'group-hover:text-green-400'
+            component: 'absolute left-3 top-3'
           }}
         />
-        <TypingSpeed client:only='react' />
+        <BentoItemTypingSpeed client:only='react' />
       </div>
-      <div class='col-span-4 bg-red-400 max-md:col-span-7'>stack</div>
+      <div class='relative col-span-4 max-md:col-span-7'>
+        <BentoBadge
+          icon={Stack}
+          text='My stack'
+          className={{
+            component: 'absolute left-3 top-3'
+          }}
+        />
+        <BentoItemTechStack />
+      </div>
     </div>
   </div>
 </div>
