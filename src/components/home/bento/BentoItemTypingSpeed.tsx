@@ -36,7 +36,7 @@ const TypingSpeed = () => {
       </div>
       <div className='flex justify-between'>
         {mockData.map((item) => (
-          <TypingDetail {...item} />
+          <TypingDetail key={item.category} {...item} />
         ))}
       </div>
     </BentoCard>
