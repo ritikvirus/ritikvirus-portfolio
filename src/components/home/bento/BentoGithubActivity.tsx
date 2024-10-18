@@ -3,6 +3,10 @@ import React from 'react'
 import HeatMap from '@uiw/react-heat-map'
 
 import BentoCard from './BentoCard'
+import { Tooltip } from '@/components/ui/tooltip'
+
+// for fetch the data
+// https://graphql.wtf/episodes/58-graphql-queries-and-mutations-with-react-swr
 
 const value = [
   { date: '2016/01/11', count: 2 },
@@ -35,16 +39,24 @@ const BentoGithubActivity = () => {
           weekLabels={false}
           monthLabels={false}
           legendCellSize={0}
+          space={4}
           style={{ color: '#fff' }}
           startDate={new Date('2016/01/01')}
           rectProps={{ rx: 4 }}
           rectSize={16}
-          space={5}
+          rectRender={(props, data) => {
+            return (
+              // TODO: tooltip
+              // <Tooltip content={`count`} side='top'>
+              <rect {...props} />
+              // </Tooltip>
+            )
+          }}
           panelColors={{
-            0: '#334155',
+            0: '#1e293b',
             2: '#065f46',
-            4: '#4ade80',
-            10: '#16a34a',
+            4: '#16a34a',
+            10: '#4ade80',
             20: '#d9f99d',
             30: '#ea580c'
           }}

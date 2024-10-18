@@ -29,7 +29,7 @@ const TypingDetail = ({ category, icon: Icon, value }: TypingDetailProps) => {
 
 const TypingSpeed = () => {
   return (
-    <BentoCard className='h-full place-content-end space-y-2 p-5'>
+    <BentoCard className='h-full place-content-end space-y-4 p-5'>
       <div className='flex items-baseline gap-2'>
         <p className='text-7xl font-medium leading-none'>128</p>
         <p>WPM</p>
