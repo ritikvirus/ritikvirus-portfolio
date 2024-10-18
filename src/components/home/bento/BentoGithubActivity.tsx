@@ -1,12 +1,9 @@
-import React from 'react'
-
 import HeatMap from '@uiw/react-heat-map'
 
 import BentoCard from './BentoCard'
-import { Tooltip } from '@/components/ui/tooltip'
-
-// for fetch the data
-// https://graphql.wtf/episodes/58-graphql-queries-and-mutations-with-react-swr
+import type { GithubContributionData } from '@/types'
+import { fetcher } from '@/lib/utils'
+import useSWR from 'swr'
 
 const value = [
   { date: '2016/01/11', count: 2 },
@@ -27,6 +24,8 @@ const value = [
 ]
 
 const BentoGithubActivity = () => {
+  // const { data, error } = useSWR<GithubContributionData>('/api/github', fetcher)
+
   return (
     <BentoCard className='flex h-full flex-col justify-between px-4 py-5'>
       <p className='mb-2 flex justify-end text-sm tracking-wider'>

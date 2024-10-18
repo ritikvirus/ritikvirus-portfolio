@@ -25,5 +25,12 @@ export const GET: APIRoute = async () => {
   const parsedResponse = (response as any).user.contributionsCollection
     .contributionCalendar
 
-  return new Response(JSON.stringify(parsedResponse), options)
+  const mappedResponse = {
+    totalContributions: parsedResponse.totalContributions,
+    contributions: parsedResponse.weeks.flatMap((week: any) => {
+      return week.contributionDays.map((day: any) => day)
+    })
+  }
+
+  return new Response(JSON.stringify(mappedResponse), options)
 }

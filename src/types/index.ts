@@ -5,3 +5,13 @@ export interface SpotifyData {
   songUrl: string
   title: string
 }
+
+export interface GithubContributionDay {
+  contributionCount: number
+  date: string
+}
+
+export interface GithubContributionData {
+  totalContributions: number
+  weeks: { contributionDays: GithubContributionDay[] }[]
+}

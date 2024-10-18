@@ -19,14 +19,6 @@ interface Props {
 const BentoItemNowPlaying = (props: Props) => {
   // const { data, error } = useSWR<SpotifyData>('/api/spotify', fetcher)
 
-  // return (
-  //   <img
-  //     src={mockData.albumImageUrl}
-  //     alt='Last Played Song Album Image'
-  //     className='h-full w-auto rounded-xl object-cover'
-  //   />
-  // )
-
   return (
     <BentoCard
       className={cn('flex h-full items-center gap-6 p-3', props.className)}
