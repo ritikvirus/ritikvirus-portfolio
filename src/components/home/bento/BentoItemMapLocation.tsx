@@ -17,6 +17,8 @@ const zoomOptions: ZoomPanOptions = {
 const MAX_ZOOM = 12
 const MIN_ZOOM = 8
 
+const mapUrl = `https://api.maptiler.com/maps/streets-v2-dark/{z}/{x}/{y}.png?key=${import.meta.env.PUBLIC_MAPTILER_API_KEY}`
+
 interface ZoomButtonProps
   extends Pick<
     React.HTMLProps<HTMLButtonElement>,
@@ -42,10 +44,11 @@ const ZoomButton = (props: ZoomButtonProps) => {
   )
 }
 
-interface MapLocationProps {
+interface Props {
   className?: string
 }
-const MapLocation = ({ className }: MapLocationProps) => {
+
+const BentoItemMapLocation = ({ className }: Props) => {
   const mapRef = useRef<MapLeaflet>(null)
   const [currentZoom, setCurrentZoom] = useState(
     mapRef.current?.getZoom() ?? MAX_ZOOM
@@ -86,12 +89,7 @@ const MapLocation = ({ className }: MapLocationProps) => {
           className
         )}
       >
-        <TileLayer
-          url='https://api.maptiler.com/maps/streets-v2-dark/{z}/{x}/{y}.png?key=SZLTcvRlE5ytIR3yS8Xb'
-          tileSize={512}
-          zoomOffset={-1}
-          minZoom={1}
-        />
+        <TileLayer url={mapUrl} tileSize={512} zoomOffset={-1} minZoom={1} />
         {/* Additional map layers or components can be added here */}
       </MapContainer>
       <div className='absolute left-0 top-0 flex h-full w-full items-center justify-center'>
@@ -124,4 +122,4 @@ const MapLocation = ({ className }: MapLocationProps) => {
   )
 }
 
-export default MapLocation
+export default BentoItemMapLocation
