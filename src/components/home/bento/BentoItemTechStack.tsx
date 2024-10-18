@@ -3,7 +3,7 @@ import TechStacks from './TechStacks'
 
 const BentoItemTechStack = () => {
   return (
-    <BentoCard className='h-full place-content-end space-y-4 p-5 tracking-wider'>
+    <BentoCard className='h-full place-content-end space-y-3 p-5 tracking-wider'>
       <TechStacks />
       <div className='space-y-2'>
         <p className='text-lg'>Tech stacks I’ve used</p>
