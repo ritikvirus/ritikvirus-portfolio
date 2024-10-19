@@ -7,11 +7,12 @@ export interface SpotifyData {
 }
 
 export interface GithubContributionDay {
-  contributionCount: number
+  count: number
   date: string
 }
 
 export interface GithubContributionData {
+  lastPushedAt: number
   totalContributions: number
-  weeks: { contributionDays: GithubContributionDay[] }[]
+  contributions: GithubContributionDay[]
 }

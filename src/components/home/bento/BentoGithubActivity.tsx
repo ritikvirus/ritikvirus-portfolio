@@ -1,69 +1,73 @@
-import HeatMap from '@uiw/react-heat-map'
-
-import BentoCard from './BentoCard'
-import type { GithubContributionData } from '@/types'
-import { fetcher } from '@/lib/utils'
 import useSWR from 'swr'
 
-const value = [
-  { date: '2016/01/11', count: 2 },
-  ...[...Array(17)].map((_, idx) => ({
-    date: `2016/01/${idx + 10}`,
-    count: idx
-  })),
-  ...[...Array(17)].map((_, idx) => ({
-    date: `2016/02/${idx + 10}`,
-    count: idx
-  })),
-  { date: '2016/04/12', count: 2 },
-  { date: '2016/05/01', count: 5 },
-  { date: '2016/05/02', count: 5 },
-  { date: '2016/05/03', count: 1 },
-  { date: '2016/05/04', count: 11 },
-  { date: '2016/05/08', count: 32 }
-]
+import HeatMap, { type SVGProps } from '@uiw/react-heat-map'
+import Tooltip from '@uiw/react-tooltip'
+
+import { fetcher, formatDate, getDateSuffix } from '@/lib/utils'
+import type { GithubContributionData } from '@/types'
+
+import BentoCard from './BentoCard'
+
+const getDateProps = () => {
+  const today = new Date()
+  const sixMonthsAgo = new Date()
+  sixMonthsAgo.setMonth(today.getMonth() - 6)
+
+  return { startDate: sixMonthsAgo, endDate: today }
+}
+
+const renderRect: SVGProps['rectRender'] = (props, data) => {
+  const date = new Date(data.date)
+  const formattedDate =
+    date.toLocaleDateString('en-US', { day: 'numeric', month: 'long' }) +
+    getDateSuffix(date.getDate())
+
+  return (
+    <Tooltip
+      placement='top'
+      content={`${data.count || 'No'} contributions on ${formattedDate}`}
+    >
+      <rect {...props} />
+    </Tooltip>
+  )
+}
 
 const BentoGithubActivity = () => {
-  // const { data, error } = useSWR<GithubContributionData>('/api/github', fetcher)
+  const { data, error } = useSWR<GithubContributionData>('/api/github', fetcher)
 
   return (
     <BentoCard className='flex h-full flex-col justify-between px-4 py-5'>
       <p className='mb-2 flex justify-end text-sm tracking-wider'>
-        1,234 contributions
+        {data?.totalContributions ?? 'No'} contributions in the last year
       </p>
       <div className='w-full overflow-x-scroll'>
         <HeatMap
-          className='w-[110%]'
-          value={value}
+          {...getDateProps()}
+          className='w-[550px]'
+          value={data?.contributions ?? []}
           weekLabels={false}
           monthLabels={false}
           legendCellSize={0}
           space={4}
           style={{ color: '#fff' }}
-          startDate={new Date('2016/01/01')}
           rectProps={{ rx: 4 }}
           rectSize={16}
-          rectRender={(props, data) => {
-            return (
-              // TODO: tooltip
-              // <Tooltip content={`count`} side='top'>
-              <rect {...props} />
-              // </Tooltip>
-            )
-          }}
+          rectRender={renderRect}
           panelColors={{
-            0: '#1e293b',
-            2: '#065f46',
-            4: '#16a34a',
-            10: '#4ade80',
-            20: '#d9f99d',
-            30: '#ea580c'
+            1: '#1e293b',
+            4: '#065f46',
+            8: '#16a34a',
+            12: '#4ade80',
+            16: '#d9f99d',
+            20: '#ea580c'
           }}
         />
       </div>
-      <p className='text-sm tracking-wider'>
-        Last commit on Monday, October 7th 2024
-      </p>
+      {data?.lastPushedAt && (
+        <p className='text-sm tracking-wider text-slate-200'>
+          Last pushed on {formatDate(new Date(data.lastPushedAt))}
+        </p>
+      )}
     </BentoCard>
   )
 }
