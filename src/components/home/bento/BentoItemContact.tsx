@@ -1,4 +1,3 @@
-import React from 'react'
 import BentoCard from './BentoCard'
 import { HandWavingFill } from '@/components/icons/HandWavingFill'
 import { ArrowOutward } from '@/components/icons/ArrowOutward'
