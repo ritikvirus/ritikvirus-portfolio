@@ -8,6 +8,12 @@ import type { GithubContributionData } from '@/types'
 
 import BentoCard from './BentoCard'
 
+const data: GithubContributionData = {
+  lastPushedAt: Date.now(),
+  totalContributions: 0,
+  contributions: []
+}
+
 const getDateProps = () => {
   const today = new Date()
   const sixMonthsAgo = new Date()
@@ -33,7 +39,7 @@ const renderRect: SVGProps['rectRender'] = (props, data) => {
 }
 
 const BentoGithubActivity = () => {
-  const { data, error } = useSWR<GithubContributionData>('/api/github', fetcher)
+  // const { data, error } = useSWR<GithubContributionData>('/api/github', fetcher)
 
   return (
     <BentoCard className='flex h-full flex-col justify-between px-4 py-5'>

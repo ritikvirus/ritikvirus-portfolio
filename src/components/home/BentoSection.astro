@@ -1,5 +1,6 @@
 ---
 import BentoBadge from './bento/BentoBadge'
+import BentoItemFeaturedWork from './bento/BentoItemFeaturedWork'
 import BentoGithubActivity from './bento/BentoGithubActivity'
 import BentoItemMapLocation from './bento/BentoItemMapLocation'
 import BentoItemNowPlaying from './bento/BentoItemNowPlaying'
@@ -76,7 +77,17 @@ import { Stack } from '../icons/Stack'
     <BentoGithubActivity client:only='react' />
   </div>
   <div class='col-span-1 grid grid-cols-7 gap-4 max-md:grid-cols-1'>
-    <div class='col-span-4 bg-red-400'>work</div>
+    <div class='relative col-span-4'>
+      <BentoBadge
+        icon={Github}
+        text='Featured work'
+        className={{
+          component: 'absolute left-3 top-3'
+        }}
+      />
+      <BentoItemFeaturedWork />
+    </div>
     <div class='col-span-3 bg-red-400'>contact</div>
   </div>
+  <div class=''></div>
 </div>
