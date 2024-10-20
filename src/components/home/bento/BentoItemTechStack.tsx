@@ -1,9 +1,19 @@
+import { cn } from '@/lib/utils'
 import BentoCard from './BentoCard'
 import TechStacks from './TechStacks'
 
-const BentoItemTechStack = () => {
+interface Props {
+  className?: string
+}
+
+const BentoItemTechStack = ({ className }: Props) => {
   return (
-    <BentoCard className='h-full place-content-end space-y-3 p-5 tracking-wider'>
+    <BentoCard
+      className={cn(
+        'h-full place-content-end space-y-3 p-5 tracking-wider',
+        className
+      )}
+    >
       <TechStacks />
       <div className='space-y-2'>
         <p className='text-lg'>Tech stacks I’ve used</p>

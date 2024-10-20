@@ -2,6 +2,7 @@ import { Timer } from '../../icons/Timer'
 import { Target } from '../../icons/Target'
 import { Translate } from '../../icons/Translate'
 import BentoCard from './BentoCard'
+import { cn } from '@/lib/utils'
 
 const mockData: TypingDetailProps[] = [
   { icon: Timer, category: 'time', value: '30s' },
@@ -27,9 +28,15 @@ const TypingDetail = ({ category, icon: Icon, value }: TypingDetailProps) => {
   )
 }
 
-const TypingSpeed = () => {
+interface Props {
+  className?: string
+}
+
+const TypingSpeed = ({ className }: Props) => {
   return (
-    <BentoCard className='h-full place-content-end space-y-4 p-5'>
+    <BentoCard
+      className={cn('h-full place-content-end space-y-4 p-5', className)}
+    >
       <div className='flex items-baseline gap-2'>
         <p className='text-7xl font-medium leading-none'>128</p>
         <p>WPM</p>

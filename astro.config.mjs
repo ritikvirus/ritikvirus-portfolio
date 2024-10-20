@@ -8,6 +8,8 @@ import react from '@astrojs/react'
 
 import tailwind from '@astrojs/tailwind'
 
+// TODO setup vercel adapter
+
 // https://astro.build/config
 export default defineConfig({
   site: 'https://example.com',

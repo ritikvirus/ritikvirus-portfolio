@@ -9,11 +9,14 @@ const PhotoItem = ({ className }: { className?: string }) => {
         className
       )}
     >
-      <img
+      {/* TODO: optimize img */}
+      {/* <img
         src='https://images.unsplash.com/photo-1728996152930-233c5aca21d7'
         alt='TODO'
+        width={80}
+        height={80}
         className='h-full w-full object-cover'
-      />
+      /> */}
     </div>
   )
 }

@@ -3,7 +3,7 @@ import useSWR from 'swr'
 import HeatMap, { type SVGProps } from '@uiw/react-heat-map'
 import Tooltip from '@uiw/react-tooltip'
 
-import { fetcher, formatDate, getDateSuffix } from '@/lib/utils'
+import { cn, fetcher, formatDate, getDateSuffix } from '@/lib/utils'
 import type { GithubContributionData } from '@/types'
 
 import BentoCard from './BentoCard'
@@ -38,11 +38,20 @@ const renderRect: SVGProps['rectRender'] = (props, data) => {
   )
 }
 
-const BentoGithubActivity = () => {
+interface Props {
+  className?: string
+}
+
+const BentoGithubActivity = ({ className }: Props) => {
   // const { data, error } = useSWR<GithubContributionData>('/api/github', fetcher)
 
   return (
-    <BentoCard className='flex h-full flex-col justify-between px-4 py-5'>
+    <BentoCard
+      className={cn(
+        'flex h-full flex-col justify-between px-4 py-5',
+        className
+      )}
+    >
       <p className='mb-2 flex justify-end text-sm tracking-wider'>
         {data?.totalContributions ?? 'No'} contributions in the last year
       </p>

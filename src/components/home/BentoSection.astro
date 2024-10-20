@@ -19,98 +19,37 @@ import { Stack } from '../icons/Stack'
 import { Suitcase } from '../icons/Suitcase'
 ---
 
-<div class='grid grid-cols-3 gap-4 max-md:grid-cols-1'>
-  <div class='relative col-span-1 aspect-square'>
-    <BentoBadge
+<div class='grid auto-rows-[minmax(0,1fr)] grid-cols-12 gap-4'>
+  <div
+    class='col-start-1 col-end-5 row-start-1 row-end-7 aspect-square bg-red-500'
+  >
+    asd
+    <!-- <BentoBadge
       className={{ component: 'absolute left-4 top-4' }}
       text='Location'
       icon={Location}
-    />
+    /> -->
     <!-- <BentoItemMapLocation className='rounded-3xl' client:only='react' /> -->
   </div>
-
-  <div
-    class='col-span-2 grid grid-cols-8 grid-rows-3 gap-4 max-md:grid-rows-none'
-  >
-    <div class='group relative col-span-5 row-span-1 max-md:col-span-8'>
-      <BentoBadge
-        icon={Spotify}
-        className={{
-          component: 'absolute right-3 top-3',
-          icon: 'group-hover:text-green-400'
-        }}
-      />
-      <BentoItemNowPlaying client:only='react' />
-    </div>
-
-    <div class='relative col-span-3 row-span-1 max-md:col-span-8'>
-      <BentoBadge
-        icon={Bulb}
-        text='Tips'
-        className={{
-          component: 'absolute right-3 top-3'
-        }}
-      />
-      <BentoItemTips />
-    </div>
-
-    <div class='col-span-full row-span-2 grid grid-cols-7 gap-4'>
-      <div class='relative col-span-3 max-md:col-span-7'>
-        <BentoBadge
-          icon={Monkeytype}
-          text='Typing Speed'
-          className={{
-            component: 'absolute left-3 top-3'
-          }}
-        />
-        <BentoItemTypingSpeed client:only='react' />
-      </div>
-      <div class='relative col-span-4 max-md:col-span-7'>
-        <BentoBadge
-          icon={Stack}
-          text='My stack'
-          className={{
-            component: 'absolute left-3 top-3'
-          }}
-        />
-        <BentoItemTechStack />
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class='mt-4 grid grid-cols-2 gap-4 max-md:grid-cols-1'>
-  <div class='relative col-span-1 aspect-[2/1]'>
-    <BentoBadge
-      icon={Github}
-      text='Github activity'
-      className={{
-        component: 'absolute left-3 top-3'
-      }}
-    />
-    <BentoItemGithubActivity client:only='react' />
-  </div>
-  <div class='col-span-1 grid grid-cols-7 gap-4 max-md:grid-cols-1'>
-    <div class='relative col-span-4'>
-      <BentoBadge
-        icon={Suitcase}
-        text='Featured work'
-        className={{
-          component: 'absolute left-3 top-3'
-        }}
-      />
-      <BentoItemFeaturedWork />
-    </div>
-    <div class='relative col-span-3'>
-      <BentoBadge
-        icon={HandTap}
-        text='Contact'
-        className={{
-          component: 'absolute right-3 top-3'
-        }}
-      />
-      <BentoItemContact />
-    </div>
-  </div>
-  <div class=''></div>
+  <BentoItemNowPlaying
+    className='col-start-5 col-end-10 row-start-1 row-end-3'
+    client:only='react'
+  />
+  <BentoItemTips className='col-start-10 col-end-13 row-start-1 row-end-3' />
+  <BentoItemTypingSpeed
+    className='col-start-5 col-end-8 row-start-3 row-end-7'
+  />
+  <BentoItemTechStack
+    className='col-start-8 col-end-13 row-start-3 row-end-7'
+  />
+  <BentoItemGithubActivity
+    className='col-start-1 col-end-7 row-start-7 row-end-12'
+    client:only='react'
+  />
+  <BentoItemFeaturedWork
+    className='col-start-7 col-end-10 row-start-7 row-end-12'
+  />
+  <BentoItemContact
+    className='col-start-10 col-end-13 row-start-7 row-end-12'
+  />
 </div>
