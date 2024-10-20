@@ -1,10 +1,16 @@
 import PhotoCard from '@/components/PhotoCard'
 import BentoBadge from './BentoBadge'
 import { Suitcase } from '@/components/icons/Suitcase'
+import { cn } from '@/lib/utils'
 
 const BentoItemFeaturedWork = () => {
   return (
-    <div className='relative flex h-full flex-col justify-end p-5 pb-6 tracking-wider max-sm:pt-10'>
+    <div
+      className={cn(
+        'relative flex h-full flex-col justify-end gap-3 p-5 pb-6 tracking-wider max-md:pt-10',
+        'md:max-lg:gap-4'
+      )}
+    >
       <BentoBadge
         icon={Suitcase}
         text='Featured work'

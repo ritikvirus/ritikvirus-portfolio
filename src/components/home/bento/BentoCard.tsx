@@ -1,12 +1,30 @@
 import React from 'react'
 import { cn } from '@/lib/utils'
 
-interface Props extends React.HTMLAttributes<HTMLDivElement> {}
+interface Props extends React.HTMLAttributes<HTMLDivElement> {
+  hoverable?: boolean
+}
 
-const BentoCard = ({ children, className, ...rest }: Props) => {
+const BentoCard = (props: Props) => {
+  const { children, className, hoverable = true, ...rest } = props
+
+  if (hoverable) {
+    return (
+      <div className={cn('card', className)} {...rest}>
+        <div className={cn('card-content md:absolute')}>{children}</div>
+      </div>
+    )
+  }
+
   return (
-    <div className={cn('card', className)} {...rest}>
-      <div className={cn('card-content sm:absolute')}>{children}</div>
+    <div
+      className={cn(
+        'rounded-3xl border border-[#2e3e54] bg-[#11161D]',
+        className
+      )}
+      {...rest}
+    >
+      {children}
     </div>
   )
 }

@@ -1,4 +1,4 @@
-import { fetcher } from '@/lib/utils'
+import { cn, fetcher } from '@/lib/utils'
 import type { SpotifyData } from '@/types'
 import useSWR from 'swr'
 import BentoBadge from './BentoBadge'
@@ -17,7 +17,12 @@ const BentoItemNowPlaying = () => {
   // const { data, error } = useSWR<SpotifyData>('/api/spotify', fetcher)
 
   return (
-    <div className='group relative flex h-full items-center gap-6 p-3'>
+    <div
+      className={cn(
+        'group relative flex h-full items-center gap-6 p-3',
+        'md:max-lg:flex-col md:max-lg:items-start md:max-lg:justify-between md:max-lg:p-6'
+      )}
+    >
       <BentoBadge
         icon={Spotify}
         className={{
@@ -25,7 +30,7 @@ const BentoItemNowPlaying = () => {
           icon: 'group-hover:text-green-400'
         }}
       />
-      <div className='relative aspect-square h-full min-h-16'>
+      <div className='relative aspect-square h-full max-h-24 min-h-16'>
         <img
           src={mockData.albumImageUrl}
           alt='Last Played Song'

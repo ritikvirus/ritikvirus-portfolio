@@ -30,7 +30,7 @@ const TypingDetail = ({ category, icon: Icon, value }: TypingDetailProps) => {
 
 const TypingSpeed = () => {
   return (
-    <div className='relative h-full place-content-end space-y-4 p-5 max-sm:py-6'>
+    <div className='relative h-full place-content-end space-y-4 p-5 max-md:py-6'>
       <BentoBadge
         icon={Monkeytype}
         text='Typing speed'
