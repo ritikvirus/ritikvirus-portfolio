@@ -1,8 +1,6 @@
 import { Timer } from '../../icons/Timer'
 import { Target } from '../../icons/Target'
 import { Translate } from '../../icons/Translate'
-import BentoCard from './BentoCard'
-import { cn } from '@/lib/utils'
 
 const mockData: TypingDetailProps[] = [
   { icon: Timer, category: 'time', value: '30s' },
@@ -32,21 +30,19 @@ interface Props {
   className?: string
 }
 
-const TypingSpeed = (props: Props) => {
+const TypingSpeed = () => {
   return (
-    <BentoCard {...props}>
-      <div className='h-full place-content-end space-y-4 p-5'>
-        <div className='flex items-baseline gap-2'>
-          <p className='text-7xl font-medium leading-none'>128</p>
-          <p>WPM</p>
-        </div>
-        <div className='flex justify-between'>
-          {mockData.map((item) => (
-            <TypingDetail key={item.category} {...item} />
-          ))}
-        </div>
+    <div className='h-full place-content-end space-y-4 p-5'>
+      <div className='flex items-baseline gap-2'>
+        <p className='text-7xl font-medium leading-none'>128</p>
+        <p>WPM</p>
       </div>
-    </BentoCard>
+      <div className='flex justify-between'>
+        {mockData.map((item) => (
+          <TypingDetail key={item.category} {...item} />
+        ))}
+      </div>
+    </div>
   )
 }
 

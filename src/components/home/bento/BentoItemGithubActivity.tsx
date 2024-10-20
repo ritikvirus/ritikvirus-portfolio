@@ -3,10 +3,8 @@ import useSWR from 'swr'
 import HeatMap, { type SVGProps } from '@uiw/react-heat-map'
 import Tooltip from '@uiw/react-tooltip'
 
-import { cn, fetcher, formatDate, getDateSuffix } from '@/lib/utils'
+import { fetcher, formatDate, getDateSuffix } from '@/lib/utils'
 import type { GithubContributionData } from '@/types'
-
-import BentoCard from './BentoCard'
 
 const data: GithubContributionData = {
   lastPushedAt: Date.now(),
@@ -38,49 +36,43 @@ const renderRect: SVGProps['rectRender'] = (props, data) => {
   )
 }
 
-interface Props {
-  className?: string
-}
-
-const BentoGithubActivity = (props: Props) => {
+const BentoGithubActivity = () => {
   // const { data, error } = useSWR<GithubContributionData>('/api/github', fetcher)
 
   return (
-    <BentoCard {...props}>
-      <div className='flex h-full flex-col justify-between px-4 py-5'>
-        <p className='mb-2 flex justify-end text-sm tracking-wider'>
-          {data?.totalContributions ?? 'No'} contributions in the last year
-        </p>
-        <div className='w-full overflow-x-scroll'>
-          <HeatMap
-            {...getDateProps()}
-            className='w-[550px]'
-            value={data?.contributions ?? []}
-            weekLabels={false}
-            monthLabels={false}
-            legendCellSize={0}
-            space={4}
-            style={{ color: '#fff' }}
-            rectProps={{ rx: 4 }}
-            rectSize={16}
-            rectRender={renderRect}
-            panelColors={{
-              1: '#1e293b',
-              4: '#065f46',
-              8: '#16a34a',
-              12: '#4ade80',
-              16: '#d9f99d',
-              20: '#ea580c'
-            }}
-          />
-        </div>
-        {data?.lastPushedAt && (
-          <p className='text-sm tracking-wider text-slate-200'>
-            Last pushed on {formatDate(new Date(data.lastPushedAt))}
-          </p>
-        )}
+    <div className='flex h-full flex-col justify-between px-4 py-5'>
+      <p className='mb-2 flex justify-end text-sm tracking-wider'>
+        {data?.totalContributions ?? 'No'} contributions in the last year
+      </p>
+      <div className='w-full overflow-x-scroll'>
+        <HeatMap
+          {...getDateProps()}
+          className='w-[550px]'
+          value={data?.contributions ?? []}
+          weekLabels={false}
+          monthLabels={false}
+          legendCellSize={0}
+          space={4}
+          style={{ color: '#fff' }}
+          rectProps={{ rx: 4 }}
+          rectSize={16}
+          rectRender={renderRect}
+          panelColors={{
+            1: '#1e293b',
+            4: '#065f46',
+            8: '#16a34a',
+            12: '#4ade80',
+            16: '#d9f99d',
+            20: '#ea580c'
+          }}
+        />
       </div>
-    </BentoCard>
+      {data?.lastPushedAt && (
+        <p className='text-sm tracking-wider text-slate-200'>
+          Last pushed on {formatDate(new Date(data.lastPushedAt))}
+        </p>
+      )}
+    </div>
   )
 }
 

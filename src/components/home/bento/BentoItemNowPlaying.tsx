@@ -1,7 +1,6 @@
-import { cn, fetcher } from '@/lib/utils'
+import { fetcher } from '@/lib/utils'
 import type { SpotifyData } from '@/types'
 import useSWR from 'swr'
-import BentoCard from './BentoCard'
 
 const mockData: SpotifyData = {
   albumImageUrl:
@@ -12,33 +11,27 @@ const mockData: SpotifyData = {
   title: 'Wake (Studio)'
 }
 
-interface Props {
-  className?: string
-}
-
-const BentoItemNowPlaying = (props: Props) => {
+const BentoItemNowPlaying = () => {
   // const { data, error } = useSWR<SpotifyData>('/api/spotify', fetcher)
 
   return (
-    <BentoCard {...props}>
-      <div className='flex h-full items-center gap-6 p-3'>
-        <div className='relative aspect-square h-full'>
-          <img
-            src={mockData.albumImageUrl}
-            alt='Last Played Song'
-            className='absolute rounded-xl'
-          />
-        </div>
-        <div className='space-y-2 overflow-hidden tracking-wider'>
-          <p className='block overflow-hidden text-ellipsis whitespace-nowrap pr-12 text-xs uppercase text-neutral-400'>
-            {mockData.artist}
-          </p>
-          <p className='block overflow-hidden text-ellipsis whitespace-nowrap font-medium'>
-            {mockData.title}
-          </p>
-        </div>
+    <div className='flex h-full items-center gap-6 p-3'>
+      <div className='relative aspect-square h-full'>
+        <img
+          src={mockData.albumImageUrl}
+          alt='Last Played Song'
+          className='absolute rounded-xl'
+        />
       </div>
-    </BentoCard>
+      <div className='space-y-2 overflow-hidden tracking-wider'>
+        <p className='block overflow-hidden text-ellipsis whitespace-nowrap pr-12 text-xs uppercase text-neutral-400'>
+          {mockData.artist}
+        </p>
+        <p className='block overflow-hidden text-ellipsis whitespace-nowrap font-medium'>
+          {mockData.title}
+        </p>
+      </div>
+    </div>
   )
 }
 

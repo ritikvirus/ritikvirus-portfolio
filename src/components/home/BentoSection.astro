@@ -1,5 +1,6 @@
 ---
 import BentoBadge from './bento/BentoBadge'
+import BentoCard from './bento/BentoCard'
 import BentoItemContact from './bento/BentoItemContact'
 import BentoItemFeaturedWork from './bento/BentoItemFeaturedWork'
 import BentoItemGithubActivity from './bento/BentoItemGithubActivity'
@@ -35,27 +36,33 @@ import BentoItemTypingSpeed from './bento/BentoItemTypingSpeed'
     /> -->
     <!-- <BentoItemMapLocation className='rounded-3xl' client:only='react' /> -->
   </div>
-  <BentoItemNowPlaying
-    className='col-start-5 col-end-10 row-start-1 row-end-3'
-  />
-  <!-- client:only='react' -->
-  <BentoItemTips className='col-start-10 col-end-13 row-start-1 row-end-3' />
-  <BentoItemTypingSpeed
-    className='col-start-5 col-end-8 row-start-3 row-end-7'
-  />
-  <BentoItemTechStack
-    className='col-start-8 col-end-13 row-start-3 row-end-7'
-  />
-  <BentoItemGithubActivity
-    className='col-start-1 col-end-7 row-start-7 row-end-12'
-    client:only='react'
-  />
-  <BentoItemFeaturedWork
-    className='col-start-7 col-end-10 row-start-7 row-end-12'
-  />
-  <BentoItemContact
-    className='col-start-10 col-end-13 row-start-7 row-end-12'
-  />
+  <BentoCard className='col-start-5 col-end-10 row-start-1 row-end-3'>
+    <BentoItemNowPlaying client:only='react' />
+  </BentoCard>
+
+  <BentoCard className='col-start-10 col-end-13 row-start-1 row-end-3'>
+    <BentoItemTips />
+  </BentoCard>
+
+  <BentoCard className='col-start-5 col-end-8 row-start-3 row-end-7'>
+    <BentoItemTypingSpeed />
+  </BentoCard>
+
+  <BentoCard className='col-start-8 col-end-13 row-start-3 row-end-7'>
+    <BentoItemTechStack />
+  </BentoCard>
+
+  <BentoCard className='col-start-1 col-end-7 row-start-7 row-end-12'>
+    <BentoItemGithubActivity client:only='react' />
+  </BentoCard>
+
+  <BentoCard className='col-start-7 col-end-10 row-start-7 row-end-12'>
+    <BentoItemFeaturedWork />
+  </BentoCard>
+
+  <BentoCard className='col-start-10 col-end-13 row-start-7 row-end-12'>
+    <BentoItemContact />
+  </BentoCard>
 </div>
 
 <style is:global>
