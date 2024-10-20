@@ -1,9 +1,15 @@
-import React from 'react'
 import PhotoCard from '@/components/PhotoCard'
+import BentoBadge from './BentoBadge'
+import { Suitcase } from '@/components/icons/Suitcase'
 
 const BentoItemFeaturedWork = () => {
   return (
-    <div className='flex h-full flex-col justify-end p-5 pb-6 tracking-wider'>
+    <div className='relative flex h-full flex-col justify-end p-5 pb-6 tracking-wider'>
+      <BentoBadge
+        icon={Suitcase}
+        text='Featured work'
+        className={{ component: 'absolute left-2 top-2' }}
+      />
       <PhotoCard />
       <div className='space-y-2'>
         <p className='text-font-semibold text-lg leading-none'>Bookmarked</p>

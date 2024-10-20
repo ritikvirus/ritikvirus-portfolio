@@ -1,6 +1,8 @@
 import { fetcher } from '@/lib/utils'
 import type { SpotifyData } from '@/types'
 import useSWR from 'swr'
+import BentoBadge from './BentoBadge'
+import { Spotify } from '@/components/icons/Spotify'
 
 const mockData: SpotifyData = {
   albumImageUrl:
@@ -15,7 +17,11 @@ const BentoItemNowPlaying = () => {
   // const { data, error } = useSWR<SpotifyData>('/api/spotify', fetcher)
 
   return (
-    <div className='flex h-full items-center gap-6 p-3'>
+    <div className='relative flex h-full items-center gap-6 p-3'>
+      <BentoBadge
+        icon={Spotify}
+        className={{ component: 'absolute right-2 top-2' }}
+      />
       <div className='relative aspect-square h-full'>
         <img
           src={mockData.albumImageUrl}

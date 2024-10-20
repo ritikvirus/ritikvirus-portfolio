@@ -1,6 +1,8 @@
 import { Timer } from '../../icons/Timer'
 import { Target } from '../../icons/Target'
 import { Translate } from '../../icons/Translate'
+import BentoBadge from './BentoBadge'
+import { Monkeytype } from '@/components/icons/Monkeytype'
 
 const mockData: TypingDetailProps[] = [
   { icon: Timer, category: 'time', value: '30s' },
@@ -32,7 +34,12 @@ interface Props {
 
 const TypingSpeed = () => {
   return (
-    <div className='h-full place-content-end space-y-4 p-5'>
+    <div className='relative h-full place-content-end space-y-4 p-5'>
+      <BentoBadge
+        icon={Monkeytype}
+        text='Typing speed'
+        className={{ component: 'absolute left-2 top-2' }}
+      />
       <div className='flex items-baseline gap-2'>
         <p className='text-7xl font-medium leading-none'>128</p>
         <p>WPM</p>

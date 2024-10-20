@@ -5,6 +5,8 @@ import Tooltip from '@uiw/react-tooltip'
 
 import { fetcher, formatDate, getDateSuffix } from '@/lib/utils'
 import type { GithubContributionData } from '@/types'
+import BentoBadge from './BentoBadge'
+import { Github } from '@/components/icons/Github'
 
 const data: GithubContributionData = {
   lastPushedAt: Date.now(),
@@ -40,7 +42,12 @@ const BentoGithubActivity = () => {
   // const { data, error } = useSWR<GithubContributionData>('/api/github', fetcher)
 
   return (
-    <div className='flex h-full flex-col justify-between px-4 py-5'>
+    <div className='relative flex h-full flex-col justify-between px-4 py-5'>
+      <BentoBadge
+        icon={Github}
+        text='Github activity'
+        className={{ component: 'absolute left-2 top-2' }}
+      />
       <p className='mb-2 flex justify-end text-sm tracking-wider'>
         {data?.totalContributions ?? 'No'} contributions in the last year
       </p>

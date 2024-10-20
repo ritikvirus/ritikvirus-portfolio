@@ -1,4 +1,5 @@
 ---
+import { Location } from '../icons/Location'
 import BentoBadge from './bento/BentoBadge'
 import BentoCard from './bento/BentoCard'
 import BentoItemContact from './bento/BentoItemContact'
@@ -25,15 +26,12 @@ import BentoItemTypingSpeed from './bento/BentoItemTypingSpeed'
 </script>
 
 <div id='cards' class='grid auto-rows-[minmax(0,1fr)] grid-cols-12 gap-4'>
-  <div
-    class='col-start-1 col-end-5 row-start-1 row-end-7 aspect-square bg-red-500'
-  >
-    asd
-    <!-- <BentoBadge
+  <div class='col-start-1 col-end-5 row-start-1 row-end-7 aspect-square'>
+    <BentoBadge
       className={{ component: 'absolute left-4 top-4' }}
       text='Location'
       icon={Location}
-    /> -->
+    />
     <!-- <BentoItemMapLocation className='rounded-3xl' client:only='react' /> -->
   </div>
   <BentoCard className='col-start-5 col-end-10 row-start-1 row-end-3'>
@@ -66,13 +64,20 @@ import BentoItemTypingSpeed from './bento/BentoItemTypingSpeed'
 </div>
 
 <style is:global>
+  #cards {
+    --card-border: #48576c;
+    --card-background: #11161d;
+  }
+
+  /* source: https://codepen.io/Hyperplexed/pen/MWQeYLW */
   #cards:hover > .card::after {
     opacity: 1;
   }
 
   .card {
-    background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
+    /* border */
+    background-color: rgba(46, 62, 84, 0.5);
+    border-radius: 24px;
     cursor: pointer;
     display: flex;
     flex-direction: column;
@@ -106,16 +111,18 @@ import BentoItemTypingSpeed from './bento/BentoItemTypingSpeed'
   }
 
   .card::after {
+    /* border hover */
     background: radial-gradient(
       600px circle at var(--mouse-x) var(--mouse-y),
-      rgba(255, 255, 255, 0.4),
-      transparent 40%
+      var(--card-border),
+      transparent 50%
     );
     z-index: 1;
   }
 
   .card > .card-content {
-    background-color: rgb(23, 23, 23);
+    /* card background */
+    background-color: var(--card-background);
     border-radius: inherit;
     display: flex;
     flex-direction: column;

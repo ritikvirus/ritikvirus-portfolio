@@ -1,9 +1,16 @@
 import { HandWavingFill } from '@/components/icons/HandWavingFill'
 import { ArrowOutward } from '@/components/icons/ArrowOutward'
+import BentoBadge from './BentoBadge'
+import { HandTap } from '@/components/icons/HandTap'
 
 const BentoItemContact = () => {
   return (
-    <div className='flex h-full w-full flex-col justify-center space-y-2'>
+    <div className='relative flex h-full w-full flex-col justify-center space-y-2'>
+      <BentoBadge
+        icon={HandTap}
+        text='Contact'
+        className={{ component: 'absolute right-2 top-2' }}
+      />
       <HandWavingFill className='ml-2 size-[88px] text-slate-800' />
       <div className='space-y-4 px-5 font-medium tracking-wider'>
         <p className='text-md leading-6'>Ready to bring your ideas to life?</p>
