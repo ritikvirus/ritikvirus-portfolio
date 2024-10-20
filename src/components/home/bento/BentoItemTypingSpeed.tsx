@@ -6,8 +6,8 @@ import { Monkeytype } from '@/components/icons/Monkeytype'
 
 const mockData: TypingDetailProps[] = [
   { icon: Timer, category: 'time', value: '30s' },
-  { icon: Target, category: 'accuracy', value: '98%' }
-  // { icon: Translate, category: 'language', value: 'ID' }
+  { icon: Target, category: 'accuracy', value: '98%' },
+  { icon: Translate, category: 'language', value: 'ID' }
 ]
 
 interface TypingDetailProps {
@@ -28,23 +28,19 @@ const TypingDetail = ({ category, icon: Icon, value }: TypingDetailProps) => {
   )
 }
 
-interface Props {
-  className?: string
-}
-
 const TypingSpeed = () => {
   return (
-    <div className='relative h-full place-content-end space-y-4 p-5'>
+    <div className='relative h-full place-content-end space-y-4 p-5 max-sm:py-6'>
       <BentoBadge
         icon={Monkeytype}
         text='Typing speed'
-        className={{ component: 'absolute left-2 top-2' }}
+        className={{ component: 'absolute top-2 max-sm:right-2 sm:left-2' }}
       />
       <div className='flex items-baseline gap-2'>
         <p className='text-7xl font-medium leading-none'>128</p>
         <p>WPM</p>
       </div>
-      <div className='flex gap-12'>
+      <div className='flex justify-between'>
         {mockData.map((item) => (
           <TypingDetail key={item.category} {...item} />
         ))}

@@ -5,7 +5,7 @@ import { HandTap } from '@/components/icons/HandTap'
 
 const BentoItemContact = () => {
   return (
-    <div className='relative flex h-full w-full flex-col justify-center space-y-2'>
+    <div className='relative flex h-full w-full flex-col justify-center space-y-2 max-sm:h-48 max-sm:pb-6'>
       <BentoBadge
         icon={HandTap}
         text='Contact'

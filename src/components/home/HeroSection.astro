@@ -2,7 +2,7 @@
 import Keyboard from '@/components/home/Keyboard.astro'
 ---
 
-<div class='flex flex-col gap-8 pb-36 pt-40'>
+<div class='flex flex-col gap-8 pb-36 pt-40 max-sm:py-24'>
   <div
     class:list={[
       'flex w-fit items-center rounded-full tracking-wide',
@@ -32,11 +32,6 @@ import Keyboard from '@/components/home/Keyboard.astro'
     crafting innovative solutions and bringing ideas to life through thoughtful code
     and design.
   </h2>
-  <!-- <p
-      class='mb-4 text-xs uppercase tracking-widest text-zinc-600 max-md:text-[10px]'
-    >
-      press any of the keys below
-    </p> -->
   <Keyboard />
 </div>
 

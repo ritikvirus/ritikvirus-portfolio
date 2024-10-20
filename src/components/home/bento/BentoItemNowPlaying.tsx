@@ -17,12 +17,15 @@ const BentoItemNowPlaying = () => {
   // const { data, error } = useSWR<SpotifyData>('/api/spotify', fetcher)
 
   return (
-    <div className='relative flex h-full items-center gap-6 p-3'>
+    <div className='group relative flex h-full items-center gap-6 p-3'>
       <BentoBadge
         icon={Spotify}
-        className={{ component: 'absolute right-2 top-2' }}
+        className={{
+          component: 'absolute right-2 top-2',
+          icon: 'group-hover:text-green-400'
+        }}
       />
-      <div className='relative aspect-square h-full'>
+      <div className='relative aspect-square h-full min-h-16'>
         <img
           src={mockData.albumImageUrl}
           alt='Last Played Song'

@@ -4,7 +4,7 @@ import { Suitcase } from '@/components/icons/Suitcase'
 
 const BentoItemFeaturedWork = () => {
   return (
-    <div className='relative flex h-full flex-col justify-end p-5 pb-6 tracking-wider'>
+    <div className='relative flex h-full flex-col justify-end p-5 pb-6 tracking-wider max-sm:pt-10'>
       <BentoBadge
         icon={Suitcase}
         text='Featured work'

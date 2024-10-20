@@ -42,7 +42,7 @@ const BentoGithubActivity = () => {
   // const { data, error } = useSWR<GithubContributionData>('/api/github', fetcher)
 
   return (
-    <div className='relative flex h-full flex-col justify-between px-4 py-5'>
+    <div className='relative flex h-full flex-col justify-between px-4 py-5 max-xs:pt-12'>
       <BentoBadge
         icon={Github}
         text='Github activity'
@@ -75,7 +75,7 @@ const BentoGithubActivity = () => {
         />
       </div>
       {data?.lastPushedAt && (
-        <p className='text-sm tracking-wider text-slate-200'>
+        <p className='text-sm tracking-wider text-slate-200 max-sm:mt-4 max-sm:text-xs'>
           Last pushed on {formatDate(new Date(data.lastPushedAt))}
         </p>
       )}

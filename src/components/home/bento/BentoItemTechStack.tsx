@@ -4,7 +4,7 @@ import TechStacks from './TechStacks'
 
 const BentoItemTechStack = () => {
   return (
-    <div className='relative h-full place-content-end space-y-3 p-5 tracking-wider'>
+    <div className='relative h-full place-content-end space-y-3 p-5 tracking-wider max-sm:pt-10'>
       <BentoBadge
         icon={Stack}
         text='Tech stack'

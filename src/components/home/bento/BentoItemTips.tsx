@@ -11,7 +11,7 @@ const BentoItemTips = () => {
         className={{ component: 'absolute right-2 top-2' }}
       />
       <Search className='absolute -bottom-2 left-2 size-[86px] rotate-[16deg] text-slate-800' />
-      <div className='pl-[88px] pt-6 tracking-wide'>
+      <div className='py-6 pl-[88px] tracking-wide'>
         <p className='text-lg'>⌘+K</p>
         <p className='text-sm text-slate-400'>Find anything easily</p>
       </div>
