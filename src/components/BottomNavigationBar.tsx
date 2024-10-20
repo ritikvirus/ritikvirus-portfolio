@@ -84,7 +84,7 @@ const BottomNavigationBar = () => {
           const tip = document.querySelector<HTMLDivElement>('.tip')
           tip?.style.removeProperty('--show')
         }}
-        className={cn('nav', 'fixed transition-all duration-500', {
+        className={cn('nav', 'fixed z-10 transition-all duration-500', {
           'bottom-8 max-xs:bottom-4': show,
           '-bottom-20': !show
         })}

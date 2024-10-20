@@ -7,12 +7,13 @@ const BentoCard = ({ children, className, ...rest }: Props) => {
   return (
     <div
       className={cn(
-        'rounded-3xl border border-[#2e3e54] bg-[#11161D]',
+        // 'rounded-3xl border border-[#2e3e54] bg-[#11161D]',
+        'card',
         className
       )}
       {...rest}
     >
-      {children}
+      <div className={cn('card-content')}>{children}</div>
     </div>
   )
 }

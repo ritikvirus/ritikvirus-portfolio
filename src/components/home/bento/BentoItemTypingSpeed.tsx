@@ -32,19 +32,19 @@ interface Props {
   className?: string
 }
 
-const TypingSpeed = ({ className }: Props) => {
+const TypingSpeed = (props: Props) => {
   return (
-    <BentoCard
-      className={cn('h-full place-content-end space-y-4 p-5', className)}
-    >
-      <div className='flex items-baseline gap-2'>
-        <p className='text-7xl font-medium leading-none'>128</p>
-        <p>WPM</p>
-      </div>
-      <div className='flex justify-between'>
-        {mockData.map((item) => (
-          <TypingDetail key={item.category} {...item} />
-        ))}
+    <BentoCard {...props}>
+      <div className='h-full place-content-end space-y-4 p-5'>
+        <div className='flex items-baseline gap-2'>
+          <p className='text-7xl font-medium leading-none'>128</p>
+          <p>WPM</p>
+        </div>
+        <div className='flex justify-between'>
+          {mockData.map((item) => (
+            <TypingDetail key={item.category} {...item} />
+          ))}
+        </div>
       </div>
     </BentoCard>
   )

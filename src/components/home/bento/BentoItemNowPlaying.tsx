@@ -20,23 +20,23 @@ const BentoItemNowPlaying = (props: Props) => {
   // const { data, error } = useSWR<SpotifyData>('/api/spotify', fetcher)
 
   return (
-    <BentoCard
-      className={cn('flex h-full items-center gap-6 p-3', props.className)}
-    >
-      <div className='relative aspect-square h-full'>
-        <img
-          src={mockData.albumImageUrl}
-          alt='Last Played Song'
-          className='absolute rounded-xl'
-        />
-      </div>
-      <div className='space-y-2 overflow-hidden tracking-wider'>
-        <p className='block overflow-hidden text-ellipsis whitespace-nowrap pr-12 text-xs uppercase text-neutral-400'>
-          {mockData.artist}
-        </p>
-        <p className='block overflow-hidden text-ellipsis whitespace-nowrap font-medium'>
-          {mockData.title}
-        </p>
+    <BentoCard {...props}>
+      <div className='flex h-full items-center gap-6 p-3'>
+        <div className='relative aspect-square h-full'>
+          <img
+            src={mockData.albumImageUrl}
+            alt='Last Played Song'
+            className='absolute rounded-xl'
+          />
+        </div>
+        <div className='space-y-2 overflow-hidden tracking-wider'>
+          <p className='block overflow-hidden text-ellipsis whitespace-nowrap pr-12 text-xs uppercase text-neutral-400'>
+            {mockData.artist}
+          </p>
+          <p className='block overflow-hidden text-ellipsis whitespace-nowrap font-medium'>
+            {mockData.title}
+          </p>
+        </div>
       </div>
     </BentoCard>
   )

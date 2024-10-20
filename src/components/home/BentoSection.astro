@@ -8,18 +8,22 @@ import BentoItemNowPlaying from './bento/BentoItemNowPlaying'
 import BentoItemTechStack from './bento/BentoItemTechStack'
 import BentoItemTips from './bento/BentoItemTips'
 import BentoItemTypingSpeed from './bento/BentoItemTypingSpeed'
-
-import { Bulb } from '../icons/Bulb'
-import { Github } from '../icons/Github'
-import { HandTap } from '../icons/HandTap'
-import { Location } from '../icons/Location'
-import { Monkeytype } from '../icons/Monkeytype'
-import { Spotify } from '../icons/Spotify'
-import { Stack } from '../icons/Stack'
-import { Suitcase } from '../icons/Suitcase'
 ---
 
-<div class='grid auto-rows-[minmax(0,1fr)] grid-cols-12 gap-4'>
+<script>
+  document.getElementById('cards')!.onmousemove = (e) => {
+    for (const card of document.getElementsByClassName('card')) {
+      const rect = card.getBoundingClientRect()
+      const x = e.clientX - rect.left
+      const y = e.clientY - rect.top
+
+      ;(card as HTMLDivElement).style.setProperty('--mouse-x', `${x}px`)
+      ;(card as HTMLDivElement).style.setProperty('--mouse-y', `${y}px`)
+    }
+  }
+</script>
+
+<div id='cards' class='grid auto-rows-[minmax(0,1fr)] grid-cols-12 gap-4'>
   <div
     class='col-start-1 col-end-5 row-start-1 row-end-7 aspect-square bg-red-500'
   >
@@ -33,8 +37,8 @@ import { Suitcase } from '../icons/Suitcase'
   </div>
   <BentoItemNowPlaying
     className='col-start-5 col-end-10 row-start-1 row-end-3'
-    client:only='react'
   />
+  <!-- client:only='react' -->
   <BentoItemTips className='col-start-10 col-end-13 row-start-1 row-end-3' />
   <BentoItemTypingSpeed
     className='col-start-5 col-end-8 row-start-3 row-end-7'
@@ -53,3 +57,64 @@ import { Suitcase } from '../icons/Suitcase'
     className='col-start-10 col-end-13 row-start-7 row-end-12'
   />
 </div>
+
+<style is:global>
+  #cards:hover > .card::after {
+    opacity: 1;
+  }
+
+  .card {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+
+  .card:hover::before {
+    opacity: 1;
+  }
+
+  .card::before,
+  .card::after {
+    border-radius: inherit;
+    content: '';
+    height: 100%;
+    left: 0px;
+    opacity: 0;
+    position: absolute;
+    top: 0px;
+    transition: opacity 500ms;
+    width: 100%;
+  }
+
+  .card::before {
+    background: radial-gradient(
+      800px circle at var(--mouse-x) var(--mouse-y),
+      rgba(255, 255, 255, 0.06),
+      transparent 40%
+    );
+    z-index: 3;
+  }
+
+  .card::after {
+    background: radial-gradient(
+      600px circle at var(--mouse-x) var(--mouse-y),
+      rgba(255, 255, 255, 0.4),
+      transparent 40%
+    );
+    z-index: 1;
+  }
+
+  .card > .card-content {
+    background-color: rgb(23, 23, 23);
+    border-radius: inherit;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    inset: 1px;
+    position: absolute;
+    z-index: 2;
+  }
+</style>
