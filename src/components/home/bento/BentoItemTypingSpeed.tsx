@@ -6,8 +6,8 @@ import { Monkeytype } from '@/components/icons/Monkeytype'
 
 const mockData: TypingDetailProps[] = [
   { icon: Timer, category: 'time', value: '30s' },
-  { icon: Target, category: 'accuracy', value: '98%' },
-  { icon: Translate, category: 'language', value: 'ID' }
+  { icon: Target, category: 'accuracy', value: '98%' }
+  // { icon: Translate, category: 'language', value: 'ID' }
 ]
 
 interface TypingDetailProps {
@@ -44,7 +44,7 @@ const TypingSpeed = () => {
         <p className='text-7xl font-medium leading-none'>128</p>
         <p>WPM</p>
       </div>
-      <div className='flex justify-between'>
+      <div className='flex gap-12'>
         {mockData.map((item) => (
           <TypingDetail key={item.category} {...item} />
         ))}

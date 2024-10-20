@@ -25,8 +25,10 @@ import BentoItemTypingSpeed from './bento/BentoItemTypingSpeed'
   }
 </script>
 
-<div id='cards' class='grid auto-rows-[minmax(0,1fr)] grid-cols-12 gap-4'>
-  <div class='col-start-1 col-end-5 row-start-1 row-end-7 aspect-square'>
+<div id='cards' class='grid-cols-24 grid auto-rows-[minmax(0,1fr)] gap-4'>
+  <div
+    class='relative col-start-1 col-end-9 row-start-1 row-end-7 aspect-square'
+  >
     <BentoBadge
       className={{ component: 'absolute left-4 top-4' }}
       text='Location'
@@ -34,31 +36,31 @@ import BentoItemTypingSpeed from './bento/BentoItemTypingSpeed'
     />
     <!-- <BentoItemMapLocation className='rounded-3xl' client:only='react' /> -->
   </div>
-  <BentoCard className='col-start-5 col-end-10 row-start-1 row-end-3'>
+  <BentoCard className='col-end-19 col-start-9 row-start-1 row-end-3'>
     <BentoItemNowPlaying client:only='react' />
   </BentoCard>
 
-  <BentoCard className='col-start-10 col-end-13 row-start-1 row-end-3'>
+  <BentoCard className='col-end-25 col-start-19 row-start-1 row-end-3'>
     <BentoItemTips />
   </BentoCard>
 
-  <BentoCard className='col-start-5 col-end-8 row-start-3 row-end-7'>
+  <BentoCard className='col-end-15 col-start-9 row-start-3 row-end-7'>
     <BentoItemTypingSpeed />
   </BentoCard>
 
-  <BentoCard className='col-start-8 col-end-13 row-start-3 row-end-7'>
+  <BentoCard className='col-start-15 col-end-25 row-start-3 row-end-7'>
     <BentoItemTechStack />
   </BentoCard>
 
-  <BentoCard className='col-start-1 col-end-7 row-start-7 row-end-12'>
+  <BentoCard className='col-start-1 col-end-13 row-start-7 row-end-12'>
     <BentoItemGithubActivity client:only='react' />
   </BentoCard>
 
-  <BentoCard className='col-start-7 col-end-10 row-start-7 row-end-12'>
+  <BentoCard className='col-end-20 col-start-13 row-start-7 row-end-12'>
     <BentoItemFeaturedWork />
   </BentoCard>
 
-  <BentoCard className='col-start-10 col-end-13 row-start-7 row-end-12'>
+  <BentoCard className='col-start-20 col-end-25 row-start-7 row-end-12'>
     <BentoItemContact />
   </BentoCard>
 </div>
