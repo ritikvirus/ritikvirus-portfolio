@@ -25,9 +25,12 @@ import BentoItemTypingSpeed from './bento/BentoItemTypingSpeed'
   }
 </script>
 
-<div id='cards' class='grid-cols-24 grid auto-rows-[minmax(0,1fr)] gap-4'>
+<div
+  id='cards'
+  class='grid-cols-24 auto-rows-[minmax(0,1fr)] gap-4 max-sm:space-y-4 sm:grid'
+>
   <div
-    class='relative col-start-1 col-end-9 row-start-1 row-end-7 aspect-square'
+    class='relative col-start-1 col-end-9 row-start-1 row-end-7 aspect-square bg-red-500'
   >
     <BentoBadge
       className={{ component: 'absolute left-4 top-4' }}
@@ -130,7 +133,7 @@ import BentoItemTypingSpeed from './bento/BentoItemTypingSpeed'
     flex-direction: column;
     flex-grow: 1;
     inset: 1px;
-    position: absolute;
+    /* position: absolute; */
     z-index: 2;
   }
 </style>
