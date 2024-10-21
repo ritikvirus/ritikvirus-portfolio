@@ -6,18 +6,29 @@ import { Scroll } from '../icons/Scroll'
 import { Mail } from '../icons/Mail'
 
 const KEYS = [
-  { key: 'KeyE', icon: GithubOutline, tooltip: 'Github' },
-  { key: 'KeyS', icon: LinkedIn, tooltip: 'LinkedIn' },
-  { key: 'KeyD', icon: Gitlab, tooltip: 'Gitlab' },
-  { key: 'KeyC', icon: Scroll, tooltip: 'Resume' },
-  { key: 'KeyR', icon: Mail, tooltip: 'Email' }
+  { key: 'KeyE', icon: GithubOutline, href: 'https://github.com/jestsee' },
+  { key: 'KeyS', icon: LinkedIn, href: 'https://www.linkedin.com/in/jestsee/' },
+  { key: 'KeyD', icon: Gitlab, href: 'https://gitlab.informatika.org/jestsee' },
+  { key: 'KeyC', icon: Scroll, href: '#' },
+  { key: 'KeyR', icon: Mail, href: '#' }
 ]
 ---
 
 <!-- keyboard source: https://codepen.io/HaydnComley/pen/yLdpLbJ -->
 <script>
-  const keyboardKeys = Array.from(document.querySelectorAll('button'))
-  const keyboardSound = document.querySelector('audio')
+  const scrollButton = document.getElementById('cta-hero-btn')
+  const targetElement = document.getElementById('cards')
+
+  // Add a click event listener to the button
+  scrollButton?.addEventListener('click', function () {
+    // Scroll to the target element when the button is clicked
+    targetElement?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start'
+    })
+  })
+  // const keyboardKeys = Array.from(document.querySelectorAll('button'))
+  // const keyboardSound = document.querySelector('audio')
 
   // document.addEventListener('keydown', (e) => {
   //   e.preventDefault()
@@ -42,39 +53,39 @@ const KEYS = [
   //   }
   // })
 
-  keyboardKeys.forEach((key) =>
-    key.addEventListener('mousedown', (e) => {
-      e.preventDefault()
-      if (!keyboardSound) return
+  // keyboardKeys.forEach((key) =>
+  //   key.addEventListener('mousedown', (e) => {
+  //     e.preventDefault()
+  //     if (!keyboardSound) return
 
-      const newAudio = keyboardSound.cloneNode() as HTMLAudioElement
-      keyboardSound.after(newAudio)
-      newAudio.play()
-      setTimeout(() => newAudio.remove(), 500)
-    })
-  )
+  //     const newAudio = keyboardSound.cloneNode() as HTMLAudioElement
+  //     keyboardSound.after(newAudio)
+  //     newAudio.play()
+  //     setTimeout(() => newAudio.remove(), 500)
+  //   })
+  // )
 </script>
 
 <div class='flex items-start text-center max-xs:flex-col'>
   <div class='board'>
     {
-      KEYS.map(({ key, icon: Icon, tooltip }) => (
-        <div data-tooltip={tooltip}>
-          <div class='key-position'>
-            <button class='key' data-key={key}>
-              <Icon />
-            </button>
-          </div>
-        </div>
+      KEYS.map(({ key, href, icon: Icon }) => (
+        // <div data-tooltip={tooltip}>
+        <a class='key-position' target='_blank' {...{ href }}>
+          <button class='key' data-key={key}>
+            <Icon />
+          </button>
+        </a>
+        // </div>
       ))
     }
   </div>
-  <div data-tooltip="See what I've typed">
-    <div class='key-position peer flex items-center justify-center'>
-      <button class='key call-to-action'>
-        <p class='call-to-action-content'>Explore more</p>
-      </button>
-    </div>
+  <!-- <div data-tooltip="See what I've typed"> -->
+  <div class='key-position peer flex items-center justify-center'>
+    <button id='cta-hero-btn' class='key call-to-action'>
+      <p class='call-to-action-content'>Explore more</p>
+    </button>
+    <!-- </div> -->
     <div
       class:list={[
         'absolute top-0 h-full w-full translate-x-[12%] translate-y-[16%] -skew-x-12 blur-md',
@@ -172,7 +183,7 @@ const KEYS = [
   }
   .key:hover {
     cursor: pointer;
-    transform: translateX(0.2rem) translateY(0.2rem);
+    transform: translateX(0.3rem) translateY(0.3rem);
     box-shadow:
       0.15rem 0.15rem 0 0 var(--background-3),
       0.3rem 0.3rem 0 0 var(--background-3),
