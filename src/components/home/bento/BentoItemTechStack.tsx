@@ -4,13 +4,15 @@ import TechStacks from './TechStacks'
 
 const BentoItemTechStack = () => {
   return (
-    <div className='relative h-full place-content-end space-y-3 p-5 tracking-wider max-md:pt-10'>
+    <div className='flex h-full flex-col gap-5 px-5 pb-6 pt-4 tracking-wider max-md:gap-8'>
       <BentoBadge
         icon={Stack}
         text='Tech stack'
-        className={{ component: 'absolute right-2 top-2' }}
+        className={{ component: 'w-fit' }}
       />
-      <TechStacks />
+      <div className='flex-grow place-content-center'>
+        <TechStacks />
+      </div>
       <div className='space-y-2'>
         <p className='text-lg'>Tech stacks I’ve used</p>
         <p className='text-xs text-slate-400'>
