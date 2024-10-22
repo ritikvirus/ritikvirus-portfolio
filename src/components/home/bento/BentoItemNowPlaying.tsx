@@ -36,8 +36,8 @@ const BentoItemNowPlaying = () => {
             src={mockData.albumImageUrl}
             alt='Last Played Song'
             className={cn(
-              'absolute rounded-full'
-              // 'animate-[spin_5s_linear_infinite]'
+              'absolute rounded-full',
+              'group-hover:animate-[spin_5s_linear_infinite]'
             )}
           />
         </div>

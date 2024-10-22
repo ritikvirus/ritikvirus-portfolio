@@ -25,8 +25,9 @@ const photoCardsClassName = [
     rotate: 'rotate-[-3deg]'
   },
   {
-    translate: 'translate-x-[0px] translate-y-[-4px]',
-    rotate: 'rotate-[-8deg]'
+    translate:
+      'translate-x-[0px] translate-y-[-4px] group-hover:translate-y-[-32px]',
+    rotate: 'rotate-[-8deg] '
   },
   { translate: 'translate-x-[64px]', rotate: 'rotate-[2deg]' }
 ]
@@ -47,7 +48,12 @@ const PhotoCard = ({ className }: Props) => {
     >
       {Array.from({ length: TOTAL_PHOTO }).map((_, index) => {
         const { rotate, translate } = photoCardsClassName[index]
-        return <PhotoItem key={index} className={cn(rotate, translate)} />
+        return (
+          <PhotoItem
+            key={index}
+            className={cn(rotate, translate, 'transition-all duration-300')}
+          />
+        )
       })}
     </div>
   )

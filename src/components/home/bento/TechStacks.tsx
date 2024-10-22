@@ -4,7 +4,7 @@ import techStacks from '../techStacksData'
 const TechStacks = () => {
   return (
     <div className='relative flex w-full flex-col items-center justify-center overflow-hidden md:shadow-xl'>
-      <Marquee pauseOnHover className='[--duration:20s]'>
+      <Marquee className='[--duration:20s]'>
         {techStacks.map(({ icon: Icon, name }) => (
           <Icon className='size-12 md:max-lg:size-8' key={name} />
         ))}
