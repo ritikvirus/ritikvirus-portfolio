@@ -11,6 +11,7 @@ import BentoItemNowPlaying from './bento/BentoItemNowPlaying'
 import BentoItemTechStack from './bento/BentoItemTechStack'
 import BentoItemTips from './bento/BentoItemTips'
 import BentoItemTypingSpeed from './bento/BentoItemTypingSpeed'
+import BentoItemSocialMedia from './bento/BentoItemSocialMedia'
 ---
 
 <script>
@@ -28,10 +29,14 @@ import BentoItemTypingSpeed from './bento/BentoItemTypingSpeed'
 
 <div
   id='cards'
-  class='grid-cols-24 auto-rows-[minmax(0,1fr)] gap-4 max-md:space-y-4 md:grid'
+  class:list={[
+    'auto-rows-[minmax(0,1fr)] grid-cols-[repeat(36,_minmax(0,_1fr))] gap-4',
+    'max-md:space-y-4 md:grid'
+  ]}
 >
+  <!-- Location & social medias -->
   <div
-    class='relative col-start-1 col-end-7 row-start-1 row-end-7 aspect-square max-md:hidden'
+    class='relative col-start-1 col-end-11 row-start-1 row-end-10 aspect-square max-md:hidden'
   >
     <BentoBadge
       className={{ component: 'absolute left-4 top-4' }}
@@ -40,9 +45,45 @@ import BentoItemTypingSpeed from './bento/BentoItemTypingSpeed'
     />
     <BentoItemMapLocation className='rounded-3xl' client:only='react' />
   </div>
+
+  <div
+    class:list={[
+      'col-start-1 col-end-11 row-start-10 row-end-13',
+      'grid grid-cols-3 gap-4'
+    ]}
+  >
+    <BentoCard className='h-full'>
+      <BentoItemSocialMedia />
+    </BentoCard>
+    <BentoCard className='h-full'>
+      <BentoItemSocialMedia />
+    </BentoCard>
+    <BentoCard className='h-full'>
+      <BentoItemSocialMedia />
+    </BentoCard>
+  </div>
+
+  <!-- Works -->
   <BentoCard
     className={cn(
-      'col-end-19 col-start-7 row-start-1 row-end-3',
+      'col-start-11 col-end-[24] row-start-1 row-end-10',
+      'max-lg:col-start-16 max-lg:col-end-25 max-lg:row-start-12 max-lg:row-end-18'
+    )}
+  >
+    <BentoItemFeaturedWork />
+  </BentoCard>
+
+  <!-- TODO: cta for discover more projects -->
+  <BentoCard
+    className={cn('col-start-11 col-end-[24] row-start-10 row-end-13')}
+  >
+    <BentoItemSocialMedia />
+  </BentoCard>
+
+  <!-- Spotify & Monkeytype -->
+  <BentoCard
+    className={cn(
+      'col-start-[24] col-end-[37] row-start-1 row-end-5',
       'max-lg:col-end-17 max-lg:row-end-7'
     )}
   >
@@ -51,16 +92,7 @@ import BentoItemTypingSpeed from './bento/BentoItemTypingSpeed'
 
   <BentoCard
     className={cn(
-      'col-end-25 col-start-19 row-start-1 row-end-3',
-      'max-lg:col-start-17 max-lg:row-start-1 max-lg:row-end-7'
-    )}
-  >
-    <BentoItemTips />
-  </BentoCard>
-
-  <BentoCard
-    className={cn(
-      'col-end-15 col-start-7 row-start-3 row-end-7',
+      'col-start-[24] col-end-[37] row-start-5 row-end-13',
       'max-lg:col-start-1 max-lg:col-end-12 max-lg:row-start-7 max-lg:row-end-12'
     )}
   >
@@ -68,19 +100,10 @@ import BentoItemTypingSpeed from './bento/BentoItemTypingSpeed'
   </BentoCard>
 
   <BentoCard
-    className={cn(
-      'col-start-15 col-end-25 row-start-3 row-end-7',
-      'max-lg:col-end-25 max-lg:col-start-12 max-lg:row-start-7 max-lg:row-end-12'
-    )}
-  >
-    <BentoItemTechStack />
-  </BentoCard>
-
-  <BentoCard
     hoverable={false}
     className={cn(
-      'col-start-1 col-end-13 row-start-7 row-end-12',
-      'max-lg:col-end-16 max-lg:row-end-18 max-lg:col-start-1 max-lg:row-start-12'
+      'col-start-1 col-end-[19] row-start-13 row-end-[21]',
+      'max-lg:col-start-1 max-lg:col-end-16 max-lg:row-start-12 max-lg:row-end-18'
     )}
   >
     <BentoItemGithubActivity client:only='react' />
@@ -88,11 +111,11 @@ import BentoItemTypingSpeed from './bento/BentoItemTypingSpeed'
 
   <BentoCard
     className={cn(
-      'col-end-25 col-start-13 row-start-7 row-end-12',
-      'max-lg:col-start-16 max-lg:col-end-25 max-lg:row-end-18 max-lg:row-start-12'
+      'col-start-[19] col-end-[37] row-start-13 row-end-[21]',
+      'max-lg:col-start-12 max-lg:col-end-25 max-lg:row-start-7 max-lg:row-end-12'
     )}
   >
-    <BentoItemFeaturedWork />
+    <BentoItemTechStack />
   </BentoCard>
 
   <!-- <BentoCard
