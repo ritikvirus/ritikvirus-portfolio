@@ -14,8 +14,8 @@ const BentoItemFeaturedWork = () => {
       <PhotoCard
         className={cn(
           'absolute -bottom-12 md:left-1/2',
-          'lg:max-xl:-bottom-16',
-          'max-xs:left-1/2 xs:max-md:right-1/4 xs:max-sm:scale-95'
+          'lg:max-[1108px]:-bottom-16',
+          'max-xs:left-1/2 xs:max-lg:right-1/4 xs:max-sm:scale-95'
         )}
       />
       <div className='space-y-5'>
