@@ -27,7 +27,7 @@ const BentoItemNowPlaying = () => {
         icon={Spotify}
         className={{
           component: 'absolute right-2 top-2',
-          icon: 'group-hover:text-green-400'
+          icon: 'transition-all duration-300 group-hover:text-green-400'
         }}
       />
       <div className='relative aspect-square h-full max-h-24 min-h-16'>

@@ -4,7 +4,7 @@ const PhotoItem = ({ className }: { className?: string }) => {
   return (
     <div
       className={cn(
-        'absolute aspect-square w-40 overflow-hidden rounded-xl border-4 border-white shadow-lg',
+        'absolute aspect-square w-40 overflow-hidden rounded-2xl border-4 border-white shadow-lg',
         className
       )}
     >

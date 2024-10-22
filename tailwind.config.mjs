@@ -86,8 +86,7 @@ module.exports = {
         24: 'repeat(24, minmax(0, 1fr))'
       },
       screens: {
-        xs: '480px',
-        custom: '1120px'
+        xs: '480px'
       },
       transitionDuration: {
         400: '400ms',
