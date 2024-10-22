@@ -18,7 +18,7 @@ const badgeVariants = cva(
   {
     variants: {
       variant: {
-        default: 'py-1.5 pl-2 pr-3',
+        default: 'py-2 pl-3 pr-4',
         iconOnly: 'p-2'
       }
     },

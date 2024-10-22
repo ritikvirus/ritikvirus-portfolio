@@ -7,21 +7,30 @@ const BentoItemFeaturedWork = () => {
   return (
     <div
       className={cn(
-        'relative flex h-full flex-col gap-3 overflow-hidden px-5 pb-6 pt-8 tracking-wider',
-        'max-md:pt-10 md:max-lg:gap-4'
+        'relative flex h-full flex-col gap-3 overflow-hidden px-5 pb-8 pt-4 tracking-wider',
+        'max-xs:pb-36 md:max-lg:gap-4'
       )}
     >
-      <BentoBadge
-        icon={Suitcase}
-        text='Featured work'
-        className={{ component: 'absolute right-2 top-2' }}
+      <PhotoCard
+        className={cn(
+          'absolute -bottom-12 md:left-1/2',
+          'lg:max-xl:-bottom-16',
+          'max-xs:left-1/2 xs:max-md:right-1/4 xs:max-sm:scale-95'
+        )}
       />
-      <PhotoCard className='absolute -bottom-8 left-1/2' />
-      <div className='space-y-2'>
-        <p className='text-font-semibold text-lg leading-none'>Bookmarked</p>
-        <p className='text-xs text-slate-400'>
-          Effortlessly save and organize your favorite tweets in Notion.
-        </p>
+      <div className='space-y-5'>
+        <BentoBadge
+          icon={Suitcase}
+          text='Featured work'
+          className={{ component: 'w-fit' }}
+        />
+        <div className='space-y-3 xs:max-md:w-1/2'>
+          <p className='text-font-semibold text-xl leading-none'>Bookmarked</p>
+          <p className='text-xs text-slate-400'>
+            Effortlessly save and organize your favorite tweets in Notion
+            through Telegram bot.
+          </p>
+        </div>
       </div>
     </div>
   )

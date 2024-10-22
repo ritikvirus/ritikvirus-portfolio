@@ -19,6 +19,10 @@ module.exports = {
       }
     },
     extend: {
+      borderWidth: {
+        5: '5px',
+        6: '6px'
+      },
       fontFamily: {
         sans: ['Manrope', 'sans-serif']
       },
