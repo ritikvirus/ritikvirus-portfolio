@@ -31,12 +31,15 @@ import BentoItemSocialMedia from './bento/BentoItemSocialMedia'
   id='cards'
   class:list={[
     'auto-rows-[minmax(0,1fr)] grid-cols-[repeat(36,_minmax(0,_1fr))] gap-4',
-    'max-md:space-y-4 md:grid'
+    'max-md:space-y-4 md:grid md:grid-cols-6'
   ]}
 >
   <!-- Location & social medias -->
   <div
-    class='relative col-start-1 col-end-11 row-start-1 row-end-[7] aspect-square max-md:hidden'
+    class:list={[
+      'relative col-start-1 col-end-11 row-start-1 row-end-[8] aspect-square',
+      'max-lg:col-end-3 max-lg:row-end-3'
+    ]}
   >
     <BentoBadge
       className={{ component: 'absolute left-4 top-4' }}
@@ -48,8 +51,9 @@ import BentoItemSocialMedia from './bento/BentoItemSocialMedia'
 
   <div
     class:list={[
+      'grid grid-cols-3 gap-4',
       'col-start-1 col-end-11 row-start-[7] row-end-[9]',
-      'grid grid-cols-3 gap-4'
+      'max-lg:col-end-4 max-lg:row-start-3 max-lg:row-end-4'
     ]}
   >
     <BentoCard className='aspect-square'>
@@ -67,7 +71,7 @@ import BentoItemSocialMedia from './bento/BentoItemSocialMedia'
   <BentoCard
     className={cn(
       'col-start-11 col-end-[24] row-start-1 row-end-[7]',
-      'max-lg:col-start-16 max-lg:col-end-25 max-lg:row-start-12 max-lg:row-end-18'
+      'max-lg:col-start-3 max-lg:col-end-7 max-lg:row-end-3'
     )}
   >
     <BentoItemFeaturedWork />
@@ -75,7 +79,10 @@ import BentoItemSocialMedia from './bento/BentoItemSocialMedia'
 
   <!-- TODO: cta for discover more projects -->
   <BentoCard
-    className={cn('col-start-11 col-end-[24] row-start-[7] row-end-[9]')}
+    className={cn(
+      'col-start-11 col-end-[24] row-start-[7] row-end-[9]',
+      'max-lg:col-start-4 max-lg:col-end-7 max-lg:row-start-3 max-lg:row-end-4'
+    )}
   >
     <BentoItemSocialMedia />
   </BentoCard>
@@ -84,7 +91,7 @@ import BentoItemSocialMedia from './bento/BentoItemSocialMedia'
   <BentoCard
     className={cn(
       'col-start-[24] col-end-[37] row-start-1 row-end-4',
-      'max-lg:col-end-17 max-lg:row-end-7'
+      'max-lg:col-start-1 max-lg:col-end-4 max-lg:row-start-4 max-lg:row-end-6'
     )}
   >
     <BentoItemNowPlaying client:only='react' />
@@ -93,17 +100,18 @@ import BentoItemSocialMedia from './bento/BentoItemSocialMedia'
   <BentoCard
     className={cn(
       'col-start-[24] col-end-[37] row-start-4 row-end-[9]',
-      'max-lg:col-start-1 max-lg:col-end-12 max-lg:row-start-7 max-lg:row-end-12'
+      'max-lg:col-start-4 max-lg:col-end-7 max-lg:row-start-4 max-lg:row-end-6'
     )}
   >
     <BentoItemTypingSpeed />
   </BentoCard>
 
+  <!-- Github activity & tech stack -->
   <BentoCard
     hoverable={false}
     className={cn(
-      'col-start-1 col-end-[19] row-start-9 row-end-[14]',
-      'max-lg:col-start-1 max-lg:col-end-16 max-lg:row-start-12 max-lg:row-end-18'
+      'col-start-1 col-end-[19] row-start-9 row-end-[15]',
+      'max-lg:col-start-1 max-lg:col-end-4 max-lg:row-start-6 max-lg:row-end-8'
     )}
   >
     <BentoItemGithubActivity client:only='react' />
@@ -111,8 +119,8 @@ import BentoItemSocialMedia from './bento/BentoItemSocialMedia'
 
   <BentoCard
     className={cn(
-      'col-start-[19] col-end-[37] row-start-9 row-end-[14]',
-      'max-lg:col-start-12 max-lg:col-end-25 max-lg:row-start-7 max-lg:row-end-12'
+      'col-start-[19] col-end-[37] row-start-9 row-end-[15]',
+      'max-lg:col-start-4 max-lg:col-end-7 max-lg:row-start-6 max-lg:row-end-8'
     )}
   >
     <BentoItemTechStack />
