@@ -14,7 +14,7 @@ const BentoItemTechStack = () => {
         <TechStacks />
       </div>
       <div className='space-y-2'>
-        <p className='text-lg'>Tech stacks I’ve used</p>
+        <p className='text-lg'>Tech stacks I'm familiar with</p>
         <p className='text-xs text-slate-400'>
           Primarily focused on the JavaScript ecosystem, but always eager to
           explore and learn new technologies.

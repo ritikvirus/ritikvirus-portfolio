@@ -41,6 +41,8 @@ const renderRect: SVGProps['rectRender'] = (props, data) => {
 const BentoGithubActivity = () => {
   const { data, error } = useSWR<GithubContributionData>('/api/github', fetcher)
 
+  if (error) return
+
   return (
     <div className='relative flex h-full flex-col justify-between px-4 py-5 max-xs:pt-12'>
       <BentoBadge
@@ -65,12 +67,10 @@ const BentoGithubActivity = () => {
           rectSize={16}
           rectRender={renderRect}
           panelColors={{
-            1: '#1e293b',
-            4: '#065f46',
-            8: '#16a34a',
-            12: '#4ade80',
-            16: '#d9f99d',
-            20: '#ea580c'
+            1: '#19222F',
+            4: '#0F4E43',
+            8: '#1F977B',
+            12: '#1EF4AE'
           }}
         />
       </div>

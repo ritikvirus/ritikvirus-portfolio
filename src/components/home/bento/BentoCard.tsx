@@ -11,7 +11,14 @@ const BentoCard = (props: Props) => {
   if (hoverable) {
     return (
       <div className={cn('card group rounded-3xl', className)} {...rest}>
-        <div className={cn('card-content md:absolute')}>{children}</div>
+        <div
+          className={cn(
+            'card-content md:absolute',
+            'border-[#1f2b3a] max-md:border'
+          )}
+        >
+          {children}
+        </div>
       </div>
     )
   }

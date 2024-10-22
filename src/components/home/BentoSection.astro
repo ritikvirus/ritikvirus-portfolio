@@ -3,15 +3,23 @@ import { cn } from '@/lib/utils'
 import { Location } from '../icons/Location'
 import BentoBadge from './bento/BentoBadge'
 import BentoCard from './bento/BentoCard'
-import BentoItemContact from './bento/BentoItemContact'
+import BentoItemCTA from './bento/BentoItemCTA.astro'
 import BentoItemFeaturedWork from './bento/BentoItemFeaturedWork'
 import BentoItemGithubActivity from './bento/BentoItemGithubActivity'
 import BentoItemMapLocation from './bento/BentoItemMapLocation'
 import BentoItemNowPlaying from './bento/BentoItemNowPlaying'
 import BentoItemTechStack from './bento/BentoItemTechStack'
-import BentoItemTips from './bento/BentoItemTips'
 import BentoItemTypingSpeed from './bento/BentoItemTypingSpeed'
-import BentoItemSocialMedia from './bento/BentoItemSocialMedia'
+
+import { X } from '@/components/icons/X'
+import { Figma } from '@/components/icons/Figma'
+import { Codesandbox } from '@/components/icons/CodeSandbox'
+
+const socialMedias = [
+  { icon: X, href: 'https://twitter.com/jestseee' },
+  { icon: Figma, href: 'https://figma.com' },
+  { icon: Codesandbox, href: 'https://codesandbox.io' }
+]
 ---
 
 <script>
@@ -56,15 +64,18 @@ import BentoItemSocialMedia from './bento/BentoItemSocialMedia'
       'max-lg:col-end-4 max-lg:row-start-3 max-lg:row-end-4'
     ]}
   >
-    <BentoCard className='aspect-square'>
-      <BentoItemSocialMedia />
-    </BentoCard>
-    <BentoCard className='aspect-square'>
-      <BentoItemSocialMedia />
-    </BentoCard>
-    <BentoCard className='aspect-square'>
-      <BentoItemSocialMedia />
-    </BentoCard>
+    {
+      socialMedias.map(({ icon: Icon, href }) => (
+        <BentoCard className='aspect-square'>
+          <a
+            class='size-full place-content-center place-items-center group-hover:text-emerald-400'
+            {...{ href }}
+          >
+            <Icon className='size-10' />
+          </a>
+        </BentoCard>
+      ))
+    }
   </div>
 
   <!-- Works -->
@@ -84,7 +95,7 @@ import BentoItemSocialMedia from './bento/BentoItemSocialMedia'
       'max-lg:col-start-4 max-lg:col-end-7 max-lg:row-start-3 max-lg:row-end-4'
     )}
   >
-    <BentoItemSocialMedia />
+    <BentoItemCTA />
   </BentoCard>
 
   <!-- Spotify & Monkeytype -->
@@ -149,7 +160,7 @@ import BentoItemSocialMedia from './bento/BentoItemSocialMedia'
 
   .card {
     /* border */
-    background-color: rgb(46, 62, 84);
+    background-color: rgb(31, 43, 58);
     cursor: pointer;
     display: flex;
     flex-direction: column;
@@ -200,7 +211,6 @@ import BentoItemSocialMedia from './bento/BentoItemSocialMedia'
     flex-direction: column;
     flex-grow: 1;
     inset: 1px;
-    /* position: absolute; */
     z-index: 2;
   }
 </style>
