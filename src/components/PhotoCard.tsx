@@ -4,7 +4,7 @@ const PhotoItem = ({ className }: { className?: string }) => {
   return (
     <div
       className={cn(
-        'border-5 absolute aspect-square w-32 overflow-hidden rounded-2xl border-white shadow-lg',
+        'absolute aspect-square w-32 overflow-hidden rounded-2xl border-5 border-white shadow-lg',
         className
       )}
     >
@@ -22,14 +22,17 @@ const PhotoItem = ({ className }: { className?: string }) => {
 const photoCardsClassName = [
   {
     translate: '-translate-x-[64px] -translate-y-1.5',
-    rotate: 'rotate-[-3deg]'
+    rotate: 'rotate-[-3deg] group-hover:rotate-[-15deg]'
   },
   {
     translate:
       'translate-x-[0px] translate-y-[-4px] group-hover:translate-y-[-32px]',
     rotate: 'rotate-[-8deg] '
   },
-  { translate: 'translate-x-[64px]', rotate: 'rotate-[2deg]' }
+  {
+    translate: 'translate-x-[64px]',
+    rotate: 'rotate-[2deg] group-hover:rotate-[10deg]'
+  }
 ]
 
 const TOTAL_PHOTO = 3
