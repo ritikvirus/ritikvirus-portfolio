@@ -4,6 +4,7 @@ import { GetGithubContributions } from '@/lib/graphql'
 import type { GithubContributionData } from '@/types'
 
 const getGithubContributions = async (): Promise<GithubContributionData> => {
+  console.log('masok getgithub')
   const response = await request({
     url: 'https://api.github.com/graphql',
     document: GetGithubContributions,
