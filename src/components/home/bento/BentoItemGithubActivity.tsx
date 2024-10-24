@@ -41,10 +41,7 @@ const renderRect: SVGProps['rectRender'] = (props, data) => {
 }
 
 const BentoGithubActivity = () => {
-  const { data, error } = useSWR('github', async () => {
-    const res = await client.api.github.$get()
-    return await res.json()
-  })
+  const { data, error } = useSWR('github', fetcher(client.api.github.$get()))
 
   if (error) return
 
