@@ -1,15 +1,11 @@
-import { GetGithubContributions } from '@/lib/graphql'
-import type { GithubContributionData } from '@/types'
-import type { APIRoute } from 'astro'
 import request from 'graphql-request'
 
-const GITHUB_URL = 'https://api.github.com/graphql'
+import { GetGithubContributions } from '@/lib/graphql'
+import type { GithubContributionData } from '@/types'
 
-// TODO: only receive request from same origin
-
-export const GET: APIRoute = async () => {
+const getGithubContributions = async (): Promise<GithubContributionData> => {
   const response = await request({
-    url: GITHUB_URL,
+    url: 'https://api.github.com/graphql',
     document: GetGithubContributions,
     variables: { userName: 'jestsee' },
     requestHeaders: {
@@ -17,18 +13,19 @@ export const GET: APIRoute = async () => {
     }
   })
 
-  const options = {
-    status: 200,
-    headers: {
-      'Cache-Control': 's-maxage=3600',
-      'Content-Type': 'application/json'
-    }
-  }
+  // TODO: cache response for 1 hour
+  // const options = {
+  //   status: 200,
+  //   headers: {
+  //     'Cache-Control': 's-maxage=3600',
+  //     'Content-Type': 'application/json'
+  //   }
+  // }
 
   const parsedResponse = (response as any).user.contributionsCollection
     .contributionCalendar
 
-  const mappedResponse: GithubContributionData = {
+  return {
     lastPushedAt: (response as any).user.repositories.nodes[0].pushedAt,
     totalContributions: parsedResponse.totalContributions,
     contributions: parsedResponse.weeks.flatMap((week: any) => {
@@ -40,6 +37,6 @@ export const GET: APIRoute = async () => {
       })
     })
   }
-
-  return new Response(JSON.stringify(mappedResponse), options)
 }
+
+export default getGithubContributions

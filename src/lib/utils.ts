@@ -26,3 +26,11 @@ export const formatDate = (date: Date) => {
 
   return formattedDate.replace(/\d+,/, day + getDateSuffix(day))
 }
+
+export const catchError = async <T>(
+  promise: Promise<T>
+): Promise<[undefined, T] | [Error]> => {
+  return promise
+    .then((data) => [undefined, data] as [undefined, T])
+    .catch((error) => [error])
+}

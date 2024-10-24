@@ -3,10 +3,12 @@ import useSWR from 'swr'
 import HeatMap, { type SVGProps } from '@uiw/react-heat-map'
 import Tooltip from '@uiw/react-tooltip'
 
+import { Github } from '@/components/icons/Github'
 import { fetcher, formatDate, getDateSuffix } from '@/lib/utils'
 import type { GithubContributionData } from '@/types'
+
 import BentoBadge from './BentoBadge'
-import { Github } from '@/components/icons/Github'
+import client from '@/lib/client'
 
 const data: GithubContributionData = {
   lastPushedAt: Date.now(),
@@ -39,7 +41,10 @@ const renderRect: SVGProps['rectRender'] = (props, data) => {
 }
 
 const BentoGithubActivity = () => {
-  const { data, error } = useSWR<GithubContributionData>('/api/github', fetcher)
+  const { data, error } = useSWR('github', async () => {
+    const res = await client.api.github.$get()
+    return await res.json()
+  })
 
   if (error) return
 

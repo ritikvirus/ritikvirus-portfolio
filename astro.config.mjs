@@ -8,16 +8,20 @@ import react from '@astrojs/react'
 
 import tailwind from '@astrojs/tailwind'
 
-// TODO setup vercel adapter
+import vercel from '@astrojs/vercel/serverless'
 
 // https://astro.build/config
 export default defineConfig({
+  adapter: vercel(),
+  output: 'hybrid',
   site: 'https://example.com',
+
   vite: {
     ssr: {
       noExternal: ['path-to-regexp']
     }
   },
+
   integrations: [
     mdx(),
     sitemap(),
