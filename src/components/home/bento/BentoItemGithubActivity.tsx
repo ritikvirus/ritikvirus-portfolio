@@ -43,7 +43,7 @@ const renderRect: SVGProps['rectRender'] = (props, data) => {
 const BentoGithubActivity = () => {
   const { data, error } = useSWR('github', fetcher(client.api.github.$get()))
 
-  if (error) return
+  if (error) return <p>error</p>
 
   return (
     <div className='relative flex h-full flex-col justify-between px-4 py-5 max-xs:pt-12'>

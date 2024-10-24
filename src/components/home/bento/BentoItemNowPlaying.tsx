@@ -1,13 +1,15 @@
-import { cn, fetcher } from '@/lib/utils'
 import useSWR from 'swr'
-import BentoBadge from './BentoBadge'
+
 import { Spotify } from '@/components/icons/Spotify'
+import { cn, fetcher } from '@/lib/utils'
 import client from '@/lib/client'
+
+import BentoBadge from './BentoBadge'
 
 const BentoItemNowPlaying = () => {
   const { data, error } = useSWR('spotify', fetcher(client.api.spotify.$get()))
 
-  if (error) return
+  if (error) return <p>error</p>
 
   return (
     <div
@@ -28,10 +30,9 @@ const BentoItemNowPlaying = () => {
           <img
             src={data?.albumImageUrl}
             alt='Last Played Song'
-            className={cn(
-              'absolute rounded-full',
-              'group-hover:animate-[spin_5s_linear_infinite]'
-            )}
+            className={cn('absolute rounded-full', {
+              'animate-[spin_5s_linear_infinite]': data?.isPlaying
+            })}
           />
         </div>
       </div>

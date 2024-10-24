@@ -5,6 +5,7 @@ import getSpotifyData from './_spotify'
 
 const app = new Hono()
   .basePath('/api')
+  .onError((_, c) => c.json({ error: 'Something went wrong' }, 500))
   .get('/github', async (c) => c.json(await getGithubContributions()))
   .get('/spotify', async (c) => c.json(await getSpotifyData()))
 
