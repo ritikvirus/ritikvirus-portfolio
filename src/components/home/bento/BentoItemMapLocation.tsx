@@ -90,12 +90,10 @@ const BentoItemMapLocation = ({ className }: Props) => {
         )}
       >
         <TileLayer url={mapUrl} tileSize={512} zoomOffset={-1} minZoom={1} />
-        {/* Additional map layers or components can be added here */}
       </MapContainer>
       <div className='absolute left-0 top-0 flex h-full w-full items-center justify-center'>
         <div
           className={cn(
-            // 'absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2',
             'size-12 rounded-full bg-emerald-200/50',
             'drop-shadow-green animate-pulse-glow',
             'transition-all duration-400 group-hover:scale-125'

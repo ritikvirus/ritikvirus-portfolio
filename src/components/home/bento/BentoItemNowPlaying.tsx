@@ -36,15 +36,15 @@ const BentoItemNowPlaying = () => {
           />
         </div>
       </div>
-      <div className='w-full space-y-1.5 overflow-hidden tracking-wider'>
-        <p className='text-xs tracking-wide text-slate-400'>
+      <div className='w-full space-y-1 overflow-hidden tracking-wider'>
+        <p className='text-sm tracking-wide text-slate-400'>
           {data?.isPlaying ? 'Now playing' : 'Last played'}
         </p>
-        <div className='items-center gap-x-4 space-y-1.5 md:max-lg:flex'>
-          <p className='block text-ellipsis whitespace-nowrap font-medium lg:overflow-hidden'>
+        <div className='items-center gap-x-4 space-y-1 md:max-lg:flex'>
+          <p className='block text-ellipsis whitespace-nowrap text-lg font-medium lg:overflow-hidden'>
             {data?.title}
           </p>
-          <p className='block overflow-hidden text-ellipsis whitespace-nowrap text-xs uppercase text-slate-400'>
+          <p className='block overflow-hidden text-ellipsis whitespace-nowrap text-sm uppercase text-slate-400'>
             {data?.artist}
           </p>
         </div>

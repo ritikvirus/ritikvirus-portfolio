@@ -7,7 +7,7 @@ import getMonkeytypeData from './_monkeytype'
 const app = new Hono()
   .basePath('/api')
   .onError((error, c) => {
-    console.error(error)
+    console.error('error occured >>', error)
     return c.json({ error: 'Something went wrong' }, 500)
   })
   .get('/github', async (c) =>
