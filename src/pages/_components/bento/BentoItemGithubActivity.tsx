@@ -3,7 +3,7 @@ import useSWRImmutable from 'swr/immutable'
 import HeatMap, { type SVGProps } from '@uiw/react-heat-map'
 import Tooltip from '@uiw/react-tooltip'
 
-import { Github } from '@/components/icons/Github'
+import { Github } from '@icons/Github'
 import { fetcher, formatDate, getDateSuffix } from '@/lib/utils'
 import type { GithubContributionData } from '@/types'
 

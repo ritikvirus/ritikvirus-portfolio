@@ -1,6 +1,6 @@
 import useSWR from 'swr'
 
-import { Spotify } from '@/components/icons/Spotify'
+import { Spotify } from '@icons/Spotify'
 import { cn, fetcher } from '@/lib/utils'
 import client from '@/lib/client'
 

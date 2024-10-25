@@ -1,4 +1,4 @@
-import { Stack } from '@/components/icons/Stack'
+import { Stack } from '@icons/Stack'
 import BentoBadge from './BentoBadge'
 import TechStacks from './TechStacks'
 
