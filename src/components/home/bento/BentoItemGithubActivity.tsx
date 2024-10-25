@@ -1,4 +1,4 @@
-import useSWR from 'swr'
+import useSWRImmutable from 'swr/immutable'
 
 import HeatMap, { type SVGProps } from '@uiw/react-heat-map'
 import Tooltip from '@uiw/react-tooltip'
@@ -41,7 +41,10 @@ const renderRect: SVGProps['rectRender'] = (props, data) => {
 }
 
 const BentoGithubActivity = () => {
-  const { data, error } = useSWR('github', fetcher(client.api.github.$get()))
+  const { data, error } = useSWRImmutable(
+    'github',
+    fetcher(client.api.github.$get())
+  )
 
   if (error) return <p>error</p>
 

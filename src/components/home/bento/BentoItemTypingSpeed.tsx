@@ -3,13 +3,22 @@ import { Target } from '../../icons/Target'
 import { Translate } from '../../icons/Translate'
 import BentoBadge from './BentoBadge'
 import { Monkeytype } from '@/components/icons/Monkeytype'
-import { cn } from '@/lib/utils'
+import { cn, fetcher } from '@/lib/utils'
+import useSWRImmutable from 'swr/immutable'
+import client from '@/lib/client'
+import type { MonkeyTypeData, MonkeyTypeLanguage } from '@/types'
 
-const mockData: TypingDetailProps[] = [
-  { icon: Timer, category: 'time', value: '30s' },
-  { icon: Target, category: 'accuracy', value: '98%' },
-  { icon: Translate, category: 'language', value: 'ID' }
-]
+const mapTypingDetailData = (data: MonkeyTypeData) => {
+  const LANGUAGE: Record<MonkeyTypeLanguage, string> = {
+    english: 'EN',
+    indonesian: 'ID'
+  }
+  return [
+    { icon: Timer, category: 'time', value: `${data.time}s` },
+    { icon: Target, category: 'accuracy', value: `${data.acc}%` },
+    { icon: Translate, category: 'language', value: LANGUAGE[data.language] }
+  ]
+}
 
 interface TypingDetailProps {
   category: string
@@ -30,6 +39,13 @@ const TypingDetail = ({ category, icon: Icon, value }: TypingDetailProps) => {
 }
 
 const TypingSpeed = () => {
+  const { data, error } = useSWRImmutable(
+    'monkeytype',
+    fetcher(client.api.monkeytype.$get())
+  )
+
+  // if (error) return
+
   return (
     <div className='relative flex h-full flex-col justify-between px-5 pb-6 pt-4 max-md:gap-12'>
       <p
@@ -39,7 +55,7 @@ const TypingSpeed = () => {
           'bg-gradient-to-b from-[#1E293B] to-[#11161D] bg-clip-text'
         )}
       >
-        128
+        {data?.wpm}
       </p>
       <BentoBadge
         icon={Monkeytype}
@@ -48,13 +64,14 @@ const TypingSpeed = () => {
       />
       <div className='space-y-2'>
         <div className='flex items-baseline gap-2'>
-          <p className='text-[80px] font-medium leading-none'>128</p>
+          <p className='text-[80px] font-medium leading-none'>{data?.wpm}</p>
           <p className='text-2xl leading-none'>wpm</p>
         </div>
         <div className='flex gap-4'>
-          {mockData.map((item) => (
-            <TypingDetail key={item.category} {...item} />
-          ))}
+          {data &&
+            mapTypingDetailData(data).map((item) => (
+              <TypingDetail key={item.category} {...item} />
+            ))}
         </div>
       </div>
     </div>
