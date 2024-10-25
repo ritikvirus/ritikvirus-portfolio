@@ -14,15 +14,6 @@ const getGithubContributions = async (): Promise<GithubContributionData> => {
     }
   })
 
-  // TODO: cache response for 1 hour
-  // const options = {
-  //   status: 200,
-  //   headers: {
-  //     'Cache-Control': 's-maxage=3600',
-  //     'Content-Type': 'application/json'
-  //   }
-  // }
-
   const parsedResponse = (response as any).user.contributionsCollection
     .contributionCalendar
 

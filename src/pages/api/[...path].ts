@@ -8,7 +8,7 @@ const app = new Hono()
   .onError((_, c) => c.json({ error: 'Something went wrong' }, 500))
   .get('/github', async (c) =>
     c.json(await getGithubContributions(), 200, {
-      'Cache-Control': 'max-age=3600'
+      'Cache-Control': 'max-age=1800, s-maxage=3600, stale-while-revalidate=600'
     })
   )
   .get('/spotify', async (c) => c.json(await getSpotifyData()))
