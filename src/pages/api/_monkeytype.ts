@@ -25,11 +25,11 @@ const getMonkeytypeData = async (): Promise<MonkeyTypeData> => {
   }, data[0])
 
   return {
-    acc: Math.ceil(bestScore.acc),
-    consistency: Math.ceil(bestScore.consistency),
+    acc: Math.round(bestScore.acc),
+    consistency: Math.round(bestScore.consistency),
     language: bestScore.language,
     time: bestScore.time,
-    wpm: Math.ceil(bestScore.wpm)
+    wpm: Math.round(bestScore.wpm)
   }
 }
 

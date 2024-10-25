@@ -1,9 +1,9 @@
 ---
-import { Codesandbox } from '@icons/CodeSandbox'
 import { Figma } from '@icons/Figma'
 import { Location } from '@icons/Location'
 import { X } from '@icons/X'
 
+import { Codepen } from '@/components/icons/Codepen'
 import { cn } from '@/lib/utils'
 
 import BentoBadge from './bento/BentoBadge'
@@ -19,7 +19,7 @@ import BentoItemTypingSpeed from './bento/BentoItemTypingSpeed'
 const socialMedias = [
   { icon: X, href: 'https://twitter.com/jestseee' },
   { icon: Figma, href: 'https://figma.com' },
-  { icon: Codesandbox, href: 'https://codesandbox.io' }
+  { icon: Codepen, href: 'https://codepen.io/jestsee' }
 ]
 ---
 
@@ -40,7 +40,7 @@ const socialMedias = [
   id='cards'
   class:list={[
     'auto-rows-[minmax(0,1fr)] grid-cols-[repeat(36,_minmax(0,_1fr))] gap-4',
-    'max-lg:grid-cols-6 max-md:space-y-4 md:grid'
+    'flex-col max-lg:grid-cols-6 max-md:flex max-md:gap-4 md:grid'
   ]}
 >
   <!-- Location & social medias -->
@@ -67,13 +67,10 @@ const socialMedias = [
   >
     {
       socialMedias.map(({ icon: Icon, href }) => (
-        <BentoCard className='aspect-square'>
-          <a
-            class='size-full place-content-center place-items-center group-hover:text-emerald-400'
-            {...{ href }}
-          >
+        <BentoCard className='aspect-square' link={{ href, target: '_blank' }}>
+          <div class='flex size-full items-center justify-center group-hover:text-emerald-400'>
             <Icon className='size-10' />
-          </a>
+          </div>
         </BentoCard>
       ))
     }
@@ -100,20 +97,29 @@ const socialMedias = [
   </BentoCard>
 
   <!-- Spotify & Monkeytype -->
-  <BentoCard
+  <!-- <BentoCard
     className={cn(
       'col-start-[24] col-end-[37] row-start-1 row-end-4',
       'max-lg:col-start-1 max-lg:col-end-4 max-lg:row-start-4 max-lg:row-end-6'
     )}
   >
     <BentoItemNowPlaying client:only='react' />
-  </BentoCard>
+  </BentoCard> -->
+
+  <BentoItemNowPlaying
+    className={cn(
+      'col-start-[24] col-end-[37] row-start-1 row-end-4',
+      'max-lg:col-start-1 max-lg:col-end-4 max-lg:row-start-4 max-lg:row-end-6'
+    )}
+    client:only='react'
+  />
 
   <BentoCard
     className={cn(
       'col-start-[24] col-end-[37] row-start-4 row-end-[9]',
       'max-lg:col-start-4 max-lg:col-end-7 max-lg:row-start-4 max-lg:row-end-6'
     )}
+    link={{ href: 'https://monkeytype.com/profile/jestsee_', target: '_blank' }}
   >
     <BentoItemTypingSpeed client:only='react' />
   </BentoCard>
@@ -137,15 +143,6 @@ const socialMedias = [
   >
     <BentoItemTechStack />
   </BentoCard>
-
-  <!-- <BentoCard
-    className={cn(
-      'col-start-20 col-end-25 row-start-7 row-end-12',
-      'md:max-lg:opacity-0'
-    )}
-  >
-    <BentoItemContact />
-  </BentoCard> -->
 </div>
 
 <style is:global>

@@ -22,7 +22,11 @@ const app = new Hono()
         'max-age=21600, s-maxage=43200, stale-while-revalidate=600'
     })
   )
-  .get('/spotify', async (c) => c.json(await getSpotifyData()))
+  .get('/spotify', async (c) =>
+    c.json(await getSpotifyData(), 200, {
+      'Cache-Control': 'max-age=5, s-maxage=10, stale-while-revalidate=5'
+    })
+  )
 
 export const ALL: APIRoute = (context) => app.fetch(context.request)
 

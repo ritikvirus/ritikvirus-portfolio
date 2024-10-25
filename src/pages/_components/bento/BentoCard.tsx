@@ -2,16 +2,27 @@ import React from 'react'
 
 import { cn } from '@/lib/utils'
 
-interface Props extends React.HTMLAttributes<HTMLDivElement> {
+interface Link {
+  href: string
+  target?: string
+}
+
+interface Props {
+  children: React.ReactNode
+  className?: string
   hoverable?: boolean
+  link?: Link
 }
 
 const BentoCard = (props: Props) => {
   const { children, className, hoverable = true, ...rest } = props
 
+  const Comp = props.link ? 'a' : 'div'
+  const restProps = { ...rest, ...props.link }
+
   if (hoverable) {
     return (
-      <div className={cn('card group rounded-3xl', className)} {...rest}>
+      <Comp className={cn('card group rounded-3xl', className)} {...restProps}>
         <div
           className={cn(
             'card-content md:absolute',
@@ -20,20 +31,20 @@ const BentoCard = (props: Props) => {
         >
           {children}
         </div>
-      </div>
+      </Comp>
     )
   }
 
   return (
-    <div
+    <Comp
       className={cn(
         'rounded-3xl border border-[#1f2b3a] bg-[#11161D]',
         className
       )}
-      {...rest}
+      {...restProps}
     >
       {children}
-    </div>
+    </Comp>
   )
 }
 
