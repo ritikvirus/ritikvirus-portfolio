@@ -86,6 +86,8 @@ export interface DockIconProps {
   className?: string
   children?: React.ReactNode
   props?: PropsWithChildren
+  href?: string
+  onClick?: () => void
 }
 
 const DockIcon = ({
@@ -97,7 +99,7 @@ const DockIcon = ({
   children,
   ...props
 }: DockIconProps) => {
-  const ref = useRef<HTMLLIElement>(null)
+  const ref = useRef<HTMLAnchorElement>(null)
 
   const distanceCalc = useTransform(mouseX, (val: number) => {
     const bounds = ref.current?.getBoundingClientRect() ?? { x: 0, width: 0 }
@@ -118,7 +120,7 @@ const DockIcon = ({
   })
 
   return (
-    <motion.li
+    <motion.a
       ref={ref}
       style={{ width }}
       className={cn(
@@ -128,7 +130,7 @@ const DockIcon = ({
       {...props}
     >
       {children}
-    </motion.li>
+    </motion.a>
   )
 }
 

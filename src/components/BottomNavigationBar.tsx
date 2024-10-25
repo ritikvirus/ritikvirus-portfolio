@@ -48,17 +48,14 @@ const BottomNavigationBar = () => {
 
   useNavTooltipHandler()
 
+  const handlePathChange = () => {
+    // hide the tooltip when the page is loaded
+    const tip = document.querySelector<HTMLDivElement>('.tip')
+    tip?.style.setProperty('--show', '0')
+  }
+
   useEffect(() => {
     setCurrentPath(window.location.pathname)
-
-    const handlePathChange = () => {
-      const pathname = window.location.pathname
-      setCurrentPath(pathname)
-
-      // hide the tooltip when the page is loaded
-      const tip = document.querySelector<HTMLDivElement>('.tip')
-      tip?.style.setProperty('--show', '0')
-    }
 
     document.addEventListener('astro:page-load', handlePathChange)
     window.addEventListener('scroll', handleScroll)
@@ -78,6 +75,8 @@ const BottomNavigationBar = () => {
     setShow(!isScrollingDown)
   }
 
+  console.log('rerender')
+
   return (
     <>
       <nav
@@ -93,10 +92,11 @@ const BottomNavigationBar = () => {
       >
         <Dock direction='middle'>
           {bottomNavigationItems.map(({ name, icon: Icon, href }) => (
-            <DockIcon key={name}>
-              <a href={href}>
-                <Icon className='size-6' />
-              </a>
+            <DockIcon
+              key={name}
+              {...{ href, onClick: () => setCurrentPath(href) }}
+            >
+              <Icon className='size-6' />
               {currentPath === href && (
                 <div className='absolute bottom-2 size-1 rounded-full bg-emerald-200'></div>
               )}
