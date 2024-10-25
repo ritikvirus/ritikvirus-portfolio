@@ -19,7 +19,7 @@ const zoomOptions: ZoomPanOptions = {
 const MAX_ZOOM = 12
 const MIN_ZOOM = 8
 
-const mapUrl = `https://api.maptiler.com/maps/streets-v2-dark/{z}/{x}/{y}.png?key=${import.meta.env.PUBLIC_MAPTILER_API_KEY}`
+const MAP_URL = '/api/map/{z}/{x}/{y}.png'
 
 interface ZoomButtonProps
   extends Pick<
@@ -91,7 +91,7 @@ const BentoItemMapLocation = ({ className }: Props) => {
           className
         )}
       >
-        <TileLayer url={mapUrl} tileSize={512} zoomOffset={-1} minZoom={1} />
+        <TileLayer url={MAP_URL} tileSize={512} zoomOffset={-1} minZoom={1} />
       </MapContainer>
       <div className='absolute left-0 top-0 flex h-full w-full items-center justify-center'>
         <div

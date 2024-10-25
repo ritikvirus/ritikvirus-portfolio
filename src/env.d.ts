@@ -1,7 +1,7 @@
 /// <reference path="../.astro/types.d.ts" />
 
 interface ImportMetaEnv {
-  readonly PUBLIC_MAPTILER_API_KEY: string
+  readonly MAPTILER_API_KEY: string
 
   readonly GITHUB_ACCESS_TOKEN: string
 
