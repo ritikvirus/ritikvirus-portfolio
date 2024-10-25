@@ -1,8 +1,8 @@
+import { Spotify } from '@icons/Spotify'
 import useSWR from 'swr'
 
-import { Spotify } from '@icons/Spotify'
-import { cn, fetcher } from '@/lib/utils'
 import client from '@/lib/client'
+import { cn, fetcher } from '@/lib/utils'
 
 import BentoBadge from './BentoBadge'
 

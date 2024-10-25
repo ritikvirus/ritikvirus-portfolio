@@ -1,6 +1,7 @@
-import React from 'react'
-import { cn } from '@/lib/utils'
 import { cva } from 'class-variance-authority'
+import React from 'react'
+
+import { cn } from '@/lib/utils'
 
 interface CustomClass {
   component?: string

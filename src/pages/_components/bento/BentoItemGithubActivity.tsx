@@ -1,14 +1,13 @@
-import useSWRImmutable from 'swr/immutable'
-
+import { Github } from '@icons/Github'
 import HeatMap, { type SVGProps } from '@uiw/react-heat-map'
 import Tooltip from '@uiw/react-tooltip'
+import useSWRImmutable from 'swr/immutable'
 
-import { Github } from '@icons/Github'
+import client from '@/lib/client'
 import { fetcher, formatDate, getDateSuffix } from '@/lib/utils'
 import type { GithubContributionData } from '@/types'
 
 import BentoBadge from './BentoBadge'
-import client from '@/lib/client'
 
 const data: GithubContributionData = {
   lastPushedAt: Date.now(),

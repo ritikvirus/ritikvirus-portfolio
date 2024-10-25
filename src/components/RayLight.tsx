@@ -1,6 +1,8 @@
-import { cn } from '@/lib/utils'
-import type { ComponentProps } from 'react'
 import './RayLight.css'
+
+import type { ComponentProps } from 'react'
+
+import { cn } from '@/lib/utils'
 
 interface Props extends Pick<ComponentProps<'div'>, 'className'> {}
 

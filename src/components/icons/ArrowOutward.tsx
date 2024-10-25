@@ -1,6 +1,6 @@
 import type { SVGProps } from 'react'
 
-export function ArrowOutward(props: SVGProps<SVGSVGElement>) {
+export function ArrowOutward(props: Readonly<SVGProps<SVGSVGElement>>) {
   return (
     <svg
       xmlns='http://www.w3.org/2000/svg'

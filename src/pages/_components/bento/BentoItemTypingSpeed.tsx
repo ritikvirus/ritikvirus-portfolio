@@ -1,12 +1,14 @@
-import { Timer } from '@icons/Timer'
-import { Target } from '@icons/Target'
-import { Translate } from '@icons/Translate'
-import BentoBadge from './BentoBadge'
 import { Monkeytype } from '@icons/Monkeytype'
-import { cn, fetcher } from '@/lib/utils'
+import { Target } from '@icons/Target'
+import { Timer } from '@icons/Timer'
+import { Translate } from '@icons/Translate'
 import useSWRImmutable from 'swr/immutable'
+
 import client from '@/lib/client'
+import { cn, fetcher } from '@/lib/utils'
 import type { MonkeyTypeData, MonkeyTypeLanguage } from '@/types'
+
+import BentoBadge from './BentoBadge'
 
 const mapTypingDetailData = (data: MonkeyTypeData) => {
   const LANGUAGE: Record<MonkeyTypeLanguage, string> = {

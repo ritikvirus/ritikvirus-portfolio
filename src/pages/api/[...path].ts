@@ -1,8 +1,9 @@
 import type { APIRoute } from 'astro'
 import { Hono } from 'hono'
+
 import getGithubContributions from './_github'
-import getSpotifyData from './_spotify'
 import getMonkeytypeData from './_monkeytype'
+import getSpotifyData from './_spotify'
 
 const app = new Hono()
   .basePath('/api')

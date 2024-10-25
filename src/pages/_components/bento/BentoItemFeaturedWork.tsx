@@ -1,7 +1,9 @@
-import PhotoCard from '@/components/PhotoCard'
-import BentoBadge from './BentoBadge'
 import { Suitcase } from '@icons/Suitcase'
+
+import PhotoCard from '@/components/PhotoCard'
 import { cn } from '@/lib/utils'
+
+import BentoBadge from './BentoBadge'
 
 const BentoItemFeaturedWork = () => {
   return (

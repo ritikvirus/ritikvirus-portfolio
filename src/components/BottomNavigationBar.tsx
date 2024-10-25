@@ -1,13 +1,15 @@
-import { Dock, DockIcon } from './ui/dock'
-import { HandWaving } from './icons/HandWaving'
-import { Briefcase } from './icons/Briefcase'
-import { ChatTeardropDots } from './icons/ChatTeardrop'
-import { Bookmarks } from './icons/Bookmarks'
+import './BottomNavigationBar.css'
+
 import { useEffect, useRef, useState } from 'react'
-import { HandPalm } from './icons/HandPalm'
+
 import { cn } from '@/lib/utils'
 
-import './BottomNavigationBar.css'
+import { Bookmarks } from './icons/Bookmarks'
+import { Briefcase } from './icons/Briefcase'
+import { ChatTeardropDots } from './icons/ChatTeardrop'
+import { HandPalm } from './icons/HandPalm'
+import { HandWaving } from './icons/HandWaving'
+import { Dock, DockIcon } from './ui/dock'
 import { useNavTooltipHandler } from './useNavTooltipHandler'
 
 export const bottomNavigationItems = [

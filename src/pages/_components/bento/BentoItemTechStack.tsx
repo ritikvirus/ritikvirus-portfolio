@@ -1,4 +1,5 @@
 import { Stack } from '@icons/Stack'
+
 import BentoBadge from './BentoBadge'
 import TechStacks from './TechStacks'
 

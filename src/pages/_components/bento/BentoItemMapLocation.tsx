@@ -1,8 +1,10 @@
+import 'leaflet/dist/leaflet.css'
+
+import { Map as MapLeaflet, type ZoomPanOptions } from 'leaflet'
 import { useRef, useState } from 'react'
 import { MapContainer, TileLayer } from 'react-leaflet'
-import 'leaflet/dist/leaflet.css'
+
 import { cn } from '@/lib/utils'
-import { Map as MapLeaflet, type ZoomPanOptions } from 'leaflet'
 
 const LATITUDE = -6.147
 const LONGITUDE = 106.85

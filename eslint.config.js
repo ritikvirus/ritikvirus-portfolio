@@ -1,3 +1,5 @@
+import typescriptParser from '@typescript-eslint/parser'
+import astroParser from 'astro-eslint-parser'
 import eslintPluginAstro from 'eslint-plugin-astro'
 import simpleImportSort from 'eslint-plugin-simple-import-sort'
 
@@ -6,12 +8,25 @@ export default [
   // js.configs.recommended,
   ...eslintPluginAstro.configs.recommended,
   {
+    files: ['**/*.astro'],
+    languageOptions: {
+      parser: astroParser
+    },
+    plugins: {
+      'simple-import-sort': simpleImportSort
+    },
     rules: {
-      // override/add rules settings here, such as:
-      // "astro/no-set-html-directive": "error"
+      'simple-import-sort/imports': 'error',
+      'simple-import-sort/exports': 'error'
     }
   },
   {
+    files: ['**/*.js', '**/*.ts', '**/*.tsx'],
+    languageOptions: {
+      parser: typescriptParser,
+      sourceType: 'module',
+      ecmaVersion: 'latest'
+    },
     plugins: {
       'simple-import-sort': simpleImportSort
     },
