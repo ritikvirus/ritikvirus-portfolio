@@ -75,8 +75,6 @@ const BottomNavigationBar = () => {
     setShow(!isScrollingDown)
   }
 
-  console.log('rerender')
-
   return (
     <>
       <nav

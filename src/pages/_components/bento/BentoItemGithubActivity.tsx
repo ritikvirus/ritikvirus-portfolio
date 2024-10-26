@@ -5,15 +5,8 @@ import useSWRImmutable from 'swr/immutable'
 
 import client from '@/lib/client'
 import { fetcher, formatDate, getDateSuffix } from '@/lib/utils'
-import type { GithubContributionData } from '@/types'
 
 import BentoBadge from './BentoBadge'
-
-const data: GithubContributionData = {
-  lastPushedAt: Date.now(),
-  totalContributions: 0,
-  contributions: []
-}
 
 const getDateProps = () => {
   const today = new Date()

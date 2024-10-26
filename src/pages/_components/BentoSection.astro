@@ -67,10 +67,14 @@ const socialMedias = [
   >
     {
       socialMedias.map(({ icon: Icon, href }) => (
-        <BentoCard className='aspect-square' link={{ href, target: '_blank' }}>
-          <div class='flex size-full items-center justify-center group-hover:text-emerald-400'>
+        <BentoCard className='aspect-square'>
+          <a
+            href={href}
+            target='_blank'
+            class='flex size-full items-center justify-center group-hover:text-emerald-400'
+          >
             <Icon className='size-10' />
-          </div>
+          </a>
         </BentoCard>
       ))
     }
@@ -97,36 +101,26 @@ const socialMedias = [
   </BentoCard>
 
   <!-- Spotify & Monkeytype -->
-  <!-- <BentoCard
+  <BentoCard
     className={cn(
       'col-start-[24] col-end-[37] row-start-1 row-end-4',
       'max-lg:col-start-1 max-lg:col-end-4 max-lg:row-start-4 max-lg:row-end-6'
     )}
   >
     <BentoItemNowPlaying client:only='react' />
-  </BentoCard> -->
-
-  <BentoItemNowPlaying
-    className={cn(
-      'col-start-[24] col-end-[37] row-start-1 row-end-4',
-      'max-lg:col-start-1 max-lg:col-end-4 max-lg:row-start-4 max-lg:row-end-6'
-    )}
-    client:only='react'
-  />
+  </BentoCard>
 
   <BentoCard
     className={cn(
       'col-start-[24] col-end-[37] row-start-4 row-end-[9]',
       'max-lg:col-start-4 max-lg:col-end-7 max-lg:row-start-4 max-lg:row-end-6'
     )}
-    link={{ href: 'https://monkeytype.com/profile/jestsee_', target: '_blank' }}
   >
     <BentoItemTypingSpeed client:only='react' />
   </BentoCard>
 
   <!-- Github activity & tech stack -->
   <BentoCard
-    hoverable={false}
     className={cn(
       'col-start-1 col-end-[19] row-start-9 row-end-[15]',
       'max-lg:col-start-1 max-lg:col-end-4 max-lg:row-start-6 max-lg:row-end-8'
@@ -152,7 +146,7 @@ const socialMedias = [
   }
 
   /* source: https://codepen.io/Hyperplexed/pen/MWQeYLW */
-  #cards:hover > .card::after {
+  #cards:hover .card::after {
     opacity: 1;
   }
 
@@ -180,6 +174,7 @@ const socialMedias = [
     top: 0px;
     transition: opacity 500ms;
     width: 100%;
+    pointer-events: none;
   }
 
   .card::before {

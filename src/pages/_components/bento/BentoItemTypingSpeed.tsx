@@ -49,7 +49,11 @@ const TypingSpeed = () => {
   // if (error) return
 
   return (
-    <div className='relative flex h-full flex-col justify-between px-5 pb-6 pt-4 max-md:gap-12'>
+    <a
+      href='https://monkeytype.com/profile/jestsee_'
+      target='_blank'
+      className='relative flex h-full flex-col justify-between px-5 pb-6 pt-4 max-md:gap-12'
+    >
       <p
         className={cn(
           'absolute text-[196px] font-extrabold text-transparent',
@@ -76,7 +80,7 @@ const TypingSpeed = () => {
             ))}
         </div>
       </div>
-    </div>
+    </a>
   )
 }
 
