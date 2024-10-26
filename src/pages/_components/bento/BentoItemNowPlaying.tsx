@@ -1,17 +1,34 @@
 import { Spotify } from '@icons/Spotify'
+import { useRef } from 'react'
 import useSWR from 'swr'
 
 import client from '@/lib/client'
-import { cn } from '@/lib/utils'
+import { cn, fetcher } from '@/lib/utils'
+import type { SpotifyData } from '@/pages/api/_spotify'
 
 import BentoBadge from './BentoBadge'
 
 const BentoItemNowPlaying = () => {
-  const { data, error } = useSWR('spotify', () =>
-    client.api.spotify.$get().then((res) => res.json())
+  const previousDataRef = useRef<SpotifyData>()
+
+  const { data: _data, error } = useSWR(
+    'spotify',
+    fetcher(() => client.api.spotify.$get()),
+    {
+      refreshInterval: 10000,
+      onSuccess(data) {
+        previousDataRef.current = data
+      },
+      onError(err, key, config) {
+        console.error('error >>', err)
+      }
+    }
   )
 
-  if (error) return <p>error</p>
+  // TODO: handle initial error
+  if (error && !previousDataRef.current) return <p>masok error</p>
+
+  const data = _data || previousDataRef.current
 
   return (
     <a
@@ -45,10 +62,10 @@ const BentoItemNowPlaying = () => {
           {data?.isPlaying ? 'Now playing' : 'Last played'}
         </p>
         <div className='items-center gap-x-4 space-y-1 md:max-lg:flex'>
-          <p className='block text-ellipsis whitespace-nowrap font-medium lg:overflow-hidden'>
+          <p className='max-w-full flex-shrink-0 overflow-hidden text-ellipsis whitespace-nowrap font-medium'>
             {data?.title}
           </p>
-          <p className='block overflow-hidden text-ellipsis whitespace-nowrap text-sm uppercase text-slate-400'>
+          <p className='overflow-hidden text-ellipsis whitespace-nowrap text-sm uppercase text-slate-400'>
             {data?.artist}
           </p>
         </div>

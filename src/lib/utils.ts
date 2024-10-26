@@ -27,6 +27,16 @@ export const formatDate = (date: Date) => {
   return formattedDate.replace(/\d+,/, day + getDateSuffix(day))
 }
 
+export const fetcher =
+  <T>(fn: () => Promise<ClientResponse<T, StatusCode, 'json'>>) =>
+  () =>
+    fn().then((res) => {
+      if (res.status !== 200) {
+        throw new Error('Failed to fetch data')
+      }
+      return res.json()
+    })
+
 export const catchError = async <T>(
   promise: Promise<T>
 ): Promise<[undefined, T] | [Error]> => {

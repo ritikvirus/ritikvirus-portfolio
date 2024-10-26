@@ -46,6 +46,9 @@ const mapSpotifyData = (track: any) => {
       .join(', ') as string
   }
 }
+export type SpotifyData = ReturnType<typeof mapSpotifyData> & {
+  isPlaying: boolean
+}
 
 const getRecentlyPlayed = async (accessToken: string) => {
   const response = await fetch(
