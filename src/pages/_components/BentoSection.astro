@@ -10,11 +10,11 @@ import BentoBadge from './bento/BentoBadge'
 import BentoCard from './bento/BentoCard'
 import BentoItemCTA from './bento/BentoItemCTA.astro'
 import BentoItemFeaturedWork from './bento/BentoItemFeaturedWork'
-import BentoItemGithubActivity from './bento/BentoItemGithubActivity'
+import BentoItemGithubActivity from './bento/BentoItemGithubActivity.astro'
 import BentoItemMapLocation from './bento/BentoItemMapLocation'
 import BentoItemNowPlaying from './bento/BentoItemNowPlaying'
 import BentoItemTechStack from './bento/BentoItemTechStack'
-import BentoItemTypingSpeed from './bento/BentoItemTypingSpeed'
+import BentoItemTypingSpeed from './bento/BentoItemTypingSpeed.astro'
 
 const socialMedias = [
   { icon: X, href: 'https://twitter.com/jestseee' },
@@ -24,16 +24,18 @@ const socialMedias = [
 ---
 
 <script>
-  document.getElementById('cards')!.onmousemove = (e) => {
-    for (const card of document.getElementsByClassName('card')) {
-      const rect = card.getBoundingClientRect()
-      const x = e.clientX - rect.left
-      const y = e.clientY - rect.top
+  document.addEventListener('astro:page-load', () => {
+    document.getElementById('cards')!.onmousemove = (e) => {
+      for (const card of document.getElementsByClassName('card')) {
+        const rect = card.getBoundingClientRect()
+        const x = e.clientX - rect.left
+        const y = e.clientY - rect.top
 
-      ;(card as HTMLDivElement).style.setProperty('--mouse-x', `${x}px`)
-      ;(card as HTMLDivElement).style.setProperty('--mouse-y', `${y}px`)
+        ;(card as HTMLDivElement).style.setProperty('--mouse-x', `${x}px`)
+        ;(card as HTMLDivElement).style.setProperty('--mouse-y', `${y}px`)
+      }
     }
-  }
+  })
 </script>
 
 <div
@@ -116,7 +118,10 @@ const socialMedias = [
       'max-lg:col-start-4 max-lg:col-end-7 max-lg:row-start-4 max-lg:row-end-6'
     )}
   >
-    <BentoItemTypingSpeed client:only='react' />
+    <BentoItemTypingSpeed server:defer>
+      <!-- TODO -->
+      <p class='p-4' slot='fallback'>Loading data...</p>
+    </BentoItemTypingSpeed>
   </BentoCard>
 
   <!-- Github activity & tech stack -->
@@ -126,7 +131,12 @@ const socialMedias = [
       'max-lg:col-start-1 max-lg:col-end-4 max-lg:row-start-6 max-lg:row-end-8'
     )}
   >
-    <BentoItemGithubActivity client:only='react' />
+    <BentoItemGithubActivity server:defer>
+      <!-- TODO -->
+      <p class='p-4' slot='fallback'>Loading data...</p>
+    </BentoItemGithubActivity>
+
+    <!-- <BentoItemGithubActivity client:only='react' /> -->
   </BentoCard>
 
   <BentoCard

@@ -1,16 +1,11 @@
 import { type ClassValue, clsx } from 'clsx'
-import type { ClientResponse } from 'hono/client'
+import type { ClientResponse, InferRequestType } from 'hono/client'
 import type { StatusCode } from 'hono/utils/http-status'
 import { twMerge } from 'tailwind-merge'
 
 export const cn = (...inputs: ClassValue[]) => {
   return twMerge(clsx(inputs))
 }
-
-export const fetcher =
-  <T>(response: Promise<ClientResponse<T, StatusCode, 'json'>>) =>
-  () =>
-    response.then((res) => res.json())
 
 // Append 'th', 'st', 'nd', or 'rd' for the day of the month
 export const getDateSuffix = (day: number) => {

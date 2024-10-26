@@ -1,10 +1,9 @@
 import { Github } from '@icons/Github'
 import HeatMap, { type SVGProps } from '@uiw/react-heat-map'
 import Tooltip from '@uiw/react-tooltip'
-import useSWRImmutable from 'swr/immutable'
 
-import client from '@/lib/client'
-import { fetcher, formatDate, getDateSuffix } from '@/lib/utils'
+import { formatDate, getDateSuffix } from '@/lib/utils'
+import type { GithubContributionData } from '@/types'
 
 import BentoBadge from './BentoBadge'
 
@@ -32,14 +31,9 @@ const renderRect: SVGProps['rectRender'] = (props, data) => {
   )
 }
 
-const BentoGithubActivity = () => {
-  const { data, error } = useSWRImmutable(
-    'github',
-    fetcher(client.api.github.$get())
-  )
+interface Props extends GithubContributionData {}
 
-  if (error) return <p>error</p>
-
+const BentoGithubActivity = (props: Props) => {
   return (
     <div className='relative flex h-full flex-col justify-between px-4 py-5 max-xs:pt-12'>
       <BentoBadge
@@ -48,13 +42,13 @@ const BentoGithubActivity = () => {
         className={{ component: 'absolute left-2 top-2' }}
       />
       <p className='mb-2 flex justify-end text-sm tracking-wider'>
-        {data?.totalContributions ?? 'No'} contributions in the last year
+        {props.totalContributions ?? 'No'} contributions in the last year
       </p>
       <div className='w-full overflow-x-scroll'>
         <HeatMap
           {...getDateProps()}
           className='w-[550px]'
-          value={data?.contributions ?? []}
+          value={props.contributions ?? []}
           weekLabels={false}
           monthLabels={false}
           legendCellSize={0}
@@ -71,9 +65,9 @@ const BentoGithubActivity = () => {
           }}
         />
       </div>
-      {data?.lastPushedAt && (
+      {props.lastPushedAt && (
         <p className='text-sm tracking-wider text-slate-200 max-sm:mt-4 max-sm:text-xs'>
-          Last pushed on {formatDate(new Date(data.lastPushedAt))}
+          Last pushed on {formatDate(new Date(props.lastPushedAt))}
         </p>
       )}
     </div>

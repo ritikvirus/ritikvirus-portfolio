@@ -24,7 +24,7 @@ const app = new Hono()
   )
   .get('/spotify', async (c) =>
     c.json(await getSpotifyData(), 200, {
-      'Cache-Control': 'max-age=5, s-maxage=10, stale-while-revalidate=5'
+      'Cache-Control': 's-maxage=2, stale-while-revalidate=1'
     })
   )
 

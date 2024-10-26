@@ -1,0 +1,9 @@
+---
+import client from '@/lib/client'
+
+import BentoItemTypingSpeedContent from './BentoItemTypingSpeedContent'
+
+const data = await client.api.monkeytype.$get().then((res) => res.json())
+---
+
+<BentoItemTypingSpeedContent {...data} client:only='react' />

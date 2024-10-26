@@ -1,0 +1,9 @@
+---
+import client from '@/lib/client'
+
+import BentoGithubActivityChart from './BentoItemGithubActivityChart'
+
+const data = await client.api.github.$get().then((res) => res.json())
+---
+
+<BentoGithubActivityChart {...data} client:only='react' />

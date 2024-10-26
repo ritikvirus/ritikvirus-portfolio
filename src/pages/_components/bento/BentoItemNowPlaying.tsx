@@ -1,20 +1,14 @@
 import { Spotify } from '@icons/Spotify'
-import useSWRImmutable from 'swr/immutable'
+import useSWR from 'swr'
 
 import client from '@/lib/client'
-import { cn, fetcher } from '@/lib/utils'
+import { cn } from '@/lib/utils'
 
 import BentoBadge from './BentoBadge'
 
-interface Props {
-  className?: string
-}
-
-const BentoItemNowPlaying = ({ className }: Props) => {
-  // TODO
-  const { data, error } = useSWRImmutable(
-    'spotify',
-    fetcher(client.api.spotify.$get())
+const BentoItemNowPlaying = () => {
+  const { data, error } = useSWR('spotify', () =>
+    client.api.spotify.$get().then((res) => res.json())
   )
 
   if (error) return <p>error</p>

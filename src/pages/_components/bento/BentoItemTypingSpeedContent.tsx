@@ -2,10 +2,9 @@ import { Monkeytype } from '@icons/Monkeytype'
 import { Target } from '@icons/Target'
 import { Timer } from '@icons/Timer'
 import { Translate } from '@icons/Translate'
-import useSWRImmutable from 'swr/immutable'
 
-import client from '@/lib/client'
-import { cn, fetcher } from '@/lib/utils'
+import { Tooltip } from '@/components/ui/tooltip'
+import { cn } from '@/lib/utils'
 import type { MonkeyTypeData, MonkeyTypeLanguage } from '@/types'
 
 import BentoBadge from './BentoBadge'
@@ -30,22 +29,17 @@ interface TypingDetailProps {
 
 const TypingDetail = ({ category, icon: Icon, value }: TypingDetailProps) => {
   return (
-    // <div className='space-y-1.5 leading-none'>
-    // <p className='text-xs capitalize text-slate-400'>{category}</p>
     <div className='flex items-center gap-1 tracking-wider text-slate-200'>
-      <Icon className='size-4 text-slate-500 group-hover:text-slate-300' />
+      <Tooltip className='capitalize' content={category}>
+        <Icon className='size-4 text-slate-500 group-hover:text-slate-300' />
+      </Tooltip>
       <p>{value}</p>
     </div>
-    // </div>
   )
 }
 
-const TypingSpeed = () => {
-  const { data, error } = useSWRImmutable(
-    'monkeytype',
-    fetcher(client.api.monkeytype.$get())
-  )
-
+interface Props extends MonkeyTypeData {}
+const TypingSpeed = (props: Props) => {
   // if (error) return
 
   return (
@@ -61,7 +55,7 @@ const TypingSpeed = () => {
           'bg-gradient-to-b from-[#1E293B] to-[#11161D] bg-clip-text'
         )}
       >
-        {data?.wpm}
+        {props.wpm}
       </p>
       <BentoBadge
         icon={Monkeytype}
@@ -70,14 +64,13 @@ const TypingSpeed = () => {
       />
       <div className='space-y-2'>
         <div className='flex items-baseline gap-2'>
-          <p className='text-[80px] font-medium leading-none'>{data?.wpm}</p>
+          <p className='text-[80px] font-medium leading-none'>{props.wpm}</p>
           <p className='text-2xl leading-none'>wpm</p>
         </div>
         <div className='flex gap-4'>
-          {data &&
-            mapTypingDetailData(data).map((item) => (
-              <TypingDetail key={item.category} {...item} />
-            ))}
+          {mapTypingDetailData(props).map((item) => (
+            <TypingDetail key={item.category} {...item} />
+          ))}
         </div>
       </div>
     </a>

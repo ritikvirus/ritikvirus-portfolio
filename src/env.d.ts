@@ -10,6 +10,9 @@ interface ImportMetaEnv {
   readonly SPOTIFY_REFRESH_TOKEN: string
 
   readonly MONKEYTYPE_API_KEY: string
+
+  readonly DEPLOYED_URL?: string
+  readonly VERCE_URL?: string
 }
 
 interface ImportMeta {
