@@ -1,4 +1,3 @@
-import { getBaseUrl } from '@/lib/client'
 import type { MonkeyTypeData } from '@/types'
 
 const mapResponse = (response: any) => {
@@ -11,7 +10,7 @@ const mapResponse = (response: any) => {
 }
 
 const getMonkeytypeData = async (): Promise<MonkeyTypeData> => {
-  console.log('masok monkeytype', getBaseUrl())
+  console.log('url', import.meta.env.PUBLIC_BASE_URL)
   const API_KEY = import.meta.env.MONKEYTYPE_API_KEY
   const response = await fetch(
     'https://api.monkeytype.com/users/personalBests?mode=time',

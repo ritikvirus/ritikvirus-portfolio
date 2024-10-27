@@ -11,8 +11,7 @@ interface ImportMetaEnv {
 
   readonly MONKEYTYPE_API_KEY: string
 
-  readonly DEPLOYED_URL?: string
-  readonly VERCEL_URL?: string
+  readonly PUBLIC_BASE_URL: string
 }
 
 interface ImportMeta {
