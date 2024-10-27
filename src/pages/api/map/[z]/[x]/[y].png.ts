@@ -25,10 +25,7 @@ export const GET: APIRoute = async ({ params }) => {
   }
 
   const headers = new Headers(response.headers)
-  headers.set(
-    'Cache-Control',
-    'max-age=43200, s-maxage=86400, stale-while-revalidate=3600'
-  )
+  headers.set('Cache-Control', 'max-age=86400')
 
   return new Response(response.body, {
     status: response.status,

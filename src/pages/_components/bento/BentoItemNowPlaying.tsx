@@ -18,9 +18,6 @@ const BentoItemNowPlaying = () => {
       refreshInterval: 10000,
       onSuccess(data) {
         previousDataRef.current = data
-      },
-      onError(err, key, config) {
-        console.error('error >>', err)
       }
     }
   )

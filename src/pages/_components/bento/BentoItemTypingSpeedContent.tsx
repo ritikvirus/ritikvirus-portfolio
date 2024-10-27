@@ -27,7 +27,11 @@ interface TypingDetailProps {
   icon: React.FC<React.SVGProps<SVGSVGElement>>
 }
 
-const TypingDetail = ({ category, icon: Icon, value }: TypingDetailProps) => {
+export const TypingDetail = ({
+  category,
+  icon: Icon,
+  value
+}: TypingDetailProps) => {
   return (
     <div className='flex items-center gap-1 tracking-wider text-slate-200'>
       <Tooltip className='capitalize' content={category}>
@@ -39,6 +43,7 @@ const TypingDetail = ({ category, icon: Icon, value }: TypingDetailProps) => {
 }
 
 interface Props extends MonkeyTypeData {}
+
 const TypingSpeed = (props: Props) => {
   // if (error) return
 

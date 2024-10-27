@@ -13,13 +13,12 @@ const app = new Hono()
   })
   .get('/github', async (c) =>
     c.json(await getGithubContributions(), 200, {
-      'Cache-Control': 'max-age=1800, s-maxage=3600, stale-while-revalidate=600'
+      'Cache-Control': 's-maxage=3600, stale-while-revalidate=600'
     })
   )
   .get('/monkeytype', async (c) =>
     c.json(await getMonkeytypeData(), 200, {
-      'Cache-Control':
-        'max-age=21600, s-maxage=43200, stale-while-revalidate=600'
+      'Cache-Control': 's-maxage=43200, stale-while-revalidate=600'
     })
   )
   .get('/spotify', async (c) =>

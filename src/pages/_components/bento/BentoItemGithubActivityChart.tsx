@@ -35,15 +35,13 @@ interface Props extends GithubContributionData {}
 
 const BentoGithubActivity = (props: Props) => {
   return (
-    <div className='relative flex h-full flex-col justify-between px-4 py-5 max-xs:pt-12'>
-      <BentoBadge
-        icon={Github}
-        text='Github activity'
-        className={{ component: 'absolute left-2 top-2' }}
-      />
-      <p className='mb-2 flex justify-end text-sm tracking-wider'>
-        {props.totalContributions ?? 'No'} contributions in the last year
-      </p>
+    <div className='relative flex h-full flex-col justify-between px-4 pb-5 pt-4 max-md:gap-4'>
+      <div className='flex items-baseline justify-between'>
+        <BentoBadge icon={Github} text='Github activity' />
+        <p className='text-sm tracking-wider'>
+          {props.totalContributions ?? 'No'} contributions in the last year
+        </p>
+      </div>
       <div className='w-full overflow-x-scroll'>
         <HeatMap
           {...getDateProps()}
@@ -65,11 +63,11 @@ const BentoGithubActivity = (props: Props) => {
           }}
         />
       </div>
-      {props.lastPushedAt && (
+      {
         <p className='text-sm tracking-wider text-slate-200 max-sm:mt-4 max-sm:text-xs'>
           Last pushed on {formatDate(new Date(props.lastPushedAt))}
         </p>
-      )}
+      }
     </div>
   )
 }
