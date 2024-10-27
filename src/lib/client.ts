@@ -7,6 +7,8 @@ const URL =
   import.meta.env.DEPLOYED_URL ||
   'localhost:4321/'
 
+console.log('URL >>', URL)
+
 const client = hc<APIType>(`http://${URL}`)
 
 export default client
