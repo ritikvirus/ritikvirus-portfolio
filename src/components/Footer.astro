@@ -54,7 +54,7 @@ const FOOTER_CONTENTS: FooterContent[] = [
 <footer class='relative'>
   <div
     class:list={[
-      'footer-radial-gradient -z-10 h-72 w-3/5 opacity-60 blur-[160px]',
+      'footer-radial-gradient -z-10 h-48 w-3/5 opacity-60 blur-[160px]',
       'absolute left-1/2 top-24 -translate-x-1/2'
     ]}
   >
@@ -70,11 +70,12 @@ const FOOTER_CONTENTS: FooterContent[] = [
   </div>
 
   <!-- footer content -->
-  <div class='flex justify-center bg-zinc-950 pb-32 pt-20'>
+  <div class='flex justify-center bg-zinc-950 pb-14 pt-20'>
     <div
       class:list={[
         'flex items-stretch justify-between text-sm font-medium tracking-wide',
-        'px-12 max-sm:px-4 min-[1200px]:w-[1200px]'
+        'w-full px-12 max-sm:px-4 min-[1200px]:w-[1200px]',
+        'gap-24 max-[960px]:flex-col'
       ]}
     >
       <div class='space-y-16'>
@@ -103,8 +104,11 @@ const FOOTER_CONTENTS: FooterContent[] = [
           </p>
         </div>
       </div>
-      <div class='flex flex-col justify-between'>
-        <div class='flex gap-24'>
+
+      <div class='flex flex-col justify-between max-[960px]:gap-24'>
+        <div
+          class='grid grid-cols-3 gap-y-16 max-[960px]:max-w-[480px] max-xs:grid-cols-2 sm:gap-24'
+        >
           {
             FOOTER_CONTENTS.map(({ title, links }) => (
               <div class='space-y-4'>
@@ -126,7 +130,7 @@ const FOOTER_CONTENTS: FooterContent[] = [
             ))
           }
         </div>
-        <p class='self-end text-xs text-slate-500'>
+        <p class='text-xs text-slate-500 min-[960px]:self-end'>
           Last updated by Jesica on October 3, 2024, 12:48 PM EST
         </p>
       </div>
