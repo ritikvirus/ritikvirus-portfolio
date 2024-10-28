@@ -5,7 +5,9 @@ const NAV_BAR_HEIGHT = 58
 
 const useScrollHandler = () => {
   const navRef = useRef<HTMLDivElement>(null)
+
   const navBottom = useRef(OFFSET)
+  const offset = useRef(OFFSET)
   const previousScrollY = useRef(0)
 
   const handleScroll = () => {
@@ -14,7 +16,7 @@ const useScrollHandler = () => {
     const currentScrollY = window.scrollY
     const deltaScroll = currentScrollY - previousScrollY.current
 
-    // handle condition when initial scroll position != 0
+    // handle condition when the initial scroll position != 0
     if (deltaScroll > NAV_BAR_HEIGHT && previousScrollY.current === 0) {
       return (previousScrollY.current = currentScrollY)
     }
@@ -26,7 +28,10 @@ const useScrollHandler = () => {
         -(navRef.current.clientHeight || NAV_BAR_HEIGHT)
       )
     } else {
-      navBottom.current = Math.min(navBottom.current - deltaScroll, OFFSET)
+      navBottom.current = Math.min(
+        navBottom.current - deltaScroll,
+        offset.current
+      )
     }
 
     navRef.current.style.bottom = `${navBottom.current}px`
@@ -34,7 +39,21 @@ const useScrollHandler = () => {
     previousScrollY.current = currentScrollY
   }
 
-  return { handleScroll, navRef }
+  const setInitialPosition = () => {
+    if (!navRef.current) return
+
+    const computedStyle = getComputedStyle(navRef.current)
+    const bottomNavBarOffset =
+      Number(
+        computedStyle
+          .getPropertyValue('--bottom-nav-bar-offset')
+          .replace('px', '')
+      ) || OFFSET
+    navBottom.current = bottomNavBarOffset
+    offset.current = bottomNavBarOffset
+  }
+
+  return { handleScroll, navRef, setInitialPosition }
 }
 
 export default useScrollHandler

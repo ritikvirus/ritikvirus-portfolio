@@ -4,12 +4,12 @@ import { useEffect, useState } from 'react'
 
 import { cn } from '@/lib/utils'
 
-import { Bookmarks } from './icons/Bookmarks'
-import { Briefcase } from './icons/Briefcase'
-import { ChatTeardropDots } from './icons/ChatTeardrop'
-import { HandPalm } from './icons/HandPalm'
-import { HandWaving } from './icons/HandWaving'
-import { Dock, DockIcon } from './ui/dock'
+import { Bookmarks } from '../icons/Bookmarks'
+import { Briefcase } from '../icons/Briefcase'
+import { ChatTeardropDots } from '../icons/ChatTeardrop'
+import { HandPalm } from '../icons/HandPalm'
+import { HandWaving } from '../icons/HandWaving'
+import { Dock, DockIcon } from '../ui/dock'
 import { useNavTooltipHandler } from './useNavTooltipHandler'
 import useScrollHandler from './useScrollHandler'
 
@@ -44,7 +44,7 @@ export const bottomNavigationItems = [
 const BottomNavigationBar = () => {
   const [currentPath, setCurrentPath] = useState('')
 
-  const { handleScroll, navRef } = useScrollHandler()
+  const { handleScroll, navRef, setInitialPosition } = useScrollHandler()
 
   useNavTooltipHandler()
 
@@ -59,6 +59,7 @@ const BottomNavigationBar = () => {
 
     document.addEventListener('astro:page-load', handlePathChange)
     window.addEventListener('scroll', handleScroll)
+    setInitialPosition()
 
     return () => {
       document.removeEventListener('astro:page-load', handlePathChange)
@@ -76,7 +77,7 @@ const BottomNavigationBar = () => {
           tip?.style.removeProperty('--show')
         }}
         className={cn('nav', 'fixed z-10')}
-        style={{ bottom: '32px' }}
+        style={{ bottom: 'var(--bottom-nav-bar-offset)' }}
       >
         <Dock direction='middle'>
           {bottomNavigationItems.map(({ name, icon: Icon, href }) => (
