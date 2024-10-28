@@ -76,6 +76,7 @@ const BottomNavigationBar = () => {
           tip?.style.removeProperty('--show')
         }}
         className={cn('nav', 'fixed z-10')}
+        style={{ bottom: '32px' }}
       >
         <Dock direction='middle'>
           {bottomNavigationItems.map(({ name, icon: Icon, href }) => (
