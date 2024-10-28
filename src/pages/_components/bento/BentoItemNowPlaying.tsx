@@ -48,7 +48,7 @@ const BentoItemNowPlaying = () => {
           <img
             src={data?.albumImageUrl}
             alt='Last Played Song'
-            className={cn('absolute rounded-full', {
+            className={cn('absolute aspect-square rounded-full', {
               'animate-[spin_5s_linear_infinite]': data?.isPlaying
             })}
           />

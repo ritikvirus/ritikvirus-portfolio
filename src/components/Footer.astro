@@ -51,50 +51,96 @@ const FOOTER_CONTENTS: FooterContent[] = [
 ]
 ---
 
-<footer
-  class='mt-32 flex items-stretch justify-between text-sm font-medium tracking-wide'
->
-  <div class='space-y-16'>
-    <div class='space-y-3'>
-      <p class='text-lg font-medium leading-none text-slate-200'>
-        王安琪 <span class='mx-[2px]'>•</span> Jesica
-      </p>
-      <p class='text-[13px] font-medium text-slate-500'>
-        A professional typer with passion for crafting <br /> unique creations across
-        the internet.
-      </p>
-    </div>
-    <div class='space-y-4'>
-      <div class='flex gap-4 text-slate-200'>
-        {
-          SOCIAL_MEDIAS.map(({ icon: Icon, href }) => (
-            <Icon className='size-6' />
-          ))
-        }
-      </div>
-      <p class='text-xs text-slate-500'>© 2024 Jesica. All rights reserved.</p>
-    </div>
+<footer class='relative'>
+  <div
+    class:list={[
+      'footer-radial-gradient -z-10 h-72 w-3/5 opacity-60 blur-[160px]',
+      'absolute left-1/2 top-24 -translate-x-1/2'
+    ]}
+  >
   </div>
-  <div class='flex flex-col justify-between'>
-    <div class='flex gap-24'>
-      {
-        FOOTER_CONTENTS.map(({ title, links }) => (
-          <div class='space-y-4'>
-            <p>{title}</p>
-            <div class='flex flex-col gap-2 text-slate-500'>
-              {links.map(({ text, href, withIcon }) => (
-                <a href={href} class='flex items-center gap-2'>
-                  <span>{text}</span>
-                  {withIcon && <ArrowOutward className='size-4' />}
+
+  <!-- separator -->
+  <div
+    class:list={[
+      'h-[1px] w-full',
+      'bg-gradient-to-r from-[rgba(46,62,84,0.15)] via-[rgba(46,62,84,0.75)] to-[rgba(46,62,84,0.15)]'
+    ]}
+  >
+  </div>
+
+  <!-- footer content -->
+  <div class='flex justify-center bg-zinc-950 pb-32 pt-20'>
+    <div
+      class:list={[
+        'flex items-stretch justify-between text-sm font-medium tracking-wide',
+        'px-12 max-sm:px-4 min-[1200px]:w-[1200px]'
+      ]}
+    >
+      <div class='space-y-16'>
+        <div class='space-y-3'>
+          <p class='text-lg leading-none text-slate-200'>
+            <span class='tracking-widest'> 王安琪 </span>
+            <span class='mx-[2px]'>•</span> Jesica
+          </p>
+          <p class='text-[13px] text-slate-400'>
+            A professional typer with passion for crafting <br /> unique creations
+            across the internet.
+          </p>
+        </div>
+        <div class='space-y-6'>
+          <div class='flex gap-4 text-slate-200'>
+            {
+              SOCIAL_MEDIAS.map(({ icon: Icon, href }) => (
+                <a href={href} target='_blank'>
+                  <Icon className='size-6' />
                 </a>
-              ))}
-            </div>
+              ))
+            }
           </div>
-        ))
-      }
+          <p class='text-xs text-slate-500'>
+            © 2024 Jesica. All rights reserved.
+          </p>
+        </div>
+      </div>
+      <div class='flex flex-col justify-between'>
+        <div class='flex gap-24'>
+          {
+            FOOTER_CONTENTS.map(({ title, links }) => (
+              <div class='space-y-4'>
+                <p class='text-slate-200'>{title}</p>
+                <ul class='flex flex-col gap-3 text-slate-400'>
+                  {links.map(({ text, href, withIcon }) => (
+                    <li>
+                      <a
+                        href={href}
+                        class='flex items-center gap-2 font-normal'
+                      >
+                        <span>{text}</span>
+                        {withIcon && <ArrowOutward className='size-4' />}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))
+          }
+        </div>
+        <p class='self-end text-xs text-slate-500'>
+          Last updated by Jesica on October 3, 2024, 12:48 PM EST
+        </p>
+      </div>
     </div>
-    <p class='self-end text-xs text-slate-500'>
-      Last updated by Jesica on October 3, 2024, 12:48 PM EST
-    </p>
   </div>
 </footer>
+
+<style>
+  .footer-radial-gradient {
+    background-color: hsla(216, 57%, 45%, 0.5);
+    background-image: radial-gradient(
+      ellipse farthest-side at center,
+      hsl(112, 57%, 69%) 0%,
+      hsla(216, 57%, 45%, 0.5) 100%
+    );
+  }
+</style>
