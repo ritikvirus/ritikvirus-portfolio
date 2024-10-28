@@ -120,17 +120,19 @@ const DockIcon = ({
   })
 
   return (
-    <motion.a
-      ref={ref}
-      style={{ width }}
-      className={cn(
-        'flex aspect-square cursor-pointer items-center justify-center rounded-full',
-        className
-      )}
-      {...props}
-    >
-      {children}
-    </motion.a>
+    <li>
+      <motion.a
+        ref={ref}
+        style={{ width }}
+        className={cn(
+          'flex aspect-square cursor-pointer items-center justify-center rounded-full',
+          className
+        )}
+        {...props}
+      >
+        {children}
+      </motion.a>
+    </li>
   )
 }
 
