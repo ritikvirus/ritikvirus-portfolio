@@ -1,6 +1,6 @@
 import './BottomNavigationBar.css'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { cn } from '@/lib/utils'
 
@@ -11,6 +11,7 @@ import { HandPalm } from './icons/HandPalm'
 import { HandWaving } from './icons/HandWaving'
 import { Dock, DockIcon } from './ui/dock'
 import { useNavTooltipHandler } from './useNavTooltipHandler'
+import useScrollHandler from './useScrollHandler'
 
 export const bottomNavigationItems = [
   {
@@ -43,8 +44,7 @@ export const bottomNavigationItems = [
 const BottomNavigationBar = () => {
   const [currentPath, setCurrentPath] = useState('')
 
-  const scrollY = useRef(0)
-  const [show, setShow] = useState(true)
+  const { handleScroll, navRef } = useScrollHandler()
 
   useNavTooltipHandler()
 
@@ -66,27 +66,16 @@ const BottomNavigationBar = () => {
     }
   }, [])
 
-  const handleScroll = () => {
-    const currentScrollY = window.scrollY
-    const isScrollingDown = scrollY.current < currentScrollY
-
-    scrollY.current = currentScrollY
-
-    setShow(!isScrollingDown)
-  }
-
   return (
     <>
       <nav
+        ref={navRef}
         onPointerMove={() => {
           // remove the css variable which force tooltip to be hidden
           const tip = document.querySelector<HTMLDivElement>('.tip')
           tip?.style.removeProperty('--show')
         }}
-        className={cn('nav', 'fixed z-10 transition-all duration-500', {
-          'bottom-8 max-xs:bottom-4': show,
-          '-bottom-20': !show
-        })}
+        className={cn('nav', 'fixed z-10')}
       >
         <Dock direction='middle'>
           {bottomNavigationItems.map(({ name, icon: Icon, href }) => (
