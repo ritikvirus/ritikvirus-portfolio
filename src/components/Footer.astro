@@ -55,7 +55,7 @@ const FOOTER_CONTENTS: FooterContent[] = [
   <div
     class:list={[
       'footer-radial-gradient -z-10 h-48 w-3/5 opacity-60 blur-[160px]',
-      'absolute left-1/2 top-24 -translate-x-1/2'
+      'absolute left-1/2 top-0 -translate-x-1/2 xs:top-24'
     ]}
   >
   </div>
@@ -70,7 +70,7 @@ const FOOTER_CONTENTS: FooterContent[] = [
   </div>
 
   <!-- footer content -->
-  <div class='flex justify-center bg-zinc-950 pb-14 pt-20 max-[960px]:pb-8'>
+  <div class='flex justify-center bg-zinc-950 pb-12 pt-20 max-[960px]:pb-8'>
     <div
       class:list={[
         'flex items-stretch justify-between text-sm font-medium tracking-wide',
@@ -135,8 +135,9 @@ const FOOTER_CONTENTS: FooterContent[] = [
             ))
           }
         </div>
-        <p class='text-xs text-slate-500 min-[960px]:self-end'>
-          Last updated by Jesica on October 3, 2024, 12:48 PM EST
+        <p class='text-xs text-slate-500 min-[961px]:self-end'>
+          Last updated by Jesica <br class='xs:hidden' /> on October 3, 2024, 12:48
+          PM EST
         </p>
       </div>
     </div>
