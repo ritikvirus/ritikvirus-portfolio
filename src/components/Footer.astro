@@ -70,12 +70,12 @@ const FOOTER_CONTENTS: FooterContent[] = [
   </div>
 
   <!-- footer content -->
-  <div class='flex justify-center bg-zinc-950 pb-14 pt-20'>
+  <div class='flex justify-center bg-zinc-950 pb-14 pt-20 max-[960px]:pb-8'>
     <div
       class:list={[
         'flex items-stretch justify-between text-sm font-medium tracking-wide',
         'w-full px-12 max-sm:px-4 min-[1200px]:w-[1200px]',
-        'gap-24 max-[960px]:flex-col'
+        'gap-16 max-[960px]:flex-col-reverse'
       ]}
     >
       <div class='space-y-16'>
@@ -105,7 +105,12 @@ const FOOTER_CONTENTS: FooterContent[] = [
         </div>
       </div>
 
-      <div class='flex flex-col justify-between max-[960px]:gap-24'>
+      <div
+        class:list={[
+          'flex flex-col justify-between max-xs:gap-16',
+          'max-[960px]:flex-col-reverse max-[960px]:gap-12'
+        ]}
+      >
         <div
           class='grid grid-cols-3 gap-y-16 max-[960px]:max-w-[480px] max-xs:grid-cols-2 sm:gap-24'
         >
