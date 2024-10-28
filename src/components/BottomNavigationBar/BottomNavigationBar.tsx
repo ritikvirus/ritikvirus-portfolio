@@ -1,6 +1,6 @@
 import './BottomNavigationBar.css'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 import { cn } from '@/lib/utils'
 
@@ -10,8 +10,8 @@ import { ChatTeardropDots } from '../icons/ChatTeardrop'
 import { HandPalm } from '../icons/HandPalm'
 import { HandWaving } from '../icons/HandWaving'
 import { Dock, DockIcon } from '../ui/dock'
-import { useNavTooltipHandler } from './useNavTooltipHandler'
 import useScrollHandler from './useScrollHandler'
+import { useTooltipHandler } from './useTooltipHandler'
 
 export const bottomNavigationItems = [
   {
@@ -44,9 +44,10 @@ export const bottomNavigationItems = [
 const BottomNavigationBar = () => {
   const [currentPath, setCurrentPath] = useState('')
 
-  const { handleScroll, navRef, setInitialPosition } = useScrollHandler()
+  const navRef = useRef<HTMLDivElement>(null)
 
-  useNavTooltipHandler()
+  const { handleScroll, setInitialPosition } = useScrollHandler(navRef)
+  const { setupTooltip } = useTooltipHandler(navRef)
 
   const handlePathChange = () => {
     // hide the tooltip when the page is loaded
@@ -59,7 +60,9 @@ const BottomNavigationBar = () => {
 
     document.addEventListener('astro:page-load', handlePathChange)
     window.addEventListener('scroll', handleScroll)
+
     setInitialPosition()
+    setupTooltip()
 
     return () => {
       document.removeEventListener('astro:page-load', handlePathChange)

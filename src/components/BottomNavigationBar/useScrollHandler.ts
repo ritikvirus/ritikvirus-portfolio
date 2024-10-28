@@ -3,9 +3,7 @@ import { useRef } from 'react'
 const OFFSET = 32
 const NAV_BAR_HEIGHT = 58
 
-const useScrollHandler = () => {
-  const navRef = useRef<HTMLDivElement>(null)
-
+const useScrollHandler = (navRef: React.RefObject<HTMLDivElement>) => {
   const navBottom = useRef(OFFSET)
   const offset = useRef(OFFSET)
   const previousScrollY = useRef(0)

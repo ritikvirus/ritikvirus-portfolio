@@ -1,8 +1,9 @@
 import React, { useRef } from 'react'
 
-export const useNavTooltipHandler = () => {
+export const useTooltipHandler = (navRef: React.RefObject<HTMLDivElement>) => {
   const tipX = useRef(0)
   const tipY = useRef(0)
+  const bounds = useRef<DOMRect>()
 
   const setTipXY = () => {
     document.documentElement.style.setProperty(
@@ -15,17 +16,17 @@ export const useNavTooltipHandler = () => {
     )
   }
 
-  let bounds: DOMRect
-
   const track = ({ x, y }: { x: number; y: number }) => {
-    tipX.current = x - bounds.left
-    tipY.current = y - bounds.top
+    if (!bounds.current) return
+
+    tipX.current = x - bounds.current.left
+    tipY.current = y - bounds.current.top
 
     setTipXY()
   }
 
-  React.useEffect(() => {
-    const nav = document.querySelector('nav')
+  const setupTooltip = () => {
+    const nav = navRef.current
     if (!nav) return
 
     const navSize = nav.getBoundingClientRect().width
@@ -38,13 +39,13 @@ export const useNavTooltipHandler = () => {
     }
 
     const initPointerTrack = () => {
-      bounds = nav.getBoundingClientRect()
+      bounds.current = nav.getBoundingClientRect()
       nav.addEventListener('pointermove', track)
       nav.addEventListener('pointerleave', teardown)
     }
 
     nav.addEventListener('pointerenter', initPointerTrack)
-  }, [])
+  }
 
-  return { setTipXY }
+  return { setupTooltip }
 }
