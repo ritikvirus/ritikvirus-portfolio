@@ -119,11 +119,16 @@ const DockIcon = ({
     damping: 12
   })
 
+  const getWidth = () => {
+    const isMobile = /Mobi|Android|iPhone/i.test(navigator.userAgent)
+    return { width: isMobile ? '48px' : width }
+  }
+
   return (
     <li>
       <motion.a
         ref={ref}
-        style={{ width }}
+        style={getWidth()}
         className={cn(
           'flex aspect-square cursor-pointer items-center justify-center rounded-full',
           className
