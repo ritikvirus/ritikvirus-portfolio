@@ -24,7 +24,7 @@ const socialMedias = [
 ---
 
 <script>
-  document.addEventListener('astro:page-load', () => {
+  document.addEventListener('astro:before-swap', () => {
     document.getElementById('cards')!.onmousemove = (e) => {
       for (const card of document.getElementsByClassName('card')) {
         const rect = card.getBoundingClientRect()
@@ -118,8 +118,8 @@ const socialMedias = [
       'max-lg:col-start-4 max-lg:col-end-7 max-lg:row-start-4 max-lg:row-end-6'
     )}
   >
+    <!-- TODO -->
     <BentoItemTypingSpeed server:defer>
-      <!-- TODO -->
       <p class='p-4' slot='fallback'>Loading data...</p>
     </BentoItemTypingSpeed>
   </BentoCard>
@@ -131,8 +131,8 @@ const socialMedias = [
       'max-lg:col-start-1 max-lg:col-end-4 max-lg:row-start-6 max-lg:row-end-8'
     )}
   >
+    <!-- TODO -->
     <BentoItemGithubActivity server:defer>
-      <!-- TODO -->
       <p class='p-4' slot='fallback'>Loading data...</p>
     </BentoItemGithubActivity>
 
