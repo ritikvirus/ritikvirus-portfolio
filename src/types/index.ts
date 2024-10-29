@@ -9,6 +9,11 @@ export interface GithubContributionData {
   contributions: GithubContributionDay[]
 }
 
+export interface GithubRepositoryLastUpdated {
+  pushedAt: string
+  updatedAt: string
+}
+
 export type MonkeyTypeLanguage = 'indonesian' | 'english'
 
 export interface MonkeyTypeData {

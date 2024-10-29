@@ -23,3 +23,17 @@ export const GetGithubContributions = gql`
     }
   }
 `
+
+export const GetLastUpdatedTime = gql`
+  query ($username: String!, $repositoryName: String!) {
+    repository(name: $repositoryName, owner: $username) {
+      id
+      name
+      nameWithOwner
+      openGraphImageUrl
+      pushedAt
+      updatedAt
+      url
+    }
+  }
+`

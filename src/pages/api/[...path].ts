@@ -2,6 +2,7 @@ import type { APIRoute } from 'astro'
 import { Hono } from 'hono'
 
 import getGithubContributions from './_github'
+import getLastUpdatedTime from './_last_updated'
 import getMonkeytypeData from './_monkeytype'
 import getSpotifyData from './_spotify'
 
@@ -13,6 +14,11 @@ const app = new Hono()
   })
   .get('/github', async (c) =>
     c.json(await getGithubContributions(), 200, {
+      'Cache-Control': 's-maxage=3600, stale-while-revalidate=600'
+    })
+  )
+  .get('/last-updated', async (c) =>
+    c.json(await getLastUpdatedTime(), 200, {
       'Cache-Control': 's-maxage=3600, stale-while-revalidate=600'
     })
   )
