@@ -6,6 +6,8 @@ import { LinkedIn } from '@icons/LinkedIn'
 import { Mail } from '@icons/Mail'
 import { Scroll } from '@icons/Scroll'
 
+import LastUpdatedTime from './LastUpdatedTime.astro'
+
 const SOCIAL_MEDIAS = [
   { icon: GithubOutline, href: 'https://github.com/jestsee' },
   { icon: LinkedIn, href: 'https://www.linkedin.com/in/jestsee/' },
@@ -135,10 +137,7 @@ const FOOTER_CONTENTS: FooterContent[] = [
             ))
           }
         </div>
-        <p class='text-xs text-slate-500 min-[961px]:self-end'>
-          Last updated by Jesica <br class='xs:hidden' /> on October 3, 2024, 12:48
-          PM EST
-        </p>
+        <LastUpdatedTime server:defer />
       </div>
     </div>
   </div>
