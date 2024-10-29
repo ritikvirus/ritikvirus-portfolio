@@ -28,9 +28,9 @@ const BentoItemFeaturedWork = () => {
         />
         <div className='space-y-3 xs:max-md:w-1/2'>
           <p className='text-font-semibold text-xl leading-none'>Bookmarked</p>
-          <p className='text-xs text-slate-400'>
-            Effortlessly save and organize your favorite tweets in Notion
-            through Telegram bot.
+          <p className='text-xs leading-relaxed text-slate-400'>
+            Effortlessly save and organize your favorite tweets in Notion using
+            a Telegram bot.
           </p>
         </div>
       </div>

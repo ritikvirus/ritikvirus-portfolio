@@ -64,7 +64,7 @@ const BentoGithubActivity = (props: Props) => {
         />
       </div>
       {
-        <p className='text-sm tracking-wider text-slate-200 max-sm:text-xs sm:mt-4'>
+        <p className='text-sm tracking-wider text-slate-200 max-sm:text-xs sm:max-lg:mt-4'>
           Last pushed on {formatDate(new Date(props.lastPushedAt))}
         </p>
       }
