@@ -20,9 +20,9 @@ export const bottomNavigationItems = [
     href: '/'
   },
   {
-    name: 'Works',
+    name: 'Projects',
     icon: Briefcase,
-    href: '/works'
+    href: '/projects'
   },
   {
     name: 'Blog',
