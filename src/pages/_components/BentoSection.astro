@@ -24,7 +24,7 @@ const socialMedias = [
 ---
 
 <script>
-  document.addEventListener('astro:before-swap', () => {
+  document.addEventListener('astro:page-load', () => {
     document.getElementById('cards')!.onmousemove = (e) => {
       for (const card of document.getElementsByClassName('card')) {
         const rect = card.getBoundingClientRect()

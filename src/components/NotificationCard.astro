@@ -1,0 +1,37 @@
+---
+interface Props extends astroHTML.JSX.HTMLAttributes {
+  sender: string
+  time: string
+  message: string
+}
+
+const { class: className, sender, time, message, ...rest } = Astro.props
+---
+
+<div
+  class:list={[
+    'flex w-[340px] items-center gap-3 rounded-2xl bg-gray-300 py-2 pl-2 pr-2.5 drop-shadow-xl',
+    'text-gray-600',
+    className
+  ]}
+  {...rest}
+>
+  <div
+    class='flex aspect-square w-14 items-center justify-center rounded-xl bg-gray-950 text-gray-200'
+  >
+    <slot />
+  </div>
+  <div class='w-full space-y-1.5'>
+    <div class='flex justify-between'>
+      <p class='text-sm font-semibold leading-none tracking-normal text-black'>
+        {sender}
+      </p>
+      <p class='text-[11px] font-medium leading-none tracking-wide'>
+        {time}
+      </p>
+    </div>
+    <p class='text-[11px] font-medium leading-none tracking-wide'>
+      {message}
+    </p>
+  </div>
+</div>

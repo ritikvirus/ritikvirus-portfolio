@@ -58,14 +58,14 @@ const BottomNavigationBar = () => {
   useEffect(() => {
     setCurrentPath(window.location.pathname)
 
-    document.addEventListener('astro:page-load', handlePathChange)
+    document.addEventListener('astro:before-swap', handlePathChange)
     window.addEventListener('scroll', handleScroll)
 
     setInitialPosition()
     setupTooltip()
 
     return () => {
-      document.removeEventListener('astro:page-load', handlePathChange)
+      document.removeEventListener('astro:before-swap', handlePathChange)
       window.removeEventListener('scroll', handleScroll)
     }
   }, [])
