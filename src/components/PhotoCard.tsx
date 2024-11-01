@@ -11,7 +11,8 @@ const PhotoItem = ({ className }: { className?: string }) => {
       {/* TODO: optimize img */}
       <img
         // src='https://images.unsplash.com/photo-1728996152930-233c5aca21d7'
-        src='https://images.unsplash.com/photo-1524666643752-b381eb00effb?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fGNvZGV8ZW58MHx8MHx8fDA%3D'
+        // src='https://images.unsplash.com/photo-1524666643752-b381eb00effb?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fGNvZGV8ZW58MHx8MHx8fDA%3D'
+        src='https://pbs.twimg.com/media/GagM7n7bEAAAtxv?format=jpg&name=medium'
         alt='TODO'
         className='h-full w-full object-cover'
       />
@@ -44,10 +45,7 @@ interface Props {
 const PhotoCard = ({ className }: Props) => {
   return (
     <div
-      className={cn(
-        'relative flex h-[180px] items-center justify-center',
-        className
-      )}
+      className={cn('flex h-[180px] items-center justify-center', className)}
     >
       {Array.from({ length: TOTAL_PHOTO }).map((_, index) => {
         const { rotate, translate } = photoCardsClassName[index]
