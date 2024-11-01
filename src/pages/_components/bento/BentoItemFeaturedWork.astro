@@ -1,0 +1,81 @@
+---
+import { Suitcase } from '@icons/Suitcase'
+
+import { Bookmarks } from '@/components/icons/Bookmarks'
+import NotificationCard from '@/components/NotificationCard.astro'
+
+import BentoBadge from './BentoBadge'
+---
+
+<a
+  href='/projects/bookmarked'
+  class:list={[
+    'relative flex h-full flex-col gap-3 overflow-hidden px-5 pb-8 pt-4 tracking-wider',
+    'max-xs:pb-36 md:max-lg:gap-4'
+  ]}
+>
+  <div class='space-y-5'>
+    <BentoBadge
+      icon={Suitcase}
+      text='Featured work'
+      className={{ component: 'w-fit' }}
+    />
+    <div class='space-y-3 xs:max-md:w-1/2'>
+      <p class='text-font-semibold text-xl leading-none'>⚡ Bookmarked</p>
+      <p class='text-xs leading-relaxed text-slate-400'>
+        Effortlessly save and organize your favorite tweets in Notion using a
+        Telegram bot.
+      </p>
+    </div>
+  </div>
+  <div
+    class:list={[
+      'absolute top-40',
+      'max-lg:top-36',
+      'xs:max-md:-right-0 xs:max-md:top-6'
+    ]}
+  >
+    <div class='relative flex flex-col items-center'>
+      <div
+        class='absolute z-30 h-[125%] w-[125%] bg-gradient-to-t from-gray-900/60 to-gray-900/0'
+      >
+      </div>
+      <NotificationCard
+        sender='Bookmarked'
+        time='20m ago'
+        message='Success! Your bookmark has been saved ✅'
+        class:list={[
+          // 'w-full',
+          'z-20 -rotate-1',
+          'transition-all duration-300',
+          'group-hover:-translate-x-1 group-hover:-rotate-2 group-hover:scale-105'
+        ]}
+        ><Bookmarks className='size-6' />
+      </NotificationCard>
+
+      <NotificationCard
+        sender='Bookmarked'
+        time='20m ago'
+        message='Bookmarking this thread...⏳'
+        class:list={[
+          'z-10 -mt-5 w-[88%] rotate-1 bg-gray-400 text-gray-800',
+          'transition-all duration-300',
+          'group-hover:translate-x-8 group-hover:rotate-2 group-hover:scale-105'
+        ]}
+        ><Bookmarks className='size-6' />
+      </NotificationCard>
+
+      <NotificationCard
+        sender='Bookmarked'
+        time='20m ago'
+        message='Choose your bookmark type'
+        class:list={[
+          'z-0 -mt-7 w-[75%] bg-gray-500 text-gray-950',
+          'transition-all duration-300',
+          'group-hover:-translate-x-4 group-hover:scale-105'
+        ]}
+        ><Bookmarks className='size-6' />
+      </NotificationCard>
+    </div>
+  </div>
+</a>
