@@ -16,15 +16,17 @@ const KEYS = [
 
 <!-- keyboard source: https://codepen.io/HaydnComley/pen/yLdpLbJ -->
 <script>
-  const scrollButton = document.getElementById('cta-hero-btn')
-  const targetElement = document.getElementById('cards')
+  document.addEventListener('astro:page-load', () => {
+    const scrollButton = document.getElementById('cta-hero-btn')
+    const targetElement = document.getElementById('cards')
 
-  // Add a click event listener to the button
-  scrollButton?.addEventListener('click', function () {
-    // Scroll to the target element when the button is clicked
-    targetElement?.scrollIntoView({
-      behavior: 'smooth',
-      block: 'center'
+    // Add a click event listener to the button
+    scrollButton?.addEventListener('click', function () {
+      // Scroll to the target element when the button is clicked
+      targetElement?.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center'
+      })
     })
   })
   // const keyboardKeys = Array.from(document.querySelectorAll('button'))

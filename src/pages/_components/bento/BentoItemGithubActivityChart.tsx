@@ -54,7 +54,7 @@ const BentoGithubActivity = (props: Props) => {
           style={{ color: '#fff' }}
           rectProps={{ rx: 4 }}
           rectSize={16}
-          rectRender={renderRect}
+          // rectRender={renderRect}
           panelColors={{
             1: '#19222F',
             4: '#0F4E43',

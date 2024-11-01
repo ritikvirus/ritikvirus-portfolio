@@ -33,12 +33,12 @@ export const TypingDetail = ({
   value
 }: TypingDetailProps) => {
   return (
-    <div className='flex items-center gap-1 tracking-wider text-slate-200'>
-      <Tooltip className='capitalize' content={category}>
+    <Tooltip className='capitalize' content={category}>
+      <div className='flex items-center gap-1 tracking-wider text-slate-200'>
         <Icon className='size-4 text-slate-500 group-hover:text-slate-300' />
-      </Tooltip>
-      <p>{value}</p>
-    </div>
+        <p>{value}</p>
+      </div>
+    </Tooltip>
   )
 }
 
