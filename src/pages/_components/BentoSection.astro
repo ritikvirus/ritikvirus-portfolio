@@ -25,6 +25,9 @@ const socialMedias = [
 
 <script>
   document.addEventListener('astro:page-load', () => {
+    // TODO: need to find a better way to handle this
+    if (window.location.pathname !== '/') return
+
     document.getElementById('cards')!.onmousemove = (e) => {
       for (const card of document.getElementsByClassName('card')) {
         const rect = card.getBoundingClientRect()

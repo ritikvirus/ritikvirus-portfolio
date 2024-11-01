@@ -35,7 +35,12 @@ import BentoBadge from './BentoBadge'
       'xs:max-md:left-[calc(50%+16px)] xs:max-md:top-16 xs:max-md:scale-110'
     ]}
   >
-    <div class='relative flex flex-col items-center'>
+    <div
+      class:list={[
+        'relative flex flex-col items-center',
+        'bookmarked-notification-card'
+      ]}
+    >
       <div
         class:list={[
           'absolute z-30 h-[125%] w-[125%]',
@@ -48,9 +53,10 @@ import BentoBadge from './BentoBadge'
         time='20m ago'
         message='Success! Your bookmark has been saved ✅'
         class:list={[
-          'z-20 max-xs:w-[300px]',
+          'z-20 text-gray-700 max-xs:w-[300px]',
           'transition-all duration-300',
-          'group-hover:-translate-x-1 group-hover:-rotate-2 group-hover:scale-105'
+          'group-hover:-translate-x-1 group-hover:-rotate-2 group-hover:scale-105',
+          'hidden-notification-card'
         ]}
         ><Bookmarks className='size-6' />
       </NotificationCard>
@@ -61,8 +67,9 @@ import BentoBadge from './BentoBadge'
         message='Bookmarking this thread...⏳'
         class:list={[
           'z-10 -mt-8 w-[88%] bg-gray-400 text-gray-800',
-          'transition-all duration-300',
-          'group-hover:translate-x-7 group-hover:rotate-2 group-hover:scale-105'
+          'transition-all duration-500',
+          'group-hover:translate-x-7 group-hover:rotate-2 group-hover:scale-105',
+          'hidden-notification-card'
         ]}
         ><Bookmarks className='size-6' />
       </NotificationCard>
@@ -73,11 +80,50 @@ import BentoBadge from './BentoBadge'
         message='Choose your bookmark type'
         class:list={[
           'z-0 -mt-10 w-[75%] bg-gray-500 text-gray-950',
-          'transition-all duration-300',
-          'group-hover:-mt-10 group-hover:-translate-x-4 group-hover:scale-105'
+          'transition-all duration-700',
+          'group-hover:-mt-10 group-hover:-translate-x-4 group-hover:scale-105',
+          'hidden-notification-card'
         ]}
         ><Bookmarks className='size-6' />
       </NotificationCard>
     </div>
   </div>
 </a>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      const hiddenNotificationCards = entry.target.querySelectorAll(
+        '.hidden-notification-card'
+      )
+      if (entry.isIntersecting) {
+        hiddenNotificationCards.forEach((notificationCard) => {
+          notificationCard.classList.add('show-notification-card')
+        })
+      } else {
+        hiddenNotificationCards.forEach((notificationCard) => {
+          notificationCard.classList.remove('show-notification-card')
+        })
+      }
+    })
+  })
+
+  const featuredWorkCard = document.querySelector(
+    '.bookmarked-notification-card'
+  )
+
+  observer.observe(featuredWorkCard!)
+</script>
+
+<style>
+  .hidden-notification-card {
+    scale: 0;
+    filter: blur(32px);
+    transition-all: all 0.3s;
+  }
+
+  .show-notification-card {
+    scale: 1 !important;
+    filter: blur(0);
+  }
+</style>
