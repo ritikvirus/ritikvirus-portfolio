@@ -6,7 +6,7 @@ import client from '@/lib/client'
 import { cn, fetcher } from '@/lib/utils'
 import type { SpotifyData } from '@/pages/api/_spotify'
 
-import BentoBadge from './BentoBadge'
+import BentoBadge from '../BentoBadge'
 
 const BentoItemNowPlaying = () => {
   // TODO: it looks like no need to use ref to store previous data

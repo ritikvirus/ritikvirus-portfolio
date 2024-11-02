@@ -5,7 +5,7 @@ import Tooltip from '@uiw/react-tooltip'
 import { formatDate, getDateSuffix } from '@/lib/utils'
 import type { GithubContributionData } from '@/types'
 
-import BentoBadge from './BentoBadge'
+import BentoBadge from '../BentoBadge'
 
 const getDateProps = () => {
   const today = new Date()

@@ -7,7 +7,7 @@ import { Tooltip } from '@/components/ui/tooltip'
 import { cn } from '@/lib/utils'
 import type { MonkeyTypeData, MonkeyTypeLanguage } from '@/types'
 
-import BentoBadge from './BentoBadge'
+import BentoBadge from '../BentoBadge'
 
 const mapTypingDetailData = (data: MonkeyTypeData) => {
   const LANGUAGE: Record<MonkeyTypeLanguage, string> = {
