@@ -23,7 +23,7 @@ const { class: className, sender, time, message, ...rest } = Astro.props
   </div>
   <div class='w-full space-y-2 overflow-hidden'>
     <div class='flex justify-between'>
-      <p class='text-sm font-semibold leading-none tracking-normal text-black'>
+      <p class='text-sm font-semibold leading-none text-black'>
         {sender}
       </p>
       <p class='text-[11px] font-medium leading-none tracking-wide'>
@@ -31,7 +31,7 @@ const { class: className, sender, time, message, ...rest } = Astro.props
       </p>
     </div>
     <p
-      class='overflow-hidden text-ellipsis whitespace-nowrap text-[11px] font-medium leading-none tracking-wide'
+      class='overflow-hidden text-ellipsis whitespace-nowrap text-[11px] font-medium leading-none'
     >
       {message}
     </p>
