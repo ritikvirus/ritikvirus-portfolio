@@ -98,7 +98,7 @@ const BentoItemMapLocation = ({ className }: Props) => {
           className={cn(
             'size-12 rounded-full bg-emerald-200/50',
             'drop-shadow-green animate-pulse-glow',
-            'transition-all duration-400 group-hover:scale-125'
+            'transition-all duration-800 group-hover:scale-125'
           )}
         ></div>
       </div>
