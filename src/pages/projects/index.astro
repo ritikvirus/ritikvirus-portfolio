@@ -1,53 +1,59 @@
 ---
 import { Suitcase } from '@icons/Suitcase'
 
+import ProjectCard from '@/components/ProjectCard'
 import RayLight from '@/components/Raylight'
 import BaseLayout from '@/layouts/BaseLayout.astro'
 import { cn } from '@/lib/utils'
 ---
 
 <BaseLayout>
-  <RayLight
-    className={cn(
-      'h-[400px] w-[1260px] rotate-[42deg] opacity-80',
-      '-right-[5%] -top-[18%] left-auto'
-    )}
-  />
-  <RayLight className='-top-32 left-[45%] opacity-45' />
-  <RayLight
-    className='left-[45%] top-[5%] h-[180px] opacity-50 max-xs:hidden'
-  />
-  <section class='mt-44 space-y-8'>
+  <div>
+    <RayLight
+      className={cn(
+        'h-[400px] w-[1260px] rotate-[42deg] opacity-75',
+        '-right-[5%] -top-[18%] left-auto'
+      )}
+    />
+    <RayLight className='-top-32 left-[45%] opacity-45' />
+    <RayLight
+      className='left-[45%] top-[5%] h-[180px] opacity-35 max-xs:hidden'
+    />
+  </div>
+  <section class='mt-16 space-y-8 sm:mt-44'>
     <div
       class='flex w-fit items-center gap-2 rounded-full bg-[#162725] px-4 py-2 text-emerald-100'
     >
       <Suitcase />
-      <h1 class='text-sm font-medium'>Projects</h1>
+      <h1 class='text-sm font-medium max-sm:text-xs'>Projects</h1>
     </div>
-    <h2 class='text-[52px] font-bold leading-none tracking-tight'>
+    <h2
+      class='text-[clamp(32px,7vw,52px)] font-bold leading-none tracking-tight'
+    >
       Milestones in the <br /> learning journey
     </h2>
-    <h3 class='tracking-wide text-gray-400'>
+    <h3 class='tracking-wide text-gray-400 max-md:text-sm'>
       Each project marks a step forward, showcasing my growth and journey as a
-      developer. <br /> Explore how I’ve tackled challenges and built solutions along
-      the way.
+      developer. <br class='max-md:hidden' /> Explore how I’ve tackled challenges
+      and built solutions along the way.
     </h3>
   </section>
 
-  <section class='mt-20 grid grid-cols-3 gap-12'>
-    <div class='space-y-6'>
-      <div class='h-[200px] rounded-xl bg-emerald-200'></div>
-      <div class='space-y-3'>
-        <p>2024</p>
-        <!-- should we use heading here? -->
-        <h4 class='text-lg font-bold'>
-          ✨ Bookmarked: Your Go-To Tool for Curating Tweets in Notion
-        </h4>
-        <p class='tracking-wide text-gray-400'>
-          A full-stack application that enables users to save tweets to Notion
-          via Telegram bot.
-        </p>
-      </div>
-    </div>
+  <section class='mt-20 grid gap-12 sm:grid-cols-2 lg:grid-cols-3'>
+    <ProjectCard
+      title='✨ Bookmarked: Your Go-To Tool for Curating Tweets in Notion'
+      year='2024'
+      description='A full-stack application that enables users to save tweets to Notion via Telegram bot.'
+    />
+    <ProjectCard
+      title='✨ Bookmarked: Your Go-To Tool for Curating Tweets in Notion'
+      year='2024'
+      description='A full-stack application that enables users to save tweets to Notion via Telegram bot.'
+    />
+    <ProjectCard
+      title='✨ Bookmarked: Your Go-To Tool for Curating Tweets in Notion'
+      year='2024'
+      description='A full-stack application that enables users to save tweets to Notion via Telegram bot.'
+    />
   </section>
 </BaseLayout>
