@@ -11,13 +11,13 @@ import { cn } from '@/lib/utils'
   <div>
     <RayLight
       className={cn(
-        'h-[400px] w-[1260px] rotate-[42deg] opacity-75',
+        'h-[400px] w-[clamp(400px,100vw,1260px)] rotate-[42deg] opacity-75',
         '-right-[5%] -top-[18%] left-auto'
       )}
     />
     <RayLight className='-top-32 left-[45%] opacity-45' />
     <RayLight
-      className='left-[45%] top-[5%] h-[180px] opacity-35 max-xs:hidden'
+      className='left-[45%] top-[5%] h-[180px] opacity-35 max-lg:hidden'
     />
   </div>
   <section class='mt-16 space-y-8 sm:mt-44'>
