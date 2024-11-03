@@ -1,11 +1,19 @@
 ---
+import type { SVGProps } from 'react'
+import React from 'react'
+
 interface Props {
   year: string
   title: string
   description: string
+  links: {
+    text: string
+    href: string
+    icon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element
+  }[]
 }
 
-const { year, title, description } = Astro.props
+const { year, title, description, links } = Astro.props
 ---
 
 <div class='space-y-6'>
@@ -19,5 +27,18 @@ const { year, title, description } = Astro.props
     <p class='tracking-wide text-gray-400'>
       {description}
     </p>
+    <div class='flex gap-6'>
+      {
+        links.map(({ text, href, icon: Icon }) => (
+          <a
+            href={href}
+            class='flex items-center gap-2 text-sm font-medium tracking-wide text-emerald-300'
+          >
+            <Icon className='size-4' />
+            {text}
+          </a>
+        ))
+      }
+    </div>
   </div>
 </div>

@@ -40,20 +40,21 @@ import { cn } from '@/lib/utils'
   </section>
 
   <section class='mt-20 grid gap-12 sm:grid-cols-2 lg:grid-cols-3'>
-    <ProjectCard
-      title='✨ Bookmarked: Your Go-To Tool for Curating Tweets in Notion'
-      year='2024'
-      description='A full-stack application that enables users to save tweets to Notion via Telegram bot.'
-    />
-    <ProjectCard
-      title='✨ Bookmarked: Your Go-To Tool for Curating Tweets in Notion'
-      year='2024'
-      description='A full-stack application that enables users to save tweets to Notion via Telegram bot.'
-    />
-    <ProjectCard
-      title='✨ Bookmarked: Your Go-To Tool for Curating Tweets in Notion'
-      year='2024'
-      description='A full-stack application that enables users to save tweets to Notion via Telegram bot.'
-    />
+    {
+      Array.from({ length: 3 }).map(() => (
+        <ProjectCard
+          title='✨ Bookmarked: Your Go-To Tool for Curating Tweets in Notion'
+          year='2024'
+          description='A full-stack application that enables users to save tweets to Notion via Telegram bot.'
+          links={[
+            {
+              text: 'View project',
+              href: '/projects/bookmarked',
+              icon: Suitcase
+            }
+          ]}
+        />
+      ))
+    }
   </section>
 </BaseLayout>

@@ -1,5 +1,7 @@
 ---
+import { Globe } from '@/components/icons/Globe'
 import { Suitcase } from '@/components/icons/Suitcase'
+import { Telegram } from '@/components/icons/Telegram'
 import ProjectCard from '@/components/ProjectCard'
 ---
 
@@ -11,6 +13,7 @@ import ProjectCard from '@/components/ProjectCard'
       <Suitcase />
       <h1 class='text-sm font-medium max-sm:text-xs'>Projects</h1>
     </div>
+    <!-- TODO: add transition? -->
     <h2
       class='text-[clamp(32px,7vw,52px)] font-bold leading-none tracking-tight'
     >
@@ -23,20 +26,26 @@ import ProjectCard from '@/components/ProjectCard'
     </h3>
   </div>
   <div class='mt-16 grid gap-12 sm:grid-cols-2 lg:grid-cols-3'>
-    <ProjectCard
-      title='✨ Bookmarked: Your Go-To Tool for Curating Tweets in Notion'
-      year='2024'
-      description='A full-stack application that enables users to save tweets to Notion via Telegram bot.'
-    />
-    <ProjectCard
-      title='✨ Bookmarked: Your Go-To Tool for Curating Tweets in Notion'
-      year='2024'
-      description='A full-stack application that enables users to save tweets to Notion via Telegram bot.'
-    />
-    <ProjectCard
-      title='✨ Bookmarked: Your Go-To Tool for Curating Tweets in Notion'
-      year='2024'
-      description='A full-stack application that enables users to save tweets to Notion via Telegram bot.'
-    />
+    {
+      Array.from({ length: 3 }).map(() => (
+        <ProjectCard
+          title='✨ Bookmarked: Your Go-To Tool for Curating Tweets in Notion'
+          year='2024'
+          description='A full-stack application that enables users to save tweets to Notion via Telegram bot.'
+          links={[
+            {
+              text: 'Website',
+              href: '/projects/bookmarked',
+              icon: Globe
+            },
+            {
+              text: 'Telegram',
+              href: '/projects/bookmarked',
+              icon: Telegram
+            }
+          ]}
+        />
+      ))
+    }
   </div>
 </section>
