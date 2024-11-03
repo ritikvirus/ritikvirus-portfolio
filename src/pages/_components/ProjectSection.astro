@@ -29,21 +29,10 @@ import ProjectCard from '@/components/ProjectCard'
     {
       Array.from({ length: 3 }).map(() => (
         <ProjectCard
+          href='/projects/bookmarked'
           title='✨ Bookmarked: Your Go-To Tool for Curating Tweets in Notion'
           year='2024'
           description='A full-stack application that enables users to save tweets to Notion via Telegram bot.'
-          links={[
-            {
-              text: 'Website',
-              href: '/projects/bookmarked',
-              icon: Globe
-            },
-            {
-              text: 'Telegram',
-              href: '/projects/bookmarked',
-              icon: Telegram
-            }
-          ]}
         />
       ))
     }

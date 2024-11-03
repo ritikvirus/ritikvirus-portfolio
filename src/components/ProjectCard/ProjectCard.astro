@@ -1,24 +1,28 @@
 ---
-import type { SVGProps } from 'react'
-import React from 'react'
+import { Image } from 'astro:assets'
+
+import bookmarkedImage from '../../assets/project_bookmarked.jpeg'
+import { ArrowRight } from '../icons/ArrowRight'
 
 interface Props {
   year: string
   title: string
   description: string
-  links: {
-    text: string
-    href: string
-    icon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element
-  }[]
+  href: string
 }
 
-const { year, title, description, links } = Astro.props
+const { year, title, description, href } = Astro.props
 ---
 
-<div class='space-y-6'>
-  <div class='h-[200px] rounded-xl bg-emerald-200'></div>
-  <div class='space-y-3'>
+<a href={href} class='group space-y-6'>
+  <div class='h-[200px] overflow-hidden rounded-xl bg-emerald-200'>
+    <Image
+      src={bookmarkedImage}
+      alt='Bookmarked project'
+      class='transition-all duration-800 group-hover:scale-105'
+    />
+  </div>
+  <div class='flex flex-col gap-3'>
     <p>{year}</p>
     <!-- should we use heading here? -->
     <h4 class='text-lg font-bold leading-tight'>
@@ -27,18 +31,18 @@ const { year, title, description, links } = Astro.props
     <p class='tracking-wide text-gray-400'>
       {description}
     </p>
-    <div class='flex gap-6'>
-      {
-        links.map(({ text, href, icon: Icon }) => (
-          <a
-            href={href}
-            class='flex items-center gap-2 text-sm font-medium tracking-wide text-emerald-300'
-          >
-            <Icon className='size-4' />
-            {text}
-          </a>
-        ))
-      }
+    <div class='mt-2 flex items-center gap-1 text-emerald-300'>
+      <p
+        class:list={[
+          'relative pr-0.5 text-sm tracking-wide',
+          "after:absolute after:left-0 after:top-1/2 after:w-0 after:content-['']",
+          'after:mt-3 after:h-[1.5px] after:bg-emerald-400 after:transition-all after:duration-300',
+          'group-hover:after:w-full'
+        ]}
+      >
+        Read more
+      </p>
+      <ArrowRight className='transition-all duration-300 group-hover:ml-1' />
     </div>
   </div>
-</div>
+</a>
