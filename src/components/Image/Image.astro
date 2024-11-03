@@ -1,10 +1,17 @@
 ---
-import { getImage, Image as AstroImage } from 'astro:assets'
+import {
+  getImage,
+  Image as AstroImage,
+  type LocalImageProps,
+  type RemoteImageProps
+} from 'astro:assets'
 
-import bookmarkedImage from '@/assets/project_bookmarked.jpeg'
+type Props = LocalImageProps | RemoteImageProps
+
+const { class: className, ...rest } = Astro.props
 
 const blurryImage = await getImage({
-  src: bookmarkedImage,
+  src: rest.src,
   width: 20
 })
 ---
@@ -14,8 +21,7 @@ const blurryImage = await getImage({
   class:list={['blur-load bg-cover bg-center']}
 >
   <AstroImage
-    src={bookmarkedImage}
-    alt='pls'
-    class='object-cover object-center'
+    class:list={['object-cover object-center', className]}
+    {...rest}
   />
 </div>

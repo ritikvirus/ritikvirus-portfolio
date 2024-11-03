@@ -1,5 +1,5 @@
 ---
-import { Image } from 'astro:assets'
+import Image from '@/components/Image/Image.astro'
 
 import bookmarkedImage from '../../assets/project_bookmarked.jpeg'
 import { ArrowRight } from '../icons/ArrowRight'
@@ -31,7 +31,7 @@ const { year, title, description, href } = Astro.props
     <p class='tracking-wide text-gray-400'>
       {description}
     </p>
-    <div class='mt-2 flex items-center gap-1 text-emerald-300'>
+    <div class='flex items-center gap-1 text-emerald-300'>
       <p
         class:list={[
           'relative pr-0.5 text-sm tracking-wide',

@@ -26,6 +26,15 @@ import Footer from '@/components/Footer'
 </html>
 
 <style is:global>
+  .blur-load {
+    filter: blur(24px);
+    transition: filter 500ms ease-in-out;
+  }
+
+  .blur-load.image-loaded {
+    filter: blur(0);
+  }
+
   .blur-load.image-loaded > img {
     opacity: 1;
   }
