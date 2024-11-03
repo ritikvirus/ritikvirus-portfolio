@@ -2,12 +2,13 @@
 import { Suitcase } from '@icons/Suitcase'
 
 import { Bookmarks } from '@/components/icons/Bookmarks'
+import Link from '@/components/Link'
 import NotificationCard from '@/components/NotificationCard'
 
 import BentoBadge from '../BentoBadge'
 ---
 
-<a
+<Link
   href='/projects/bookmarked'
   class:list={[
     'relative flex h-full flex-col gap-3 overflow-hidden rounded-[inherit] px-5 pb-8 pt-4 tracking-wide',
@@ -88,7 +89,7 @@ import BentoBadge from '../BentoBadge'
       </NotificationCard>
     </div>
   </div>
-</a>
+</Link>
 
 <script>
   document.addEventListener('astro:page-load', () => {

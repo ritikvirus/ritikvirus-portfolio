@@ -43,6 +43,7 @@ export const bottomNavigationItems = [
 
 const BottomNavigationBar = () => {
   const [currentPath, setCurrentPath] = useState('')
+  const firstSegment = '/' + (currentPath.split('/').filter(Boolean)[0] ?? '')
 
   const navRef = useRef<HTMLDivElement>(null)
 
@@ -59,6 +60,9 @@ const BottomNavigationBar = () => {
     setCurrentPath(window.location.pathname)
 
     document.addEventListener('astro:before-swap', handlePathChange)
+    document.addEventListener('local-navigation', (e) => {
+      setCurrentPath((e as CustomEvent).detail.path)
+    })
     window.addEventListener('scroll', handleScroll)
 
     setInitialPosition()
@@ -86,10 +90,11 @@ const BottomNavigationBar = () => {
           {bottomNavigationItems.map(({ name, icon: Icon, href }) => (
             <DockIcon
               key={name}
-              {...{ href, onClick: () => setCurrentPath(href) }}
+              href={href}
+              onClick={() => setCurrentPath(href)}
             >
               <Icon className='size-6' />
-              {currentPath === href && (
+              {firstSegment === href && (
                 <div className='absolute bottom-2 size-1 rounded-full bg-emerald-200'></div>
               )}
             </DockIcon>

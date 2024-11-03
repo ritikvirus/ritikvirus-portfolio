@@ -1,5 +1,6 @@
 ---
-import Image from '@/components/Image/Image.astro'
+import Image from '@/components/Image'
+import Link from '@/components/Link'
 
 import bookmarkedImage from '../../assets/project_bookmarked.jpeg'
 import { ArrowRight } from '../icons/ArrowRight'
@@ -14,7 +15,7 @@ interface Props {
 const { year, title, description, href } = Astro.props
 ---
 
-<a href={href} class='group space-y-6'>
+<Link href={href} class='group space-y-6'>
   <div class='h-[200px] overflow-hidden rounded-xl bg-emerald-200'>
     <Image
       src={bookmarkedImage}
@@ -45,4 +46,4 @@ const { year, title, description, href } = Astro.props
       <ArrowRight className='transition-all duration-300 group-hover:ml-1' />
     </div>
   </div>
-</a>
+</Link>

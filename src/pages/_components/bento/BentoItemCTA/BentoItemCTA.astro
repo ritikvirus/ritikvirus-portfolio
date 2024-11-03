@@ -1,8 +1,13 @@
 ---
 import { ArrowRight } from '@icons/ArrowRight'
+
+import Link from '@/components/Link'
 ---
 
-<button class:list={['flex size-full items-center justify-between px-6 py-6']}>
+<Link
+  href='/projects'
+  class:list={['flex size-full items-center justify-between px-6 py-6']}
+>
   <p
     class:list={[
       'relative font-medium tracking-wider',
@@ -16,4 +21,4 @@ import { ArrowRight } from '@icons/ArrowRight'
   <ArrowRight
     className='size-6 -rotate-45 transition-all duration-300 group-hover:rotate-0'
   />
-</button>
+</Link>
