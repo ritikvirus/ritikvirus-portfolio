@@ -1,0 +1,21 @@
+---
+import { getImage, Image as AstroImage } from 'astro:assets'
+
+import bookmarkedImage from '@/assets/project_bookmarked.jpeg'
+
+const blurryImage = await getImage({
+  src: bookmarkedImage,
+  width: 20
+})
+---
+
+<div
+  style={`background-image: url(${blurryImage.src});`}
+  class:list={['blur-load bg-cover bg-center']}
+>
+  <AstroImage
+    src={bookmarkedImage}
+    alt='pls'
+    class='object-cover object-center'
+  />
+</div>
