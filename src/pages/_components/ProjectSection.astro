@@ -3,22 +3,26 @@ import { Suitcase } from '@/components/icons/Suitcase'
 import ProjectCard from '@/components/ProjectCard'
 ---
 
-<section class='mt-40 space-y-8'>
-  <div
-    class='flex w-fit items-center gap-2 rounded-full bg-[#162725] px-4 py-2 text-emerald-100'
-  >
-    <Suitcase />
-    <h1 class='text-sm font-medium max-sm:text-xs'>Projects</h1>
+<section class='mt-40'>
+  <div class='space-y-8'>
+    <div
+      class='flex w-fit items-center gap-2 rounded-full bg-[#162725] px-4 py-2 text-emerald-100'
+    >
+      <Suitcase />
+      <h1 class='text-sm font-medium max-sm:text-xs'>Projects</h1>
+    </div>
+    <h2
+      class='text-[clamp(32px,7vw,52px)] font-bold leading-none tracking-tight'
+    >
+      Milestones in the <br /> learning journey
+    </h2>
+    <h3 class='tracking-wide text-gray-400 max-md:text-sm'>
+      Each project marks a step forward, showcasing my growth and journey as a
+      developer. <br class='max-md:hidden' /> Explore how I’ve tackled challenges
+      and built solutions along the way.
+    </h3>
   </div>
-  <h2 class='text-[clamp(32px,7vw,52px)] font-bold leading-none tracking-tight'>
-    Milestones in the <br /> learning journey
-  </h2>
-  <h3 class='tracking-wide text-gray-400 max-md:text-sm'>
-    Each project marks a step forward, showcasing my growth and journey as a
-    developer. <br class='max-md:hidden' /> Explore how I’ve tackled challenges and
-    built solutions along the way.
-  </h3>
-  <div class='mt-20 grid gap-12 sm:grid-cols-2 lg:grid-cols-3'>
+  <div class='mt-16 grid gap-12 sm:grid-cols-2 lg:grid-cols-3'>
     <ProjectCard
       title='✨ Bookmarked: Your Go-To Tool for Curating Tweets in Notion'
       year='2024'
