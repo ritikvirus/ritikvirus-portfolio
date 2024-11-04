@@ -2,6 +2,7 @@
 import bookmarkedImage from '@/assets/project_bookmarked.jpeg'
 import { GithubOutline } from '@/components/icons/GithubOutline'
 import { Globe } from '@/components/icons/Globe'
+import { Group } from '@/components/icons/Group'
 import { Telegram } from '@/components/icons/Telegram'
 import Image from '@/components/Image'
 import Link from '@/components/Link'
@@ -14,25 +15,34 @@ const LINKS = [
 ]
 ---
 
-<BaseLayout>
-  <Image
-    src={bookmarkedImage}
-    alt='Bookmarked Notion page'
-    wrapperClass='rounded-lg'
-    class='rounded-lg'
-    transition:name='ass'
-  />
-  <section class='mt-8 space-y-5'>
-    <h2 class='tracking-wider text-gray-200'>| 2024</h2>
-    <h1 class='text-4xl font-bold' transition:name='pls'>
-      Bookmarked: Your Go-To Tool for Curating Tweets in Notion
+<BaseLayout class='space-y-12'>
+  <section class='mt-24 space-y-5'>
+    <h2
+      class='border-l border-l-gray-200 px-2 leading-tight tracking-wider text-gray-200'
+    >
+      2024
+    </h2>
+    <h1 class='text-5xl font-bold' transition:name='pls'>
+      Bookmarked: Your Go-To Tool for <br /> Curating Tweets in Notion
     </h1>
-    <div class='flex gap-4'>
+    <h3 class='flex items-center font-medium tracking-wide text-gray-300'>
+      <span class='flex items-center gap-1'>
+        <Group className='size-4 text-gray-200' />
+        Solo project
+      </span>&nbsp; &mdash; &nbsp; A full-stack application that enables users
+      to save tweets to Notion via Telegram bot.
+    </h3>
+    <div class='flex gap-4 pt-2'>
       {
         LINKS.map(({ icon: Icon, href, name }) => (
           <Link
             href={href}
-            class='flex items-center gap-1.5 text-sm tracking-wider text-emerald-300'
+            class:list={[
+              'flex items-center gap-2 rounded-lg text-sm tracking-wider text-gray-300',
+              'border border-gray-600 px-3 py-2',
+              'bg-gradient-to-t from-gray-800/50 to-gray-800/0',
+              'transition-all duration-200 hover:border-gray-500 hover:from-gray-800'
+            ]}
           >
             <Icon className='size-4' /> {name}
           </Link>
@@ -40,4 +50,11 @@ const LINKS = [
       }
     </div>
   </section>
+  <Image
+    src={bookmarkedImage}
+    alt='Bookmarked Notion page'
+    wrapperClass='rounded-lg'
+    class='max-h-[560px] rounded-[inherit]'
+    transition:name='ass'
+  />
 </BaseLayout>
