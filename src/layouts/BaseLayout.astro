@@ -7,15 +7,19 @@ import Footer from '@/components/Footer'
 
 interface Props {
   class?: string
+  title?: string // TODO: make it required instead of optional
 }
 
-const { class: className } = Astro.props
+const { class: className, title } = Astro.props
 ---
 
 <!doctype html>
 <html lang='en' class='dark'>
   <head>
-    <BaseHead title='Jesica' description='description' />
+    <BaseHead
+      title={`${title ?? 'Jesica'} | jestsee.com`}
+      description='description'
+    />
     <ViewTransitions />
   </head>
   <body class='bg-zinc-950 text-white'>
