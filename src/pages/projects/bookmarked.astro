@@ -1,16 +1,43 @@
 ---
-import { Image } from 'astro:assets'
-
+import bookmarkedImage from '@/assets/project_bookmarked.jpeg'
+import { GithubOutline } from '@/components/icons/GithubOutline'
+import { Globe } from '@/components/icons/Globe'
+import { Telegram } from '@/components/icons/Telegram'
+import Image from '@/components/Image'
+import Link from '@/components/Link'
 import BaseLayout from '@/layouts/BaseLayout.astro'
+
+const LINKS = [
+  { icon: GithubOutline, name: 'Repository', href: 'https://github.com' },
+  { icon: Globe, name: 'Website', href: 'https://jestsee.vercel.app' },
+  { icon: Telegram, name: 'Telegram', href: 'https://t.me/jestsee' }
+]
 ---
 
 <BaseLayout>
-  <h1>Bookmarked</h1>
-  <!-- <Image
+  <Image
     src={bookmarkedImage}
     alt='Bookmarked Notion page'
-    decoding='async'
-    loading='lazy'
+    wrapperClass='rounded-lg'
+    class='rounded-lg'
     transition:name='ass'
-  /> -->
+  />
+  <section class='mt-8 space-y-5'>
+    <h2 class='tracking-wider text-gray-200'>| 2024</h2>
+    <h1 class='text-4xl font-bold' transition:name='pls'>
+      Bookmarked: Your Go-To Tool for Curating Tweets in Notion
+    </h1>
+    <div class='flex gap-4'>
+      {
+        LINKS.map(({ icon: Icon, href, name }) => (
+          <Link
+            href={href}
+            class='flex items-center gap-1.5 text-sm tracking-wider text-emerald-300'
+          >
+            <Icon className='size-4' /> {name}
+          </Link>
+        ))
+      }
+    </div>
+  </section>
 </BaseLayout>

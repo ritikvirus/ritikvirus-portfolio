@@ -16,20 +16,22 @@ const { year, title, description, href } = Astro.props
 ---
 
 <Link href={href} class='group space-y-6'>
-  <div class='h-[200px] overflow-hidden rounded-xl bg-emerald-200'>
-    <Image
-      src={bookmarkedImage}
-      alt='Bookmarked project'
-      class='transition-all duration-800 group-hover:scale-105'
-    />
-  </div>
-  <div class='flex flex-col gap-3'>
+  <!-- <div class='h-[200px] overflow-hidden rounded-xl bg-emerald-200'> -->
+  <Image
+    src={bookmarkedImage}
+    alt='Bookmarked Notion page'
+    transition:name='ass'
+    class='transition-all duration-800 group-hover:scale-105'
+    wrapperClass='h-[200px] rounded-lg overflow-clip'
+  />
+  <!-- </div> -->
+  <div class='flex flex-col gap-4'>
     <p>{year}</p>
     <!-- should we use heading here? -->
-    <h4 class='text-lg font-bold leading-tight'>
+    <h4 class='text-xl font-bold'>
       {title}
     </h4>
-    <p class='tracking-wider text-gray-400 max-md:text-sm'>
+    <p class='text-sm tracking-wider text-gray-400'>
       {description}
     </p>
     <div class='flex items-center gap-1 text-emerald-300'>

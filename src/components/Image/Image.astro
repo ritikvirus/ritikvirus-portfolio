@@ -6,9 +6,9 @@ import {
   type RemoteImageProps
 } from 'astro:assets'
 
-type Props = LocalImageProps | RemoteImageProps
+type Props = { wrapperClass?: string } & (LocalImageProps | RemoteImageProps)
 
-const { class: className, ...rest } = Astro.props
+const { class: className, wrapperClass, ...rest } = Astro.props
 
 const blurryImage = await getImage({
   src: rest.src,
@@ -18,7 +18,7 @@ const blurryImage = await getImage({
 
 <div
   style={`background-image: url(${blurryImage.src});`}
-  class='blur-load bg-cover bg-center'
+  class:list={['blur-load w-fit bg-cover bg-center', wrapperClass]}
 >
   <AstroImage
     class:list={['object-cover object-center', className]}
@@ -29,7 +29,7 @@ const blurryImage = await getImage({
 <style is:global>
   .blur-load {
     filter: blur(32px);
-    transition: filter 500ms ease-in-out;
+    transition: filter 300ms ease-in-out;
   }
 
   .blur-load.image-loaded {
@@ -61,10 +61,10 @@ const blurryImage = await getImage({
       }
 
       if (image?.complete) {
-        handleLoadedImage()
-      } else {
-        image?.addEventListener('load', handleLoadedImage)
+        return handleLoadedImage()
       }
+
+      image?.addEventListener('load', handleLoadedImage)
     })
   })
 </script>
