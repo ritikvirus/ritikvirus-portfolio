@@ -8,9 +8,10 @@ import Footer from '@/components/Footer'
 interface Props {
   class?: string
   title?: string // TODO: make it required instead of optional
+  description?: string
 }
 
-const { class: className, title } = Astro.props
+const { class: className, title, description } = Astro.props
 ---
 
 <!doctype html>
