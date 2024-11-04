@@ -6,6 +6,8 @@ import { LinkedIn } from '@icons/LinkedIn'
 import { Mail } from '@icons/Mail'
 import { Scroll } from '@icons/Scroll'
 
+import Link from '@/components/Link'
+
 import LastUpdatedTime from './LastUpdatedTime.astro'
 
 const SOCIAL_MEDIAS = [
@@ -30,7 +32,7 @@ const FOOTER_CONTENTS: FooterContent[] = [
     title: 'Me',
     links: [
       { text: 'Blog', href: '#' },
-      { text: 'Projects', href: '#' },
+      { text: 'Projects', href: '/projects' },
       { text: 'Bookmarks', href: '#' }
     ]
   },
@@ -95,9 +97,9 @@ const FOOTER_CONTENTS: FooterContent[] = [
           <div class='flex gap-4 text-slate-200'>
             {
               SOCIAL_MEDIAS.map(({ icon: Icon, href }) => (
-                <a href={href} target='_blank'>
+                <Link href={href} target='_blank'>
                   <Icon className='size-6' />
-                </a>
+                </Link>
               ))
             }
           </div>
@@ -123,13 +125,13 @@ const FOOTER_CONTENTS: FooterContent[] = [
                 <ul class='flex flex-col gap-3 text-slate-400'>
                   {links.map(({ text, href, withIcon }) => (
                     <li>
-                      <a
+                      <Link
                         href={href}
                         class='flex items-center gap-2 font-normal'
                       >
                         <span>{text}</span>
                         {withIcon && <ArrowOutward className='size-4' />}
-                      </a>
+                      </Link>
                     </li>
                   ))}
                 </ul>
