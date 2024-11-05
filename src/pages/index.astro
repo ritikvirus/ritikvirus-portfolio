@@ -1,7 +1,6 @@
 ---
 import RayLight from '@/components/Raylight'
 import BaseLayout from '@/layouts/BaseLayout.astro'
-import { cn } from '@/lib/utils'
 
 import BentoSection from './_components/BentoSection.astro'
 import HeroSection from './_components/HeroSection.astro'
@@ -9,20 +8,18 @@ import ProjectSection from './_components/ProjectSection.astro'
 ---
 
 <BaseLayout>
-  <RayLight
-    className={cn(
-      'opacity-35',
-      'max-xs:-left-36 max-xs:-top-40 max-xs:opacity-45'
-    )}
-  />
-  <RayLight className='-top-32 left-[45%]' />
-  <RayLight className='left-[45%] top-[5%] h-[180px] max-xs:hidden' />
-  <!-- TODO: shouldn't use main tag here -->
-  <main>
-    <HeroSection />
-    <BentoSection />
-    <ProjectSection />
-  </main>
+  <RayLight.Container slot='decorator'>
+    <RayLight.Component
+      className='opacity-35 max-xs:-left-36 max-xs:-top-40 max-xs:opacity-45'
+    />
+    <RayLight.Component className='-top-32 left-[45%]' />
+    <RayLight.Component
+      className='left-[45%] top-[16%] h-[180px] max-xs:hidden'
+    />
+  </RayLight.Container>
+  <HeroSection />
+  <BentoSection />
+  <ProjectSection />
 </BaseLayout>
 
 <style>

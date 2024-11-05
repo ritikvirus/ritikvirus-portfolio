@@ -19,7 +19,7 @@ const LINKS = [
   title='Bookmarked: Your Go-To Tool for Curating Tweets in Notion'
   class='space-y-12'
 >
-  <section class='mt-24 space-y-5'>
+  <section class='mt-16 space-y-5 sm:mt-24'>
     <h2
       class='border-l border-l-gray-200 px-2 leading-tight tracking-wider text-gray-200'
     >
@@ -37,7 +37,7 @@ const LINKS = [
       Solo project &mdash; A full-stack application that enables users to save tweets
       to Notion via Telegram bot.
     </h3>
-    <div class='flex gap-4 pt-2'>
+    <div class='flex flex-wrap gap-2 pt-2 sm:gap-4'>
       {
         LINKS.map(({ icon: Icon, href, name }) => (
           <Link
@@ -62,8 +62,8 @@ const LINKS = [
     class='max-h-[560px] rounded-[inherit]'
     transition:name='ass'
   />
-  <section class='flex gap-8'>
-    <article class='max-w-[720px] tracking-wide text-gray-300'>
+  <section class='flex gap-16'>
+    <article class='max-w-[720px] tracking-wide text-gray-400'>
       Torem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis
       molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla
       accumsan, risus sem sollicitudin lacus, ut interdum tellus elit sed risus.
@@ -117,9 +117,11 @@ const LINKS = [
       gravida sem sit amet cursus. Etiam pulvinar purus vitae justo pharetra
       consequat. Mauris id mi ut arcu feugiat maximus.
     </article>
-    <aside class='max-w-[300px] space-y-3 max-lg:hidden'>
-      <p class='text-xl font-semibold'>Table of contents</p>
-      <ul class='space-y-2 tracking-wide text-slate-400'>
+    <aside
+      class='sticky top-8 max-w-[300px] space-y-3 self-start max-lg:hidden'
+    >
+      <p class='text-lg font-medium'>Table of contents</p>
+      <ul class='space-y-2 text-sm tracking-wider text-slate-500'>
         <li>
           <a href='#section-1'>Background</a>
         </li>
@@ -130,7 +132,7 @@ const LINKS = [
           <a href='#section-3'>Tech stacks choosen and why</a>
           <ul class='mt-2 space-y-2 pl-6'>
             <li>Backend: Nestjs</li>
-            <li class='text-gray-300'>Frontend: Nextjs</li>
+            <li class='text-slate-300'>Frontend: Nextjs</li>
           </ul>
         </li>
         <li>
