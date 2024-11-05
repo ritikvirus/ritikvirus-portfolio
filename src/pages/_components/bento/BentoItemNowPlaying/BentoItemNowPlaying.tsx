@@ -12,7 +12,7 @@ const BentoItemNowPlaying = () => {
   // TODO: it looks like no need to use ref to store previous data
   const previousDataRef = useRef<SpotifyData>()
 
-  const { data: _data, error } = useSWR(
+  const { data, error } = useSWR(
     'spotify',
     fetcher(() => client.api.spotify.$get()),
     {
@@ -24,10 +24,7 @@ const BentoItemNowPlaying = () => {
   )
 
   // TODO: handle initial error
-  if (error && !previousDataRef.current)
-    return <p>masok error {JSON.stringify(_data, null, 2)}</p>
-
-  const data = _data || previousDataRef.current
+  if (error && !data) return <p>masok error {JSON.stringify(data, null, 2)}</p>
 
   return (
     <a

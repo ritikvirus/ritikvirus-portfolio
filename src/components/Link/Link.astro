@@ -7,6 +7,13 @@ const { class: className, ...rest } = Astro.props
 <a class:list={['custom-link', className]} {...rest}><slot /></a>
 
 <script>
+  function generateCustomEvent(path: string) {
+    return new CustomEvent('local-navigation', {
+      bubbles: true,
+      detail: { path }
+    })
+  }
+
   function eventHandler(event: Event) {
     if (!event.currentTarget) return
 
@@ -14,10 +21,7 @@ const { class: className, ...rest } = Astro.props
 
     if (!href.startsWith(location.origin)) return
 
-    const customEvent = new CustomEvent('local-navigation', {
-      bubbles: true,
-      detail: { path: href.replace(location.origin, '') }
-    })
+    const customEvent = generateCustomEvent(href.replace(location.origin, ''))
 
     event.currentTarget.dispatchEvent(customEvent)
   }
@@ -27,5 +31,13 @@ const { class: className, ...rest } = Astro.props
     links.forEach((link) => {
       link.addEventListener('click', eventHandler)
     })
+  })
+
+  window.addEventListener('popstate', () => {
+    if (window.location.origin !== location.origin) return
+
+    const customEvent = generateCustomEvent(window.location.pathname)
+
+    document.dispatchEvent(customEvent)
   })
 </script>
