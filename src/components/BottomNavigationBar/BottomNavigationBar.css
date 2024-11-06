@@ -34,6 +34,10 @@
   .nav {
     --bottom-nav-bar-offset: 16px;
   }
+
+  .tip {
+    display: none;
+  }
 }
 
 .tip {
