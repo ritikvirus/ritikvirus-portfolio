@@ -6,6 +6,7 @@ import { Group } from '@/components/icons/Group'
 import { Telegram } from '@/components/icons/Telegram'
 import Image from '@/components/Image'
 import Link from '@/components/Link'
+import ScrollProgressBar from '@/components/ui/scroll-progress-bar'
 import BaseLayout from '@/layouts/BaseLayout.astro'
 
 const LINKS = [
@@ -19,21 +20,22 @@ const LINKS = [
   title='Bookmarked: Your Go-To Tool for Curating Tweets in Notion'
   class='space-y-12'
 >
-  <section class='mt-16 space-y-5 sm:mt-24'>
+  <ScrollProgressBar type='bar' color='gray' client:only='react' />
+  <section class='space-y-5 pt-4 sm:pt-12'>
     <h2
-      class='border-l border-l-gray-200 px-2 leading-tight tracking-wider text-gray-200'
+      class='border-l border-l-gray-300 px-2 leading-tight tracking-wider text-gray-300'
     >
       2024
     </h2>
     <h1
-      class='text-[clamp(32px,5vw,48px)] font-bold leading-none'
+      class='text-[clamp(28px,5vw,48px)] font-bold leading-none'
       transition:name='pls'
     >
       Bookmarked: Your Go-To Tool for <br class='max-md:hidden' />
       Curating Tweets in Notion
     </h1>
-    <h3 class='font-medium tracking-wide text-gray-300'>
-      <Group className='inline-block pb-[2px] text-gray-200' />
+    <h3 class='font-medium tracking-wide text-gray-300 max-sm:text-sm'>
+      <Group className='inline-block pb-[2px]' />
       Solo project &mdash; A full-stack application that enables users to save tweets
       to Notion via Telegram bot.
     </h3>
@@ -43,7 +45,7 @@ const LINKS = [
           <Link
             href={href}
             class:list={[
-              'flex items-center gap-2 rounded-lg text-sm tracking-wider text-gray-300',
+              'flex items-center gap-2 rounded-lg text-sm tracking-wider text-gray-300 max-sm:text-xs',
               'border border-gray-600 px-3 py-2',
               'bg-gradient-to-t from-slate-800/50 to-gray-800/0',
               'transition-all duration-200 hover:border-gray-500 hover:from-slate-800'
@@ -63,59 +65,57 @@ const LINKS = [
     />
   </section>
   <section class='flex gap-16'>
-    <article class='max-w-[720px] tracking-wide text-gray-400'>
-      Torem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis
-      molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla
-      accumsan, risus sem sollicitudin lacus, ut interdum tellus elit sed risus.
-      <br />
-      <br />
-
-      Class aptent taciti sociosqu ad litora torquent per conubia nostra, per
-      inceptos himenaeos. Praesent auctor purus luctus enim egestas, ac
-      scelerisque ante pulvinar. Donec ut rhoncus ex.
-      <br />
-      <br />
-
-      Suspendisse ac rhoncus nisl, eu tempor urna. Curabitur vel bibendum lorem.
-      <br />
-      <br />
-
-      Curabitur tempor quis eros tempus lacinia. Nam bibendum pellentesque quam
-      a convallis. Sed ut vulputate nisi. Integer in felis sed leo vestibulum
-      venenatis. Suspendisse quis arcu sem. Aenean feugiat ex eu vestibulum
-      vestibulum.
-      <br />
-      <br />
-
-      Morbi a eleifend magna. Nam metus lacus, porttitor eu mauris a, blandit
-      ultrices nibh. Mauris sit amet magna non ligula vestibulum eleifend. Nulla
-      varius volutpat turpis sed lacinia. Nam eget mi in purus lobortis
-      eleifend.
-      <br />
-      <br />
-
-      Sed nec ante dictum sem condimentum ullamcorper quis venenatis nisi. Proin
-      vitae facilisis nisi, ac posuere leo.
-      <br />
-      <br />
-
-      Nam pulvinar blandit velit, id condimentum diam faucibus at. Aliquam lacus
-      nisi, sollicitudin at nisi nec, fermentum congue felis. Quisque mauris
-      dolor, fringilla sed tincidunt ac, finibus non odio. Sed vitae mauris nec
-      ante pretium finibus.
-      <br />
-      <br />
-
-      Donec nisl neque, pharetra ac elit eu, faucibus aliquam ligula. Nullam
-      dictum, tellus tincidunt tempor laoreet, nibh elit sollicitudin felis,
-      eget feugiat sapien diam nec nisl.
-      <br />
-      <br />
-
-      Aenean gravida turpis nisi, consequat dictum risus dapibus a. Duis felis
-      ante, varius in neque eu, tempor suscipit sem. Maecenas ullamcorper
-      gravida sem sit amet cursus. Etiam pulvinar purus vitae justo pharetra
-      consequat. Mauris id mi ut arcu feugiat maximus.
+    <article
+      class='max-w-[720px] space-y-6 tracking-wide text-gray-400 max-sm:text-sm'
+    >
+      <p>
+        Torem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis
+        molestie, dictum est a, mattis tellus. Sed dignissim, metus nec
+        fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus
+        elit sed risus.
+      </p>
+      <p>
+        Class aptent taciti sociosqu ad litora torquent per conubia nostra, per
+        inceptos himenaeos. Praesent auctor purus luctus enim egestas, ac
+        scelerisque ante pulvinar. Donec ut rhoncus ex.
+      </p>
+      <p>
+        Suspendisse ac rhoncus nisl, eu tempor urna. Curabitur vel bibendum
+        lorem.
+      </p>
+      <p>
+        Curabitur tempor quis eros tempus lacinia. Nam bibendum pellentesque
+        quam a convallis. Sed ut vulputate nisi. Integer in felis sed leo
+        vestibulum venenatis. Suspendisse quis arcu sem. Aenean feugiat ex eu
+        vestibulum vestibulum.
+      </p>
+      <p>
+        Morbi a eleifend magna. Nam metus lacus, porttitor eu mauris a, blandit
+        ultrices nibh. Mauris sit amet magna non ligula vestibulum eleifend.
+        Nulla varius volutpat turpis sed lacinia. Nam eget mi in purus lobortis
+        eleifend.
+      </p>
+      <p>
+        Sed nec ante dictum sem condimentum ullamcorper quis venenatis nisi.
+        Proin vitae facilisis nisi, ac posuere leo.
+      </p>
+      <p>
+        Nam pulvinar blandit velit, id condimentum diam faucibus at. Aliquam
+        lacus nisi, sollicitudin at nisi nec, fermentum congue felis. Quisque
+        mauris dolor, fringilla sed tincidunt ac, finibus non odio. Sed vitae
+        mauris nec ante pretium finibus.
+      </p>
+      <p>
+        Donec nisl neque, pharetra ac elit eu, faucibus aliquam ligula. Nullam
+        dictum, tellus tincidunt tempor laoreet, nibh elit sollicitudin felis,
+        eget feugiat sapien diam nec nisl.
+      </p>
+      <p>
+        Aenean gravida turpis nisi, consequat dictum risus dapibus a. Duis felis
+        ante, varius in neque eu, tempor suscipit sem. Maecenas ullamcorper
+        gravida sem sit amet cursus. Etiam pulvinar purus vitae justo pharetra
+        consequat. Mauris id mi ut arcu feugiat maximus.
+      </p>
     </article>
     <aside
       class='sticky top-8 max-w-[300px] space-y-3 self-start max-lg:hidden'
