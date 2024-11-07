@@ -24,35 +24,35 @@ export default function ScrollProgressBar({
   showPercentage = true
 }: Readonly<ScrollProgressBarType>) {
   const { scrollYProgress } = useScroll()
-  const barRef = React.useRef<HTMLSpanElement>(null)
-  const circleRef = React.useRef<HTMLSpanElement>(null)
+  const spanRef = React.useRef<HTMLSpanElement>(null)
 
   const scrollPercentage = useTransform(scrollYProgress, [0, 1], [0, 100])
 
   useMotionValueEvent(scrollPercentage, 'change', (latest) => {
-    if (barRef.current) {
-      barRef.current.style.width = `${latest}%`
+    if (!spanRef.current) return
+
+    if (type === 'bar') {
+      return (spanRef.current.style.width = `${latest}%`)
     }
 
-    if (circleRef.current) {
-      circleRef.current.textContent = `${Math.round(latest)}%`
-    }
+    spanRef.current.textContent = `${Math.round(latest)}%`
   })
 
   if (type === 'bar') {
     return (
-      <div
-        className='pointer-events-none fixed end-0 start-0 top-0 z-30'
+      <span
+        ref={spanRef}
+        className={cn(
+          'pointer-events-none fixed end-0 start-0 top-0 z-30',
+          'w-0 overflow-clip'
+        )}
         style={{ height: `${strokeSize + 2}px` }}
       >
         <span
-          ref={barRef}
-          className='bg-primary block h-full w-full'
-          style={{
-            backgroundColor: color
-          }}
+          style={{ backgroundColor: color }}
+          className='absolute block h-full w-screen bg-gradient-to-r from-emerald-400 to-lime-200'
         ></span>
-      </div>
+      </span>
     )
   }
 
@@ -82,7 +82,7 @@ export default function ScrollProgressBar({
         />
       </svg>
       {showPercentage && (
-        <span ref={circleRef} className='absolute mx-auto text-sm'></span>
+        <span ref={spanRef} className='absolute mx-auto text-sm'></span>
       )}
       {/* </>
       )} */}
