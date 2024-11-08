@@ -44,6 +44,7 @@ const LINKS = [
         LINKS.map(({ icon: Icon, href, name }) => (
           <Link
             href={href}
+            target='_blank'
             class:list={[
               'flex items-center gap-2 rounded-lg text-sm tracking-wider text-gray-300 max-sm:text-xs',
               'border border-gray-600 px-3 py-2',
@@ -57,11 +58,13 @@ const LINKS = [
       }
     </div>
   </section>
-  <section class='max-h-[560px] overflow-clip rounded-lg'>
+  <section>
     <Image
       src={bookmarkedImage}
       alt='Bookmarked Notion page'
+      wrapperClass='max-h-[560px] rounded-lg'
       transition:name='ass'
+      ambientMode
     />
   </section>
   <section class='flex gap-16'>

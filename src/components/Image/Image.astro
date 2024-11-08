@@ -6,9 +6,12 @@ import {
   type RemoteImageProps
 } from 'astro:assets'
 
-type Props = { wrapperClass?: string } & (LocalImageProps | RemoteImageProps)
+type Props = { wrapperClass?: string; ambientMode?: boolean } & (
+  | LocalImageProps
+  | RemoteImageProps
+)
 
-const { class: className, wrapperClass, ...rest } = Astro.props
+const { class: className, wrapperClass, ambientMode, ...rest } = Astro.props
 
 const blurryImage = await getImage({
   src: rest.src,
@@ -17,17 +20,26 @@ const blurryImage = await getImage({
 ---
 
 <div
-  style={`background-image: url(${blurryImage.src});`}
-  class:list={['blur-load w-fit bg-cover bg-center', wrapperClass]}
+  style={`--bg-image: url(${blurryImage.src});`}
+  class:list={[
+    'blur-load w-fit bg-cover bg-center',
+    { 'ambient-mode': ambientMode },
+    wrapperClass
+  ]}
 >
   <AstroImage
-    class:list={['object-cover object-center', className]}
+    class:list={[
+      'object-cover object-center',
+      'h-[inherit] max-h-[inherit] rounded-[inherit]',
+      className
+    ]}
     {...rest}
   />
 </div>
 
 <style is:global>
   .blur-load {
+    background-image: var(--bg-image);
     filter: blur(32px);
     transition: filter 300ms ease-in-out;
   }
@@ -43,6 +55,28 @@ const blurryImage = await getImage({
   .blur-load > img {
     opacity: 0;
     transition: all 200ms ease-in-out;
+  }
+
+  .ambient-mode {
+    position: relative;
+  }
+
+  .ambient-mode::before {
+    position: absolute;
+    max-width: 100vw;
+    overflow-x: hidden;
+    width: 115%;
+    height: 115%;
+
+    background-image: var(--bg-image);
+    background-size: cover;
+    filter: blur(64px);
+    opacity: 20%;
+
+    content: '';
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 </style>
 
