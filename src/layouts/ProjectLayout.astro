@@ -3,22 +3,24 @@ import { Group } from '@/components/icons/Group'
 import Image from '@/components/Image'
 import Link from '@/components/Link'
 import ScrollProgressBar from '@/components/ui/scroll-progress-bar'
+import { PROJECT_ICONS, type ProjectIcon } from '@/content/_icons'
 import type { ProjectProps } from '@/content/_schemas/project'
 
 import BaseLayout from './BaseLayout.astro'
 
 interface Props extends ProjectProps {}
 
-const { props } = Astro
+const { year, description, heroImage, links, numberOfTeamMembers, title } =
+  Astro.props
 ---
 
-<BaseLayout title={props.title} class='space-y-12'>
+<BaseLayout title={title} class='space-y-12'>
   <ScrollProgressBar type='bar' client:only='react' />
   <section class='space-y-5 sm:pt-12'>
     <h2
       class='border-l border-l-gray-300 px-2 leading-tight tracking-wider text-gray-300'
     >
-      {props.year}
+      {year}
     </h2>
     <h1
       class='text-[clamp(28px,5vw,48px)] font-bold leading-none'
@@ -26,38 +28,45 @@ const { props } = Astro
     >
       <!-- Bookmarked: Your Go-To Tool for <br class='max-md:hidden' />
       Curating Tweets in Notion -->
-      {props.title}
+      {title}
     </h1>
     <h3 class='font-medium tracking-wide text-gray-300 max-sm:text-sm'>
       <Group className='inline-block pb-[2px]' />
       {
-        props.numberOfTeamMembers > 1
-          ? `Team of ${props.numberOfTeamMembers}`
+        numberOfTeamMembers > 1
+          ? `Team of ${numberOfTeamMembers}`
           : 'Solo project'
-      } &mdash; {props.description}
+      } &mdash; {description}
     </h3>
-    <!-- <div class='flex flex-wrap gap-2 pt-2 sm:gap-4'>
-      {
-        LINKS.map(({ icon: Icon, href, name }) => (
-          <Link
-            href={href}
-            target='_blank'
-            class:list={[
-              'flex items-center gap-2 rounded-lg text-sm tracking-wider text-gray-300 max-sm:text-xs',
-              'border border-gray-600 px-3 py-2',
-              'bg-gradient-to-t from-slate-800/50 to-gray-800/0',
-              'transition-all duration-200 hover:border-gray-500 hover:from-slate-800'
-            ]}
-          >
-            <Icon className='size-4' /> {name}
-          </Link>
-        ))
-      }
-    </div> -->
+    {
+      links.length > 1 && (
+        <ul class='flex flex-wrap gap-2 pt-2 sm:gap-4'>
+          {links.map(({ icon, url, name }) => {
+            const Icon = PROJECT_ICONS[icon as ProjectIcon]
+            return (
+              <li>
+                <Link
+                  href={url}
+                  target='_blank'
+                  class:list={[
+                    'flex items-center gap-2 rounded-lg text-sm tracking-wider text-gray-300 max-sm:text-xs',
+                    'border border-gray-600 px-3 py-2',
+                    'bg-gradient-to-t from-slate-800/50 to-gray-800/0',
+                    'transition-all duration-200 hover:border-gray-500 hover:from-slate-800'
+                  ]}
+                >
+                  <Icon className='size-4' /> {name}
+                </Link>
+              </li>
+            )
+          })}
+        </ul>
+      )
+    }
   </section>
   <section>
     <Image
-      src={props.heroImage}
+      src={heroImage}
       alt='Bookmarked Notion page'
       wrapperClass='max-h-[560px] rounded-lg'
       transition:name='ass'

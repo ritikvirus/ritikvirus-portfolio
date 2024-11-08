@@ -1,5 +1,7 @@
 import { defineCollection, type ImageFunction, z } from 'astro:content'
 
+import { iconSchema } from '../_icons'
+
 const projectSchema = ({ image }: { image: ImageFunction }) =>
   z.object({
     year: z.number(),
@@ -9,7 +11,7 @@ const projectSchema = ({ image }: { image: ImageFunction }) =>
     heroImage: image(),
     links: z.array(
       z.object({
-        // TODO: icon
+        icon: iconSchema,
         name: z.string(),
         url: z.string()
       })
