@@ -14,7 +14,7 @@ const { year, description, heroImage, links, numberOfTeamMembers, title } =
   Astro.props
 ---
 
-<BaseLayout title={title} class='space-y-12'>
+<BaseLayout title={title.replace('\\n', ' ')} class='space-y-12'>
   <ScrollProgressBar type='bar' client:only='react' />
   <section class='space-y-5 sm:pt-12'>
     <h2
@@ -23,13 +23,10 @@ const { year, description, heroImage, links, numberOfTeamMembers, title } =
       {year}
     </h2>
     <h1
-      class='text-[clamp(28px,5vw,48px)] font-bold leading-none'
+      class='whitespace-pre-wrap text-[clamp(28px,5vw,48px)] font-bold leading-none'
+      set:html={title.replace('\\n', "<br class='max-md:hidden' />")}
       transition:name='pls'
-    >
-      <!-- Bookmarked: Your Go-To Tool for <br class='max-md:hidden' />
-      Curating Tweets in Notion -->
-      {title}
-    </h1>
+    />
     <h3 class='font-medium tracking-wide text-gray-300 max-sm:text-sm'>
       <Group className='inline-block pb-[2px]' />
       {
