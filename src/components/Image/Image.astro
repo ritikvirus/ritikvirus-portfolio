@@ -22,14 +22,14 @@ const blurryImage = await getImage({
 <div
   style={`--bg-image: url(${blurryImage.src});`}
   class:list={[
-    'blur-load w-fit bg-cover bg-center',
+    'blur-load w-fit bg-cover bg-top',
     { 'ambient-mode': ambientMode },
     wrapperClass
   ]}
 >
   <AstroImage
     class:list={[
-      'object-cover object-center',
+      'object-cover object-top',
       'h-[inherit] max-h-[inherit] rounded-[inherit]',
       className
     ]}
