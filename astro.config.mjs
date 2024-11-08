@@ -5,6 +5,8 @@ import sitemap from '@astrojs/sitemap'
 import react from '@astrojs/react'
 import tailwind from '@astrojs/tailwind'
 import vercel from '@astrojs/vercel/serverless'
+import rehypeAutolinkHeadings from 'rehype-autolink-headings'
+import rehypeSlug from 'rehype-slug'
 
 // https://astro.build/config
 export default defineConfig({
@@ -23,7 +25,12 @@ export default defineConfig({
   },
 
   integrations: [
-    mdx(),
+    mdx({
+      rehypePlugins: [
+        rehypeSlug,
+        [rehypeAutolinkHeadings, { behavior: 'prepend' }]
+      ]
+    }),
     sitemap(),
     react(),
     tailwind({

@@ -15,7 +15,7 @@ const { year, description, heroImage, links, numberOfTeamMembers, title } =
 ---
 
 <BaseLayout title={title.replace('\\n', ' ')} class='space-y-12'>
-  <ScrollProgressBar type='bar' client:only='react' />
+  <ScrollProgressBar type='bar' strokeSize={4} client:only='react' />
   <section class='space-y-5 sm:pt-12'>
     <h2
       class='border-l border-l-gray-300 px-2 leading-tight tracking-wider text-gray-300'
@@ -72,7 +72,10 @@ const { year, description, heroImage, links, numberOfTeamMembers, title } =
   </section>
   <section class='flex justify-between'>
     <article
-      class='max-w-[720px] space-y-6 tracking-wide text-gray-400 max-sm:text-sm'
+      class:list={[
+        'max-w-[720px] space-y-6 tracking-wide',
+        'dark:prose-invert prose max-sm:prose-sm'
+      ]}
     >
       <slot />
     </article>
