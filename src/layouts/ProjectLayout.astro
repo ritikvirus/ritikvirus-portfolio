@@ -12,6 +12,11 @@ interface Props extends ProjectProps {}
 
 const { year, description, heroImage, links, numberOfTeamMembers, title } =
   Astro.props
+
+const htmlTitle = title.replace(
+  '\\n',
+  "<br class='max-md:hidden' /><span class='md:hidden'>&nbsp;</span>"
+)
 ---
 
 <BaseLayout title={title.replace('\\n', ' ')} class='space-y-12'>
@@ -24,7 +29,7 @@ const { year, description, heroImage, links, numberOfTeamMembers, title } =
     </h2>
     <h1
       class='whitespace-pre-wrap text-[clamp(28px,5vw,48px)] font-bold leading-none'
-      set:html={title.replace('\\n', "<br class='max-md:hidden' />")}
+      set:html={htmlTitle}
       transition:name='pls'
     />
     <h3 class='font-medium tracking-wide text-gray-300 max-sm:text-sm'>
@@ -70,7 +75,7 @@ const { year, description, heroImage, links, numberOfTeamMembers, title } =
       ambientMode
     />
   </section>
-  <section class='flex justify-between'>
+  <section class='flex gap-20'>
     <article
       class:list={[
         'max-w-[720px] space-y-6 tracking-wide',
@@ -79,9 +84,7 @@ const { year, description, heroImage, links, numberOfTeamMembers, title } =
     >
       <slot />
     </article>
-    <aside
-      class='sticky top-8 max-w-[400px] space-y-3 self-start max-lg:hidden'
-    >
+    <aside class='sticky top-8 w-full space-y-3 self-start max-lg:hidden'>
       <p class='text-lg font-medium'>Table of contents</p>
       <ul class='space-y-2 text-sm tracking-wider text-slate-500'>
         <li>
