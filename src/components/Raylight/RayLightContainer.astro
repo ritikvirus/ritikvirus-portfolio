@@ -7,7 +7,10 @@ const { class: className } = Astro.props
 ---
 
 <div
-  class:list={['absolute -z-10 h-screen w-screen overflow-hidden', className]}
+  class:list={[
+    'absolute -z-10 h-screen w-screen max-w-[1440px] overflow-hidden',
+    className
+  ]}
 >
   <slot />
 </div>
