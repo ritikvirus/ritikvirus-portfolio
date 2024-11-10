@@ -1,25 +1,17 @@
 import { Spotify } from '@icons/Spotify'
-import { useRef } from 'react'
 import useSWR from 'swr'
 
 import client from '@/lib/client'
 import { cn, fetcher } from '@/lib/utils'
-import type { SpotifyData } from '@/pages/api/_spotify'
 
 import BentoBadge from '../BentoBadge'
 
 const BentoItemNowPlaying = () => {
-  // TODO: it looks like no need to use ref to store previous data
-  const previousDataRef = useRef<SpotifyData>()
-
   const { data, error } = useSWR(
     'spotify',
     fetcher(() => client.api.spotify.$get()),
     {
-      refreshInterval: 10000,
-      onSuccess(data) {
-        previousDataRef.current = data
-      }
+      refreshInterval: 10000
     }
   )
 
@@ -53,8 +45,8 @@ const BentoItemNowPlaying = () => {
           />
         </div>
       </div>
-      <div className='w-full space-y-1 overflow-hidden tracking-wider'>
-        <p className='text-sm tracking-wide text-slate-400'>
+      <div className='w-full space-y-1 overflow-hidden tracking-wide'>
+        <p className='text-sm text-slate-400'>
           {data?.isPlaying ? 'Now playing' : 'Last played'}
         </p>
         <div className='items-center gap-x-4 space-y-1 md:max-lg:flex'>

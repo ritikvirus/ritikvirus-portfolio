@@ -39,11 +39,7 @@ const BentoBadge = ({ icon: Icon, text, className }: Props) => {
       )}
     >
       <Icon className={cn('size-4', className?.icon)} />
-      {!!text && (
-        <h3 className='text-xs font-medium tracking-wider text-slate-200'>
-          {text}
-        </h3>
-      )}
+      {!!text && <h3 className='text-xs text-slate-200'>{text}</h3>}
     </div>
   )
 }

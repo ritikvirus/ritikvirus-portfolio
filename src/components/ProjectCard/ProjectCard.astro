@@ -15,7 +15,7 @@ interface Props {
 const { year, title, description, href } = Astro.props
 ---
 
-<Link href={href} class='group space-y-6 font-medium'>
+<Link href={href} class='group space-y-6'>
   <Image
     src={bookmarkedImage}
     alt='Bookmarked Notion page'
@@ -26,16 +26,16 @@ const { year, title, description, href } = Astro.props
   <div class='flex flex-col gap-4'>
     <p>{year}</p>
     <!-- should we use heading here? -->
-    <h4 class='text-xl font-bold max-sm:text-lg'>
+    <h4 class='text-lg font-semibold tracking-wide max-sm:text-lg'>
       {title}
     </h4>
-    <p class='text-sm tracking-wider text-gray-400'>
+    <p class='text-sm tracking-wide text-gray-400'>
       {description}
     </p>
     <div class='flex items-center gap-1 text-emerald-300'>
       <p
         class:list={[
-          'relative pr-0.5 text-sm tracking-wide',
+          'relative pr-0.5 text-sm',
           "after:absolute after:left-0 after:top-1/2 after:w-0 after:content-['']",
           'after:mt-3 after:h-[1.5px] after:bg-emerald-400 after:transition-all after:duration-300',
           'group-hover:after:w-full'

@@ -28,11 +28,11 @@ const htmlTitle = title.replace(
       {year}
     </h2>
     <h1
-      class='whitespace-pre-wrap text-[clamp(28px,5vw,48px)] font-bold leading-none'
+      class='whitespace-pre-wrap text-[clamp(28px,5vw,48px)] font-semibold leading-none'
       set:html={htmlTitle}
       transition:name='pls'
     />
-    <h3 class='font-medium tracking-wide text-gray-300 max-sm:text-sm'>
+    <h3 class='font-medium text-gray-300 max-sm:text-sm'>
       <Group className='inline-block pb-[2px]' />
       {
         numberOfTeamMembers > 1
@@ -86,7 +86,7 @@ const htmlTitle = title.replace(
     </article>
     <aside class='sticky top-8 w-full space-y-3 self-start max-lg:hidden'>
       <p class='text-lg font-medium'>Table of contents</p>
-      <ul class='space-y-2 text-sm tracking-wider text-slate-500'>
+      <ul class='space-y-2 text-sm tracking-wide text-slate-500'>
         <li>
           <a href='#section-1'>Background</a>
         </li>

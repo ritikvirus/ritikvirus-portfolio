@@ -38,7 +38,7 @@ const BentoGithubActivity = (props: Props) => {
     <div className='relative flex h-full flex-col justify-between px-4 pb-5 pt-4 max-md:gap-4'>
       <div className='flex items-baseline justify-between gap-2 max-xs:flex-col'>
         <BentoBadge icon={Github} text='Github activity' />
-        <p className='text-sm tracking-wider'>
+        <p className='text-sm'>
           {props.totalContributions ?? 'No'} contributions in the last year
         </p>
       </div>
@@ -64,7 +64,7 @@ const BentoGithubActivity = (props: Props) => {
         />
       </div>
       {
-        <p className='text-sm tracking-wider text-slate-200 max-sm:text-xs sm:max-lg:mt-4'>
+        <p className='text-sm text-slate-200 max-sm:text-xs sm:max-lg:mt-4'>
           Last pushed on {formatDate(new Date(props.lastPushedAt))}
         </p>
       }
