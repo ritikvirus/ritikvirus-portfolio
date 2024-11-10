@@ -24,7 +24,7 @@ module.exports = {
         6: '6px'
       },
       fontFamily: {
-        sans: ['Manrope', 'sans-serif']
+        sans: ['Plus Jakarta Sans', 'sans-serif']
       },
       screens: {
         xs: '480px'
