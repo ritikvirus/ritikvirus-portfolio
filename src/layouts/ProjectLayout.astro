@@ -1,17 +1,28 @@
 ---
+import type { MarkdownHeading } from 'astro'
 import type { InferEntrySchema } from 'astro:content'
 
 import { Group } from '@/components/icons/Group'
 import Image from '@/components/Image'
 import Link from '@/components/Link'
+import TableOfContent from '@/components/TableOfContent'
 import { PROJECT_ICONS, type ProjectIcon } from '@/content/_icons'
 
 import BaseLayout from './BaseLayout.astro'
 
-interface Props extends InferEntrySchema<'projects'> {}
+interface Props extends InferEntrySchema<'projects'> {
+  headings: MarkdownHeading[]
+}
 
-const { year, description, heroImage, links, numberOfTeamMembers, title } =
-  Astro.props
+const {
+  year,
+  description,
+  heroImage,
+  links,
+  numberOfTeamMembers,
+  title,
+  headings
+} = Astro.props
 
 const htmlTitle = title.replace(
   '\\n',
@@ -51,7 +62,7 @@ const htmlTitle = title.replace(
                   href={url}
                   target='_blank'
                   class:list={[
-                    'flex items-center gap-2 rounded-lg text-sm tracking-wider text-gray-300 max-sm:text-xs',
+                    'flex items-center gap-2 rounded-lg text-sm tracking-wide text-gray-300 max-sm:text-xs',
                     'border border-gray-600 px-3 py-2',
                     'bg-gradient-to-t from-slate-800/50 to-gray-800/0',
                     'transition-all duration-200 hover:border-gray-500 hover:from-slate-800'
@@ -84,32 +95,10 @@ const htmlTitle = title.replace(
     >
       <slot />
     </article>
+
     <aside class='sticky top-8 w-full space-y-3 self-start max-lg:hidden'>
       <p class='text-lg font-medium'>Table of contents</p>
-      <ul class='space-y-2 text-sm tracking-wide text-slate-500'>
-        <li>
-          <a href='#section-1'>Background</a>
-        </li>
-        <li>
-          <a href='#section-2'>Problem</a>
-        </li>
-        <li>
-          <a href='#section-3'>Tech stacks choosen and why</a>
-          <ul class='mt-2 space-y-2 pl-6'>
-            <li>Backend: Nestjs</li>
-            <li class='text-slate-300'>Frontend: Nextjs</li>
-          </ul>
-        </li>
-        <li>
-          <a href='#section-4'>Demo</a>
-        </li>
-        <li>
-          <a href='#section-4'>Challenges</a>
-        </li>
-        <li>
-          <a href='#section-4'>Lesson learned</a>
-        </li>
-      </ul>
+      <TableOfContent headings={headings} client:only='react' />
     </aside>
   </section>
 </BaseLayout>
