@@ -29,6 +29,8 @@ const Heading = ({ slug, text }: MarkdownHeading) => {
       behavior: 'smooth',
       block: 'start'
     })
+
+    history.pushState(null, '', `#${slug}`)
   }
 
   return (
@@ -101,8 +103,8 @@ const TableOfContent = ({ headings }: Props) => {
 
   return (
     <>
-      <p className='text-lg font-medium'>Table of contents</p>
-      <ul className='mt-2 space-y-2 text-sm tracking-wide text-slate-500'>
+      <p className='font-medium'>Table of contents</p>
+      <ul className='mt-3 space-y-2 text-sm tracking-[0.01em] text-slate-500'>
         {groupedHeadings.map((heading) => {
           if (!Array.isArray(heading)) {
             return <Heading key={heading.slug} {...heading} />

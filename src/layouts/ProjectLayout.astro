@@ -6,6 +6,7 @@ import { Group } from '@/components/icons/Group'
 import Image from '@/components/Image'
 import Link from '@/components/Link'
 import TableOfContent from '@/components/TableOfContent'
+import ScrollProgressBar from '@/components/ui/scroll-progress-bar'
 import { PROJECT_ICONS, type ProjectIcon } from '@/content/_icons'
 
 import BaseLayout from './BaseLayout.astro'
@@ -31,7 +32,7 @@ const htmlTitle = title.replace(
 ---
 
 <BaseLayout title={title.replace('\\n', ' ')} class='space-y-12'>
-  <!-- <ScrollProgressBar type='bar' strokeSize={4} client:only='react' /> -->
+  <ScrollProgressBar type='bar' client:only='react' />
   <section class='space-y-5 sm:pt-12'>
     <h2
       class='border-l border-l-gray-300 px-2 leading-tight tracking-wider text-gray-300'
@@ -43,7 +44,7 @@ const htmlTitle = title.replace(
       set:html={htmlTitle}
       transition:name='pls'
     />
-    <h3 class='font-medium text-gray-300 max-sm:text-sm'>
+    <h3 class='font-medium text-slate-300 max-sm:text-sm'>
       <Group className='inline-block pb-[2px]' />
       {
         numberOfTeamMembers > 1
@@ -86,17 +87,17 @@ const htmlTitle = title.replace(
       ambientMode
     />
   </section>
-  <section class='flex gap-20'>
+  <section class='mx-auto flex w-fit gap-16'>
     <article
       class:list={[
-        'max-w-[720px] space-y-6 tracking-wide',
-        'prose max-sm:prose-sm dark:prose-invert'
+        'prose prose-slate prose-invert max-sm:prose-sm prose-headings:font-semibold',
+        'max-w-[720px] tracking-[0.015em] text-slate-400'
       ]}
     >
       <slot />
     </article>
 
-    <aside class='sticky top-12 w-full self-start max-lg:hidden'>
+    <aside class='sticky top-16 w-[220px] shrink-0 self-start max-lg:hidden'>
       <TableOfContent headings={headings} client:only='react' />
     </aside>
   </section>
