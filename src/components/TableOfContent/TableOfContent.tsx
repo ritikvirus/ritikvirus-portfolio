@@ -23,23 +23,9 @@ const groupHeadings = (headings: MarkdownHeading[]): GroupedHeadings => {
 }
 
 const Heading = ({ slug, text }: MarkdownHeading) => {
-  const handleClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
-    event.preventDefault()
-    document.getElementById(slug)?.scrollIntoView({
-      behavior: 'smooth',
-      block: 'start'
-    })
-
-    history.pushState(null, '', `#${slug}`)
-  }
-
   return (
     <li>
-      <a
-        onClick={handleClick}
-        className='hover:text-slate-300'
-        href={`#${slug}`}
-      >
+      <a className='hover:text-slate-300' href={`#${slug}`}>
         {text}
       </a>
     </li>
@@ -68,38 +54,6 @@ const NestedHeading = ({ headings }: { headings: MarkdownHeading[] }) => {
 
 const TableOfContent = ({ headings }: Props) => {
   const groupedHeadings = groupHeadings(headings)
-
-  const handleHeadingIntersection = () => {
-    const observerOptions: IntersectionObserverInit = {
-      root: null,
-      rootMargin: '0px 0px -80% 0px', // Adjust to make the top 20% of the viewport observe entries
-      threshold: 0 // Trigger as soon as they enter the viewport
-    }
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return
-
-        const id = entry.target.getAttribute('id')
-        const link = document.querySelector(`li > a[href="#${id}"]`)
-        const textStyle = 'text-slate-300'
-
-        document
-          .querySelectorAll(`.${textStyle}`)
-          .forEach((item) => item.classList.remove(textStyle))
-
-        link?.classList.add(textStyle)
-      })
-    }, observerOptions)
-
-    document.querySelectorAll('h2[id], h3[id], h4[id]').forEach((heading) => {
-      observer.observe(heading)
-    })
-  }
-
-  useEffect(() => {
-    document.addEventListener('astro:page-load', handleHeadingIntersection)
-  }, [])
 
   return (
     <>

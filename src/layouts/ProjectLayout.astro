@@ -98,7 +98,7 @@ const htmlTitle = title.replace(
     </article>
 
     <aside class='sticky top-16 w-[220px] shrink-0 self-start max-lg:hidden'>
-      <TableOfContent headings={headings} client:only='react' />
+      <TableOfContent headings={headings} />
     </aside>
   </section>
 </BaseLayout>
@@ -125,3 +125,35 @@ const htmlTitle = title.replace(
     opacity: 1;
   }
 </style>
+
+<script>
+  const handleHeadingIntersection = () => {
+    const observerOptions: IntersectionObserverInit = {
+      root: null,
+      rootMargin: '0px 0px -80% 0px', // Adjust to make the top 20% of the viewport observe entries
+      threshold: 0 // Trigger as soon as they enter the viewport
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return
+
+        const id = entry.target.getAttribute('id')
+        const link = document.querySelector(`li > a[href="#${id}"]`)
+        const textStyle = 'text-slate-300'
+
+        document
+          .querySelectorAll(`.${textStyle}`)
+          .forEach((item) => item.classList.remove(textStyle))
+
+        link?.classList.add(textStyle)
+      })
+    }, observerOptions)
+
+    document.querySelectorAll('h2[id], h3[id], h4[id]').forEach((heading) => {
+      observer.observe(heading)
+    })
+  }
+
+  document.addEventListener('astro:page-load', handleHeadingIntersection)
+</script>

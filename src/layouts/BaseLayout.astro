@@ -37,3 +37,42 @@ const { class: className, title, description } = Astro.props
     <BottomNavigationBar client:only='react' transition:persist='navbar' />
   </body>
 </html>
+
+<script>
+  const scrollOptions: ScrollIntoViewOptions = {
+    behavior: 'smooth',
+    block: 'start'
+  }
+
+  document.addEventListener('astro:page-load', () => {
+    document.querySelectorAll('a[href^="#"]').forEach((link) => {
+      link.addEventListener('click', (event) => {
+        event.preventDefault()
+
+        const targetId = (event.currentTarget as HTMLAnchorElement)
+          .getAttribute('href')
+          ?.substring(1) // Get ID without '#'
+
+        if (!targetId) return
+
+        const targetElement = document.getElementById(targetId)
+
+        if (!targetElement) return
+
+        targetElement.scrollIntoView(scrollOptions)
+
+        // Manually update the URL hash without triggering the default jump
+        history.pushState(null, '', `#${targetId}`)
+      })
+    })
+
+    window.addEventListener('hashchange', () => {
+      const targetId = window.location.hash.substring(1)
+      const targetElement = document.getElementById(targetId)
+
+      if (!targetElement) return
+
+      targetElement.scrollIntoView(scrollOptions)
+    })
+  })
+</script>
