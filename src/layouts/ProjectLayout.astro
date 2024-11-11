@@ -96,9 +96,16 @@ const htmlTitle = title.replace(
       <slot />
     </article>
 
-    <aside class='sticky top-8 w-full space-y-3 self-start max-lg:hidden'>
-      <p class='text-lg font-medium'>Table of contents</p>
+    <aside class='sticky top-12 w-full self-start max-lg:hidden'>
       <TableOfContent headings={headings} client:only='react' />
     </aside>
   </section>
 </BaseLayout>
+
+<style is:global>
+  h2,
+  h3,
+  h4 {
+    scroll-margin: 4rem;
+  }
+</style>

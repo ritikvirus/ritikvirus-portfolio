@@ -1,4 +1,5 @@
 import type { MarkdownHeading } from 'astro'
+import { useEffect } from 'react'
 
 import { cn } from '@/lib/utils'
 
@@ -65,21 +66,57 @@ const NestedHeading = ({ headings }: { headings: MarkdownHeading[] }) => {
 
 const TableOfContent = ({ headings }: Props) => {
   const groupedHeadings = groupHeadings(headings)
-  return (
-    <ul className='space-y-2 text-sm tracking-wide text-slate-500'>
-      {groupedHeadings.map((heading) => {
-        if (!Array.isArray(heading)) {
-          return <Heading key={heading.slug} {...heading} />
-        }
 
-        return (
-          <NestedHeading
-            key={`${heading[0].slug}-${heading[0].depth}`}
-            headings={heading}
-          />
-        )
-      })}
-    </ul>
+  const handleHeadingIntersection = () => {
+    const observerOptions: IntersectionObserverInit = {
+      root: null,
+      rootMargin: '0px 0px -80% 0px', // Adjust to make the top 20% of the viewport observe entries
+      threshold: 0 // Trigger as soon as they enter the viewport
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return
+
+        const id = entry.target.getAttribute('id')
+        const link = document.querySelector(`li > a[href="#${id}"]`)
+        const textStyle = 'text-slate-300'
+
+        document
+          .querySelectorAll(`.${textStyle}`)
+          .forEach((item) => item.classList.remove(textStyle))
+
+        link?.classList.add(textStyle)
+      })
+    }, observerOptions)
+
+    document.querySelectorAll('h2[id], h3[id], h4[id]').forEach((heading) => {
+      observer.observe(heading)
+    })
+  }
+
+  useEffect(() => {
+    document.addEventListener('astro:page-load', handleHeadingIntersection)
+  }, [])
+
+  return (
+    <>
+      <p className='text-lg font-medium'>Table of contents</p>
+      <ul className='mt-2 space-y-2 text-sm tracking-wide text-slate-500'>
+        {groupedHeadings.map((heading) => {
+          if (!Array.isArray(heading)) {
+            return <Heading key={heading.slug} {...heading} />
+          }
+
+          return (
+            <NestedHeading
+              key={`${heading[0].slug}-${heading[0].depth}`}
+              headings={heading}
+            />
+          )
+        })}
+      </ul>
+    </>
   )
 }
 
