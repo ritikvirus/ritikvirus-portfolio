@@ -109,4 +109,19 @@ const htmlTitle = title.replace(
   h4 {
     scroll-margin: 4rem;
   }
+
+  .project-heading {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .project-heading > a {
+    opacity: 0;
+    transition: all 200ms ease-in-out;
+  }
+
+  .project-heading:hover > a {
+    opacity: 1;
+  }
 </style>

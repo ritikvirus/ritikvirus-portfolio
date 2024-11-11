@@ -32,6 +32,7 @@
     "framer-motion": "^11.7.0",
     "graphql": "^16.9.0",
     "graphql-request": "^7.1.0",
+    "hast-util-from-html-isomorphic": "^2.0.0",
     "hono": "^4.6.6",
     "leaflet": "^1.9.4",
     "query-string": "^9.1.1",
