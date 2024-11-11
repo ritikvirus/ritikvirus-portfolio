@@ -32,7 +32,8 @@ export default function ScrollProgressBar({
     if (!spanRef.current) return
 
     if (type === 'bar') {
-      return (spanRef.current.style.width = `${latest}%`)
+      spanRef.current.style.width = `${latest}%`
+      return
     }
 
     spanRef.current.textContent = `${Math.round(latest)}%`
@@ -50,7 +51,7 @@ export default function ScrollProgressBar({
       >
         <span
           style={{ backgroundColor: color }}
-          className='absolute block h-full w-screen bg-gradient-to-r from-emerald-400 to-lime-200'
+          className='absolute block h-full w-screen bg-gradient-to-r from-emerald-400 to-emerald-200'
         ></span>
       </span>
     )

@@ -1,14 +1,14 @@
 ---
+import type { InferEntrySchema } from 'astro:content'
+
 import { Group } from '@/components/icons/Group'
 import Image from '@/components/Image'
 import Link from '@/components/Link'
-import ScrollProgressBar from '@/components/ui/scroll-progress-bar'
 import { PROJECT_ICONS, type ProjectIcon } from '@/content/_icons'
-import type { ProjectProps } from '@/content/_schemas/project'
 
 import BaseLayout from './BaseLayout.astro'
 
-interface Props extends ProjectProps {}
+interface Props extends InferEntrySchema<'projects'> {}
 
 const { year, description, heroImage, links, numberOfTeamMembers, title } =
   Astro.props
@@ -20,7 +20,7 @@ const htmlTitle = title.replace(
 ---
 
 <BaseLayout title={title.replace('\\n', ' ')} class='space-y-12'>
-  <ScrollProgressBar type='bar' strokeSize={4} client:only='react' />
+  <!-- <ScrollProgressBar type='bar' strokeSize={4} client:only='react' /> -->
   <section class='space-y-5 sm:pt-12'>
     <h2
       class='border-l border-l-gray-300 px-2 leading-tight tracking-wider text-gray-300'
@@ -79,7 +79,7 @@ const htmlTitle = title.replace(
     <article
       class:list={[
         'max-w-[720px] space-y-6 tracking-wide',
-        'dark:prose-invert prose max-sm:prose-sm'
+        'prose max-sm:prose-sm dark:prose-invert'
       ]}
     >
       <slot />

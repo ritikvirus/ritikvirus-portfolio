@@ -1,6 +1,5 @@
 ---
 import { GithubOutline } from '@icons/GithubOutline'
-import { Gitlab } from '@icons/Gitlab'
 import { LinkedIn } from '@icons/LinkedIn'
 import { Mail } from '@icons/Mail'
 import { Scroll } from '@icons/Scroll'
@@ -8,7 +7,6 @@ import { Scroll } from '@icons/Scroll'
 const KEYS = [
   { key: 'KeyE', icon: GithubOutline, href: 'https://github.com/jestsee' },
   { key: 'KeyS', icon: LinkedIn, href: 'https://www.linkedin.com/in/jestsee/' },
-  // { key: 'KeyD', icon: Gitlab, href: 'https://gitlab.informatika.org/jestsee' }
   { key: 'KeyC', icon: Scroll, href: '#' },
   { key: 'KeyR', icon: Mail, href: '#' }
 ]
@@ -28,9 +26,22 @@ const KEYS = [
         block: 'center'
       })
     })
+
+    const keyboardKeys = Array.from(document.querySelectorAll('.key'))
+    const keyboardSound = document.querySelector('#keyboard-audio')
+
+    keyboardKeys.forEach((key) =>
+      key.addEventListener('mousedown', (e) => {
+        e.preventDefault()
+        if (!keyboardSound) return
+
+        const newAudio = keyboardSound.cloneNode() as HTMLAudioElement
+        keyboardSound.after(newAudio)
+        newAudio.play()
+        setTimeout(() => newAudio.remove(), 500)
+      })
+    )
   })
-  // const keyboardKeys = Array.from(document.querySelectorAll('button'))
-  // const keyboardSound = document.querySelector('audio')
 
   // document.addEventListener('keydown', (e) => {
   //   e.preventDefault()
@@ -54,18 +65,6 @@ const KEYS = [
   //     key.classList.toggle('isDown', false)
   //   }
   // })
-
-  // keyboardKeys.forEach((key) =>
-  //   key.addEventListener('mousedown', (e) => {
-  //     e.preventDefault()
-  //     if (!keyboardSound) return
-
-  //     const newAudio = keyboardSound.cloneNode() as HTMLAudioElement
-  //     keyboardSound.after(newAudio)
-  //     newAudio.play()
-  //     setTimeout(() => newAudio.remove(), 500)
-  //   })
-  // )
 </script>
 
 <div class='flex items-start text-center max-xs:flex-col'>
@@ -98,8 +97,9 @@ const KEYS = [
     </div>
   </div>
 </div>
-<!-- <audio src='https://cdn.yoavik.com/codepen/mechanical-keyboard/keytype.mp3'
-></audio> -->
+<audio
+  id='keyboard-audio'
+  src='https://cdn.yoavik.com/codepen/mechanical-keyboard/keytype.mp3'></audio>
 
 <style>
   :root {
@@ -150,7 +150,7 @@ const KEYS = [
     left: 0;
     top: 50%;
     margin: 10px 15%;
-    background: #fff;
+    background: #9affe2;
     height: 1.5px;
     transition: 0.3s ease-out;
   }
