@@ -7,6 +7,8 @@ const { class: className, ...rest } = Astro.props
 <a class:list={['custom-link', className]} {...rest}><slot /></a>
 
 <script>
+  import { navigate } from 'astro:transitions/client'
+
   function generateCustomEvent(path: string) {
     return new CustomEvent('local-navigation', {
       bubbles: true,
@@ -26,15 +28,31 @@ const { class: className, ...rest } = Astro.props
     event.currentTarget.dispatchEvent(customEvent)
   }
 
+  let { hash: previousHash, pathname: previousPath } = window.location
+  let isNavigating = false
+
   document.addEventListener('astro:page-load', () => {
     const links = document.querySelectorAll('a.custom-link')
     links.forEach((link) => {
       link.addEventListener('click', eventHandler)
     })
+
+    previousHash = window.location.hash
+    previousPath = window.location.pathname
+    isNavigating = false
   })
 
   window.addEventListener('popstate', () => {
     if (window.location.origin !== location.origin) return
+
+    const currentPath = window.location.pathname
+    const currentHash = window.location.hash
+
+    // this is workaround for navigating back to the previous page with hash
+    if (!isNavigating && currentPath !== previousPath && currentHash) {
+      isNavigating = true
+      navigate(currentPath + currentHash, { history: 'replace' })
+    }
 
     const customEvent = generateCustomEvent(window.location.pathname)
 

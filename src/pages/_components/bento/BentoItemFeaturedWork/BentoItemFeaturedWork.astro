@@ -93,7 +93,7 @@ import BentoBadge from '../BentoBadge'
 
 <script>
   document.addEventListener('astro:page-load', () => {
-    if (window.location.pathname !== '/') return
+    if (!document.getElementById('cards')) return
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {

@@ -25,10 +25,11 @@ const socialMedias = [
 
 <script>
   document.addEventListener('astro:page-load', () => {
-    // TODO: need to find a better way to handle this
-    if (window.location.pathname !== '/') return
+    const cards = document.getElementById('cards')
 
-    document.getElementById('cards')!.onmousemove = (e) => {
+    if (!cards) return
+
+    cards.onmousemove = (e) => {
       for (const card of document.getElementsByClassName('card')) {
         const rect = card.getBoundingClientRect()
         const x = e.clientX - rect.left
@@ -156,6 +157,8 @@ const socialMedias = [
   #cards {
     --card-border: #5b6c84;
     --card-background: #11161d;
+
+    scroll-margin: 4rem;
   }
 
   /* source: https://codepen.io/Hyperplexed/pen/MWQeYLW */
