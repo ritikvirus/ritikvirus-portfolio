@@ -55,14 +55,14 @@ const { class: className, headProps } = Astro.props
       link.addEventListener('click', (event) => {
         event.preventDefault()
 
-        const targetId = (event.currentTarget as HTMLAnchorElement)
-          .getAttribute('href')
-          ?.substring(1) // Get ID without '#'
+        const currentTarget = event.currentTarget as HTMLAnchorElement
+        const targetId = currentTarget.getAttribute('href')?.substring(1) // Get ID without '#'
 
         if (!targetId) return
 
         const targetElement = document.getElementById(targetId)
-        targetElement?.scrollIntoView(scrollOptions)
+        const block = currentTarget.dataset['block'] as ScrollLogicalPosition
+        targetElement?.scrollIntoView({ ...scrollOptions, block })
 
         // Manually update the URL hash without triggering the default jump
         history.pushState(null, '', `#${targetId}`)

@@ -1,5 +1,4 @@
 import type { MarkdownHeading } from 'astro'
-import { useEffect } from 'react'
 
 import { cn } from '@/lib/utils'
 
