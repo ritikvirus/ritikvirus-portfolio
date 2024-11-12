@@ -10,7 +10,16 @@ const mapResponse = (response: any) => {
 }
 
 const getMonkeytypeData = async (): Promise<MonkeyTypeData> => {
-  console.log('url', import.meta.env.PUBLIC_BASE_URL)
+  console.log('PUBLIC_VERCEL_URL', import.meta.env.PUBLIC_VERCEL_URL)
+  console.log(
+    'PUBLIC_VERCEL_BRANCH_URL',
+    import.meta.env.PUBLIC_VERCEL_BRANCH_URL
+  )
+  console.log(
+    'PUBLIC_VERCEL_PROJECT_PRODUCTION_URL',
+    import.meta.env.PUBLIC_VERCEL_PROJECT_PRODUCTION_URL
+  )
+
   const API_KEY = import.meta.env.MONKEYTYPE_API_KEY
   const response = await fetch(
     'https://api.monkeytype.com/users/personalBests?mode=time',
