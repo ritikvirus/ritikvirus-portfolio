@@ -5,7 +5,7 @@ import fs from 'fs'
 import path from 'path'
 import type { ReactElement } from 'react'
 
-import ogBackground from '@/assets/og_background.png'
+// import ogBackground from '@/assets/og_background.png'
 
 type OGAPIRoute = APIRoute<
   { project: CollectionEntry<'projects'> },
@@ -15,11 +15,11 @@ type OGAPIRoute = APIRoute<
 const generateHtml = (
   data: CollectionEntry<'projects'>['data']
 ): ReactElement => {
-  const image = fs.readFileSync(
-    process.env.NODE_ENV === 'development'
-      ? path.resolve(ogBackground.src.replace(/\?.*/, '').replace('/@fs', ''))
-      : path.resolve(ogBackground.src.replace('/', 'dist/'))
-  )
+  // const image = fs.readFileSync(
+  //   process.env.NODE_ENV === 'development'
+  //     ? path.resolve(ogBackground.src.replace(/\?.*/, '').replace('/@fs', ''))
+  //     : path.resolve(ogBackground.src.replace('/', 'dist/'))
+  // )
 
   return {
     key: 'html',
@@ -30,15 +30,15 @@ const generateHtml = (
         fontFamily: 'Plus Jakarta Sans Medium'
       },
       children: [
-        {
-          type: 'img',
-          props: {
-            tw: 'absolute left-0 top-0',
-            src: image.buffer,
-            width: 1200,
-            height: 630
-          }
-        },
+        // {
+        //   type: 'img',
+        //   props: {
+        //     tw: 'absolute left-0 top-0',
+        //     src: image.buffer,
+        //     width: 1200,
+        //     height: 630
+        //   }
+        // },
         {
           type: 'div',
           props: {
