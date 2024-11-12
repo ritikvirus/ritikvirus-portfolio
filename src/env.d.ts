@@ -11,7 +11,9 @@ interface ImportMetaEnv {
 
   readonly MONKEYTYPE_API_KEY: string
 
-  readonly PUBLIC_BASE_URL: string
+  readonly PUBLIC_VERCEL_ENV: 'production' | 'preview' | 'development'
+  readonly PUBLIC_VERCEL_PROJECT_PRODUCTION_URL: string
+  readonly PUBLIC_VERCEL_URL: string
 }
 
 interface ImportMeta {
