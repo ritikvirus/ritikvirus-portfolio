@@ -42,7 +42,7 @@ const { class: className, ...rest } = Astro.props
     isNavigating = false
   })
 
-  window.addEventListener('popstate', () => {
+  window.addEventListener('popstate', async () => {
     if (window.location.origin !== location.origin) return
 
     const currentPath = window.location.pathname
@@ -51,7 +51,7 @@ const { class: className, ...rest } = Astro.props
     // this is workaround for navigating back to the previous page with hash
     if (!isNavigating && currentPath !== previousPath && currentHash) {
       isNavigating = true
-      navigate(currentPath + currentHash, { history: 'replace' })
+      await navigate(currentPath + currentHash, { history: 'replace' })
     }
 
     const customEvent = generateCustomEvent(window.location.pathname)

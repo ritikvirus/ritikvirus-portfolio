@@ -45,6 +45,16 @@ const { class: className, title, description } = Astro.props
   }
 
   document.addEventListener('astro:page-load', () => {
+    // handle hash on initial load
+    if (window.location.hash) {
+      window.scrollTo({ top: 0, behavior: 'instant' })
+
+      const targetId = window.location.hash.substring(1)
+      const targetElement = document.getElementById(targetId)
+      targetElement?.scrollIntoView(scrollOptions)
+    }
+
+    // handle in page navigation
     document.querySelectorAll('a[href^="#"]').forEach((link) => {
       link.addEventListener('click', (event) => {
         event.preventDefault()
@@ -56,10 +66,7 @@ const { class: className, title, description } = Astro.props
         if (!targetId) return
 
         const targetElement = document.getElementById(targetId)
-
-        if (!targetElement) return
-
-        targetElement.scrollIntoView(scrollOptions)
+        targetElement?.scrollIntoView(scrollOptions)
 
         // Manually update the URL hash without triggering the default jump
         history.pushState(null, '', `#${targetId}`)
@@ -70,9 +77,7 @@ const { class: className, title, description } = Astro.props
       const targetId = window.location.hash.substring(1)
       const targetElement = document.getElementById(targetId)
 
-      if (!targetElement) return
-
-      targetElement.scrollIntoView(scrollOptions)
+      targetElement?.scrollIntoView(scrollOptions)
     })
   })
 </script>
