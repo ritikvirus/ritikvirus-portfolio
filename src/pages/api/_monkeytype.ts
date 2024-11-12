@@ -10,6 +10,7 @@ const mapResponse = (response: any) => {
 }
 
 const getMonkeytypeData = async (): Promise<MonkeyTypeData> => {
+  console.log('PUBLIC_VERCEL_ENV', import.meta.env.PUBLIC_VERCEL_ENV)
   console.log('PUBLIC_VERCEL_URL', import.meta.env.PUBLIC_VERCEL_URL)
   console.log(
     'PUBLIC_VERCEL_BRANCH_URL',
