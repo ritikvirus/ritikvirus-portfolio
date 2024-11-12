@@ -18,6 +18,6 @@ const { entry } = Astro.props
 const { Content, headings } = await entry.render()
 ---
 
-<ProjectLayout headings={headings} {...entry.data}>
+<ProjectLayout headings={headings} slug={entry.slug} {...entry.data}>
   <Content />
 </ProjectLayout>

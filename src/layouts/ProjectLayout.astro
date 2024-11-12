@@ -8,11 +8,13 @@ import Link from '@/components/Link'
 import TableOfContent from '@/components/TableOfContent'
 import ScrollProgressBar from '@/components/ui/scroll-progress-bar'
 import { PROJECT_ICONS, type ProjectIcon } from '@/content/_icons'
+import { BASE_URL } from '@/lib/baseUrl'
 
 import BaseLayout from './BaseLayout.astro'
 
 interface Props extends InferEntrySchema<'projects'> {
   headings: MarkdownHeading[]
+  slug: string
 }
 
 const {
@@ -22,7 +24,8 @@ const {
   links,
   numberOfTeamMembers,
   title,
-  headings
+  headings,
+  slug
 } = Astro.props
 
 const htmlTitle = title.replace(
@@ -31,7 +34,14 @@ const htmlTitle = title.replace(
 )
 ---
 
-<BaseLayout title={title.replace('\\n', ' ')} class='space-y-12'>
+<BaseLayout
+  headProps={{
+    title: title.replace('\\n', ' '),
+    imageUrl: `${BASE_URL}/api/og/${slug}`,
+    description
+  }}
+  class='space-y-12'
+>
   <ScrollProgressBar type='bar' client:only='react' />
   <section class='space-y-5 sm:pt-12'>
     <h2

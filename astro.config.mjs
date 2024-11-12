@@ -13,7 +13,7 @@ import rehypeSlug from 'rehype-slug'
 export default defineConfig({
   adapter: vercel(),
   output: 'hybrid',
-  site: 'https://example.com',
+  site: 'https://jestsee.com',
 
   experimental: {
     serverIslands: true

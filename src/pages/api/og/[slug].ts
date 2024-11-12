@@ -25,7 +25,7 @@ const generateHtml = (
     key: 'html',
     type: 'div',
     props: {
-      tw: 'h-full w-full px-32 py-24 flex flex-col relative',
+      tw: 'h-full w-full p-32 flex flex-col relative',
       style: {
         fontFamily: 'Plus Jakarta Sans Medium'
       },
@@ -42,7 +42,31 @@ const generateHtml = (
         {
           type: 'div',
           props: {
-            tw: 'text-6xl font-bold text-white',
+            tw: 'flex self-start items-center rounded-full gap-4 py-3 pl-3 pr-4 border border-slate-600 text-white',
+            children: [
+              {
+                type: 'div',
+                props: {
+                  tw: 'w-5 h-5 mr-3 bg-green-300 text-green-300 rounded-full'
+                }
+              },
+              {
+                type: 'div',
+                props: {
+                  tw: 'text-xl',
+                  children: 'Jesica / Projects'
+                }
+              }
+            ],
+            style: {
+              fontFamily: 'Plus Jakarta Sans Medium'
+            }
+          }
+        },
+        {
+          type: 'div',
+          props: {
+            tw: 'text-6xl font-bold text-white mt-12 tracking-tight',
             children: data.title.replace('\\n', ' '),
             style: {
               fontFamily: 'Plus Jakarta Sans Bold'
