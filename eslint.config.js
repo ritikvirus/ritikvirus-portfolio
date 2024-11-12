@@ -21,7 +21,7 @@ export default [
     }
   },
   {
-    files: ['**/*.js', '**/*.ts', '**/*.tsx'],
+    files: ['**/*.js', '**/*.mjs', '**/*.ts', '**/*.tsx'],
     languageOptions: {
       parser: typescriptParser,
       sourceType: 'module',

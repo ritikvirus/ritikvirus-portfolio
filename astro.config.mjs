@@ -1,13 +1,13 @@
 // @ts-check
-import { defineConfig } from 'astro/config'
 import mdx from '@astrojs/mdx'
-import sitemap from '@astrojs/sitemap'
 import react from '@astrojs/react'
+import sitemap from '@astrojs/sitemap'
 import tailwind from '@astrojs/tailwind'
 import vercel from '@astrojs/vercel/serverless'
+import { defineConfig } from 'astro/config'
+import { fromHtmlIsomorphic } from 'hast-util-from-html-isomorphic'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import rehypeSlug from 'rehype-slug'
-import { fromHtmlIsomorphic } from 'hast-util-from-html-isomorphic'
 
 // https://astro.build/config
 export default defineConfig({
