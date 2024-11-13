@@ -50,11 +50,11 @@ const htmlTitle = title.replace(
       {year}
     </h2>
     <h1
-      class='whitespace-pre-wrap text-[clamp(28px,5vw,48px)] font-semibold leading-none'
+      class='font-title text-[clamp(28px,5vw,48px)] font-bold leading-none'
       set:html={htmlTitle}
       transition:name='pls'
     />
-    <h3 class='text-slate-300 max-sm:text-sm'>
+    <h3 class='text-slate-400 max-sm:text-sm'>
       <Group className='inline-block pb-[2px]' />
       {
         numberOfTeamMembers > 1
@@ -100,8 +100,10 @@ const htmlTitle = title.replace(
   <section class='mx-auto flex w-fit gap-16'>
     <article
       class:list={[
-        'prose prose-slate prose-invert max-sm:prose-sm prose-headings:font-semibold',
-        'max-w-[720px] tracking-[0.015em] text-slate-400'
+        'prose prose-slate prose-invert max-sm:prose-sm',
+        'prose-headings:font-medium prose-p:text-[15px] prose-p:font-light',
+        'prose-a:font-light prose-a:text-slate-100 prose-a:underline-offset-2',
+        'max-w-[720px] tracking-[0.015em] text-slate-300'
       ]}
     >
       <slot />

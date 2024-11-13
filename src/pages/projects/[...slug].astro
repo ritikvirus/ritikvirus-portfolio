@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content'
 
+import ContentWrapper from '@/components/ContentWrapper.astro'
 import ProjectLayout from '@/layouts/ProjectLayout.astro'
 
 export async function getStaticPaths() {
@@ -19,5 +20,5 @@ const { Content, headings } = await entry.render()
 ---
 
 <ProjectLayout headings={headings} slug={entry.slug} {...entry.data}>
-  <Content />
+  <ContentWrapper content={Content} />
 </ProjectLayout>
