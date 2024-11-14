@@ -28,12 +28,20 @@ const {
 <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
 <meta name='generator' content={Astro.generator} />
 
-<!-- Font preloads -->
-<link rel='preload' href='https://fonts.googleapis.com' />
-<link rel='preload' href='https://fonts.gstatic.com' crossorigin />
+<!-- Preload Font -->
 <link
-  href='https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap'
-  rel='stylesheet'
+  rel='preload'
+  href='/fonts/Geist[wght].woff2'
+  as='font'
+  type='font/woff2'
+  crossorigin
+/>
+<link
+  rel='preload'
+  href='/fonts/GeneralSans-Variable.woff2'
+  as='font'
+  type='font/woff2'
+  crossorigin
 />
 
 <!-- Canonical URL -->
