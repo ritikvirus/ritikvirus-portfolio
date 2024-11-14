@@ -24,8 +24,8 @@ module.exports = {
         6: '6px'
       },
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
-        title: ['Plus Jakarta Sans', 'sans-serif']
+        sans: ['General Sans', 'sans-serif'],
+        geist: ['Geist', 'sans-serif']
       },
       screens: {
         xs: '480px'
