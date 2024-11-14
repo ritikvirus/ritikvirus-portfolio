@@ -24,7 +24,7 @@ const groupHeadings = (headings: MarkdownHeading[]): GroupedHeadings => {
 const Heading = ({ slug, text }: MarkdownHeading) => {
   return (
     <li>
-      <a className='hover:text-slate-300' href={`#${slug}`}>
+      <a className='tracking-wider hover:text-slate-300' href={`#${slug}`}>
         {text}
       </a>
     </li>
@@ -55,9 +55,11 @@ const TableOfContent = ({ headings }: Props) => {
   const groupedHeadings = groupHeadings(headings)
 
   return (
-    <>
-      <p className='font-medium'>Table of contents</p>
-      <ul className='mt-3 space-y-2 text-sm tracking-[0.01em] text-slate-500'>
+    <div>
+      <p className='font-geist text-lg font-medium text-slate-200'>
+        Table of Contents
+      </p>
+      <ul className='mt-2 space-y-1.5 text-sm text-slate-500'>
         {groupedHeadings.map((heading) => {
           if (!Array.isArray(heading)) {
             return <Heading key={heading.slug} {...heading} />
@@ -71,7 +73,7 @@ const TableOfContent = ({ headings }: Props) => {
           )
         })}
       </ul>
-    </>
+    </div>
   )
 }
 

@@ -88,10 +88,11 @@ export const GET: OGAPIRoute = async ({ props }) => {
   const html = generateHtml(data)
 
   const PlusJakartaSansBold = fs.readFileSync(
-    path.resolve('./src/assets/fonts/PlusJakartaSans-Bold.ttf')
+    path.resolve(process.cwd(), 'public/fonts/PlusJakartaSans-Bold.ttf')
   )
+
   const PlusJakartaSansMedium = fs.readFileSync(
-    path.resolve('./src/assets/fonts/PlusJakartaSans-Medium.ttf')
+    path.resolve(process.cwd(), 'public/fonts/PlusJakartaSans-Medium.ttf')
   )
 
   return new ImageResponse(html, {

@@ -2,6 +2,7 @@
 import type { MarkdownHeading } from 'astro'
 import type { InferEntrySchema } from 'astro:content'
 
+import { ArrowOutward } from '@/components/icons/ArrowOutward'
 import { Group } from '@/components/icons/Group'
 import Image from '@/components/Image'
 import Link from '@/components/Link'
@@ -50,17 +51,12 @@ const htmlTitle = title.replace(
       {year}
     </h2>
     <h1
-      class='font-title text-[clamp(28px,5vw,48px)] font-bold leading-none'
+      class='font-geist text-[clamp(28px,5vw,48px)] font-medium leading-none tracking-tight'
       set:html={htmlTitle}
       transition:name='pls'
     />
     <h3 class='text-slate-400 max-sm:text-sm'>
-      <Group className='inline-block pb-[2px]' />
-      {
-        numberOfTeamMembers > 1
-          ? `Team of ${numberOfTeamMembers}`
-          : 'Solo project'
-      } &mdash; {description}
+      {description}
     </h3>
     {
       links.length > 1 && (
@@ -73,7 +69,7 @@ const htmlTitle = title.replace(
                   href={url}
                   target='_blank'
                   class:list={[
-                    'flex items-center gap-2 rounded-lg text-sm tracking-wide text-gray-300 max-sm:text-xs',
+                    'flex items-center gap-2 rounded-lg text-sm text-gray-300 max-sm:text-xs',
                     'border border-gray-600 px-3 py-2',
                     'bg-gradient-to-t from-slate-800/50 to-gray-800/0',
                     'transition-all duration-200 hover:border-gray-500 hover:from-slate-800'
@@ -97,20 +93,43 @@ const htmlTitle = title.replace(
       ambientMode
     />
   </section>
-  <section class='mx-auto flex w-fit gap-16'>
+  <section class='mx-auto flex w-fit gap-16 pt-4'>
     <article
       class:list={[
         'prose prose-slate prose-invert max-sm:prose-sm',
-        'prose-headings:font-medium prose-p:text-[15px] prose-p:font-light',
-        'prose-a:font-light prose-a:text-slate-100 prose-a:underline-offset-2',
-        'max-w-[720px] tracking-[0.015em] text-slate-300'
+        'prose-headings:font-geist',
+        'prose-p:opacity-75',
+        'prose-a:underline-offset-2',
+        'max-w-[680px]'
       ]}
     >
       <slot />
     </article>
 
-    <aside class='sticky top-16 w-[220px] shrink-0 self-start max-lg:hidden'>
+    <aside
+      class='sticky top-16 w-[220px] shrink-0 space-y-8 self-start max-lg:hidden'
+    >
+      <div class='font-geist space-y-2 text-slate-200'>
+        <p class='text-lg font-medium'>Project Contributor</p>
+        <div class='flex items-center gap-2'>
+          <Group className='inline-block' />
+          <p class='text-slate-300/80'>Jesica</p>
+        </div>
+      </div>
       <TableOfContent headings={headings} />
+      <Link
+        href='https://bookmarked.jestsee.com'
+        target='_blank'
+        class:list={[
+          'flex w-fit items-center gap-2 rounded-full text-sm text-gray-300 max-sm:text-xs',
+          'border border-gray-600 px-4 py-2',
+          'bg-gradient-to-t from-slate-800/50 to-gray-800/0',
+          'transition-all duration-200 hover:border-gray-500 hover:from-slate-800'
+        ]}
+      >
+        Visit Website
+        <ArrowOutward className='size-4' />
+      </Link>
     </aside>
   </section>
 </BaseLayout>
@@ -127,7 +146,6 @@ const htmlTitle = title.replace(
     transition: all 200ms ease-in-out;
     display: inline-block;
     vertical-align: middle;
-    margin-left: 8px;
     padding-bottom: 4px;
   }
 
