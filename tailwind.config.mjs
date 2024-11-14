@@ -19,6 +19,32 @@ module.exports = {
       }
     },
     extend: {
+      typography: (theme) => ({
+        DEFAULT: {
+          css: {
+            color: theme('colors.slate.300'),
+            opacity: '0.8',
+            lineHeight: '1.8',
+            letterSpacing: '0.03em',
+            a: {
+              opacity: 1,
+              fontWeight: '500',
+              textDecoration: 'none',
+              color: theme('colors.emerald.300'),
+              '&:hover': {
+                color: theme('colors.emerald.200'),
+                textDecoration: 'underline',
+                textUnderlineOffset: '2px'
+              }
+            },
+            'h1, h2, h3, h4': {
+              opacity: 1,
+              fontFamily: 'Geist',
+              letterSpacing: '0'
+            }
+          }
+        }
+      }),
       borderWidth: {
         5: '5px',
         6: '6px'

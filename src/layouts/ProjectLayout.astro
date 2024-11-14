@@ -3,9 +3,8 @@ import type { MarkdownHeading } from 'astro'
 import type { InferEntrySchema } from 'astro:content'
 
 import { ArrowOutward } from '@/components/icons/ArrowOutward'
-import { Group } from '@/components/icons/Group'
 import Image from '@/components/Image'
-import Link from '@/components/Link'
+import Link, { LinkArticle } from '@/components/Link'
 import TableOfContent from '@/components/TableOfContent'
 import ScrollProgressBar from '@/components/ui/scroll-progress-bar'
 import { PROJECT_ICONS, type ProjectIcon } from '@/content/_icons'
@@ -43,7 +42,7 @@ const htmlTitle = title.replace(
   }}
   class='space-y-12'
 >
-  <ScrollProgressBar type='bar' client:only='react' />
+  <ScrollProgressBar type='bar' strokeSize={5} client:only='react' />
   <section class='space-y-5 sm:pt-12'>
     <h2
       class='border-l border-l-gray-300 px-2 leading-tight tracking-wider text-gray-300'
@@ -95,13 +94,7 @@ const htmlTitle = title.replace(
   </section>
   <section class='mx-auto flex w-fit gap-16 pt-4'>
     <article
-      class:list={[
-        'prose prose-slate prose-invert max-sm:prose-sm',
-        'prose-headings:font-geist',
-        'prose-p:opacity-75',
-        'prose-a:underline-offset-2',
-        'max-w-[680px]'
-      ]}
+      class:list={['prose prose-invert max-sm:prose-sm', 'max-w-[680px]']}
     >
       <slot />
     </article>
@@ -109,25 +102,29 @@ const htmlTitle = title.replace(
     <aside
       class='sticky top-16 w-[220px] shrink-0 space-y-8 self-start max-lg:hidden'
     >
-      <div class='font-geist space-y-2 text-slate-200'>
-        <p class='text-lg font-medium'>Project Contributor</p>
-        <div class='flex items-center gap-2'>
-          <Group className='inline-block' />
-          <p class='text-slate-300/80'>Jesica</p>
-        </div>
-      </div>
       <TableOfContent headings={headings} />
+      <div
+        class='font-geist space-y-2 border-t border-t-slate-600/50 pt-8 text-slate-200'
+      >
+        <p class='text-lg font-medium'>Project Contributor</p>
+        <p class='text-slate-400'>
+          Jesica
+          <LinkArticle
+            class='ml-0.5 text-sm opacity-75'
+            href='https://twitter.com/jestseee'>@jestseee</LinkArticle
+          >
+        </p>
+      </div>
       <Link
         href='https://bookmarked.jestsee.com'
         target='_blank'
         class:list={[
           'flex w-fit items-center gap-2 rounded-full text-sm text-gray-300 max-sm:text-xs',
-          'border border-gray-600 px-4 py-2',
-          'bg-gradient-to-t from-slate-800/50 to-gray-800/0',
+          'border border-gray-600 px-4 py-2 text-sm',
           'transition-all duration-200 hover:border-gray-500 hover:from-slate-800'
         ]}
       >
-        Visit Website
+        Visit website
         <ArrowOutward className='size-4' />
       </Link>
     </aside>
@@ -143,6 +140,7 @@ const htmlTitle = title.replace(
 
   .project-heading > a {
     opacity: 0;
+    color: white;
     transition: all 200ms ease-in-out;
     display: inline-block;
     vertical-align: middle;

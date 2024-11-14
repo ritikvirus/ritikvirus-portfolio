@@ -16,107 +16,57 @@ links:
     url: 'https://t.me/jestsee'
 ---
 
-## Description
+import { Notion } from '@/components/icons/Notion'
+import { Nestjs } from '@/components/icons/NestJs'
 
-Torem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis
-molestie, dictum est a, mattis tellus. Sed dignissim, metus nec
-fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus
-elit sed risus.
+## Project Overview
 
-## The problem I wanted to solve
+Bookmarked is a personal bookmarking tool which inspired by [SaveToNotion](https://x.com/savetonotion). It uses a Telegram bot as the client, enabling users to forward tweet URLs to easily save tweets or threads. The backend processes these requests by performing web scraping to extract content from tweets or threads on X (formerly Twitter).
 
-Class aptent taciti sociosqu ad litora torquent per conubia nostra, per
-inceptos himenaeos. Praesent auctor purus luctus enim egestas, ac
-scelerisque ante pulvinar. Donec ut rhoncus ex.
+## Project Goals and Motivation
 
-## Tech stacks I used
+X (formerly known as Twitter) is a treasure trove of tech insights and tips, and I frequently found myself gathering valuable information there. Initially, I used the "like" button to save these tweets, but retrieving specific information later proved to be tedious and inefficient.
 
-Suspendisse ac rhoncus nisl, eu tempor urna. Curabitur vel bibendum
-lorem.
+I began searching for tools to help me save, organize, and easily access this information, which led me to [SaveToNotion](https://x.com/savetonotion). While it served the purpose, as a free-plan user, I encountered several limitations. The most inconvenient aspect was having to publicly mention the [SaveToNotion](https://x.com/savetonotion) Twitter bot as a reply to the tweet or thread I wanted to save.
+
+My goal was to create a free bookmarking tool that could save tweets to Notion like [SaveToNotion](https://x.com/savetonotion), but tailored to my preferences. To avoid the costs associated with using Twitter’s 💸💸 API (required for creating a Twitter bot), I decided to use a Telegram bot instead. This approach allowed me to forward tweet links directly to the bot, especially on mobile devices, without the need for public mentions or expensive API costs.
+
+## Tech Stacks Used
 
 ### Notion
 
-Used as the main database to store and organize the tweets through its intuitive UI dashboard.
+Stores all bookmarked tweets. Each tweet or thread is saved as an individual page in a Notion database with the following properties: Author, Tags, Tweet Date, Tweet Link, and Type (Tweet/Thread).
 
-### Nest
+### NestJS
 
-Curabitur tempor quis eros tempus lacinia. Nam bibendum pellentesque
-quam a convallis. Sed ut vulputate nisi. Integer in felis sed leo
-vestibulum venenatis. Suspendisse quis arcu sem. Aenean feugiat ex eu
-vestibulum vestibulum.
+Powers the back-end, built with TypeScript for enhanced type safety. This project was my introduction to NestJS, offering a great learning experience.
 
-#### BullMQ
+- **Puppeteer**: Utilized as a headless browser for web scraping.
+- **BullMQ**: Handles queue management for the scraping process, seamlessly integrated with NestJS.
+- **EventEmitter2**: Constructs SSE (Server-Sent Event) responses to send real-time updates to the client.
 
-Curabitur tempor quis eros tempus lacinia. Nam bibendum pellentesque
-quam a convallis. Sed ut vulputate nisi. Integer in felis sed leo
-vestibulum venenatis. Suspendisse quis arcu sem. Aenean feugiat ex eu
-vestibulum vestibulum.
+### Next.js
 
-#### Puppeteer
+Builds the web app and handles authentication using NextAuth. It also manages user data and acts as a proxy to communicate with the NestJS backend.
 
-Curabitur tempor quis eros tempus lacinia. Nam bibendum pellentesque
-quam a convallis. Sed ut vulputate nisi. Integer in felis sed leo
-vestibulum venenatis. Suspendisse quis arcu sem. Aenean feugiat ex eu
-vestibulum vestibulum.
+### Telegram
 
-#### Server Sent Event
+Functions as the client for submitting bookmark requests and receiving responses about bookmark status. Built using Telegraf.js, it provides a convenient interface for mobile users to forward tweet links effortlessly.
 
-Curabitur tempor quis eros tempus lacinia. Nam bibendum pellentesque
-quam a convallis. Sed ut vulputate nisi. Integer in felis sed leo
-vestibulum venenatis. Suspendisse quis arcu sem. Aenean feugiat ex eu
-vestibulum vestibulum.
+## Features
 
-### Next
+### Save Tweets Privately
 
-Morbi a eleifend magna. Nam metus lacus, porttitor eu mauris a, blandit
-ultrices nibh. Mauris sit amet magna non ligula vestibulum eleifend.
-Nulla varius volutpat turpis sed lacinia. Nam eget mi in purus lobortis
-eleifend.
+No need to mention a Twitter bot publicly—just easily forward the tweet or thread’s URL to the Telegram bot.
 
-Sed nec ante dictum sem condimentum ullamcorper quis venenatis nisi.
-Proin vitae facilisis nisi, ac posuere leo.
+### Never Lose Your Bookmarked Tweet Again
 
-### Telegraf
+The image might get deleted if the author deletes their post, sets it to private, or deactivates their account, but not the text content. After successfully bookmarking a tweet, it will remain there forever unless you delete it manually.
 
-Nam pulvinar blandit velit, id condimentum diam faucibus at. Aliquam
-lacus nisi, sollicitudin at nisi nec, fermentum congue felis. Quisque
-mauris dolor, fringilla sed tincidunt ac, finibus non odio. Sed vitae
-mauris nec ante pretium finibus.
+### Reading Experience
 
-Donec nisl neque, pharetra ac elit eu, faucibus aliquam ligula. Nullam
-dictum, tellus tincidunt tempor laoreet, nibh elit sollicitudin felis,
-eget feugiat sapien diam nec nisl.
+Say goodbye to the "Show more" button. Once saved to Notion, you can read a long thread conveniently without having to press the "Show more" button to expand each tweet's full content.
 
-## Self host and deployment
+### Easily Organize and Share Your Bookmarks Collection
 
-Aenean gravida turpis nisi, consequat dictum risus dapibus a. Duis felis
-ante, varius in neque eu, tempor suscipit sem. Maecenas ullamcorper
-gravida sem sit amet cursus. Etiam pulvinar purus vitae justo pharetra
-consequat. Mauris id mi ut arcu feugiat maximus.
-
-list example:
-
-- list item 1
-- list item 2
-
-## How to use
-
-lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis
-
-- list item 1
-- list item 2
-
-## Demo
-
-lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis
-
-- list item 1
-- list item 2
-
-## Challenges I ran into
-
-lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis
-
-## Lesson learned
-
-## Future plans
+Customize your own bookmarks viewer: group by tag, display as a collection, list, etc. Turn it into a public site that anyone can access. Share your bookmarked collection with friends, especially for sharing long threads with non-X users.
