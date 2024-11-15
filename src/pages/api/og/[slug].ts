@@ -21,7 +21,7 @@ const generateHtml = (
     key: 'html',
     type: 'div',
     props: {
-      tw: 'h-full w-full p-32 flex flex-col relative',
+      tw: 'h-full w-full p-32 pt-28 flex flex-col relative',
       style: {
         fontFamily: 'Plus Jakarta Sans Medium'
       },

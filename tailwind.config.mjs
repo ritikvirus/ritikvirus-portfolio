@@ -22,24 +22,21 @@ module.exports = {
       typography: (theme) => ({
         DEFAULT: {
           css: {
-            color: theme('colors.slate.300'),
-            opacity: '0.8',
+            color: theme('colors.slate.300/0.8'),
             lineHeight: '1.8',
             letterSpacing: '0.03em',
             'h1, h2, h3, h4': {
-              opacity: 1,
               fontFamily: 'Geist',
-              letterSpacing: '0'
+              fontWeight: '500',
+              letterSpacing: '0.02em'
             },
             a: {
               opacity: 1,
-              fontWeight: '500',
-              textDecoration: 'none',
-              color: theme('colors.emerald.300'),
+              fontWeight: '400',
+              textUnderlineOffset: '2px',
+              color: theme('colors.emerald.400/0.9'),
               '&:hover': {
-                color: theme('colors.emerald.200'),
-                textDecoration: 'underline',
-                textUnderlineOffset: '2px'
+                color: theme('colors.emerald.400')
               }
             },
             strong: {
