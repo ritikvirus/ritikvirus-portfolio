@@ -1,7 +1,9 @@
 ---
-interface Props extends astroHTML.JSX.AnchorHTMLAttributes {}
+interface Props extends astroHTML.JSX.AnchorHTMLAttributes {
+  styled?: boolean
+}
 
-const { class: className, ...rest } = Astro.props
+const { styled, class: className, ...rest } = Astro.props
 ---
 
 <script>
@@ -58,4 +60,14 @@ const { class: className, ...rest } = Astro.props
   })
 </script>
 
-<a class:list={['custom-link', className]} {...rest}><slot /></a>
+<a
+  class:list={[
+    'custom-link',
+    {
+      'text-emerald-400/90 underline-offset-2 hover:text-emerald-400 hover:underline':
+        styled
+    },
+    className
+  ]}
+  {...rest}><slot /></a
+>
