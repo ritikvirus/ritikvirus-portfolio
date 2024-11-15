@@ -21,9 +21,11 @@ export const projects = defineCollection({
     z.object({
       year: z.number(),
       title: z.string(),
-      numberOfTeamMembers: z.number(),
       description: z.string(),
       heroImage: image(),
+      contributors: z.array(
+        z.object({ name: z.string(), username: z.string(), url: z.string() })
+      ),
       links: z.array(
         z.object({
           icon: iconSchema,

@@ -22,7 +22,7 @@ const {
   description,
   heroImage,
   links,
-  numberOfTeamMembers,
+  contributors,
   title,
   headings,
   slug
@@ -50,7 +50,7 @@ const htmlTitle = title.replace(
       {year}
     </h2>
     <h1
-      class='font-geist text-[clamp(28px,5vw,48px)] font-medium leading-none tracking-tight'
+      class='font-geist text-[clamp(28px,5vw,48px)] font-semibold leading-none tracking-tight sm:font-medium'
       set:html={htmlTitle}
       transition:name='pls'
     />
@@ -101,24 +101,25 @@ const htmlTitle = title.replace(
       class='sticky top-16 w-[220px] shrink-0 space-y-8 self-start max-lg:hidden'
     >
       <TableOfContent headings={headings} />
-      <div
-        class='font-geist space-y-2 border-t border-t-slate-600/50 pt-8 text-slate-200'
-      >
+      <div class='font-geist space-y-2 text-slate-200'>
         <p class='text-lg font-medium'>Project Contributor</p>
-        <p class='text-slate-400'>
-          Jesica
-          <LinkArticle
-            class='ml-0.5 text-sm opacity-75'
-            href='https://twitter.com/jestseee'>@jestseee</LinkArticle
-          >
-        </p>
+        {
+          contributors.map(({ name, url, username }) => (
+            <p class='text-slate-400'>
+              {name}
+              <LinkArticle class='ml-0.5 text-sm opacity-75' href={url}>
+                @{username}
+              </LinkArticle>
+            </p>
+          ))
+        }
       </div>
       <Link
         href='https://bookmarked.jestsee.com'
         target='_blank'
         class:list={[
-          'flex w-fit items-center gap-2 rounded-full text-sm text-gray-300 max-sm:text-xs',
-          'border border-gray-600 px-4 py-2 text-sm',
+          'flex w-fit items-center gap-2 rounded-full text-xs text-gray-300',
+          'border border-gray-600 px-4 py-2',
           'transition-all duration-200 hover:border-gray-500 hover:from-slate-800'
         ]}
       >

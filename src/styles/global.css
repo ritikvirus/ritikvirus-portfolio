@@ -5,14 +5,14 @@
 @font-face {
   font-family: 'General Sans';
   src: url('/fonts/GeneralSans-Variable.woff2') format('woff2');
-  font-weight: 100 500;
+  font-weight: 300 600;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Geist';
   src: url('/fonts/Geist[wght].woff2') format('woff2');
-  font-weight: 100 500;
+  font-weight: 300 600;
   font-style: normal;
 }
 
