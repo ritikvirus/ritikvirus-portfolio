@@ -12,10 +12,7 @@ const projects = await getCollection('projects')
 
 <BaseLayout>
   <Decorator slot='decorator' />
-  <section class='mt-16 space-y-8 sm:mt-36'>
-    <ProjectHeader />
-  </section>
-
+  <ProjectHeader class='mt-16 sm:mt-36' transition:name='project-header' />
   <section class='mt-12 grid gap-12 sm:grid-cols-2 lg:grid-cols-3'>
     {projects.map(({ slug, data }) => <ProjectCard slug={slug} {...data} />)}
   </section>
