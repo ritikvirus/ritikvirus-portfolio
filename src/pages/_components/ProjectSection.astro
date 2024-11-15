@@ -1,34 +1,17 @@
 ---
-import { Suitcase } from '@/components/icons/Suitcase'
+import { getCollection } from 'astro:content'
+
 import ProjectCard from '@/components/ProjectCard'
+import ProjectHeader from '@/components/ProjectHeader.astro'
+
+const projects = await getCollection('projects')
 ---
 
 <section class='mt-40'>
   <div class='space-y-8'>
-    <div
-      class='flex w-fit items-center gap-2 rounded-full bg-slate-800 px-4 py-2 text-slate-200'
-    >
-      <Suitcase />
-      <h1 class='text-sm font-medium tracking-wide max-sm:text-xs'>Projects</h1>
-    </div>
-    <!-- TODO: add transition? -->
-    <h2
-      class='text-[clamp(32px,7vw,52px)] font-semibold leading-none tracking-tight'
-    >
-      Milestones in the <br /> learning journey
-    </h2>
-    <h3 class='text-gray-400 max-md:text-sm'>
-      Each project marks a step forward, showcasing my growth and journey as a
-      developer. <br class='max-md:hidden' /> Explore how I’ve tackled challenges
-      and built solutions along the way.
-    </h3>
+    <ProjectHeader />
   </div>
   <div class='mt-12 grid gap-12 sm:grid-cols-2 lg:grid-cols-3'>
-    <ProjectCard
-      href='/projects/bookmarked'
-      title='✨ Bookmarked: Your Go-To Tool for Curating Tweets in Notion'
-      year='2024'
-      description='A full-stack application that enables users to save tweets to Notion via Telegram bot.'
-    />
+    {projects.map(({ slug, data }) => <ProjectCard slug={slug} {...data} />)}
   </div>
 </section>

@@ -7,6 +7,10 @@ export const cn = (...inputs: ClassValue[]) => {
   return twMerge(clsx(inputs))
 }
 
+export const getTransitionName = (name: string, key: string) => {
+  return ` ${name.replace('\\n', ' ').replace(' ', '-')}-${key}`
+}
+
 // Append 'th', 'st', 'nd', or 'rd' for the day of the month
 export const getDateSuffix = (day: number) => {
   if (day > 3 && day < 21) return 'th' // Special case for 11th-13th
