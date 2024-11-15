@@ -1,5 +1,6 @@
 ---
 import client from '@/lib/client'
+import { formatDateByTimeZone } from '@/lib/utils'
 
 const response = await client.api['last-updated'].$get()
 const data = response.status === 200 ? await response.json() : null
@@ -8,15 +9,7 @@ if (!data) return
 
 const date = new Date(data.pushedAt)
 
-const formattedDate = date.toLocaleString('en-US', {
-  month: 'long',
-  day: 'numeric',
-  year: 'numeric',
-  hour: 'numeric',
-  minute: '2-digit',
-  hour12: true,
-  timeZone: 'Asia/Bangkok'
-})
+const formattedDate = formatDateByTimeZone(date)
 ---
 
 {

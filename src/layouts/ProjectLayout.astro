@@ -10,7 +10,7 @@ import TableOfContent from '@/components/TableOfContent'
 import ScrollProgressBar from '@/components/ui/scroll-progress-bar'
 import { PROJECT_ICONS, type ProjectIcon } from '@/content/_icons'
 import { BASE_URL } from '@/lib/baseUrl'
-import { getTransitionName } from '@/lib/utils'
+import { formatDateByTimeZone, getTransitionName } from '@/lib/utils'
 import MoreProjectCard from '@/pages/projects/_components/MoreProjectCard.astro'
 
 import BaseLayout from './BaseLayout.astro'
@@ -28,7 +28,8 @@ const {
   contributors,
   title,
   headings,
-  slug
+  slug,
+  updatedDate
 } = Astro.props
 
 const htmlTitle = title.replace(
@@ -98,19 +99,24 @@ const htmlTitle = title.replace(
   <section class='mx-auto flex w-fit gap-16 pt-4'>
     <article class:list={['prose prose-invert', 'max-w-[680px]']}>
       <slot />
-      <p class='mt-16 text-sm text-slate-400/90'>
-        Last updated on November 14, 2024 at 11:08 PM UTC+7.
-        <Link class='ml-1'
-          >See Changelog<ArrowOutward className='inline-block size-3' /></Link
-        >
-      </p>
+      {
+        updatedDate && (
+          <p class='mt-16 text-sm text-slate-400/90'>
+            Last updated on {formatDateByTimeZone(updatedDate)} UTC+7.
+            <Link class='ml-1'>
+              See Changelog
+              <ArrowOutward className='inline-block size-3' />
+            </Link>
+          </p>
+        )
+      }
     </article>
 
     <aside
       class='sticky top-16 w-[220px] shrink-0 space-y-8 self-start max-lg:hidden'
     >
       <TableOfContent headings={headings} />
-      <div class='font-geist space-y-2 text-slate-200'>
+      <div class='space-y-2 font-geist text-slate-200'>
         <p class='text-lg font-medium'>Project Contributor</p>
         {
           contributors.map(({ name, url, username }) => (
@@ -138,7 +144,7 @@ const htmlTitle = title.replace(
     </aside>
   </section>
   <section class='mx-auto max-w-[964px]'>
-    <div class='mb-16 grid max-w-[680px] gap-6 max-lg:mx-auto md:grid-cols-2'>
+    <div class='mb-12 grid max-w-[680px] gap-6 max-lg:mx-auto md:grid-cols-2'>
       <MoreProjectCard {...Astro.props} />
       <MoreProjectCard {...Astro.props} />
     </div>

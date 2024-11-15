@@ -31,6 +31,18 @@ export const formatDate = (date: Date) => {
   return formattedDate.replace(/\d+,/, day + getDateSuffix(day))
 }
 
+export const formatDateByTimeZone = (date: Date) => {
+  return date.toLocaleString('en-US', {
+    month: 'long',
+    day: 'numeric',
+    year: 'numeric',
+    hour: 'numeric',
+    minute: '2-digit',
+    hour12: true,
+    timeZone: 'Asia/Bangkok'
+  })
+}
+
 export const fetcher =
   <T>(fn: () => Promise<ClientResponse<T, StatusCode, 'json'>>) =>
   () =>

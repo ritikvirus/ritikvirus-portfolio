@@ -135,12 +135,15 @@ export const GET: OGAPIRoute = async ({ props }) => {
   })
 }
 
+// getStaticPaths is used to limit the OG images generated.
+// This prevents dynamic generation of OG images, which could be abused.
+// Instead, OG images are generated only for existing articles during build time.
 export async function getStaticPaths() {
   const projects = await getCollection('projects')
 
   return projects.map((project) => ({
     params: {
-      slug: project.slug
+      slug: project.slug // used as the key to map the og photo to the project
     },
     props: { project }
   }))

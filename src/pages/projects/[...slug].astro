@@ -3,16 +3,29 @@ import { getCollection } from 'astro:content'
 
 import ContentWrapper from '@/components/ContentWrapper.astro'
 import ProjectLayout from '@/layouts/ProjectLayout.astro'
+import client from '@/lib/client'
 
 export async function getStaticPaths() {
   const projectEntries = await getCollection('projects')
-  // TODO: fetch last updated date here
-  return projectEntries.map((entry) => ({
-    params: {
-      slug: entry.slug
-    },
-    props: { entry }
-  }))
+  return Promise.all(
+    projectEntries.map(async (entry) => {
+      const lastUpdatedTime = await client.api['last-updated-file']
+        .$get({ query: { path: `projects/${entry.slug}.mdx` } })
+        .then((res) => res.json())
+
+      return {
+        params: {
+          slug: entry.slug
+        },
+        props: {
+          entry: {
+            ...entry,
+            data: { ...entry.data, updatedDate: new Date(lastUpdatedTime) }
+          }
+        }
+      }
+    })
+  )
 }
 
 const { entry } = Astro.props
