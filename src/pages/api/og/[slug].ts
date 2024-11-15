@@ -49,8 +49,30 @@ const generateHtml = (
               {
                 type: 'div',
                 props: {
-                  tw: 'text-xl',
-                  children: 'Jesica / Projects'
+                  tw: 'text-3xl flex',
+                  children: [
+                    {
+                      type: 'div',
+                      props: {
+                        tw: 'mr-5',
+                        children: 'Jesica'
+                      }
+                    },
+                    {
+                      type: 'div',
+                      props: {
+                        tw: 'mr-5',
+                        children: '|'
+                      }
+                    },
+                    {
+                      type: 'div',
+                      props: {
+                        tw: 'mr-5',
+                        children: 'jestsee.com'
+                      }
+                    }
+                  ]
                 }
               }
             ],
@@ -72,7 +94,7 @@ const generateHtml = (
         {
           type: 'div',
           props: {
-            tw: 'mt-8 max-w-[720px] text-2xl font-medium text-gray-300',
+            tw: 'mt-8 text-3xl font-medium text-gray-300',
             children: data.description
           }
         }
