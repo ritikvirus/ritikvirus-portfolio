@@ -29,7 +29,8 @@ const {
   title,
   headings,
   slug,
-  updatedDate
+  updatedDate,
+  latestCommitUrl
 } = Astro.props
 
 const htmlTitle = title.replace(
@@ -103,10 +104,12 @@ const htmlTitle = title.replace(
         updatedDate && (
           <p class='mt-16 text-sm text-slate-400/90'>
             Last updated on {formatDateByTimeZone(updatedDate)} UTC+7.
-            <Link class='ml-1'>
-              See Changelog
-              <ArrowOutward className='inline-block size-3' />
-            </Link>
+            {latestCommitUrl && (
+              <LinkArticle class='ml-1' href={latestCommitUrl}>
+                See Changelog
+                <ArrowOutward className='inline-block size-3' />
+              </LinkArticle>
+            )}
           </p>
         )
       }

@@ -9,7 +9,9 @@ export async function getStaticPaths() {
   const projectEntries = await getCollection('projects')
   return Promise.all(
     projectEntries.map(async (entry) => {
-      const lastUpdatedTime = await client.api['last-updated-file']
+      const { latestCommitUrl, lastUpdatedTime } = await client.api[
+        'last-updated-file'
+      ]
         .$get({ query: { path: `projects/${entry.slug}.mdx` } })
         .then((res) => res.json())
 
@@ -20,7 +22,11 @@ export async function getStaticPaths() {
         props: {
           entry: {
             ...entry,
-            data: { ...entry.data, updatedDate: new Date(lastUpdatedTime) }
+            data: {
+              ...entry.data,
+              updatedDate: new Date(lastUpdatedTime),
+              latestCommitUrl
+            }
           }
         }
       }

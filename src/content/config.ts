@@ -33,7 +33,8 @@ export const projects = defineCollection({
           url: z.string()
         })
       ),
-      updatedDate: z.coerce.date().optional()
+      updatedDate: z.coerce.date().optional(),
+      latestCommitUrl: z.string().optional()
     })
 })
 

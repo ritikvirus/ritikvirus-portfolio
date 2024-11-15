@@ -1,4 +1,11 @@
-const getLastUpdatedTimeByFile = async (filePath: string): Promise<string> => {
+interface LastUpdatedTimeData {
+  lastUpdatedTime: string
+  latestCommitUrl: string
+}
+
+const getLastUpdatedTimeByFile = async (
+  filePath: string
+): Promise<LastUpdatedTimeData> => {
   const API_URL = `https://api.github.com/repos/jestsee/portfolio-revamp/commits?`
 
   const params = new URLSearchParams({
@@ -12,7 +19,10 @@ const getLastUpdatedTimeByFile = async (filePath: string): Promise<string> => {
 
   const [data] = await response.json()
 
-  return data.commit.committer.date
+  return {
+    lastUpdatedTime: data.commit.committer.date,
+    latestCommitUrl: data.html_url
+  }
 }
 
 export default getLastUpdatedTimeByFile
