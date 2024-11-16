@@ -62,7 +62,7 @@ const Tooltip = React.forwardRef<
                 // base
                 'max-w-60 select-none rounded-md px-2.5 py-1.5 text-sm leading-5 shadow-md',
                 // text color
-                'text-gray-50 dark:text-gray-900',
+                'text-slate-50 dark:text-slate-900',
                 // background color
                 'bg-gray-900 dark:bg-gray-50',
                 // transition

@@ -11,13 +11,13 @@ const { class: className, sender, time, message, ...rest } = Astro.props
 <div
   class:list={[
     'flex w-[340px] items-center gap-3 rounded-2xl bg-gray-300 py-2 pl-2 pr-2.5 drop-shadow-xl',
-    'tracking-wide text-gray-600',
+    'tracking-wide text-slate-600',
     className
   ]}
   {...rest}
 >
   <div
-    class='flex aspect-square w-14 items-center justify-center rounded-xl bg-gray-950 text-gray-200'
+    class='flex aspect-square w-14 items-center justify-center rounded-xl bg-gray-950 text-slate-200'
   >
     <slot />
   </div>

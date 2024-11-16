@@ -94,7 +94,7 @@ const generateHtml = (
         {
           type: 'div',
           props: {
-            tw: 'mt-8 text-3xl font-medium text-gray-300',
+            tw: 'mt-8 text-3xl font-medium text-slate-300',
             children: data.description
           }
         }
