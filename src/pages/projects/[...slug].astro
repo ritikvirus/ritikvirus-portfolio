@@ -13,7 +13,11 @@ export async function getStaticPaths() {
         'last-updated-file'
       ]
         .$get({ query: { path: encodeURIComponent(`projects/${rest.id}`) } })
-        .then((res) => res.json())
+        .then((res) => {
+          console.log('status>>', res.status)
+          console.log('url>>', res.url)
+          return res.json()
+        })
 
       const entry = {
         ...rest,
