@@ -11,7 +11,7 @@ const getLastUpdatedTimeByFile = async (
   console.log('filePath>>', filePath)
 
   const params = new URLSearchParams({
-    path: `src/content/${decodeURIComponent(filePath)}`,
+    path: `src/content/${filePath}`,
     per_page: '1'
   }).toString()
 
