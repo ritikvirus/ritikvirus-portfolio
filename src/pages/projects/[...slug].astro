@@ -12,11 +12,8 @@ export async function getStaticPaths() {
       const { latestCommitUrl, lastUpdatedTime } = await client.api[
         'last-updated-file'
       ]
-        .$get({ query: { path: `projects/${rest.id}` } })
-        .then((res) => {
-          console.log('masok res ga sih', res)
-          return res.json()
-        })
+        .$get({ query: { path: encodeURIComponent(`projects/${rest.id}`) } })
+        .then((res) => res.json())
 
       const entry = {
         ...rest,
