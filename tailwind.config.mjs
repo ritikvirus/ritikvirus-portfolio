@@ -34,7 +34,7 @@ module.exports = {
               opacity: 1,
               fontWeight: '400',
               textUnderlineOffset: '2px',
-              color: theme('colors.emerald.400/0.9'),
+              color: theme('colors.emerald.300'),
               '&:hover': {
                 color: theme('colors.emerald.400')
               }
