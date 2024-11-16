@@ -22,7 +22,7 @@ module.exports = {
       typography: (theme) => ({
         DEFAULT: {
           css: {
-            color: theme('colors.slate.300/0.8'),
+            color: theme('colors.slate.300/0.9'),
             lineHeight: '1.8',
             letterSpacing: '0.03em',
             'h1, h2, h3, h4': {

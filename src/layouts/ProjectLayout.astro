@@ -40,11 +40,9 @@ const htmlTitle = title.replace(
 ---
 
 <BaseLayout
-  headProps={{
-    title: title.replace('\\n', ' '),
-    imageUrl: `${BASE_URL}/api/og/${slug}`,
-    description
-  }}
+  title={title.replace('\\n', ' ')}
+  imageUrl={`${BASE_URL}/api/og/${slug}`}
+  description={description}
   class='space-y-12'
 >
   <ScrollProgressBar type='bar' strokeSize={5} client:only='react' />

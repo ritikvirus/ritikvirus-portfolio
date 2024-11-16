@@ -5,12 +5,11 @@ import BaseHead, { type Props as HeadProps } from '@/components/BaseHead.astro'
 import BottomNavigationBar from '@/components/BottomNavigationBar'
 import Footer from '@/components/Footer'
 
-interface Props {
+interface Props extends HeadProps {
   class?: string
-  headProps?: HeadProps
 }
 
-const { class: className, headProps } = Astro.props
+const { class: className, ...headProps } = Astro.props
 ---
 
 <!doctype html>

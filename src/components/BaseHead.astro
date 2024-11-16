@@ -5,6 +5,7 @@ import '../styles/global.css'
 
 export interface Props {
   title?: string
+  hideSuffix?: boolean
   description?: string
   imageUrl?: string
   canonicalUrl?: string
@@ -13,13 +14,16 @@ export interface Props {
 }
 
 const {
-  title = 'Jesica | jestsee.com',
+  title: _title = 'Jesica',
+  hideSuffix,
   description = 'this is description', // TODO
   imageUrl,
   canonicalUrl = new URL(Astro.url.pathname, Astro.site),
   type = 'website',
   publishedTime
 } = Astro.props
+
+const title = `${_title}${!hideSuffix ? ' | jestsee.com' : ''}`
 ---
 
 <!-- Global Metadata -->

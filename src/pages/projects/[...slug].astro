@@ -12,11 +12,7 @@ export async function getStaticPaths() {
       const getLastUpdatedTime = client.api['last-updated-file']
       const { latestCommitUrl, lastUpdatedTime } = await getLastUpdatedTime
         .$get({ query: { path: `projects/${rest.id}` } })
-        .then((res) => {
-          console.log('status>>', res.status)
-          console.log('url>>', res.url)
-          return res.json()
-        })
+        .then((res) => res.json())
 
       const entry = {
         ...rest,
