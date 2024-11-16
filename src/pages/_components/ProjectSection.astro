@@ -1,7 +1,7 @@
 ---
 import { getCollection } from 'astro:content'
 
-import Link from '@/components/Link'
+import FancyLink from '@/components/FancyLink.astro'
 import ProjectCard from '@/components/ProjectCard'
 import ProjectHeader from '@/components/ProjectHeader.astro'
 
@@ -11,15 +11,7 @@ const projects = await getCollection('projects')
 <section class='mt-40'>
   <div class='items-center justify-between gap-4 lg:flex'>
     <ProjectHeader transition:name='project-header' />
-    <Link
-      href='/projects'
-      class:list={[
-        'text-sm tracking-wider max-lg:hidden',
-        'rounded-full border border-emerald-400 px-6 py-3 text-emerald-400'
-      ]}
-    >
-      View all projects
-    </Link>
+    <FancyLink href='/projects'>View all projects</FancyLink>
   </div>
   <div class='mt-12 grid gap-12 sm:grid-cols-2 lg:grid-cols-3'>
     {projects.map(({ slug, data }) => <ProjectCard slug={slug} {...data} />)}
