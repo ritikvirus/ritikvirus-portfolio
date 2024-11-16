@@ -1,5 +1,4 @@
 ---
-import type { CollectionEntry } from 'astro:content'
 import { getCollection } from 'astro:content'
 
 import ContentWrapper from '@/components/ContentWrapper.astro'
@@ -8,13 +7,16 @@ import client from '@/lib/client'
 
 export async function getStaticPaths() {
   const projectEntries = await getCollection('projects')
-  return await Promise.all(
+  return Promise.all(
     projectEntries.map(async ({ data, ...rest }) => {
       const { latestCommitUrl, lastUpdatedTime } = await client.api[
         'last-updated-file'
       ]
         .$get({ query: { path: `projects/${rest.id}` } })
-        .then((res) => res.json())
+        .then((res) => {
+          console.log('masok res ga sih', res)
+          return res.json()
+        })
 
       const entry = {
         ...rest,
