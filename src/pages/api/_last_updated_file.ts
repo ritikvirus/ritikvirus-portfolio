@@ -17,13 +17,11 @@ const getLastUpdatedTimeByFile = async (
     headers: { Authorization: `Bearer ${import.meta.env.GITHUB_ACCESS_TOKEN}` }
   })
 
-  const data = await response.json()
-
-  console.log('masok data', JSON.stringify(data, null, 2))
+  const [data] = await response.json()
 
   return {
-    lastUpdatedTime: data[0].commit.committer.date,
-    latestCommitUrl: data[0].html_url
+    lastUpdatedTime: data.commit.committer.date,
+    latestCommitUrl: data.html_url
   }
 }
 

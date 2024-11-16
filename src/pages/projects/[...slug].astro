@@ -1,37 +1,36 @@
 ---
+import type { CollectionEntry } from 'astro:content'
 import { getCollection } from 'astro:content'
 
 import ContentWrapper from '@/components/ContentWrapper.astro'
 import ProjectLayout from '@/layouts/ProjectLayout.astro'
 import client from '@/lib/client'
 
+const mapEntryData = async ({ data, ...rest }: CollectionEntry<'projects'>) => {
+  const { latestCommitUrl, lastUpdatedTime } = await client.api[
+    'last-updated-file'
+  ]
+    .$get({ query: { path: `projects/${rest.id}` } })
+    .then((res) => res.json())
+
+  const entry = {
+    ...rest,
+    data: {
+      ...data,
+      updatedDate: new Date(lastUpdatedTime),
+      latestCommitUrl
+    }
+  }
+
+  return {
+    params: { slug: entry.slug },
+    props: { entry }
+  }
+}
+
 export async function getStaticPaths() {
   const projectEntries = await getCollection('projects')
-  return Promise.all(
-    projectEntries.map(async (entry) => {
-      const { latestCommitUrl, lastUpdatedTime } = await client.api[
-        'last-updated-file'
-      ]
-        .$get({ query: { path: `projects/${entry.slug}.mdx` } })
-        .then((res) => res.json())
-
-      return {
-        params: {
-          slug: entry.slug
-        },
-        props: {
-          entry: {
-            ...entry,
-            data: {
-              ...entry.data,
-              updatedDate: new Date(lastUpdatedTime),
-              latestCommitUrl
-            }
-          }
-        }
-      }
-    })
-  )
+  return Promise.all(projectEntries.map(mapEntryData))
 }
 
 const { entry } = Astro.props
