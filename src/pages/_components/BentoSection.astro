@@ -11,9 +11,9 @@ import BentoCard from './bento/BentoCard'
 import BentoItemCTA from './bento/BentoItemCTA'
 import BentoItemFeaturedWork from './bento/BentoItemFeaturedWork'
 import BentoItemGithubActivity from './bento/BentoItemGithubActivity'
-import BentoItemMapLocation from './bento/BentoItemMapLocation/BentoItemMapLocation'
-import BentoItemNowPlaying from './bento/BentoItemNowPlaying/BentoItemNowPlaying'
-import BentoItemTechStack from './bento/BentoItemTechStack/BentoItemTechStack'
+import BentoItemMapLocation from './bento/BentoItemMapLocation'
+import BentoItemNowPlaying from './bento/BentoItemNowPlaying'
+import BentoItemTechStack from './bento/BentoItemTechStack'
 import BentoItemTypingSpeed from './bento/BentoItemTypingSpeed'
 
 const socialMedias = [
@@ -97,7 +97,6 @@ const socialMedias = [
     <BentoItemFeaturedWork />
   </BentoCard>
 
-  <!-- TODO: cta for discover more projects -->
   <BentoCard
     className={cn(
       'col-start-11 col-end-[24] row-start-[7] row-end-[9]',
@@ -114,7 +113,9 @@ const socialMedias = [
       'max-lg:col-start-1 max-lg:col-end-4 max-lg:row-start-4 max-lg:row-end-6'
     )}
   >
-    <BentoItemNowPlaying client:only='react' />
+    <BentoItemNowPlaying server:defer>
+      <p class='p-4' slot='fallback'>Loading data...</p>
+    </BentoItemNowPlaying>
   </BentoCard>
 
   <BentoCard

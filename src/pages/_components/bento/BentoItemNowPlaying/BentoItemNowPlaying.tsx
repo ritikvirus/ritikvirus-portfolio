@@ -3,15 +3,21 @@ import useSWR from 'swr'
 
 import client from '@/lib/client'
 import { cn, fetcher } from '@/lib/utils'
+import type { SpotifyData } from '@/pages/api/_spotify'
 
 import BentoBadge from '../BentoBadge'
 
-const BentoItemNowPlaying = () => {
+interface Props {
+  initialData?: SpotifyData
+}
+
+const BentoItemNowPlaying = ({ initialData }: Props) => {
   const { data, error } = useSWR(
     'spotify',
     fetcher(() => client.api.spotify.$get()),
     {
-      refreshInterval: 10000
+      refreshInterval: 10000,
+      fallbackData: initialData
     }
   )
 

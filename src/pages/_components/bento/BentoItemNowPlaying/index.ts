@@ -1,1 +1,1 @@
-export { default } from './BentoItemNowPlaying'
+export { default } from './BentoItemNowPlaying.astro'
