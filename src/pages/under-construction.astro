@@ -1,0 +1,35 @@
+---
+import { Construction } from '@icons/Construction'
+
+import BaseLayout from '@/layouts/BaseLayout.astro'
+
+import Decorator from './_components/Decorator.astro'
+---
+
+<BaseLayout
+  title='Under construction'
+  hideSuffix
+  description='This page is under construction'
+  class='text-center'
+>
+  <Decorator slot='decorator' />
+  <section
+    class='mt-16 flex min-h-[480px] flex-col items-center justify-center'
+  >
+    <div
+      class='w-fit rounded-2xl border-2 border-slate-800 bg-gradient-to-b from-slate-700 to-slate-900 p-3'
+    >
+      <Construction className='size-16' />
+    </div>
+    <h1
+      class='mt-8 font-geist text-[clamp(2rem,5vw,4rem)] font-semibold leading-none tracking-[-0.04em] sm:font-medium'
+    >
+      Under Construction
+    </h1>
+    <p class='mt-4 leading-relaxed text-slate-300 max-sm:text-sm'>
+      This page is currently under construction. I'm working hard
+      <br class='max-sm:hidden' />
+      to bring something exciting here soon. Stay tuned!
+    </p>
+  </section>
+</BaseLayout>
