@@ -21,18 +21,19 @@ links:
 
 import { Notion } from '@/components/icons/Notion'
 import { Nestjs } from '@/components/icons/NestJs'
+import { Tooltip } from '@/components/ui/tooltip'
 
 ## Project Overview
 
-Bookmarked is a personal bookmarking tool which inspired by [SaveToNotion](https://x.com/savetonotion). It uses a Telegram bot as the client, enabling users to forward tweet URLs to easily save tweets or threads. The backend processes these requests by performing web scraping to extract content from tweets or threads on X (formerly Twitter).
+Bookmarked is a personal bookmarking tool which inspired by <Tooltip content='Save to notion is a bookmarking tool which utilize Twitter bot to save tweet to Notion' client:only='react'>[Save to Notion](https://x.com/savetonotion)</Tooltip>. It uses a Telegram bot as the client, enabling users to forward tweet URLs to easily save tweets or threads. The backend processes these requests by performing web scraping to extract content from tweets or threads on X (formerly Twitter).
 
 ## Project Goals and Motivation
 
 X (formerly known as Twitter) is a treasure trove of tech insights and tips, and I frequently found myself gathering valuable information there. Initially, I used the "like" button to save these tweets, but retrieving specific information later proved to be tedious and inefficient.
 
-I began searching for tools to help me save, organize, and easily access this information, which led me to [SaveToNotion](https://x.com/savetonotion). While it served the purpose, as a free-plan user, I encountered several limitations. The most inconvenient aspect was having to publicly mention the [SaveToNotion](https://x.com/savetonotion) Twitter bot as a reply to the tweet or thread I wanted to save.
+I began searching for tools to help me save, organize, and easily access this information, which led me to [Save to Notion](https://x.com/savetonotion). While it served the purpose, as a free-plan user, I encountered several limitations. The most inconvenient aspect was having to publicly mention the [Save to Notion](https://x.com/savetonotion) Twitter bot as a reply to the tweet or thread I wanted to save.
 
-My goal was to create a free bookmarking tool that could save tweets to Notion like [SaveToNotion](https://x.com/savetonotion), but tailored to my preferences. To avoid the costs associated with using Twitter’s 💸💸 API (required for creating a Twitter bot), I decided to use a Telegram bot instead. This approach allowed me to forward tweet links directly to the bot, especially on mobile devices, without the need for public mentions or expensive API costs.
+My goal was to create a free bookmarking tool that could save tweets to Notion like [Save to Notion](https://x.com/savetonotion), but tailored to my preferences. To avoid the costs associated with using Twitter’s 💸💸 API (required for creating a Twitter bot), I decided to use a Telegram bot instead. This approach allowed me to forward tweet links directly to the bot, especially on mobile devices, without the need for public mentions or expensive API costs.
 
 ## Tech Stacks Used
 

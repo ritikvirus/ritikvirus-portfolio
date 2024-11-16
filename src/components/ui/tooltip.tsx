@@ -1,9 +1,13 @@
 // Tremor Tooltip [v0.0.2]
 
+import './tooltip.css'
+
 import * as TooltipPrimitives from '@radix-ui/react-tooltip'
 import React from 'react'
 
 import { cn } from '@/lib/utils'
+
+import TooltipArrow from './tooltip-arrow'
 
 interface TooltipProps
   extends Omit<TooltipPrimitives.TooltipContentProps, 'content' | 'onClick'>,
@@ -34,7 +38,7 @@ const Tooltip = React.forwardRef<
       onOpenChange,
       showArrow = true,
       side,
-      sideOffset = 10,
+      sideOffset = 12,
       triggerAsChild = false,
       ...props
     }: TooltipProps,
@@ -60,29 +64,23 @@ const Tooltip = React.forwardRef<
               align='center'
               className={cn(
                 // base
-                'max-w-60 select-none rounded-md px-2.5 py-1.5 text-sm leading-5 shadow-md',
+                'max-w-60 select-none rounded-md px-3 py-2.5 text-sm leading-5 shadow-md',
                 // text color
-                'text-slate-50 dark:text-slate-900',
+                'text-zinc-300/90',
                 // background color
-                'bg-slate-900 dark:bg-slate-50',
+                'bg-[var(--tooltip-color)]',
                 // transition
                 'will-change-[transform,opacity]',
                 'data-[side=bottom]:animate-slideDownAndFade data-[side=left]:animate-slideLeftAndFade data-[side=right]:animate-slideRightAndFade data-[side=top]:animate-slideUpAndFade data-[state=closed]:animate-hide',
                 // other
-                'z-50',
+                'z-50 border border-[var(--tooltip-border-color)]',
+                'tooltip-content',
                 className
               )}
               {...props}
             >
               {content}
-              {showArrow ? (
-                <TooltipPrimitives.Arrow
-                  className='border-none fill-slate-900 dark:fill-slate-50'
-                  width={12}
-                  height={7}
-                  aria-hidden='true'
-                />
-              ) : null}
+              {showArrow && <TooltipArrow aria-hidden='true' />}
             </TooltipPrimitives.Content>
           </TooltipPrimitives.Portal>
         </TooltipPrimitives.Root>
