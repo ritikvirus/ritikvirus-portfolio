@@ -6,6 +6,7 @@ import { Hono } from 'hono'
 import getGithubContributions from './_github'
 import getLastUpdatedTime from './_last_updated'
 import getLastUpdatedTimeByFile from './_last_updated_file'
+import getLinkMetadata from './_link_metadata'
 import getMonkeytypeData from './_monkeytype'
 import getSpotifyData from './_spotify'
 
@@ -32,6 +33,15 @@ const app = new Hono()
       const { path } = c.req.valid('query')
 
       return c.json(await getLastUpdatedTimeByFile(path))
+    }
+  )
+  .get(
+    '/link-metadata',
+    zValidator('query', z.object({ url: z.string() })),
+    async (c) => {
+      const { url } = c.req.valid('query')
+
+      return c.json(await getLinkMetadata(url))
     }
   )
   .get('/monkeytype', async (c) =>
