@@ -64,7 +64,7 @@ const Tooltip = React.forwardRef<
               align='center'
               className={cn(
                 // base
-                'max-w-60 select-none rounded-md px-3 py-2.5 text-sm leading-5 shadow-md',
+                'max-w-60 select-none rounded-md px-3 py-2.5 text-sm leading-relaxed shadow-md',
                 // text color
                 'text-zinc-300/90',
                 // background color
