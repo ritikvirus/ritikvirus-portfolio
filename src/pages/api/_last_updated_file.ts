@@ -8,8 +8,6 @@ const getLastUpdatedTimeByFile = async (
 ): Promise<LastUpdatedTimeData> => {
   const API_URL = `https://api.github.com/repos/jestsee/portfolio-revamp/commits?`
 
-  console.log('filePath>>', filePath)
-
   const params = new URLSearchParams({
     path: `src/content/${filePath}`,
     per_page: '1'

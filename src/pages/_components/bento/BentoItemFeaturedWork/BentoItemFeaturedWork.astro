@@ -33,7 +33,7 @@ import BentoBadge from '../BentoBadge'
     class:list={[
       'absolute top-[164px] self-center',
       'max-xs:mt-4',
-      'xs:max-md:left-[calc(50%+16px)] xs:max-md:top-10 xs:max-md:scale-110'
+      'xs:max-md:left-[calc(50%+16px)] xs:max-md:top-14 xs:max-md:scale-110'
     ]}
   >
     <div
@@ -51,8 +51,8 @@ import BentoBadge from '../BentoBadge'
       </div>
       <NotificationCard
         sender='Bookmarked'
-        time='20m ago'
-        message='Success! Your bookmark has been saved ✅'
+        time='Just now'
+        message='Your bookmark has been saved'
         class:list={[
           'z-20 text-slate-700 max-xs:w-[300px]',
           'transition-all duration-300',
@@ -64,24 +64,11 @@ import BentoBadge from '../BentoBadge'
 
       <NotificationCard
         sender='Bookmarked'
-        time='19m ago'
-        message='Bookmarking this thread...⏳'
+        time='1m ago'
+        message='Bookmarking this thread'
         class:list={[
           'z-10 -mt-8 w-[88%] bg-slate-400 text-slate-800',
           'transition-all duration-500',
-          'group-hover:-mt-2 group-hover:scale-105',
-          'hidden-notification-card'
-        ]}
-        ><Bookmarks className='size-6' />
-      </NotificationCard>
-
-      <NotificationCard
-        sender='Bookmarked'
-        time='18m ago'
-        message='Choose your bookmark type'
-        class:list={[
-          'z-0 -mt-10 w-[75%] bg-slate-500 text-slate-950',
-          'transition-all duration-700',
           'group-hover:-mt-2 group-hover:scale-105',
           'hidden-notification-card'
         ]}

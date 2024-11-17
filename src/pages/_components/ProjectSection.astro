@@ -8,7 +8,7 @@ import ProjectHeader from '@/components/ProjectHeader.astro'
 const projects = await getCollection('projects')
 ---
 
-<section class='mt-40'>
+<section id='projects' class='mt-40 scroll-mt-8'>
   <div class='items-center justify-between gap-4 lg:flex'>
     <ProjectHeader transition:name='project-header' />
     <FancyLink class='max-lg:hidden' href='/projects'
