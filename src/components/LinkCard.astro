@@ -1,5 +1,6 @@
 ---
 import Image from '@/components/Image'
+import client from '@/lib/client'
 
 import Link from './Link/Link.astro'
 
@@ -8,14 +9,23 @@ interface Props {
   class?: string
 }
 
-const imageUrl =
-  'https://opengraph.githubassets.com/181e6c8c01edf953771d14c4d43539fa7f931c964305e47a03b652e5b76d5312/jestsee/bookmarked-api'
-const favIconUrl = 'https://github.githubassets.com/favicons/favicon.svg'
-
 const { url, class: className } = Astro.props
+
+const metadata = await client.api['link-metadata']
+  .$get({ query: { url } })
+  .then((res) => res.json())
+
+if (!metadata.success) return
+
+const aspectRatio =
+  metadata.image?.width && metadata.image?.height
+    ? `${metadata.image.width}/${metadata.image.height}`
+    : '2/1'
 ---
 
 <Link
+  target='_blank'
+  href={url}
   class:list={[
     'not-prose flex h-full max-h-[144px] overflow-clip rounded-xl',
     'border border-zinc-800 bg-zinc-900',
@@ -27,23 +37,38 @@ const { url, class: className } = Astro.props
     <p
       class='line-clamp-2 text-sm font-medium leading-snug tracking-wide text-slate-50'
     >
-      Vercel: Build and deploy the best web experiences with the Frontend Cloud
+      {metadata.title}
     </p>
     <p class='line-clamp-2 text-xs leading-normal text-slate-300'>
-      Vercel's Frontend Cloud gives developers the frameworks, workflows, and
-      infrastructure to build a faster, more personalized web.
+      {metadata.description}
     </p>
     <div class='flex gap-2 pt-1 text-xs'>
-      <Image class='w-4' src={favIconUrl} alt='TODO' inferSize />
-      <p class='text-slate-300/50'>https://vercel.com</p>
+      {
+        metadata.faviconUrl && (
+          <Image
+            class='w-4'
+            src={metadata.faviconUrl}
+            alt={metadata.title ?? url}
+            height={16}
+            width={16}
+            inferSize
+          />
+        )
+      }
+      <p class='text-slate-300/50'>{url}</p>
     </div>
   </div>
-  <Image
-    wrapperClass='h-full aspect-[2/1]'
-    src={imageUrl}
-    alt='TODO'
-    inferSize
-  />
+  {
+    metadata.image && (
+      <Image
+        wrapperClass='h-full'
+        style={{ aspectRatio }}
+        src={metadata.image.url}
+        alt={metadata.image.alt ?? url}
+        inferSize
+      />
+    )
+  }
   <!-- <div class='h-full bg-gray-400' style='aspect-ratio: 2/1;'>
   </div> -->
 </Link>
