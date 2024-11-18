@@ -45,7 +45,9 @@ const getLinkMetadata = async (url: string): Promise<LinkMetadataResponse> => {
     title: data.result.twitterTitle ?? data.result.ogTitle,
     description:
       data.result.twitterDescription ?? data.result.ogDescription ?? '',
-    faviconUrl: data.result.favicon,
+    faviconUrl: data.result.favicon?.startsWith('/')
+      ? data.result.ogUrl + data.result.favicon
+      : data.result.favicon,
     requestUrl: data.result.requestUrl,
     image: getOgImageData(data.result)
   }
