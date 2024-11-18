@@ -93,14 +93,11 @@ const BentoItemMapLocation = ({ className }: Props) => {
       >
         <TileLayer url={MAP_URL} tileSize={512} zoomOffset={-1} minZoom={1} />
       </MapContainer>
-      <div className='absolute left-0 top-0 flex h-full w-full items-center justify-center'>
-        <div
-          className={cn(
-            'size-12 rounded-full bg-emerald-200/50',
-            'drop-shadow-green animate-pulse-glow',
-            'transition-all duration-800 group-hover:scale-125'
-          )}
-        ></div>
+      <div className='absolute inset-0 flex items-center justify-center'>
+        <div className='relative size-16'>
+          <div className='absolute size-full animate-ping rounded-full bg-emerald-300/20 opacity-65 blur-sm'></div>
+          <div className='drop-shadow-green size-full rounded-full bg-emerald-400/30'></div>
+        </div>
       </div>
 
       <ZoomButton
