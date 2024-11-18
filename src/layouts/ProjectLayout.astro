@@ -45,7 +45,8 @@ const htmlTitle = title.replace(
   description={description}
   class='space-y-12'
 >
-  <ScrollProgressBar type='bar' strokeSize={5} client:only='react' />
+  <slot name='head' slot='head' />
+  <ScrollProgressBar type='bar' strokeSize={4} client:only='react' />
   <section class='space-y-5 sm:pt-12'>
     <h2
       class='border-l border-l-slate-300 px-2 leading-tight tracking-wider text-slate-300'

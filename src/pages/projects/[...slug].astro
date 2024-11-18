@@ -1,9 +1,11 @@
 ---
 import { getCollection } from 'astro:content'
+import type { BreadcrumbList, WithContext } from 'schema-dts'
 
 import ContentWrapper from '@/components/ContentWrapper.astro'
 import ProjectLayout from '@/layouts/ProjectLayout.astro'
 import client from '@/lib/client'
+import { getProjectSchema, projectWebsite } from '@/lib/structuredData'
 
 export async function getStaticPaths() {
   const projectEntries = await getCollection('projects')
@@ -33,8 +35,40 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props
 const { Content, headings } = await entry.render()
+
+const projectStructuredData = getProjectSchema(entry)
+
+const breadcrumbsStructuredData: WithContext<BreadcrumbList> = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Projects',
+      item: `${import.meta.env.SITE}/projects/`
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: entry.data.title,
+      item: `${import.meta.env.SITE}/projects/${entry.slug}/`
+    }
+  ]
+}
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [projectStructuredData, breadcrumbsStructuredData, projectWebsite]
+}
 ---
 
 <ProjectLayout headings={headings} slug={entry.slug} {...entry.data}>
+  <script
+    is:inline
+    type='application/ld+json'
+    set:html={JSON.stringify(jsonLd)}
+    slot='head'
+  />
   <ContentWrapper content={Content} />
 </ProjectLayout>
