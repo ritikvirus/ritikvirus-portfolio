@@ -1,4 +1,6 @@
 ---
+import { inferRemoteSize } from 'astro:assets'
+
 import Image from '@/components/Image'
 import client from '@/lib/client'
 
@@ -17,12 +19,13 @@ const metadata = await client.api['link-metadata']
 
 if (!metadata.success) return
 
-// TODO: get remote image
+// infer remote image size
+let aspectRatio: number | undefined
 
-const aspectRatio =
-  metadata.image?.width && metadata.image?.height
-    ? `${metadata.image.width}/${metadata.image.height}`
-    : '2/1'
+if (metadata.image) {
+  const { height, width } = await inferRemoteSize(metadata.image?.url)
+  aspectRatio = width / height
+}
 ---
 
 <Link
@@ -44,7 +47,7 @@ const aspectRatio =
       'translate-x-32 transition-all ease-out',
       'group-hover:-translate-x-[520px]'
     ]}></span>
-  <div class='space-y-2 p-4'>
+  <div class='flex h-full flex-col justify-center gap-2 p-4'>
     <p
       class='line-clamp-2 text-sm font-medium leading-snug tracking-wide text-slate-50'
     >
@@ -74,14 +77,12 @@ const aspectRatio =
   {
     metadata.image && (
       <Image
+        wrapperStyle={`aspect-ratio:${aspectRatio}`}
         wrapperClass='h-full'
-        style={{ aspectRatio }}
         src={metadata.image.url}
         alt={metadata.image.alt ?? url}
         inferSize
       />
     )
   }
-  <!-- <div class='h-full bg-gray-400' style='aspect-ratio: 2/1;'>
-  </div> -->
 </Link>
