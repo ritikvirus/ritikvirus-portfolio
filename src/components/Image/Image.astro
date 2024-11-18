@@ -14,7 +14,7 @@ type Props = { wrapperClass?: string; ambientMode?: boolean } & (
 const { class: className, wrapperClass, ambientMode, ...rest } = Astro.props
 
 const blurryImage = await getImage({
-  src: rest.src,
+  ...rest,
   width: 20
 })
 ---
