@@ -114,7 +114,7 @@ export const GET: OGAPIRoute = async ({ props }) => {
   )
 
   const SwitzerSemiBold = fs.readFileSync(
-    path.resolve(process.cwd(), 'public/fonts/Switzer-SemiBold.otf')
+    path.resolve(process.cwd(), 'public/fonts/Switzer-Semibold.otf')
   )
 
   return new ImageResponse(html, {
