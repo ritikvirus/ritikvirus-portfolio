@@ -109,12 +109,12 @@ export const GET: OGAPIRoute = async ({ props }) => {
   } = props
   const html = generateHtml(data)
 
-  const SwitzerSemiBold = fs.readFileSync(
-    path.resolve(process.cwd(), 'public/fonts/Switzer-SemiBold.otf')
-  )
-
   const SwitzerMedium = fs.readFileSync(
     path.resolve(process.cwd(), 'public/fonts/Switzer-Medium.otf')
+  )
+
+  const SwitzerSemiBold = fs.readFileSync(
+    path.resolve(process.cwd(), 'public/fonts/Switzer-SemiBold.otf')
   )
 
   return new ImageResponse(html, {
