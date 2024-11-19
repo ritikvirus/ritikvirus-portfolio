@@ -60,7 +60,7 @@ if (metadata.image) {
       {
         metadata.faviconUrl && (
           <Image
-            class='w-4'
+            wrapperProps={{ class: 'size-4 flex-shrink-0' }}
             src={metadata.faviconUrl}
             alt={metadata.title ?? url}
             height={16}

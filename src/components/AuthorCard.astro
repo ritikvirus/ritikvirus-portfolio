@@ -1,0 +1,27 @@
+---
+import Image from './Image'
+import Link from './Link'
+---
+
+<Link
+  href='https://x.com/jestseee'
+  target='_blank'
+  class='space-y-3 text-slate-200'
+>
+  <p class='text-lg font-medium'>Written by</p>
+  <div class='flex items-center gap-3'>
+    <Image
+      src='https://pbs.twimg.com/profile_images/1844918502857244678/oOYskFVA_400x400.jpg'
+      alt="Author's avatar"
+      class='size-12'
+      wrapperProps={{
+        class: 'rounded-full outline outline-zinc-800'
+      }}
+      inferSize
+    />
+    <span class='flex-1 text-slate-400'>
+      <p class='font-medium text-zinc-200'>Jesica</p>
+      <p class='text-sm text-slate-400/80'>15 min read</p>
+    </span>
+  </div>
+</Link>

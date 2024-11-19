@@ -8,3 +8,13 @@
   font-weight: 300 700;
   font-style: normal;
 }
+
+:root {
+  --accent-color-1: #04cf7a;
+  --accent-color-2: #01fecb;
+  --accent-gradient-color: linear-gradient(
+    90deg,
+    var(--accent-color-1),
+    var(--accent-color-2)
+  );
+}

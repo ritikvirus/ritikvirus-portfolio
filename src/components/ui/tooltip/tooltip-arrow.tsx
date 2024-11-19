@@ -26,7 +26,7 @@ const TooltipArrow = ({ className, ...rest }: Props) => {
         />
       </g>
       <defs>
-        <clipPath id='clip0_2299_746'>
+        <clipPath>
           <rect width='158' height='46' fill='white' />
         </clipPath>
       </defs>

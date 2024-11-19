@@ -19,7 +19,7 @@ interface ScrollProgressBarType {
 export default function ScrollProgressBar({
   type = 'circle',
   position = 'bottom-right',
-  color = 'hsl(var(--primary))',
+  color = 'ghostwhite',
   strokeSize = 2,
   showPercentage = true
 }: Readonly<ScrollProgressBarType>) {
@@ -51,7 +51,10 @@ export default function ScrollProgressBar({
       >
         <span
           style={{ backgroundColor: color }}
-          className='absolute block h-full w-screen bg-gradient-to-r from-[#00f098] to-[#7ea2b5]'
+          className={cn(
+            'absolute block h-full w-screen',
+            'bg-gradient-to-r from-[var(--accent-color-1)] to-[var(--accent-color-2)]'
+          )}
         ></span>
       </span>
     )

@@ -4,7 +4,9 @@ import { cn } from '@/lib/utils'
 
 interface Props {
   headings: MarkdownHeading[]
+  className?: string
 }
+
 type GroupedHeadings = (MarkdownHeading | MarkdownHeading[])[]
 
 const groupHeadings = (headings: MarkdownHeading[]): GroupedHeadings => {
@@ -51,11 +53,11 @@ const NestedHeading = ({ headings }: { headings: MarkdownHeading[] }) => {
   )
 }
 
-const TableOfContent = ({ headings }: Props) => {
+const TableOfContent = ({ headings, className }: Props) => {
   const groupedHeadings = groupHeadings(headings)
 
   return (
-    <div>
+    <div className={className}>
       <p className='text-lg font-medium text-slate-200'>On this page</p>
       <ul className='mt-2 space-y-1.5 text-sm text-slate-400/60'>
         {groupedHeadings.map((heading) => {
