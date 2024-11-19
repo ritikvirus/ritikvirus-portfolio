@@ -78,7 +78,6 @@ if (metadata.image) {
     metadata.image && (
       <Image
         wrapperProps={{ style: { aspectRatio }, class: 'h-full' }}
-        class='group-hover:brightness-[.8]'
         src={metadata.image.url}
         alt={metadata.image.alt ?? url}
         inferSize

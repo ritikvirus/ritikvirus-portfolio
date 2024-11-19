@@ -65,9 +65,11 @@ const TypingSpeed = (props: Props) => {
         text='Typing speed'
         className={{ component: 'w-fit' }}
       />
-      <div className='space-y-2'>
-        <div className='flex items-baseline gap-2'>
-          <p className='text-[80px] font-medium leading-none'>{props.wpm}</p>
+      <div>
+        <div className='flex items-baseline'>
+          <p className='text-[84px] font-semibold leading-tight tracking-normal'>
+            {props.wpm}
+          </p>
           <p className='text-2xl leading-none'>wpm</p>
         </div>
         <div className='flex gap-4'>

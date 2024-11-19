@@ -22,16 +22,13 @@ module.exports = {
       typography: (theme) => ({
         DEFAULT: {
           css: {
-            color: theme('colors.slate.300/0.8'),
             lineHeight: '1.8',
-            letterSpacing: '0.03em',
+            fontWeight: '300',
+            letterSpacing: theme('letterSpacing.wide'),
             'h1, h2, h3, h4': {
-              fontFamily: 'Geist',
-              fontWeight: '500',
-              letterSpacing: '0.02em'
+              fontWeight: '500'
             },
             a: {
-              opacity: 1,
               fontWeight: '400',
               textUnderlineOffset: '2px',
               color: theme('colors.emerald.300'),
@@ -43,12 +40,6 @@ module.exports = {
               fontWeight: '500'
             }
           }
-        },
-        sm: {
-          css: {
-            color: theme('colors.slate.300'),
-            fontSize: '1rem'
-          }
         }
       }),
       borderWidth: {
@@ -56,8 +47,7 @@ module.exports = {
         6: '6px'
       },
       fontFamily: {
-        sans: ['General Sans', 'sans-serif'],
-        geist: ['Geist', 'sans-serif']
+        sans: ['Switzer', 'sans-serif']
       },
       screens: {
         xs: '480px'

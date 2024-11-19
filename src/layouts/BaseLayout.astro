@@ -20,13 +20,11 @@ const { class: className, ...headProps } = Astro.props
     <ViewTransitions />
     <slot name='head' />
   </head>
-  <body
-    class='flex min-h-screen flex-col items-center bg-zinc-950 tracking-[0.015em] text-white'
-  >
+  <body class='flex min-h-screen flex-col items-center bg-zinc-950 text-white'>
     <slot name='decorator' />
     <main
       class:list={[
-        'w-full px-12 pb-16 transition-all max-sm:px-4 min-[1200px]:w-[1200px]',
+        'w-full px-12 pb-16 tracking-wide transition-all max-sm:px-4 min-[1200px]:w-[1200px]',
         className
       ]}
     >
