@@ -24,7 +24,7 @@ const { year, title, description, slug, heroImage } = Astro.props
     alt={title}
     transition:name={getTransitionName(title, 'image')}
     class='transition-all duration-800 group-hover:scale-105'
-    wrapperClass='h-[200px] rounded-lg overflow-clip'
+    wrapperProps={{ class: 'h-[200px] rounded-lg overflow-clip' }}
   />
   <div class='flex flex-col gap-4'>
     <p class='text-sm'>{year}</p>

@@ -91,7 +91,7 @@ const htmlTitle = title.replace(
     <Image
       src={heroImage}
       alt='Bookmarked Notion page'
-      wrapperClass='max-h-[560px] rounded-lg'
+      wrapperProps={{ class: 'max-h-[560px] rounded-lg' }}
       transition:name={getTransitionName(title, 'image')}
       ambientMode
     />

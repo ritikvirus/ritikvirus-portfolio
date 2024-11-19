@@ -57,7 +57,7 @@ const TableOfContent = ({ headings }: Props) => {
   return (
     <div>
       <p className='font-geist text-lg font-medium text-slate-200'>
-        Table of Contents
+        On this page
       </p>
       <ul className='mt-2 space-y-1.5 text-sm text-slate-400/60'>
         {groupedHeadings.map((heading) => {
