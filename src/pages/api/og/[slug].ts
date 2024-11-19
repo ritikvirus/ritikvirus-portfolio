@@ -23,7 +23,7 @@ const generateHtml = (
     props: {
       tw: 'h-full w-full p-32 pt-28 flex flex-col relative',
       style: {
-        fontFamily: 'Plus Jakarta Sans Medium'
+        fontFamily: 'Switzer Medium'
       },
       children: [
         {
@@ -43,7 +43,7 @@ const generateHtml = (
               {
                 type: 'div',
                 props: {
-                  tw: 'w-5 h-5 mr-3 bg-green-300 text-green-300 rounded-full'
+                  tw: 'w-8 h-8 mr-4 bg-green-300 text-green-300 rounded-full'
                 }
               },
               {
@@ -77,7 +77,7 @@ const generateHtml = (
               }
             ],
             style: {
-              fontFamily: 'Plus Jakarta Sans Medium'
+              fontFamily: 'Switzer Medium'
             }
           }
         },
@@ -87,7 +87,7 @@ const generateHtml = (
             tw: 'text-6xl font-bold text-white mt-12 tracking-tight',
             children: data.title.replace('\\n', ' '),
             style: {
-              fontFamily: 'Plus Jakarta Sans Bold'
+              fontFamily: 'Switzer Semi Bold'
             }
           }
         },
@@ -109,12 +109,12 @@ export const GET: OGAPIRoute = async ({ props }) => {
   } = props
   const html = generateHtml(data)
 
-  const PlusJakartaSansBold = fs.readFileSync(
-    path.resolve(process.cwd(), 'public/fonts/PlusJakartaSans-Bold.ttf')
+  const SwitzerSemiBold = fs.readFileSync(
+    path.resolve(process.cwd(), 'public/fonts/Switzer-SemiBold.otf')
   )
 
-  const PlusJakartaSansMedium = fs.readFileSync(
-    path.resolve(process.cwd(), 'public/fonts/PlusJakartaSans-Medium.ttf')
+  const SwitzerMedium = fs.readFileSync(
+    path.resolve(process.cwd(), 'public/fonts/Switzer-Medium.otf')
   )
 
   return new ImageResponse(html, {
@@ -122,13 +122,13 @@ export const GET: OGAPIRoute = async ({ props }) => {
     height: 630,
     fonts: [
       {
-        name: 'Plus Jakarta Sans Bold',
-        data: PlusJakartaSansBold.buffer as ArrayBuffer,
+        name: 'Switzer Semi Bold',
+        data: SwitzerSemiBold.buffer as ArrayBuffer,
         style: 'normal'
       },
       {
-        name: 'Plus Jakarta Sans Medium',
-        data: PlusJakartaSansMedium.buffer as ArrayBuffer,
+        name: 'Switzer Medium',
+        data: SwitzerMedium.buffer as ArrayBuffer,
         style: 'normal'
       }
     ]
