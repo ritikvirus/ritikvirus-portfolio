@@ -10,8 +10,8 @@
 }
 
 :root {
-  --accent-color-1: #04cf7a;
-  --accent-color-2: #01fecb;
+  --accent-color-1: #00df73;
+  --accent-color-2: #01fedc;
   --accent-gradient-color: linear-gradient(
     90deg,
     var(--accent-color-1),

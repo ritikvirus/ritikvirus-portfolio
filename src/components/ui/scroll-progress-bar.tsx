@@ -45,7 +45,7 @@ export default function ScrollProgressBar({
         ref={spanRef}
         className={cn(
           'pointer-events-none fixed end-0 start-0 top-0 z-30',
-          'w-0 overflow-clip'
+          'w-0 overflow-clip rounded-full'
         )}
         style={{ height: `${strokeSize + 2}px` }}
       >
