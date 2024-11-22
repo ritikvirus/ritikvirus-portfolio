@@ -16,6 +16,8 @@ interface Props
 }
 
 const { year, title, description, slug, heroImage } = Astro.props
+
+const endPosition = '20px'
 ---
 
 <Link href={`projects/${slug}`} class='group space-y-6'>
@@ -38,18 +40,14 @@ const { year, title, description, slug, heroImage } = Astro.props
     <p class='text-sm tracking-wide text-slate-400'>
       {description}
     </p>
-    <div class='flex items-center gap-1 text-emerald-300'>
-      <p
-        class:list={[
-          'relative pr-0.5 text-sm',
-          "after:absolute after:left-0 after:top-1/2 after:w-0 after:content-['']",
-          'after:mt-3 after:h-[1.25px] after:bg-emerald-300 after:transition-all after:duration-300',
-          'group-hover:after:w-full'
-        ]}
-      >
-        Read more
-      </p>
-      <ArrowRight className='transition-all duration-300 group-hover:ml-1' />
-    </div>
+    <span
+      class='link-hover-animation text-primary-gradient group-hover:link-hovered-animation w-fit text-sm'
+      >Read more
+      <ArrowRight
+        className='inline-block text-[var(--accent-color-2)] transition-all duration-300 group-hover:ml-1'
+      />
+    </span>
   </div>
 </Link>
+
+<style define:vars={{ endPosition }}></style>

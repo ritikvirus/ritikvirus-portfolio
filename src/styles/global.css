@@ -1,6 +1,48 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@tailwind variants;
+
+@layer utilities {
+  .bg-primary-gradient {
+    background-image: linear-gradient(
+      to right,
+      var(--accent-color-1),
+      var(--accent-color-2)
+    );
+  }
+
+  .text-primary-gradient {
+    @apply bg-primary-gradient;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .link-hover-animation {
+    position: relative;
+
+    &::before {
+      position: absolute;
+      content: '';
+      left: var(--startPosition, 0px);
+      bottom: -5px;
+      height: 1.25px;
+      width: 0;
+      background-image: repeating-linear-gradient(
+        to right,
+        var(--dot-color, rgba(255, 255, 255, 0.75)),
+        var(--dot-color, rgba(255, 255, 255, 0.75)) 2px,
+        transparent 2px,
+        transparent 4px
+      );
+      transition: all 0.3s ease-in-out;
+    }
+  }
+
+  .link-hovered-animation::before {
+    width: calc(100% - var(--endPosition, var(--startPosition, 0px)));
+  }
+}
 
 @font-face {
   font-family: 'Switzer';
@@ -24,20 +66,4 @@
     var(--accent-color-1),
     var(--accent-color-2)
   );
-}
-
-@layer utilities {
-  .bg-primary-gradient {
-    background-image: linear-gradient(
-      to right,
-      var(--accent-color-1),
-      var(--accent-color-2)
-    );
-  }
-
-  .text-primary-gradient {
-    @apply bg-primary-gradient;
-    background-clip: text;
-    color: transparent;
-  }
 }
