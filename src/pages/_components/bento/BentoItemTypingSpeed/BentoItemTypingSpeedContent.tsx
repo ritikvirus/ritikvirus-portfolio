@@ -53,7 +53,7 @@ const TypingSpeed = (props: Props) => {
     >
       <p
         className={cn(
-          'absolute text-[196px] font-extrabold text-transparent',
+          'font-heading absolute text-[196px] font-extrabold text-transparent',
           'left-1/2 top-0 -z-10 -translate-x-1/2 leading-none opacity-70',
           'bg-gradient-to-b from-[#1E293B] to-[#11161D] bg-clip-text'
         )}
@@ -67,7 +67,7 @@ const TypingSpeed = (props: Props) => {
       />
       <div>
         <div className='flex items-baseline'>
-          <p className='text-[84px] font-semibold leading-tight tracking-normal'>
+          <p className='font-heading text-[84px] font-medium leading-tight tracking-normal'>
             {props.wpm}
           </p>
           <p className='text-2xl leading-none'>wpm</p>

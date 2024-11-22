@@ -26,7 +26,8 @@ module.exports = {
             fontWeight: '300',
             letterSpacing: theme('letterSpacing.wide'),
             'h1, h2, h3, h4': {
-              letterSpacing: theme('letterSpacing.tight'),
+              letterSpacing: '-0.015em',
+              fontWeight: '500',
               fontFamily: theme('fontFamily.heading').join(', ')
             },
             a: {
