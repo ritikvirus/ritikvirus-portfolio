@@ -29,12 +29,8 @@ module.exports = {
               fontWeight: '500'
             },
             a: {
-              fontWeight: '400',
-              textUnderlineOffset: '2px',
-              color: theme('colors.emerald.300'),
-              '&:hover': {
-                color: theme('colors.emerald.400')
-              }
+              color: 'transparent',
+              fontWeight: '400'
             },
             strong: {
               fontWeight: '500'
@@ -135,5 +131,22 @@ module.exports = {
       }
     }
   },
-  plugins: [require('tailwindcss-animate'), require('@tailwindcss/typography')]
+  plugins: [
+    require('tailwindcss-animate'),
+    require('@tailwindcss/typography'),
+    function ({ addUtilities }) {
+      addUtilities({
+        '.gradient-background': {
+          backgroundImage:
+            'linear-gradient(to right, var(--accent-color-1), var(--accent-color-2))'
+        },
+        '.gradient-text': {
+          backgroundImage:
+            'linear-gradient(to right, var(--accent-color-1), var(--accent-color-2))',
+          backgroundClip: 'text',
+          textFillColor: 'transparent'
+        }
+      })
+    }
+  ]
 }

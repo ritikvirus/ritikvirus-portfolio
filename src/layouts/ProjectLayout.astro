@@ -47,14 +47,14 @@ const htmlTitle = title.replace(
 >
   <slot name='head' slot='head' />
   <ScrollProgressBar type='bar' client:only='react' />
-  <section class='space-y-4 sm:pt-12'>
+  <section class='space-y-4 sm:pt-24'>
     <h2
       class='border-l border-l-slate-300 px-2 text-lg font-light leading-tight text-slate-300'
     >
       {year}
     </h2>
     <h1
-      class='text-[clamp(24px,5vw,40px)] font-semibold leading-none'
+      class='text-[clamp(24px,5vw,40px)] font-medium leading-none'
       set:html={htmlTitle}
       transition:name={getTransitionName(title, 'title')}
     />
@@ -98,18 +98,18 @@ const htmlTitle = title.replace(
     />
   </section>
   <section class='flex w-full gap-16'>
-    <article class='prose prose-invert max-w-none'>
+    <article class='sm:prose-a:gradient-text prose prose-invert max-w-none'>
       <slot />
       {
+        // prettier-ignore
         updatedDate && (
           <p class='mt-16 text-sm text-slate-400/90'>
             Last updated on {formatDateByTimeZone(updatedDate)} UTC+7.
-            {latestCommitUrl && (
-              <LinkArticle class='ml-1' href={latestCommitUrl}>
+            {latestCommitUrl && 
+            <LinkArticle href={latestCommitUrl}>
                 See Changelog
-                <ArrowOutward className='inline-block size-3' />
-              </LinkArticle>
-            )}
+                <ArrowOutward className='inline-block size-3 text-[var(--accent-color-2)]' />
+              </LinkArticle>}
           </p>
         )
       }
@@ -141,15 +141,33 @@ const htmlTitle = title.replace(
 
   .project-heading > a {
     opacity: 0;
-    color: white;
+    color: azure;
     transition: all 200ms ease-in-out;
     display: inline-block;
     vertical-align: middle;
     padding-bottom: 4px;
+
+    &:hover {
+      color: var(--accent-color-2);
+    }
   }
 
   .project-heading:hover > a {
     opacity: 1;
+  }
+
+  article > p a {
+    text-decoration: none !important;
+    text-underline-offset: 0px !important;
+    transition: text-underline-offset 0.15s ease-out;
+  }
+
+  article > p a:hover {
+    text-decoration: underline !important;
+    text-decoration-thickness: 1px !important;
+    text-decoration-style: dashed !important;
+    text-decoration-color: rgba(255, 255, 255, 0.7) !important;
+    text-underline-offset: 5px !important;
   }
 </style>
 

@@ -19,8 +19,8 @@ interface ScrollProgressBarType {
 export default function ScrollProgressBar({
   type = 'circle',
   position = 'bottom-right',
-  color = 'ghostwhite',
-  strokeSize = 2,
+  color = 'azure',
+  strokeSize = 0,
   showPercentage = true
 }: Readonly<ScrollProgressBarType>) {
   const { scrollYProgress } = useScroll()
@@ -51,10 +51,7 @@ export default function ScrollProgressBar({
       >
         <span
           style={{ backgroundColor: color }}
-          className={cn(
-            'absolute block h-full w-screen',
-            'bg-gradient-to-r from-[var(--accent-color-1)] to-[var(--accent-color-2)]'
-          )}
+          className='gradient-background absolute block h-full w-screen'
         ></span>
       </span>
     )

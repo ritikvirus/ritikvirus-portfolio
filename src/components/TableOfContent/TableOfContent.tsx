@@ -26,7 +26,7 @@ const groupHeadings = (headings: MarkdownHeading[]): GroupedHeadings => {
 const Heading = ({ slug, text }: MarkdownHeading) => {
   return (
     <li>
-      <a className='tracking-wider hover:text-slate-300' href={`#${slug}`}>
+      <a className='leading-relaxed hover:text-slate-300' href={`#${slug}`}>
         {text}
       </a>
     </li>
