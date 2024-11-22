@@ -43,16 +43,16 @@ const htmlTitle = title.replace(
   title={title.replace('\\n', ' ')}
   imageUrl={`${BASE_URL}/api/og/${slug}`}
   description={description}
-  class='!max-w-[1056px] space-y-12'
+  class='!max-w-[1024px] space-y-12'
 >
   <slot name='head' slot='head' />
-  <ScrollProgressBar type='bar' client:only='react' />
+  <ScrollProgressBar type='bar' strokeSize={1} client:only='react' />
   <section class='space-y-4 sm:pt-24'>
     <h2 class='text-lg leading-tight'>
       {year}
     </h2>
     <h1
-      class='font-heading text-[clamp(24px,5vw,48px)] font-semibold leading-none tracking-tight'
+      class='font-heading text-[clamp(24px,5vw,40px)] font-semibold leading-[1.05] tracking-tight'
       set:html={htmlTitle}
       transition:name={getTransitionName(title, 'title')}
     />
@@ -113,7 +113,7 @@ const htmlTitle = title.replace(
       }
     </article>
 
-    <aside class='w-[220px] shrink-0 space-y-8 max-lg:hidden'>
+    <aside class='w-[220px] shrink-0 space-y-8 max-[880px]:hidden'>
       <AuthorCard />
       <TableOfContent headings={headings} className='sticky top-16' />
     </aside>
@@ -123,7 +123,7 @@ const htmlTitle = title.replace(
       <MoreProjectCard {...Astro.props} />
       <MoreProjectCard {...Astro.props} />
     </div> -->
-    <Link href='/projects' styled>
+    <Link href='/projects' styled hoverStyled hoverEffectStartPosition={24}>
       <ArrowRight
         className='mr-2 inline-block size-4 -scale-x-100 text-[var(--accent-color-1)]'
       />Explore more projects</Link
@@ -140,15 +140,11 @@ const htmlTitle = title.replace(
 
   .project-heading > a {
     opacity: 0;
-    color: azure;
+    color: var(--accent-color-1);
     transition: all 200ms ease-in-out;
     display: inline-block;
     vertical-align: middle;
     padding-bottom: 4px;
-
-    &:hover {
-      color: var(--accent-color-2);
-    }
   }
 
   .project-heading:hover > a {
@@ -159,14 +155,14 @@ const htmlTitle = title.replace(
     text-decoration: none !important;
     text-underline-offset: 0px !important;
     transition: text-underline-offset 0.15s ease-out;
-  }
 
-  article > p a:hover {
-    text-decoration: underline !important;
-    text-decoration-thickness: 1px !important;
-    text-decoration-style: dashed !important;
-    text-decoration-color: rgba(255, 255, 255, 0.7) !important;
-    text-underline-offset: 5px !important;
+    &:hover {
+      text-decoration: underline !important;
+      text-decoration-thickness: 1px !important;
+      text-decoration-style: dashed !important;
+      text-decoration-color: rgba(255, 255, 255, 0.7) !important;
+      text-underline-offset: 5px !important;
+    }
   }
 </style>
 

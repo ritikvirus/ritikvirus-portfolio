@@ -1,9 +1,17 @@
 ---
 interface Props extends astroHTML.JSX.AnchorHTMLAttributes {
   styled?: boolean
+  hoverStyled?: boolean
+  hoverEffectStartPosition?: number
 }
 
-const { styled, class: className, ...rest } = Astro.props
+const {
+  styled,
+  hoverStyled,
+  hoverEffectStartPosition,
+  class: className,
+  ...rest
+} = Astro.props
 ---
 
 <script>
@@ -64,9 +72,41 @@ const { styled, class: className, ...rest } = Astro.props
   class:list={[
     'custom-link',
     {
-      'gradient-text underline-offset-2 hover:underline': styled
+      'gradient-text underline-offset-2 hover:underline': styled,
+      'hover-animation': hoverStyled
     },
     className
   ]}
   {...rest}><slot /></a
 >
+
+<style define:vars={{ startPosition: `${hoverEffectStartPosition ?? 0}px` }}>
+  .hover-animation {
+    --dot-color: rgba(255, 255, 255, 0.75);
+
+    position: relative;
+
+    &::before {
+      position: absolute;
+      content: '';
+      left: var(--startPosition);
+      bottom: -5px;
+      height: 1.25px;
+      width: 0;
+      background-image: repeating-linear-gradient(
+        to right,
+        var(--dot-color),
+        var(--dot-color) 2px,
+        transparent 2px,
+        transparent 4px
+      );
+      transition: all 0.3s ease-in-out;
+    }
+
+    &:hover {
+      &::before {
+        width: calc(100% - var(--startPosition));
+      }
+    }
+  }
+</style>
