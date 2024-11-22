@@ -51,7 +51,7 @@ export default function ScrollProgressBar({
       >
         <span
           style={{ backgroundColor: color }}
-          className='gradient-background absolute block h-full w-screen'
+          className='bg-primary-gradient absolute block h-full w-screen'
         ></span>
       </span>
     )

@@ -72,7 +72,7 @@ const {
   class:list={[
     'custom-link',
     {
-      'gradient-text underline-offset-2 hover:underline': styled,
+      'text-primary-gradient underline-offset-2 hover:underline': styled,
       'hover-animation': hoverStyled
     },
     className
@@ -89,7 +89,7 @@ const {
     &::before {
       position: absolute;
       content: '';
-      left: var(--startPosition);
+      left: var(--startPosition, 0);
       bottom: -5px;
       height: 1.25px;
       width: 0;
@@ -105,7 +105,7 @@ const {
 
     &:hover {
       &::before {
-        width: calc(100% - var(--startPosition));
+        width: calc(100% - var(--startPosition, 0));
       }
     }
   }

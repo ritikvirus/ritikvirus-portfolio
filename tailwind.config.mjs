@@ -133,22 +133,5 @@ module.exports = {
       }
     }
   },
-  plugins: [
-    require('tailwindcss-animate'),
-    require('@tailwindcss/typography'),
-    function ({ addUtilities }) {
-      addUtilities({
-        '.gradient-background': {
-          backgroundImage:
-            'linear-gradient(to right, var(--accent-color-1), var(--accent-color-2))'
-        },
-        '.gradient-text': {
-          backgroundImage:
-            'linear-gradient(to right, var(--accent-color-1), var(--accent-color-2))',
-          backgroundClip: 'text',
-          color: 'transparent'
-        }
-      })
-    }
-  ]
+  plugins: [require('tailwindcss-animate'), require('@tailwindcss/typography')]
 }
