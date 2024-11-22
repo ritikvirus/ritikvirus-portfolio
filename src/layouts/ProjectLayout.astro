@@ -48,13 +48,11 @@ const htmlTitle = title.replace(
   <slot name='head' slot='head' />
   <ScrollProgressBar type='bar' client:only='react' />
   <section class='space-y-4 sm:pt-24'>
-    <h2
-      class='border-l border-l-slate-300 px-2 text-lg font-light leading-tight text-slate-300'
-    >
+    <h2 class='text-lg leading-tight'>
       {year}
     </h2>
     <h1
-      class='text-[clamp(24px,5vw,40px)] font-medium leading-none'
+      class='font-heading text-[clamp(24px,5vw,48px)] font-semibold leading-none tracking-tight'
       set:html={htmlTitle}
       transition:name={getTransitionName(title, 'title')}
     />
@@ -98,7 +96,7 @@ const htmlTitle = title.replace(
     />
   </section>
   <section class='flex w-full gap-16'>
-    <article class='sm:prose-a:gradient-text prose prose-invert max-w-none'>
+    <article class='prose-a:gradient-text prose prose-invert max-w-none'>
       <slot />
       {
         // prettier-ignore
@@ -126,8 +124,9 @@ const htmlTitle = title.replace(
       <MoreProjectCard {...Astro.props} />
     </div> -->
     <Link href='/projects' styled>
-      <ArrowRight className='mr-2 inline-block size-4 -scale-x-100' />Explore
-      more projects</Link
+      <ArrowRight
+        className='mr-2 inline-block size-4 -scale-x-100 text-[var(--accent-color-1)]'
+      />Explore more projects</Link
     >
   </section>
 </BaseLayout>

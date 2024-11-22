@@ -58,7 +58,9 @@ const TableOfContent = ({ headings, className }: Props) => {
 
   return (
     <div className={className}>
-      <p className='text-lg font-medium text-slate-200'>On this page</p>
+      <p className='font-heading text-lg font-medium tracking-tight text-slate-200'>
+        On this page
+      </p>
       <ul className='mt-2 space-y-1.5 text-sm text-slate-400/60'>
         {groupedHeadings.map((heading) => {
           if (!Array.isArray(heading)) {

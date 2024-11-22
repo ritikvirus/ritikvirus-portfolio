@@ -26,7 +26,8 @@ module.exports = {
             fontWeight: '300',
             letterSpacing: theme('letterSpacing.wide'),
             'h1, h2, h3, h4': {
-              fontWeight: '500'
+              letterSpacing: theme('letterSpacing.tight'),
+              fontFamily: theme('fontFamily.heading').join(', ')
             },
             a: {
               color: 'transparent',
@@ -43,7 +44,8 @@ module.exports = {
         6: '6px'
       },
       fontFamily: {
-        sans: ['Switzer', 'sans-serif']
+        sans: ['Switzer', 'sans'],
+        heading: ['Poppins', 'sans']
       },
       screens: {
         xs: '480px'
@@ -144,7 +146,7 @@ module.exports = {
           backgroundImage:
             'linear-gradient(to right, var(--accent-color-1), var(--accent-color-2))',
           backgroundClip: 'text',
-          textFillColor: 'transparent'
+          color: 'transparent'
         }
       })
     }
