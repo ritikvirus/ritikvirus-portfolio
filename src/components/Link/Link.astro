@@ -2,21 +2,21 @@
 interface Props extends astroHTML.JSX.AnchorHTMLAttributes {
   styled?: boolean
   hoverStyled?: boolean
-  hoverEffectStartPosition?: string
-  hoverEffectEndPosition?: string
+  hoverEffectOffsetStart?: string
+  hoverEffectOffsetEnd?: string
 }
 
 const {
   styled,
   hoverStyled,
-  hoverEffectStartPosition,
-  hoverEffectEndPosition,
+  hoverEffectOffsetStart,
+  hoverEffectOffsetEnd,
   class: className,
   ...rest
 } = Astro.props
 
-const startPosition = hoverEffectStartPosition
-const endPosition = hoverEffectEndPosition
+const offsetStart = hoverEffectOffsetStart
+const offsetEnd = hoverEffectOffsetEnd
 ---
 
 <script>
@@ -85,4 +85,4 @@ const endPosition = hoverEffectEndPosition
   {...rest}><slot /></a
 >
 
-<style define:vars={{ startPosition, endPosition }}></style>
+<style define:vars={{ offsetStart, offsetEnd }}></style>

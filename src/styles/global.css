@@ -24,7 +24,7 @@
     &::before {
       position: absolute;
       content: '';
-      left: var(--startPosition, 0px);
+      left: var(--offsetStart, 0px);
       bottom: -5px;
       height: 1.25px;
       width: 0;
@@ -40,7 +40,7 @@
   }
 
   .link-hovered-animation::before {
-    width: calc(100% - var(--endPosition, var(--startPosition, 0px)));
+    width: calc(100% - var(--offsetEnd, var(--offsetStart, 0px)));
   }
 }
 
