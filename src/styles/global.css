@@ -54,7 +54,7 @@
 @font-face {
   font-family: 'Poppins';
   src: url('/fonts/Poppins-Variable.woff2') format('woff2');
-  font-weight: 400;
+  font-weight: 400 500;
   font-style: normal;
 }
 

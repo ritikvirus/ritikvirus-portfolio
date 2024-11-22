@@ -52,11 +52,11 @@ const htmlTitle = title.replace(
       {year}
     </h2>
     <h1
-      class='font-heading text-[clamp(24px,5vw,40px)] font-semibold leading-[1.05] tracking-tight'
+      class='font-heading text-[clamp(24px,5vw,40px)] font-semibold leading-[1.1] tracking-tight'
       set:html={htmlTitle}
       transition:name={getTransitionName(title, 'title')}
     />
-    <h3 class='text-slate-300/90 max-sm:text-sm'>
+    <h3 class='text-slate-300/75 sm:text-lg'>
       {description}
     </h3>
     <!-- {
@@ -147,6 +147,7 @@ const htmlTitle = title.replace(
     display: inline-block;
     vertical-align: middle;
     padding-bottom: 4px;
+    margin-left: 2px;
   }
 
   .project-heading:hover > a {
