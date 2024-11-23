@@ -46,7 +46,7 @@ const htmlTitle = title.replace(
   class='!max-w-[1024px] space-y-12'
 >
   <slot name='head' slot='head' />
-  <ScrollProgressBar type='bar' id='article' client:only='react' />
+  <ScrollProgressBar type='bar' targetId='article' client:only='react' />
   <section class='space-y-4 font-light sm:pt-24'>
     <h2 class='text-lg leading-tight text-slate-300/90'>
       {year}

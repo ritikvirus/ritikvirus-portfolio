@@ -2,6 +2,7 @@ import {
   motion,
   useMotionValueEvent,
   useScroll,
+  useSpring,
   useTransform
 } from 'framer-motion'
 import React from 'react'
@@ -14,7 +15,7 @@ interface ScrollProgressBarType {
   color?: string
   strokeSize?: number
   showPercentage?: boolean
-  id?: string
+  targetId?: string
 }
 
 const getContainerElement = (id?: string) => {
@@ -27,22 +28,29 @@ export default function ScrollProgressBar({
   type = 'circle',
   position = 'bottom-right',
   color = 'azure',
-  strokeSize = 0,
+  strokeSize = 2,
   showPercentage = true,
-  id
+  targetId
 }: Readonly<ScrollProgressBarType>) {
   const spanRef = React.useRef<HTMLSpanElement>(null)
-  const containerRef = React.useRef<HTMLElement | null>(null)
+  const targetRef = React.useRef<HTMLElement | null>(null)
 
-  containerRef.current = getContainerElement(id)
+  targetRef.current = getContainerElement(targetId)
 
   const { scrollYProgress } = useScroll({
-    ...(containerRef.current && {
-      target: containerRef,
+    ...(targetRef.current && {
+      target: targetRef,
       offset: ['start center', 'end end']
     })
   })
-  const scrollPercentage = useTransform(scrollYProgress, [0, 1], [0, 100])
+
+  const widthValue = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  })
+
+  const scrollPercentage = useTransform(widthValue, [0, 1], [0, 100])
 
   useMotionValueEvent(scrollPercentage, 'change', (latest) => {
     if (!spanRef.current) return
