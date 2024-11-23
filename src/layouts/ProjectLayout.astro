@@ -46,14 +46,9 @@ const htmlTitle = title.replace(
   class='!max-w-[1024px] space-y-12'
 >
   <slot name='head' slot='head' />
-  <ScrollProgressBar
-    type='bar'
-    strokeSize={2}
-    id='article'
-    client:only='react'
-  />
-  <section class='space-y-4 sm:pt-24'>
-    <h2 class='text-lg leading-tight'>
+  <ScrollProgressBar type='bar' id='article' client:only='react' />
+  <section class='space-y-4 font-light sm:pt-24'>
+    <h2 class='text-lg leading-tight text-slate-300/90'>
       {year}
     </h2>
     <h1
@@ -61,9 +56,17 @@ const htmlTitle = title.replace(
       set:html={htmlTitle}
       transition:name={getTransitionName(title, 'title')}
     />
-    <h3 class='text-slate-300/75 sm:text-lg'>
+    <h3 class='pb-4 text-slate-300/90 sm:text-lg'>
       {description}
     </h3>
+    <Image
+      src={heroImage}
+      alt='Bookmarked Notion page'
+      wrapperProps={{ class: ' rounded-lg' }}
+      class='w-full sm:aspect-[2/1]'
+      transition:name={getTransitionName(title, 'image')}
+      ambientMode
+    />
     <!-- {
       links.length > 1 && (
         <ul class='flex flex-wrap gap-2 pt-4 sm:gap-4'>
@@ -90,19 +93,9 @@ const htmlTitle = title.replace(
       )
     } -->
   </section>
-  <section>
-    <Image
-      src={heroImage}
-      alt='Bookmarked Notion page'
-      wrapperProps={{ class: ' rounded-lg' }}
-      class='w-full sm:aspect-[2/1]'
-      transition:name={getTransitionName(title, 'image')}
-      ambientMode
-    />
-  </section>
   <section id='article' class='flex w-full gap-16'>
     <article
-      class='prose-a:text-primary-gradient prose prose-invert max-w-none'
+      class='prose-a:text-primary-gradient prose prose-invert max-w-none max-sm:prose-sm'
     >
       <slot />
       {
