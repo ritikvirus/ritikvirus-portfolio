@@ -14,6 +14,13 @@ interface ScrollProgressBarType {
   color?: string
   strokeSize?: number
   showPercentage?: boolean
+  id?: string
+}
+
+const getContainerElement = (id?: string) => {
+  if (!id) return null
+
+  return document.getElementById(id)
 }
 
 export default function ScrollProgressBar({
@@ -21,11 +28,20 @@ export default function ScrollProgressBar({
   position = 'bottom-right',
   color = 'azure',
   strokeSize = 0,
-  showPercentage = true
+  showPercentage = true,
+  id
 }: Readonly<ScrollProgressBarType>) {
-  const { scrollYProgress } = useScroll()
   const spanRef = React.useRef<HTMLSpanElement>(null)
+  const containerRef = React.useRef<HTMLElement | null>(null)
 
+  containerRef.current = getContainerElement(id)
+
+  const { scrollYProgress } = useScroll({
+    ...(containerRef.current && {
+      target: containerRef,
+      offset: ['start center', 'end end']
+    })
+  })
   const scrollPercentage = useTransform(scrollYProgress, [0, 1], [0, 100])
 
   useMotionValueEvent(scrollPercentage, 'change', (latest) => {

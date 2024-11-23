@@ -46,7 +46,12 @@ const htmlTitle = title.replace(
   class='!max-w-[1024px] space-y-12'
 >
   <slot name='head' slot='head' />
-  <ScrollProgressBar type='bar' strokeSize={1} client:only='react' />
+  <ScrollProgressBar
+    type='bar'
+    strokeSize={2}
+    id='article'
+    client:only='react'
+  />
   <section class='space-y-4 sm:pt-24'>
     <h2 class='text-lg leading-tight'>
       {year}
@@ -95,7 +100,7 @@ const htmlTitle = title.replace(
       ambientMode
     />
   </section>
-  <section class='flex w-full gap-16'>
+  <section id='article' class='flex w-full gap-16'>
     <article
       class='prose-a:text-primary-gradient prose prose-invert max-w-none'
     >
