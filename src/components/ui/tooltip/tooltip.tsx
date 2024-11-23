@@ -33,20 +33,29 @@ type TooltipContentProps = Omit<
   | 'triggerAsChild'
 >
 
-const contentClass = cn(
-  // base
-  'max-w-80 select-none rounded-md px-3 py-2.5 text-sm leading-relaxed tracking-wide shadow-md',
-  // text color
-  'text-zinc-300/90',
-  // background color
-  'bg-[var(--tooltip-color)]',
-  // transition
-  'will-change-[transform,opacity]',
-  'data-[side=bottom]:animate-slideDownAndFade data-[side=left]:animate-slideLeftAndFade data-[side=right]:animate-slideRightAndFade data-[side=top]:animate-slideUpAndFade data-[state=closed]:animate-hide',
-  // other
-  'z-50 border border-[var(--tooltip-border-color)]',
-  'tooltip-content'
-)
+type TooltipProviderProps = Pick<
+  TooltipProps,
+  'open' | 'defaultOpen' | 'onOpenChange' | 'delayDuration' | 'children'
+>
+
+const TooltipProvider = ({
+  children,
+  delayDuration = 150,
+  ...restProps
+}: TooltipProviderProps) => {
+  return (
+    <TooltipPrimitives.Provider delayDuration={delayDuration}>
+      <TooltipPrimitives.Root
+        tremor-id='tremor-raw'
+        delayDuration={delayDuration}
+        {...restProps}
+      >
+        {children}
+      </TooltipPrimitives.Root>
+    </TooltipPrimitives.Provider>
+  )
+}
+const TooltipTrigger = TooltipPrimitives.Trigger
 
 const TooltipContent = React.forwardRef<
   React.ElementRef<typeof TooltipPrimitives.Content>,
@@ -64,7 +73,21 @@ const TooltipContent = React.forwardRef<
       <TooltipPrimitives.Content
         ref={forwardedRef}
         align='center'
-        className={cn(contentClass, className)}
+        className={cn(
+          // base
+          'max-w-80 select-none rounded-md px-3 py-2.5 text-sm leading-relaxed tracking-wide shadow-md',
+          // text color
+          'text-zinc-300/90',
+          // background color
+          'bg-[var(--tooltip-color)]',
+          // transition
+          'will-change-[transform,opacity]',
+          'data-[side=bottom]:animate-slideDownAndFade data-[side=left]:animate-slideLeftAndFade data-[side=right]:animate-slideRightAndFade data-[side=top]:animate-slideUpAndFade data-[state=closed]:animate-hide',
+          // other
+          'z-50 border border-[var(--tooltip-border-color)]',
+          'tooltip-content',
+          className
+        )}
         sideOffset={sideOffset}
         {...restProps}
       >
@@ -75,6 +98,10 @@ const TooltipContent = React.forwardRef<
   )
 })
 
+/**
+ * simply use this component if the tooltip content is simple
+ * and doesn't need any additional configuration
+ */
 const Tooltip = React.forwardRef<
   React.ElementRef<typeof TooltipPrimitives.Content>,
   TooltipProps
@@ -94,24 +121,29 @@ const Tooltip = React.forwardRef<
     forwardedRef
   ) => {
     return (
-      <TooltipPrimitives.Provider delayDuration={150}>
-        <TooltipPrimitives.Root
-          open={open}
-          defaultOpen={defaultOpen}
-          onOpenChange={onOpenChange}
-          delayDuration={delayDuration}
-          tremor-id='tremor-raw'
-        >
-          <TooltipPrimitives.Trigger onClick={onClick} asChild={triggerAsChild}>
-            {children}
-          </TooltipPrimitives.Trigger>
-          <TooltipContent {...props}>{content}</TooltipContent>
-        </TooltipPrimitives.Root>
-      </TooltipPrimitives.Provider>
+      <TooltipProvider
+        open={open}
+        defaultOpen={defaultOpen}
+        onOpenChange={onOpenChange}
+        delayDuration={delayDuration}
+      >
+        <TooltipTrigger onClick={onClick} asChild={triggerAsChild}>
+          {children}
+        </TooltipTrigger>
+        <TooltipContent ref={forwardedRef} {...props}>
+          {content}
+        </TooltipContent>
+      </TooltipProvider>
     )
   }
 )
 
 Tooltip.displayName = 'Tooltip'
 
-export { Tooltip, TooltipContent, type TooltipProps }
+export {
+  Tooltip,
+  TooltipContent,
+  type TooltipProps,
+  TooltipProvider,
+  TooltipTrigger
+}
