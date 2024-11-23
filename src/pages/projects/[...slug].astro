@@ -1,5 +1,6 @@
 ---
 import { getCollection } from 'astro:content'
+import readingTime from 'reading-time'
 import type { BreadcrumbList, WithContext } from 'schema-dts'
 
 import ContentWrapper from '@/components/ContentWrapper.astro'
@@ -35,6 +36,7 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props
 const { Content, headings } = await entry.render()
+const readingTimeInMinutes = readingTime(entry.body).minutes
 
 const projectStructuredData = getProjectSchema(entry)
 
@@ -63,7 +65,12 @@ const jsonLd = {
 }
 ---
 
-<ProjectLayout headings={headings} slug={entry.slug} {...entry.data}>
+<ProjectLayout
+  headings={headings}
+  slug={entry.slug}
+  readingTime={readingTimeInMinutes}
+  {...entry.data}
+>
   <script
     is:inline
     type='application/ld+json'

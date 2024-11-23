@@ -23,6 +23,7 @@ export const projects = defineCollection({
       title: z.string(),
       description: z.string(),
       heroImage: image(),
+      readingTime: z.number().optional(),
       contributors: z.array(
         z.object({ name: z.string(), username: z.string(), url: z.string() })
       ),

@@ -25,13 +25,12 @@ const {
   year,
   description,
   heroImage,
-  links,
-  contributors,
   title,
   headings,
   slug,
   updatedDate,
-  latestCommitUrl
+  latestCommitUrl,
+  readingTime
 } = Astro.props
 
 const htmlTitle = title.replace(
@@ -117,7 +116,7 @@ const htmlTitle = title.replace(
     </article>
 
     <aside class='w-[220px] shrink-0 space-y-8 max-[880px]:hidden'>
-      <AuthorCard />
+      <AuthorCard timeToRead={readingTime} />
       <TableOfContent headings={headings} className='sticky top-24' />
     </aside>
   </section>
