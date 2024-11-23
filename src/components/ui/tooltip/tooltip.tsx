@@ -22,6 +22,59 @@ interface TooltipProps
   triggerAsChild?: boolean
 }
 
+type TooltipContentProps = Omit<
+  TooltipProps,
+  | 'content'
+  | 'delayDuration'
+  | 'defaultOpen'
+  | 'open'
+  | 'onClick'
+  | 'onOpenChange'
+  | 'triggerAsChild'
+>
+
+const contentClass = cn(
+  // base
+  'max-w-80 select-none rounded-md px-3 py-2.5 text-sm leading-relaxed tracking-wide shadow-md',
+  // text color
+  'text-zinc-300/90',
+  // background color
+  'bg-[var(--tooltip-color)]',
+  // transition
+  'will-change-[transform,opacity]',
+  'data-[side=bottom]:animate-slideDownAndFade data-[side=left]:animate-slideLeftAndFade data-[side=right]:animate-slideRightAndFade data-[side=top]:animate-slideUpAndFade data-[state=closed]:animate-hide',
+  // other
+  'z-50 border border-[var(--tooltip-border-color)]',
+  'tooltip-content'
+)
+
+const TooltipContent = React.forwardRef<
+  React.ElementRef<typeof TooltipPrimitives.Content>,
+  TooltipContentProps
+>((props, forwardedRef) => {
+  const {
+    children,
+    showArrow = true,
+    sideOffset = 12,
+    className,
+    ...restProps
+  } = props
+  return (
+    <TooltipPrimitives.Portal>
+      <TooltipPrimitives.Content
+        ref={forwardedRef}
+        align='center'
+        className={cn(contentClass, className)}
+        sideOffset={sideOffset}
+        {...restProps}
+      >
+        {children}
+        {showArrow && <TooltipArrow aria-hidden='true' />}
+      </TooltipPrimitives.Content>
+    </TooltipPrimitives.Portal>
+  )
+})
+
 const Tooltip = React.forwardRef<
   React.ElementRef<typeof TooltipPrimitives.Content>,
   TooltipProps
@@ -29,16 +82,12 @@ const Tooltip = React.forwardRef<
   (
     {
       children,
-      className,
       content,
       delayDuration,
       defaultOpen,
       open,
       onClick,
       onOpenChange,
-      showArrow = true,
-      side,
-      sideOffset = 12,
       triggerAsChild = false,
       ...props
     }: TooltipProps,
@@ -56,33 +105,7 @@ const Tooltip = React.forwardRef<
           <TooltipPrimitives.Trigger onClick={onClick} asChild={triggerAsChild}>
             {children}
           </TooltipPrimitives.Trigger>
-          <TooltipPrimitives.Portal>
-            <TooltipPrimitives.Content
-              ref={forwardedRef}
-              side={side}
-              sideOffset={sideOffset}
-              align='center'
-              className={cn(
-                // base
-                'max-w-80 select-none rounded-md px-3 py-2.5 text-sm leading-relaxed tracking-wide shadow-md',
-                // text color
-                'text-zinc-300/90',
-                // background color
-                'bg-[var(--tooltip-color)]',
-                // transition
-                'will-change-[transform,opacity]',
-                'data-[side=bottom]:animate-slideDownAndFade data-[side=left]:animate-slideLeftAndFade data-[side=right]:animate-slideRightAndFade data-[side=top]:animate-slideUpAndFade data-[state=closed]:animate-hide',
-                // other
-                'z-50 border border-[var(--tooltip-border-color)]',
-                'tooltip-content',
-                className
-              )}
-              {...props}
-            >
-              {content}
-              {showArrow && <TooltipArrow aria-hidden='true' />}
-            </TooltipPrimitives.Content>
-          </TooltipPrimitives.Portal>
+          <TooltipContent {...props}>{content}</TooltipContent>
         </TooltipPrimitives.Root>
       </TooltipPrimitives.Provider>
     )
@@ -91,4 +114,4 @@ const Tooltip = React.forwardRef<
 
 Tooltip.displayName = 'Tooltip'
 
-export { Tooltip, type TooltipProps }
+export { Tooltip, TooltipContent, type TooltipProps }
