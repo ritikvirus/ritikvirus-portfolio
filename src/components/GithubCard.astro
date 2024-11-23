@@ -1,0 +1,36 @@
+---
+import { Github } from './icons/Github'
+import Link from './Link'
+---
+
+<!-- TODO: extract styles to a base card component -->
+<Link
+  target='_blank'
+  href='https://github.com/jestsee'
+  class:list={[
+    'not-prose flex overflow-clip rounded-xl px-4 py-3.5',
+    'bg-zinc-900 outline outline-zinc-700 hover:outline-2',
+    'group relative transition-all',
+    'max-md:flex-col-reverse'
+  ]}
+>
+  <span
+    style='transition-duration: 800ms;'
+    class:list={[
+      'max-md:hidden',
+      'absolute right-0 z-30 -mt-12 h-52 w-28 rotate-[24deg] bg-white opacity-[0.02]',
+      'translate-x-32 transition-all ease-out',
+      'group-hover:-translate-x-[520px]'
+    ]}></span>
+  <div class='space-y-2 text-xs'>
+    <p class='text-sm text-zinc-200'>
+      jestsee/<strong class='font-medium'>bookmarked-api</strong>
+    </p>
+    <p class='line-clamp-2 text-zinc-400'>
+      Backend service for sending bookmarked data to Notion, featuring web
+      scraping and queue processing.
+    </p>
+    <p class='pt-2.5 text-zinc-400/75'>Updated 1 year ago</p>
+  </div>
+  <Github className='size-8 text-white' />
+</Link>
