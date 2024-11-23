@@ -46,7 +46,7 @@ const htmlTitle = title.replace(
   class='!max-w-[1024px] space-y-12'
 >
   <slot name='head' slot='head' />
-  <ScrollProgressBar type='bar' targetId='article' client:only='react' />
+  <ScrollProgressBar targetId='article' client:only='react' />
   <section class='space-y-4 font-light sm:pt-24'>
     <h2 class='text-lg leading-tight text-slate-300/90'>
       {year}
@@ -93,15 +93,16 @@ const htmlTitle = title.replace(
       )
     } -->
   </section>
-  <section id='article' class='flex w-full gap-16'>
+  <section class='flex w-full gap-16'>
     <article
+      id='article'
       class='prose-a:text-primary-gradient prose prose-invert max-w-none max-sm:prose-sm'
     >
       <slot />
       {
         // prettier-ignore
         updatedDate && (
-          <p class='mt-16 text-sm text-slate-400/90'>
+          <p class='mt-12 text-sm text-slate-400/90'>
             Last updated on {formatDateByTimeZone(updatedDate)} UTC+7.
             {latestCommitUrl && 
             <LinkArticle href={latestCommitUrl}>
