@@ -46,7 +46,7 @@ module.exports = {
       },
       fontFamily: {
         sans: ['Switzer', 'sans'],
-        display: ['Poppins', 'sans']
+        display: ['Geologica', 'sans']
       },
       screens: {
         xs: '480px'
