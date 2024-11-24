@@ -68,7 +68,7 @@ const jsonLd = {
 <ProjectLayout
   headings={headings}
   slug={entry.slug}
-  readingTime={minutes}
+  readingTime={Math.ceil(minutes)}
   wordsCount={words}
   {...entry.data}
 >

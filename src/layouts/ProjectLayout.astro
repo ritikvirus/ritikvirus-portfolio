@@ -63,19 +63,23 @@ const htmlTitle = title.replace(
     />
   </div>
   <div
-    class='fade-divider absolute top-[200px] -z-10 h-[480px] w-full'
+    class='fade-divider absolute -top-[64px] -z-10 h-[480px] w-full sm:top-[120px] md:top-[200px]'
     slot='decorator'
   >
   </div>
   <!-- <TopOverlay /> -->
-  <!-- <ScrollProgressBar targetId='article' client:only='react' /> -->
-  <div class='h-[400px]'></div>
+  <ScrollProgressBar
+    className='bg-[var(--projectAccentColor)]'
+    targetId='article'
+    client:only='react'
+  />
+  <div class='h-[120px] sm:h-[320px] md:h-[400px]'></div>
   <section class='font-light sm:mt-4'>
     <h2 class='border-l border-l-zinc-400 px-2 leading-none text-zinc-400'>
       {year}
     </h2>
     <h1
-      class='mt-8 font-heading text-[clamp(24px,5vw,44px)] font-medium leading-[1.05] !tracking-[-0.03em]'
+      class='mt-8 font-heading text-[clamp(24px,5vw,44px)] font-medium leading-[1.05] !tracking-[-0.035em]'
       set:html={htmlTitle}
       transition:name={getTransitionName(title, 'title')}
     />
@@ -83,7 +87,9 @@ const htmlTitle = title.replace(
       {description}
     </h3>
 
-    <div class='mt-8 flex items-center justify-between'>
+    <div
+      class='mt-4 flex gap-4 max-sm:flex-col-reverse sm:mt-8 sm:items-center sm:justify-between'
+    >
       {
         links.length > 1 && (
           <ul class='flex flex-wrap gap-2 sm:gap-4'>
@@ -109,7 +115,7 @@ const htmlTitle = title.replace(
           </ul>
         )
       }
-      <div class='flex gap-8 text-zinc-400'>
+      <div class='flex gap-4 text-zinc-400 max-sm:text-sm sm:gap-8'>
         <div class='flex items-center gap-2'>
           <Chart className='size-4 text-orange-400' />
           1,234 views
@@ -134,7 +140,7 @@ const htmlTitle = title.replace(
     <article
       id='article'
       class:list={[
-        'prose-a:text-primary-gradient prose prose-invert max-w-none max-sm:prose-sm',
+        'prose prose-invert max-w-none max-sm:prose-sm prose-a:text-[var(--projectAccentColor)]',
         'prose-headings:scroll-m-16 sm:prose-headings:scroll-m-[120px]'
       ]}
     >
@@ -142,12 +148,12 @@ const htmlTitle = title.replace(
       {
         // prettier-ignore
         updatedDate && (
-          <p class='mt-8 text-sm text-slate-400/90'>
+          <p class='mt-8 text-sm text-zinc-400/90'>
             Last updated on {formatDateByTimeZone(updatedDate)} UTC+7.
             {latestCommitUrl && 
             <LinkArticle href={latestCommitUrl}>
                 See Changelog
-                <ArrowOutward className='inline-block size-3 text-[var(--accent-color-2)]' />
+                <ArrowOutward className='inline-block size-3' />
               </LinkArticle>}
           </p>
         )
@@ -168,22 +174,21 @@ const htmlTitle = title.replace(
     </div> -->
     <Link
       href='/projects'
-      class='text-sm'
+      class='text-sm !text-[var(--projectAccentColor)] !no-underline'
       styled
       hoverStyled
       hoverEffectOffsetStart='24px'
     >
-      <ArrowRight
-        className='mr-2 inline-block size-4 -scale-x-100 text-[var(--accent-color-1)]'
-      />Explore more projects</Link
+      <ArrowRight className='mr-2 inline-block size-4 -scale-x-100' />Explore
+      more projects</Link
     >
   </section>
 </BaseLayout>
 
-<style is:global>
+<style is:global define:vars={{ projectAccentColor: '#FB923C' }}>
   .project-heading > a {
     opacity: 0;
-    color: var(--accent-color-1);
+    color: var(--projectAccentColor);
     transition: all 200ms ease-in-out;
     display: inline-block;
     vertical-align: middle;
