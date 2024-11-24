@@ -28,7 +28,7 @@ module.exports = {
             'h1, h2, h3, h4': {
               letterSpacing: '-0.015em',
               fontWeight: '500',
-              fontFamily: theme('fontFamily.heading').join(', ')
+              fontFamily: theme('fontFamily.display').join(', ')
             },
             a: {
               color: 'transparent',
@@ -46,7 +46,7 @@ module.exports = {
       },
       fontFamily: {
         sans: ['Switzer', 'sans'],
-        heading: ['Poppins', 'sans']
+        display: ['Poppins', 'sans']
       },
       screens: {
         xs: '480px'

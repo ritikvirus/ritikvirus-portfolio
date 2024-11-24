@@ -11,10 +11,8 @@
     );
   }
 
-  .text-primary-gradient {
-    @apply bg-primary-gradient;
-    background-clip: text;
-    color: transparent;
+  .font-heading {
+    @apply font-display tracking-tight;
   }
 
   .link-hover-animation {
@@ -41,12 +39,19 @@
   .link-hovered-animation::before {
     width: calc(100% - var(--offsetEnd, var(--offsetStart, 0px)));
   }
+
+  .text-primary-gradient {
+    @apply bg-primary-gradient;
+    background-clip: text;
+    color: transparent;
+  }
 }
 
 @font-face {
   font-family: 'Switzer';
   src: url('/fonts/Switzer-Variable.woff2') format('woff2');
   font-weight: 300 700;
+  font-display: swap;
   font-style: normal;
 }
 

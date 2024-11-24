@@ -28,10 +28,10 @@ const getOgImageData = (data: SuccessResult['result']) => {
   const _ogImage = (ogImage ?? [])[0]
 
   return {
-    url: _twitterImage.url ?? _ogImage.url,
-    alt: _twitterImage.alt ?? data.ogTitle,
-    width: _twitterImage.width ?? _ogImage.width,
-    height: _twitterImage.height ?? _ogImage.height
+    url: _twitterImage?.url ?? _ogImage?.url,
+    alt: _twitterImage?.alt ?? data.ogTitle,
+    width: _twitterImage?.width ?? _ogImage?.width,
+    height: _twitterImage?.height ?? _ogImage?.height
   }
 }
 
