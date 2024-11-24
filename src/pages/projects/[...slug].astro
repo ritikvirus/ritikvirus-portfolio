@@ -36,7 +36,7 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props
 const { Content, headings } = await entry.render()
-const readingTimeInMinutes = readingTime(entry.body).minutes
+const { minutes, words } = readingTime(entry.body)
 
 const projectStructuredData = getProjectSchema(entry)
 
@@ -68,7 +68,8 @@ const jsonLd = {
 <ProjectLayout
   headings={headings}
   slug={entry.slug}
-  readingTime={readingTimeInMinutes}
+  readingTime={minutes}
+  wordsCount={words}
   {...entry.data}
 >
   <script
