@@ -13,6 +13,7 @@
 
   .font-heading {
     @apply font-display tracking-tight;
+    font-feature-settings: 'ss06' 1;
   }
 
   .link-hover-animation {
@@ -58,6 +59,13 @@
 @font-face {
   font-family: 'Poppins';
   src: url('/fonts/Poppins-Variable.woff2') format('woff2');
+  font-weight: 400 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Work Sans';
+  src: url('/fonts/WorkSans[wght].ttf') format('truetype');
   font-weight: 400 500;
   font-style: normal;
 }

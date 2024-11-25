@@ -24,6 +24,7 @@ module.exports = {
           css: {
             lineHeight: '1.8',
             fontWeight: '300',
+            color: theme('colors.zinc.300/0.9'),
             letterSpacing: theme('letterSpacing.wide'),
             'h1, h2, h3, h4': {
               letterSpacing: '-0.015em',
@@ -46,7 +47,7 @@ module.exports = {
       },
       fontFamily: {
         sans: ['Switzer', 'sans'],
-        display: ['Geologica', 'sans']
+        display: ['Work Sans', 'sans']
       },
       screens: {
         xs: '480px'

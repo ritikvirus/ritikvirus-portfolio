@@ -9,16 +9,18 @@ export function Group(props: SVGProps<SVGSVGElement>) {
       viewBox='0 0 24 24'
       {...props}
     >
-      <g fill='none' stroke='currentColor' strokeWidth='1.5'>
-        <circle cx='9' cy='6' r='4'></circle>
-        <path d='M12.5 4.341a3 3 0 1 1 0 3.318' opacity='.5'></path>
-        <ellipse cx='9' cy='17' rx='7' ry='4'></ellipse>
-        <path
-          strokeLinecap='round'
-          d='M18 14c1.754.385 3 1.359 3 2.5c0 1.03-1.014 1.923-2.5 2.37'
-          opacity='.5'
-        ></path>
-      </g>
+      <circle cx='9.001' cy='6' r='4' fill='currentColor'></circle>
+      <ellipse
+        cx='9.001'
+        cy='17.001'
+        fill='currentColor'
+        rx='7'
+        ry='4'
+      ></ellipse>
+      <path
+        fill='currentColor'
+        d='M21 17c0 1.657-2.036 3-4.521 3c.732-.8 1.236-1.805 1.236-2.998c0-1.195-.505-2.2-1.239-3.001C18.962 14 21 15.344 21 17M18 6a3 3 0 0 1-4.029 2.82A5.688 5.688 0 0 0 14.714 6c0-1.025-.27-1.987-.742-2.819A3 3 0 0 1 18 6.001'
+      ></path>
     </svg>
   )
 }

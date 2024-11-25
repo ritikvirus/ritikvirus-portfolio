@@ -7,6 +7,7 @@ interface ScrollProgressBarType {
   color?: string
   strokeSize?: number
   targetId?: string
+  className?: string
 }
 
 const getContainerElement = (id?: string) => {
@@ -18,9 +19,9 @@ const getContainerElement = (id?: string) => {
 export default function ScrollProgressBar({
   color = 'azure',
   strokeSize = 2,
-  targetId
+  targetId,
+  className
 }: Readonly<ScrollProgressBarType>) {
-  const spanRef = React.useRef<HTMLSpanElement>(null)
   const targetRef = React.useRef<HTMLElement | null>(null)
 
   targetRef.current = getContainerElement(targetId)
@@ -42,7 +43,6 @@ export default function ScrollProgressBar({
 
   return (
     <motion.span
-      ref={spanRef}
       className={cn(
         'pointer-events-none fixed end-0 start-0 top-0 z-30',
         'w-0 overflow-clip rounded-full'
@@ -51,7 +51,7 @@ export default function ScrollProgressBar({
     >
       <span
         style={{ backgroundColor: color }}
-        className='bg-primary-gradient absolute block h-full w-screen'
+        className={cn('absolute block h-full w-screen', className)}
       ></span>
     </motion.span>
   )
