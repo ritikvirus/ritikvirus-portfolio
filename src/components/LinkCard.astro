@@ -35,7 +35,7 @@ if (metadata.image) {
     'not-prose flex overflow-clip rounded-xl md:h-full md:max-h-[144px]',
     'bg-zinc-900 outline outline-zinc-700 hover:outline-2',
     'group relative transition-all',
-    'max-md:flex-col-reverse',
+    // 'max-md:flex-col-reverse',
     className
   ]}
 >
@@ -79,7 +79,7 @@ if (metadata.image) {
   {
     metadata.image && (
       <Image
-        wrapperProps={{ style: { aspectRatio }, class: 'h-full' }}
+        wrapperProps={{ style: { aspectRatio }, class: 'h-full max-sm:hidden' }}
         src={metadata.image.url}
         alt={metadata.image.alt ?? url}
         inferSize
