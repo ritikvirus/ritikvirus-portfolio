@@ -17,6 +17,7 @@ import { BASE_URL } from '@/lib/baseUrl'
 import { formatDateByTimeZone, getTransitionName } from '@/lib/utils'
 
 import BaseLayout from '../BaseLayout.astro'
+import Links from './components/Links.astro'
 import ReadingTimeTooltip from './components/ReadingTimeTooltip'
 // import MoreProjectCard from '@/pages/projects/_components/MoreProjectCard.astro'
 
@@ -58,12 +59,13 @@ const htmlTitle = title.replace(
     targetId='article'
     client:only='react'
   />
+
   <section class='mt-8 font-light sm:mt-32'>
-    <h2 class='text-zinc-400'>
+    <h2 class='text-lg text-zinc-400'>
       {year}
     </h2>
     <h1
-      class='font-heading mt-4 text-[clamp(1.5rem,5vw,2.5rem)] font-semibold leading-[1.05]'
+      class='font-heading mt-6 text-[clamp(1.5rem,5vw,2.5rem)] font-semibold leading-[1.05]'
       set:html={htmlTitle}
       transition:name={getTransitionName(title, 'title')}
     />
@@ -72,34 +74,16 @@ const htmlTitle = title.replace(
     </h3>
 
     <div
-      class='mt-4 flex gap-4 max-sm:flex-col-reverse sm:mt-8 sm:items-center sm:justify-between'
+      class='mt-4 flex gap-4 max-sm:flex-col-reverse sm:mt-6 sm:items-center sm:justify-between'
     >
-      <ul class='flex flex-wrap gap-2 sm:gap-4'>
-        {
-          links.map(({ icon, url, name }) => {
-            const Icon = PROJECT_ICONS[icon as ProjectIcon]
-            return (
-              <li>
-                <Link
-                  href={url}
-                  target='_blank'
-                  class:list={[
-                    'flex items-center gap-2 rounded-lg text-sm text-zinc-300 max-sm:text-xs',
-                    'border border-zinc-600 px-3 py-2',
-                    'bg-gradient-to-t from-zinc-800/50 to-zinc-800/0',
-                    'transition-all duration-200 hover:border-zinc-500 hover:from-zinc-800'
-                  ]}
-                >
-                  <Icon className='size-4' /> {name}
-                </Link>
-              </li>
-            )
-          })
-        }
-      </ul>
-      <div class='flex gap-4 text-sm text-zinc-400 sm:gap-8'>
-        <div class='flex items-center gap-2'>
-          <Book className='size-4 text-[var(--projectAccentColor)]' />
+      <Links links={links} />
+      <!-- <div class='flex gap-2 text-sm text-zinc-400 sm:gap-4'>
+        <div class='flex items-center gap-1.5'>
+          <Chart className='size-3.5 text-[var(--projectAccentColor)]' />
+          1,234 views
+        </div>
+        <div class='flex items-center gap-1.5'>
+          <Book className='size-3.5 text-[var(--projectAccentColor)]' />
           {readingTime} min read
           {
             wordsCount && (
@@ -108,26 +92,26 @@ const htmlTitle = title.replace(
                 linkColor='#FB923C'
                 client:only='react'
               >
-                <Info className='-ml-1 size-3' />
+                <Info className='-ml-0.5 size-3' />
               </ReadingTimeTooltip>
             )
           }
         </div>
-        <div class='flex items-center gap-2'>
-          <Chart className='size-4 text-[var(--projectAccentColor)]' />
-          1,234 views
-        </div>
-      </div>
+      </div> -->
     </div>
   </section>
-  <Image
-    src={heroImage}
-    alt='Bookmarked Notion page'
-    wrapperProps={{ class: 'rounded-lg mt-4' }}
-    class='aspect-[1.8] w-full max-w-[1080px]'
-    transition:name={getTransitionName(title, 'image')}
-    ambientMode
-  />
+
+  <section class='mt-12'>
+    <Image
+      src={heroImage}
+      alt='Bookmarked Notion page'
+      wrapperProps={{ class: 'rounded-lg' }}
+      class='aspect-[1.8] w-full max-w-[1080px]'
+      transition:name={getTransitionName(title, 'image')}
+      ambientMode
+    />
+  </section>
+
   <section class='mt-16 flex w-full gap-16'>
     <article
       id='article'
@@ -159,6 +143,7 @@ const htmlTitle = title.replace(
       />
     </aside>
   </section>
+
   <section class='pt-4'>
     <!-- <div class='mb-12 grid gap-6 max-lg:mx-auto md:grid-cols-2'>
       <MoreProjectCard {...Astro.props} />
