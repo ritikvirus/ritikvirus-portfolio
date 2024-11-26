@@ -17,7 +17,7 @@ interface Props
 
 const { year, title, description, slug, heroImage } = Astro.props
 
-const offsetEnd = '20px'
+const offsetEnd = '24px'
 ---
 
 <Link href={`projects/${slug}`} class='group space-y-6'>
@@ -29,22 +29,22 @@ const offsetEnd = '20px'
     wrapperProps={{ class: 'h-[200px] rounded-lg overflow-clip' }}
   />
   <div class='flex flex-col gap-4'>
-    <p class='text-sm'>{year}</p>
+    <p>{year}</p>
     <!-- should we use heading here? -->
     <h4
-      class='font-heading text-lg font-medium !leading-[1.2] max-sm:text-lg'
+      class='font-heading text-xl font-medium !leading-[1.2] max-sm:text-lg'
       transition:name={getTransitionName(title, 'title')}
     >
       {title.replace('\\n', ' ')}
     </h4>
-    <p class='text-sm tracking-wide text-slate-400'>
+    <p class='text-sm tracking-wide text-zinc-400'>
       {description}
     </p>
     <span
-      class='link-hover-animation text-primary-gradient group-hover:link-hovered-animation w-fit text-sm'
+      class='link-hover-animation group-hover:link-hovered-animation w-fit text-sm text-emerald-400'
       >Read more
       <ArrowRight
-        className='inline-block text-[var(--accent-color-2)] transition-all duration-300 group-hover:ml-1'
+        className='ml-1 inline-block transition-all duration-300 group-hover:ml-2'
       />
     </span>
   </div>

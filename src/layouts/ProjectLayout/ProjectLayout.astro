@@ -56,12 +56,12 @@ const htmlTitle = title.replace(
     client:only='react'
   />
 
-  <section class='mt-12 sm:mt-24 sm:font-light lg:mt-32'>
+  <section class='mt-16 sm:mt-24 sm:font-light lg:mt-32'>
     <h2 class='text-zinc-400 sm:text-lg'>
       {year}
     </h2>
     <h1
-      class='font-heading mt-4 text-[clamp(1.5rem,5vw,2.5rem)] font-semibold leading-[1.125] sm:mt-6 md:leading-[1.05]'
+      class='font-heading mt-4 text-[clamp(1.8rem,5vw,2.5rem)] font-bold leading-[1.25] sm:mt-6 md:leading-[1.1]'
       set:html={htmlTitle}
       transition:name={getTransitionName(title, 'title')}
     />
@@ -81,7 +81,7 @@ const htmlTitle = title.replace(
       src={heroImage}
       alt='Bookmarked Notion page'
       wrapperProps={{ class: 'rounded-lg' }}
-      class='aspect-[1.8] w-full max-w-[1080px]'
+      class='aspect-[1.5] w-full max-w-[1080px] xs:aspect-[2]'
       transition:name={getTransitionName(title, 'image')}
       ambientMode
     />

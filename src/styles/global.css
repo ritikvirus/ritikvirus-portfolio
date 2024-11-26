@@ -31,7 +31,7 @@
         var(--dot-color, rgba(255, 255, 255, 0.75)),
         var(--dot-color, rgba(255, 255, 255, 0.75)) 2px,
         transparent 2px,
-        transparent 4px
+        transparent 3px
       );
       transition: all 0.3s ease-in-out;
     }
