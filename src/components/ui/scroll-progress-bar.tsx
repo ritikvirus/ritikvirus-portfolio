@@ -18,7 +18,7 @@ const getContainerElement = (id?: string) => {
 
 export default function ScrollProgressBar({
   color = 'azure',
-  strokeSize = 2,
+  strokeSize = 0,
   targetId,
   className
 }: Readonly<ScrollProgressBarType>) {

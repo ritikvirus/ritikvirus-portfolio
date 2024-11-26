@@ -4,22 +4,18 @@ import type { InferEntrySchema } from 'astro:content'
 
 import { ArrowOutward } from '@/components/icons/ArrowOutward'
 import { ArrowRight } from '@/components/icons/ArrowRight'
-import { Book } from '@/components/icons/Book'
-import { Chart } from '@/components/icons/Chart'
-import { Info } from '@/components/icons/Info'
 import Image from '@/components/Image'
 import Link, { LinkArticle } from '@/components/Link'
 import TableOfContent from '@/components/TableOfContent'
 import TopOverlay from '@/components/TopOverlay.astro'
 import ScrollProgressBar from '@/components/ui/scroll-progress-bar'
-import { PROJECT_ICONS, type ProjectIcon } from '@/content/_icons'
 import { BASE_URL } from '@/lib/baseUrl'
 import { formatDateByTimeZone, getTransitionName } from '@/lib/utils'
 
+// import ReadingTimeTooltip from './components/ReadingTimeTooltip'
 import BaseLayout from '../BaseLayout.astro'
 import Links from './components/Links.astro'
-import ReadingTimeTooltip from './components/ReadingTimeTooltip'
-// import MoreProjectCard from '@/pages/projects/_components/MoreProjectCard.astro'
+// import MoreProjectCard from './components/MoreProjectCard.astro'
 
 interface Props extends InferEntrySchema<'projects'> {
   headings: MarkdownHeading[]
@@ -53,19 +49,19 @@ const htmlTitle = title.replace(
   class='!max-w-[1080px]'
 >
   <slot name='head' slot='head' />
-  <!-- <TopOverlay /> -->
+  <TopOverlay />
   <ScrollProgressBar
     className='bg-[var(--projectAccentColor)]'
     targetId='article'
     client:only='react'
   />
 
-  <section class='mt-8 font-light sm:mt-32'>
-    <h2 class='text-lg text-zinc-400'>
+  <section class='mt-8 font-light sm:mt-24 lg:mt-32'>
+    <h2 class='text-zinc-400 sm:text-lg'>
       {year}
     </h2>
     <h1
-      class='font-heading mt-6 text-[clamp(1.5rem,5vw,2.5rem)] font-semibold leading-[1.05]'
+      class='font-heading mt-6 text-[clamp(1.5rem,5vw,2.5rem)] font-semibold leading-[1.125] md:leading-[1.05]'
       set:html={htmlTitle}
       transition:name={getTransitionName(title, 'title')}
     />
@@ -77,31 +73,10 @@ const htmlTitle = title.replace(
       class='mt-4 flex gap-4 max-sm:flex-col-reverse sm:mt-6 sm:items-center sm:justify-between'
     >
       <Links links={links} />
-      <!-- <div class='flex gap-2 text-sm text-zinc-400 sm:gap-4'>
-        <div class='flex items-center gap-1.5'>
-          <Chart className='size-3.5 text-[var(--projectAccentColor)]' />
-          1,234 views
-        </div>
-        <div class='flex items-center gap-1.5'>
-          <Book className='size-3.5 text-[var(--projectAccentColor)]' />
-          {readingTime} min read
-          {
-            wordsCount && (
-              <ReadingTimeTooltip
-                wordsCount={wordsCount}
-                linkColor='#FB923C'
-                client:only='react'
-              >
-                <Info className='-ml-0.5 size-3' />
-              </ReadingTimeTooltip>
-            )
-          }
-        </div>
-      </div> -->
     </div>
   </section>
 
-  <section class='mt-12'>
+  <section class='mt-8 sm:mt-12'>
     <Image
       src={heroImage}
       alt='Bookmarked Notion page'
@@ -112,12 +87,12 @@ const htmlTitle = title.replace(
     />
   </section>
 
-  <section class='mt-16 flex w-full gap-16'>
+  <section class='mt-8 flex w-full gap-16 sm:mt-16'>
     <article
       id='article'
       class:list={[
         'prose prose-invert max-w-none max-sm:prose-sm prose-a:text-[var(--projectAccentColor)]',
-        'prose-headings:scroll-m-16 sm:prose-headings:scroll-m-[120px]'
+        'prose-headings:scroll-m-16 sm:prose-headings:scroll-m-24'
       ]}
     >
       <slot />
@@ -144,7 +119,7 @@ const htmlTitle = title.replace(
     </aside>
   </section>
 
-  <section class='pt-4'>
+  <section class='mt-16'>
     <!-- <div class='mb-12 grid gap-6 max-lg:mx-auto md:grid-cols-2'>
       <MoreProjectCard {...Astro.props} />
       <MoreProjectCard {...Astro.props} />
@@ -211,7 +186,7 @@ const htmlTitle = title.replace(
   const handleHeadingIntersection = () => {
     const observerOptions: IntersectionObserverInit = {
       root: null,
-      rootMargin: '0px 0px -80% 0px', // Adjust to make the top 20% of the viewport observe entries
+      rootMargin: '0px 0px -85% 0px', // Adjust to make the top 20% of the viewport observe entries
       threshold: 0 // Trigger as soon as they enter the viewport
     }
 
