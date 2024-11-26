@@ -56,12 +56,12 @@ const htmlTitle = title.replace(
     client:only='react'
   />
 
-  <section class='mt-8 font-light sm:mt-24 lg:mt-32'>
+  <section class='mt-12 sm:mt-24 sm:font-light lg:mt-32'>
     <h2 class='text-zinc-400 sm:text-lg'>
       {year}
     </h2>
     <h1
-      class='font-heading mt-6 text-[clamp(1.5rem,5vw,2.5rem)] font-semibold leading-[1.125] md:leading-[1.05]'
+      class='font-heading mt-4 text-[clamp(1.5rem,5vw,2.5rem)] font-semibold leading-[1.125] sm:mt-6 md:leading-[1.05]'
       set:html={htmlTitle}
       transition:name={getTransitionName(title, 'title')}
     />
@@ -99,7 +99,7 @@ const htmlTitle = title.replace(
       {
         // prettier-ignore
         updatedDate && (
-          <p class='mt-8 text-sm text-zinc-400/90'>
+          <p class='mt-8 text-sm text-zinc-400'>
             Last updated on {formatDateByTimeZone(updatedDate)} UTC+7.
             {latestCommitUrl && 
             <LinkArticle href={latestCommitUrl}>
@@ -196,7 +196,7 @@ const htmlTitle = title.replace(
 
         const id = entry.target.getAttribute('id')
         const link = document.querySelector(`li > a[href="#${id}"]`)
-        const textStyle = 'text-zinc-300'
+        const textStyle = 'text-zinc-200'
 
         document
           .querySelectorAll(`.${textStyle}`)

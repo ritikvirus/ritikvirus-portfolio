@@ -24,7 +24,7 @@ module.exports = {
           css: {
             lineHeight: '1.8',
             fontWeight: '300',
-            color: theme('colors.zinc.300/0.9'),
+            color: theme('colors.zinc.400'),
             letterSpacing: theme('letterSpacing.wide'),
             'h1, h2, h3, h4': {
               letterSpacing: '-0.015em',
@@ -32,12 +32,16 @@ module.exports = {
               fontFamily: theme('fontFamily.display').join(', ')
             },
             a: {
-              color: 'transparent',
               fontWeight: '400'
             },
             strong: {
               fontWeight: '500'
             }
+          }
+        },
+        sm: {
+          css: {
+            fontWeight: '400'
           }
         }
       }),
