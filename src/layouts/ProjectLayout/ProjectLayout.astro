@@ -6,7 +6,6 @@ import { ArrowOutward } from '@/components/icons/ArrowOutward'
 import { ArrowRight } from '@/components/icons/ArrowRight'
 import { Book } from '@/components/icons/Book'
 import { Chart } from '@/components/icons/Chart'
-import { Group } from '@/components/icons/Group'
 import { Info } from '@/components/icons/Info'
 import Image from '@/components/Image'
 import Link, { LinkArticle } from '@/components/Link'
@@ -16,10 +15,10 @@ import ScrollProgressBar from '@/components/ui/scroll-progress-bar'
 import { PROJECT_ICONS, type ProjectIcon } from '@/content/_icons'
 import { BASE_URL } from '@/lib/baseUrl'
 import { formatDateByTimeZone, getTransitionName } from '@/lib/utils'
-import ReadingTimeTooltip from '@/pages/projects/_components/ReadingTimeTooltip'
 
+import BaseLayout from '../BaseLayout.astro'
+import ReadingTimeTooltip from './_components/ReadingTimeTooltip'
 // import MoreProjectCard from '@/pages/projects/_components/MoreProjectCard.astro'
-import BaseLayout from './BaseLayout.astro'
 
 interface Props extends InferEntrySchema<'projects'> {
   headings: MarkdownHeading[]
@@ -53,38 +52,22 @@ const htmlTitle = title.replace(
   class='!max-w-[1080px]'
 >
   <slot name='head' slot='head' />
-  <div class='absolute -z-10 overflow-clip' slot='decorator'>
-    <Image
-      src={heroImage}
-      alt='Bookmarked Notion page'
-      wrapperProps={{
-        class: 'sm:max-h-[480px] w-full'
-      }}
-      transition:name={getTransitionName(title, 'image')}
-    />
-  </div>
-  <div
-    class='fade-divider absolute -top-[64px] -z-10 h-[480px] w-full sm:top-[120px]'
-    slot='decorator'
-  >
-  </div>
   <!-- <TopOverlay /> -->
   <ScrollProgressBar
     className='bg-[var(--projectAccentColor)]'
     targetId='article'
     client:only='react'
   />
-  <div class='h-[120px] sm:h-[340px]'></div>
-  <section class='font-light sm:mt-4'>
-    <h2 class='border-l border-l-zinc-400 px-2 leading-none text-zinc-400'>
+  <section class='mt-8 font-light sm:mt-32'>
+    <h2 class='text-zinc-400'>
       {year}
     </h2>
     <h1
-      class='font-heading mt-4 text-[clamp(1.5rem,5vw,2.75rem)] font-semibold leading-[1.05]'
+      class='font-heading mt-4 text-[clamp(1.5rem,5vw,2.5rem)] font-semibold leading-[1.05]'
       set:html={htmlTitle}
       transition:name={getTransitionName(title, 'title')}
     />
-    <h3 class='mt-4 text-zinc-400'>
+    <h3 class='mt-4 text-zinc-400 max-sm:text-sm'>
       {description}
     </h3>
 
@@ -116,11 +99,7 @@ const htmlTitle = title.replace(
       </ul>
       <div class='flex gap-4 text-sm text-zinc-400 sm:gap-8'>
         <div class='flex items-center gap-2'>
-          <Group className='size-4 text-orange-400' />
-          A solo project
-        </div>
-        <div class='flex items-center gap-2'>
-          <Book className='size-4 text-orange-400' />
+          <Book className='size-4 text-[var(--projectAccentColor)]' />
           {readingTime} min read
           {
             wordsCount && (
@@ -135,16 +114,24 @@ const htmlTitle = title.replace(
           }
         </div>
         <div class='flex items-center gap-2'>
-          <Chart className='size-4 text-orange-400' />
+          <Chart className='size-4 text-[var(--projectAccentColor)]' />
           1,234 views
         </div>
       </div>
     </div>
   </section>
-  <span
-    class='mb-12 mt-4 flex h-[1px] w-full bg-gradient-to-r from-zinc-900 via-zinc-700 to-zinc-900'
-  ></span>
-  <section class='flex w-full gap-16'>
+  <Image
+    src={heroImage}
+    alt='Bookmarked Notion page'
+    wrapperProps={{ class: 'rounded-lg mt-4' }}
+    class='aspect-[1.8] w-full max-w-[1080px]'
+    transition:name={getTransitionName(title, 'image')}
+    ambientMode
+  />
+  <!-- <span
+    class='mb-12 mt-4 flex h-[1px] w-full !bg-transparent bg-gradient-to-r from-zinc-900 via-zinc-700 to-zinc-900'
+  ></span> -->
+  <section class='mt-16 flex w-full gap-16'>
     <article
       id='article'
       class:list={[
@@ -168,7 +155,7 @@ const htmlTitle = title.replace(
       }
     </article>
 
-    <aside class='w-[220px] shrink-0 space-y-8 max-[880px]:hidden'>
+    <aside class='w-60 shrink-0 space-y-8 max-[880px]:hidden'>
       <TableOfContent
         headings={headings}
         className='sticky top-32 tracking-normal'
@@ -193,7 +180,12 @@ const htmlTitle = title.replace(
   </section>
 </BaseLayout>
 
-<style is:global define:vars={{ projectAccentColor: '#FB923C' }}>
+<!-- <style is:global define:vars={{ projectAccentColor: '#2dd4bf' }}> -->
+<style is:global define:vars={{ projectAccentColor: '#2dd4bf' }}>
+  * {
+    --projectAccentColor: theme(colors.zinc.300);
+  }
+
   .project-heading > a {
     opacity: 0;
     color: var(--projectAccentColor);
