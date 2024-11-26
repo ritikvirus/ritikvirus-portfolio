@@ -17,7 +17,7 @@ import { BASE_URL } from '@/lib/baseUrl'
 import { formatDateByTimeZone, getTransitionName } from '@/lib/utils'
 
 import BaseLayout from '../BaseLayout.astro'
-import ReadingTimeTooltip from './_components/ReadingTimeTooltip'
+import ReadingTimeTooltip from './components/ReadingTimeTooltip'
 // import MoreProjectCard from '@/pages/projects/_components/MoreProjectCard.astro'
 
 interface Props extends InferEntrySchema<'projects'> {
@@ -128,9 +128,6 @@ const htmlTitle = title.replace(
     transition:name={getTransitionName(title, 'image')}
     ambientMode
   />
-  <!-- <span
-    class='mb-12 mt-4 flex h-[1px] w-full !bg-transparent bg-gradient-to-r from-zinc-900 via-zinc-700 to-zinc-900'
-  ></span> -->
   <section class='mt-16 flex w-full gap-16'>
     <article
       id='article'
