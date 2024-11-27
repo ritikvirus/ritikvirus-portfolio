@@ -49,6 +49,21 @@ module.exports = {
         5: '5px',
         6: '6px'
       },
+      colors: {
+        shark: {
+          50: '#f6f8f9',
+          100: '#ebeff3',
+          200: '#d3dce4',
+          300: '#adbecc',
+          400: '#819baf',
+          500: '#617f96',
+          600: '#4d667c',
+          700: '#3f5365',
+          800: '#374755',
+          900: '#313d49',
+          950: '#232b34'
+        }
+      },
       fontFamily: {
         sans: ['Switzer', 'sans'],
         display: ['Work Sans', 'sans']

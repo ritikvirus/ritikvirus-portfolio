@@ -58,7 +58,7 @@ const FOOTER_CONTENTS: FooterContent[] = [
 <footer class='relative mt-auto w-full'>
   <div
     class:list={[
-      'footer-radial-gradient -z-10 h-48 w-3/5 opacity-25 blur-[160px]',
+      '-z-10 h-48 w-3/5 opacity-25 blur-[160px]',
       'absolute left-1/2 top-0 -translate-x-1/2 xs:top-24'
     ]}
   >
@@ -68,7 +68,7 @@ const FOOTER_CONTENTS: FooterContent[] = [
   <div
     class:list={[
       'h-[1px] w-full',
-      'bg-gradient-to-r from-[rgba(46,62,84,0.15)] via-[rgba(46,62,84,0.75)] to-[rgba(46,62,84,0.15)]'
+      'bg-gradient-to-r from-slate-800/25 via-slate-800/75 to-slate-800/25'
     ]}
   >
   </div>
@@ -88,7 +88,7 @@ const FOOTER_CONTENTS: FooterContent[] = [
             <span class='tracking-widest'> 王安琪 </span>
             <span class='mx-[2px]'>•</span> Jesica
           </p>
-          <p class='text-[13px] text-slate-400'>
+          <p class='text-[13px] text-slate-500'>
             A professional typer with passion for crafting <br /> unique creations
             across the internet.
           </p>
@@ -103,7 +103,7 @@ const FOOTER_CONTENTS: FooterContent[] = [
               ))
             }
           </div>
-          <p class='text-xs text-slate-500'>
+          <p class='text-xs text-slate-600'>
             © 2024 Jesica. All rights reserved.
           </p>
         </div>
@@ -122,15 +122,15 @@ const FOOTER_CONTENTS: FooterContent[] = [
             FOOTER_CONTENTS.map(({ title, links }) => (
               <div class='space-y-4'>
                 <p class='text-slate-200'>{title}</p>
-                <ul class='flex flex-col gap-3 text-slate-400'>
+                <ul class='flex flex-col gap-3 text-slate-500'>
                   {links.map(({ text, href, withIcon }) => (
                     <li>
                       <Link
                         href={href}
-                        class='flex items-center gap-2 font-normal'
+                        class='flex items-center gap-1 font-normal hover:underline'
                       >
                         <span>{text}</span>
-                        {withIcon && <ArrowOutward className='size-4' />}
+                        {withIcon && <ArrowOutward className='size-3.5' />}
                       </Link>
                     </li>
                   ))}
@@ -144,14 +144,3 @@ const FOOTER_CONTENTS: FooterContent[] = [
     </div>
   </div>
 </footer>
-
-<style>
-  .footer-radial-gradient {
-    background-color: hsla(216, 57%, 45%, 0.5);
-    background-image: radial-gradient(
-      ellipse farthest-side at center,
-      hsl(112, 57%, 69%) 0%,
-      hsla(216, 57%, 45%, 0.5) 100%
-    );
-  }
-</style>

@@ -57,7 +57,7 @@
   border-radius: 100px;
   pointer-events: none;
   overflow: hidden;
-  border: 1px solid rgb(30 41 59);
+  border: 1px solid theme(colors.shark.950);
   z-index: 999999999;
 }
 

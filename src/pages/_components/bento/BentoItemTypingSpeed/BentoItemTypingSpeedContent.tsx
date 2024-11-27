@@ -55,7 +55,7 @@ const TypingSpeed = (props: Props) => {
         className={cn(
           'font-heading absolute text-[196px] font-extrabold text-transparent',
           'left-1/2 top-0 -z-10 -translate-x-1/2 leading-none opacity-70',
-          'bg-gradient-to-b from-[#1E293B] to-[#11161D] bg-clip-text'
+          'bg-gradient-to-b from-[#1E293B] to-[var(--card-background)] bg-clip-text'
         )}
       >
         {props.wpm}
