@@ -21,10 +21,22 @@ const github = new Hono()
       return c.json(await getLastUpdatedTimeByFile(path))
     }
   )
-  .get('/repo-info', async (c) =>
-    c.json(await getLastUpdatedTime(), 200, {
-      'Cache-Control': 's-maxage=3600, stale-while-revalidate=600'
-    })
+  .get(
+    '/repo-info/:owner/:repository',
+    zValidator(
+      'param',
+      z.object({
+        owner: z.string(),
+        repository: z.string()
+      })
+    ),
+    async (c) => {
+      const { owner, repository } = c.req.valid('param')
+
+      return c.json(await getLastUpdatedTime(owner, repository), 200, {
+        'Cache-Control': 's-maxage=3600, stale-while-revalidate=600'
+      })
+    }
   )
 
 export default github

@@ -2,7 +2,14 @@
 import client from '@/lib/client'
 import { formatDateByTimeZone } from '@/lib/utils'
 
-const response = await client.api.github['repo-info'].$get()
+const response = await client.api.github['repo-info'][':owner'][
+  ':repository'
+].$get({
+  param: {
+    owner: 'jestsee',
+    repository: 'portfolio-revamp'
+  }
+})
 const data = response.status === 200 ? await response.json() : null
 
 if (!data) return
