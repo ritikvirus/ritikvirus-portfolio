@@ -10,6 +10,11 @@ export interface GithubContributionData {
 }
 
 export interface GithubRepositoryLastUpdated {
+  name: string
+  description: string
+  forkCount: number
+  stargazerCount: number
+  url: string
   pushedAt: string
   updatedAt: string
 }

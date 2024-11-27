@@ -1,12 +1,35 @@
 ---
+import dayjs from 'dayjs'
+import relativeTime from 'dayjs/plugin/relativeTime'
+
+import client from '@/lib/client'
+
 import { Github } from './icons/Github'
 import Link from './Link'
+
+interface Props {
+  owner: string
+  repository: string
+}
+
+dayjs.extend(relativeTime)
+
+const { owner, repository } = Astro.props
+
+const response = await client.api.github['repo-info'][':owner'][
+  ':repository'
+].$get({ param: { owner, repository } })
+const data = response.status === 200 ? await response.json() : null
+
+if (!data) return
+
+const updatedTime = dayjs(data.pushedAt).fromNow()
 ---
 
 <!-- TODO: extract styles to a base card component -->
 <Link
   target='_blank'
-  href='https://github.com/jestsee'
+  href={data.url}
   class:list={[
     'not-prose flex gap-3 overflow-clip rounded-xl px-4 py-3.5',
     'bg-zinc-900 outline outline-zinc-700 hover:outline-2',
@@ -24,13 +47,12 @@ import Link from './Link'
     ]}></span>
   <div class='flex-1 space-y-2 text-xs'>
     <p class='text-sm text-zinc-200'>
-      jestsee/<strong class='font-medium'>bookmarked-api</strong>
+      {owner}/<strong class='font-medium'>{repository}</strong>
     </p>
     <p class='line-clamp-2 text-zinc-400'>
-      Backend service for sending bookmarked data to Notion, featuring web
-      scraping and queue processing.
+      {data.description}
     </p>
-    <p class='pt-2.5 text-zinc-400/75'>Updated 1 year ago</p>
+    <p class='pt-2.5 text-zinc-400/75'>Updated {updatedTime}</p>
   </div>
   <Github className='size-6 text-white md:size-8' />
 </Link>
