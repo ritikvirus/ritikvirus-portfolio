@@ -26,11 +26,6 @@ module.exports = {
             fontWeight: '300',
             color: theme('colors.zinc.400'),
             letterSpacing: theme('letterSpacing.wide'),
-            'h1, h2, h3, h4': {
-              letterSpacing: '-0.015em',
-              fontWeight: '500',
-              fontFamily: theme('fontFamily.display').join(', ')
-            },
             a: {
               fontWeight: '400'
             },
