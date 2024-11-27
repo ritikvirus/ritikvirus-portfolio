@@ -75,9 +75,9 @@ const TooltipContent = React.forwardRef<
         align='center'
         className={cn(
           // base
-          'max-w-80 select-none rounded-lg px-3 py-2.5 text-sm leading-relaxed tracking-wide shadow-md',
+          'max-w-80 select-none rounded-lg px-4 py-3 text-sm leading-relaxed tracking-wide shadow-md',
           // text color
-          'text-zinc-300/90',
+          'text-zinc-300',
           // background color
           'bg-[var(--tooltip-color)]',
           // transition
