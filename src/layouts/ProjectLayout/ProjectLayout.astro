@@ -97,15 +97,15 @@ const htmlTitle = title.replace(
     >
       <slot />
       {
-        // prettier-ignore
         updatedDate && (
-          <p class='mt-8 text-sm text-zinc-400'>
+          <p class='!mt-8 text-zinc-400'>
             Last updated on {formatDateByTimeZone(updatedDate)} UTC+7.
-            {latestCommitUrl && 
-            <LinkArticle href={latestCommitUrl}>
-                See Changelog
+            {latestCommitUrl && (
+              <LinkArticle href={latestCommitUrl}>
+                See Changelog{''}
                 <ArrowOutward className='inline-block size-3' />
-              </LinkArticle>}
+              </LinkArticle>
+            )}
           </p>
         )
       }
@@ -126,7 +126,7 @@ const htmlTitle = title.replace(
     </div> -->
     <Link
       href='/projects'
-      class='text-sm !text-[var(--projectAccentColor)] !no-underline'
+      class='!text-zinc-200 !no-underline'
       styled
       hoverStyled
       hoverEffectOffsetStart='24px'
@@ -137,7 +137,6 @@ const htmlTitle = title.replace(
   </section>
 </BaseLayout>
 
-<!-- <style is:global define:vars={{ projectAccentColor: '#2dd4bf' }}> -->
 <style is:global define:vars={{ projectAccentColor: '#2dd4bf' }}>
   * {
     --projectAccentColor: theme(colors.zinc.300);
@@ -157,6 +156,16 @@ const htmlTitle = title.replace(
     opacity: 1;
   }
 
+  .project-heading {
+    word-spacing: -2px;
+  }
+
+  .project-heading:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 1.5px;
+    text-underline-offset: 2px;
+  }
+
   .fade-divider {
     background: theme(colors.zinc.950);
     background: linear-gradient(
@@ -168,16 +177,13 @@ const htmlTitle = title.replace(
   }
 
   article > p a {
-    text-decoration: none !important;
-    text-underline-offset: 0px !important;
+    text-underline-offset: 2px;
+    text-decoration-color: theme(colors.emerald.400) !important;
+    text-decoration-thickness: 1.5px !important;
     transition: text-underline-offset 0.15s ease-out;
 
     &:hover {
-      text-decoration: underline !important;
-      text-decoration-thickness: 1px !important;
-      text-decoration-style: dashed !important;
-      text-decoration-color: rgba(255, 255, 255, 0.7) !important;
-      text-underline-offset: 5px !important;
+      text-underline-offset: 4px !important;
     }
   }
 </style>
