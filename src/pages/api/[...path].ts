@@ -3,12 +3,10 @@ import type { APIRoute } from 'astro'
 import { z } from 'astro:schema'
 import { Hono } from 'hono'
 
-import getGithubContributions from './_github'
-import getLastUpdatedTime from './_last_updated'
-import getLastUpdatedTimeByFile from './_last_updated_file'
-import getLinkMetadata from './_link_metadata'
-import getMonkeytypeData from './_monkeytype'
-import getSpotifyData from './_spotify'
+import github from './_services/github'
+import getLinkMetadata from './_services/link_metadata'
+import getMonkeytypeData from './_services/monkeytype'
+import getSpotifyData from './_services/spotify'
 
 const app = new Hono()
   .basePath('/api')
@@ -16,25 +14,7 @@ const app = new Hono()
     console.error('error occured >>', error)
     return c.json({ error: 'Something went wrong' }, 500)
   })
-  .get('/github', async (c) =>
-    c.json(await getGithubContributions(), 200, {
-      'Cache-Control': 's-maxage=3600, stale-while-revalidate=600'
-    })
-  )
-  .get('/last-updated', async (c) =>
-    c.json(await getLastUpdatedTime(), 200, {
-      'Cache-Control': 's-maxage=3600, stale-while-revalidate=600'
-    })
-  )
-  .get(
-    '/last-updated-file',
-    zValidator('query', z.object({ path: z.string() })),
-    async (c) => {
-      const { path } = c.req.valid('query')
-
-      return c.json(await getLastUpdatedTimeByFile(path))
-    }
-  )
+  .route('/github', github)
   .get(
     '/link-metadata',
     zValidator('query', z.object({ url: z.string() })),

@@ -3,7 +3,7 @@ import useSWR from 'swr'
 
 import client from '@/lib/client'
 import { cn, fetcher } from '@/lib/utils'
-import type { SpotifyData } from '@/pages/api/_spotify'
+import type { SpotifyData } from '@/pages/api/_services/spotify'
 
 import BentoBadge from '../BentoBadge'
 

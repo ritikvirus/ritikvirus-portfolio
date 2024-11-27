@@ -2,7 +2,7 @@
 import client from '@/lib/client'
 import { formatDateByTimeZone } from '@/lib/utils'
 
-const response = await client.api['last-updated'].$get()
+const response = await client.api.github['repo-info'].$get()
 const data = response.status === 200 ? await response.json() : null
 
 if (!data) return
