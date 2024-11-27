@@ -24,12 +24,15 @@ export const GetGithubContributions = gql`
   }
 `
 
-export const GetLastUpdatedTime = gql`
+export const GetRepoInfo = gql`
   query ($username: String!, $repositoryName: String!) {
     repository(name: $repositoryName, owner: $username) {
       id
       name
       nameWithOwner
+      description
+      forkCount
+      stargazerCount
       openGraphImageUrl
       pushedAt
       updatedAt

@@ -4,7 +4,7 @@ import { z } from 'astro:schema'
 import { Hono } from 'hono'
 
 import github from './_services/github'
-import getLinkMetadata from './_services/link_metadata'
+import getLinkMetadata from './_services/linkMetadata'
 import getMonkeytypeData from './_services/monkeytype'
 import getSpotifyData from './_services/spotify'
 

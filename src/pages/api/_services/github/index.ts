@@ -3,8 +3,8 @@ import { z } from 'astro:schema'
 import { Hono } from 'hono'
 
 import getGithubContributions from './contributions'
-import getLastUpdatedTimeByFile from './last_updated_file'
-import getLastUpdatedTime from './last_updated_repo'
+import getLastUpdatedTimeByFile from './lastUpdatedFile'
+import getLastUpdatedTime from './repoInfo'
 
 const github = new Hono()
   .get('/contributions', async (c) =>
