@@ -13,63 +13,18 @@ const KEYS = [
 ---
 
 <!-- keyboard source: https://codepen.io/HaydnComley/pen/yLdpLbJ -->
-<script>
-  // document.addEventListener('astro:page-load', () => {
-  //   const keyboardKeys = Array.from(document.querySelectorAll('.key'))
-  //   const keyboardSound = document.querySelector('#keyboard-audio')
-
-  //   keyboardKeys.forEach((key) =>
-  //     key.addEventListener('mousedown', (e) => {
-  //       e.preventDefault()
-  //       if (!keyboardSound) return
-
-  //       const newAudio = keyboardSound.cloneNode() as HTMLAudioElement
-  //       keyboardSound.after(newAudio)
-  //       newAudio.play()
-  //       setTimeout(() => newAudio.remove(), 500)
-  //     })
-  //   )
-  // })
-
-  // document.addEventListener('keydown', (e) => {
-  //   e.preventDefault()
-  //   const key = keyboardKeys.find((key) => key.dataset.key === e.code)
-
-  //   if (key && !key.classList.contains('isDown')) {
-  //     key.classList.toggle('isDown', true)
-  //     if (!keyboardSound) return
-
-  //     const newAudio = keyboardSound.cloneNode() as HTMLAudioElement
-  //     keyboardSound.after(newAudio)
-  //     newAudio.play()
-  //     setTimeout(() => newAudio.remove(), 500)
-  //   }
-  // })
-
-  // document.addEventListener('keyup', (e) => {
-  //   e.preventDefault()
-  //   const key = keyboardKeys.find((key) => key.dataset.key === e.code)
-  //   if (key) {
-  //     key.classList.toggle('isDown', false)
-  //   }
-  // })
-</script>
-
 <div class='flex items-start text-center max-xs:flex-col'>
   <div class='board'>
     {
       KEYS.map(({ key, href, icon: Icon }) => (
-        // <div data-tooltip={tooltip}>
         <a class='key-position' target='_blank' {...{ href }}>
           <button class='key' data-key={key}>
             <Icon />
           </button>
         </a>
-        // </div>
       ))
     }
   </div>
-  <!-- <div data-tooltip="See what I've typed"> -->
   <div class='key-position flex items-center justify-center'>
     <a
       id='cta-hero-btn'
@@ -79,25 +34,13 @@ const KEYS = [
     >
       <p class='call-to-action-content text-white'>Explore more</p>
     </a>
-    <!-- </div> -->
-    <!-- <div
-      class:list={[
-        'absolute top-0 h-full w-full translate-x-[16%] translate-y-[25%] -skew-x-2 scale-y-125 blur-md',
-        '-z-10 bg-gradient-to-tr from-[#83af9d] to-[#8dd8ba] opacity-50',
-        'transition-all peer-hover:scale-x-110 peer-hover:opacity-75'
-      ]}
-    >
-    </div> -->
   </div>
 </div>
-<!-- <audio
-  id='keyboard-audio'
-  src='https://cdn.yoavik.com/codepen/mechanical-keyboard/keytype.mp3'></audio> -->
 
 <style>
   :root {
-    --background-2: #000000;
-    --background-3: #232b34;
+    --background-2: theme(colors.zinc.950);
+    --background-3: theme(colors.shark.950);
     --contrast: #fff;
     --size: 5rem; /* keycap size */
   }
@@ -164,7 +107,7 @@ const KEYS = [
     border: 0.1rem solid var(--background-3);
     border-radius: calc(var(--size) * 0.2);
     background: var(--background-2);
-    color: var(--contrast);
+    color: var;
     box-shadow:
       0.15rem 0.15rem 0 0 var(--background-3),
       0.3rem 0.3rem 0 0 var(--background-3),
@@ -175,6 +118,7 @@ const KEYS = [
     align-items: center;
     justify-content: center;
   }
+
   .key:hover {
     cursor: pointer;
     transform: translateX(0.3rem) translateY(0.3rem);
@@ -184,6 +128,7 @@ const KEYS = [
       0.45rem 0.45rem 0 0 var(--background-3),
       0.5rem 0.5rem 0 0 var(--background-3);
   }
+
   .key:active,
   .key.isDown {
     cursor: grabbing;
