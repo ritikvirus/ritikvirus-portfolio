@@ -3,6 +3,7 @@
 import './tooltip.css'
 
 import * as TooltipPrimitives from '@radix-ui/react-tooltip'
+import Markdown from 'markdown-to-jsx'
 import React from 'react'
 
 import { cn } from '@/lib/utils'
@@ -20,6 +21,7 @@ interface TooltipProps
   side?: 'bottom' | 'left' | 'top' | 'right'
   showArrow?: boolean
   triggerAsChild?: boolean
+  isMarkdownContent?: boolean
 }
 
 type TooltipContentProps = Omit<
@@ -116,6 +118,7 @@ const Tooltip = React.forwardRef<
       onClick,
       onOpenChange,
       triggerAsChild = false,
+      isMarkdownContent = false,
       ...props
     }: TooltipProps,
     forwardedRef
@@ -131,7 +134,19 @@ const Tooltip = React.forwardRef<
           {children}
         </TooltipTrigger>
         <TooltipContent ref={forwardedRef} {...props}>
-          {content}
+          {isMarkdownContent ? (
+            <Markdown
+              options={{
+                overrides: {
+                  a: { props: { className: 'article-link', target: '_blank' } }
+                }
+              }}
+            >
+              {content as string}
+            </Markdown>
+          ) : (
+            content
+          )}
         </TooltipContent>
       </TooltipProvider>
     )
