@@ -4,7 +4,6 @@ import React from 'react'
 import { cn } from '@/lib/utils'
 
 interface ScrollProgressBarType {
-  color?: string
   strokeSize?: number
   targetId?: string
   className?: string
@@ -17,8 +16,7 @@ const getContainerElement = (id?: string) => {
 }
 
 export default function ScrollProgressBar({
-  color = 'azure',
-  strokeSize = 2,
+  strokeSize = 0,
   targetId,
   className
 }: Readonly<ScrollProgressBarType>) {
@@ -50,8 +48,10 @@ export default function ScrollProgressBar({
       style={{ height: `${strokeSize + 2}px`, width }}
     >
       <span
-        style={{ backgroundColor: color }}
-        className={cn('absolute block h-full w-screen', className)}
+        className={cn(
+          'absolute block h-full w-screen bg-emerald-400',
+          className
+        )}
       ></span>
     </motion.span>
   )
