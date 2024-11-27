@@ -36,9 +36,9 @@ interface Props extends GithubContributionData {}
 const BentoGithubActivity = (props: Props) => {
   return (
     <div className='relative flex h-full flex-col justify-between px-4 pb-5 pt-4 max-md:gap-4'>
-      <div className='flex items-baseline justify-between gap-2 max-xs:flex-col'>
+      <div className='flex items-baseline justify-between gap-4 max-xs:flex-col'>
         <BentoBadge icon={Github} text='Github activity' />
-        <p className='text-sm'>
+        <p className='line-clamp-1 text-sm'>
           {props.totalContributions ?? 'No'} contributions in the last year
         </p>
       </div>

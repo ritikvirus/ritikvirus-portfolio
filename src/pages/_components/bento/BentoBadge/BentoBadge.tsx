@@ -15,7 +15,7 @@ interface Props {
 }
 
 const badgeVariants = cva(
-  'z-10 flex items-center gap-2 rounded-full border border-slate-700 bg-slate-950',
+  'z-10 flex items-center gap-2 rounded-full border border-slate-700 bg-slate-950 shrink-0',
   {
     variants: {
       variant: {
@@ -39,7 +39,7 @@ const BentoBadge = ({ icon: Icon, text, className }: Props) => {
       )}
     >
       <Icon className={cn('size-4', className?.icon)} />
-      {!!text && <h3 className='text-sm text-slate-200'>{text}</h3>}
+      {!!text && <h3 className='text-sm text-zinc-200'>{text}</h3>}
     </div>
   )
 }

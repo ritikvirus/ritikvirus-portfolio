@@ -70,7 +70,7 @@ const TypingSpeed = (props: Props) => {
           <p className='font-heading text-[84px] font-medium leading-tight tracking-normal'>
             {props.wpm}
           </p>
-          <p className='text-2xl leading-none'>wpm</p>
+          <p className='ml-2 text-2xl leading-none'>wpm</p>
         </div>
         <div className='flex gap-4'>
           {mapTypingDetailData(props).map((item) => (
