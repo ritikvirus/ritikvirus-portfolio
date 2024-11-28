@@ -80,6 +80,12 @@ const { class: wrapperClass, ...restWrapperProps } = wrapperProps ?? {}
     left: 50%;
     transform: translate(-50%, -50%);
   }
+
+  @media (max-width: 480px) {
+    .ambient-mode::before {
+      opacity: 20%;
+    }
+  }
 </style>
 
 <script>
