@@ -113,10 +113,7 @@ const htmlTitle = title.replace(
     </article>
 
     <aside class='w-60 shrink-0 space-y-8 max-[880px]:hidden'>
-      <TableOfContent
-        headings={headings}
-        className='sticky top-32 tracking-normal'
-      />
+      <TableOfContent headings={headings} className='sticky top-32' />
     </aside>
   </section>
 
@@ -144,8 +141,8 @@ const htmlTitle = title.replace(
   }
 
   .article-heading > a {
-    font-weight: 500 !important;
-    text-decoration: none !important;
+    font-weight: 600;
+    text-decoration: none;
     text-underline-offset: 0px;
     transition: all 150ms ease-in-out;
   }
@@ -185,7 +182,7 @@ const htmlTitle = title.replace(
 
         const id = entry.target.getAttribute('id')
         const link = document.querySelector(`li > a[href="#${id}"]`)
-        const textStyle = 'text-zinc-200'
+        const textStyle = 'text-zinc-300'
 
         document
           .querySelectorAll(`.${textStyle}`)
