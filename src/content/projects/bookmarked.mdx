@@ -16,29 +16,40 @@ links:
     url: 'https://t.me/jestsee'
 ---
 
-import { Notion } from '@/components/icons/Notion'
+import GithubCard from '@/components/GithubCard.astro'
 import { Nestjs } from '@/components/icons/NestJs'
+import { NextJs } from '@/components/icons/Nextjs'
+import { Notion } from '@/components/icons/Notion'
+import { TelegramFilled } from '@/components/icons/TelegramFilled'
+import LinkCard from '@/components/LinkCard.astro'
 import { Tooltip } from '@/components/ui/tooltip'
 
 ## Project Overview
 
-Bookmarked is a personal bookmarking tool which inspired by <Tooltip content='Save to notion is a bookmarking tool which utilize Twitter bot to save tweet to Notion' client:only='react'>[Save to Notion](https://x.com/savetonotion)</Tooltip>. Using a web interface and Telegram bot as clients, it allows users to save tweets and threads by simply forwarding URLs. The backend extracts content from X (formerly Twitter) through web scraping.
+Bookmarked is a personal bookmarking tool inspired by <Tooltip content='A powerful bookmarking tool for saving tweets to Notion, built by [@Abdulhade_Ahmad](https://x.com/Abdulhade_Ahmad)' isMarkdownContent client:only='react'>[Save to Notion](https://x.com/savetonotion)</Tooltip>. It features a web interface and a Telegram bot as clients, enabling users to save tweets and threads simply by forwarding URLs. The backend retrieves content from Twitter using web scraping. View my personal collection of bookmarked tweets [here](https://jestsee.notion.site/2ff537b5ef014dac8630e6bb8691c0a3?v=5a27ef015c954e96819f4aad99ce80c2).
 
 ## Project Goals and Motivation
 
-X (formerly known as Twitter) is a treasure trove of tech insights and tips, and I frequently found myself gathering valuable information there. Initially, I used the "like" button to save these tweets, but retrieving specific information later proved to be tedious and inefficient.
+X (formerly known as Twitter) is a _treasure trove_ of tech insights and tips, and I often found myself collecting valuable information there. Initially, I used the `like` button to save these tweets, but retrieving specific information later became _tedious and inefficient_.
 
-I began searching for tools to help me save, organize, and easily access this information, which led me to [Save to Notion](https://x.com/savetonotion). While it served the purpose, as a free-plan user, I encountered several limitations. The most inconvenient aspect was having to publicly mention the [Save to Notion](https://x.com/savetonotion) Twitter bot as a reply to the tweet or thread I wanted to save.
+That's when I discovered Save to Notion, which was a game changer. It combined the best of both worlds—useful information and an organized second brain, making it easy to retrieve saved content.
 
-My goal was to create a free bookmarking tool that could save tweets to Notion like [Save to Notion](https://x.com/savetonotion), but tailored to my preferences. To avoid the costs associated with using Twitter’s 💸💸 API (required for creating a Twitter bot), I decided to use a Telegram bot instead. This approach allowed me to forward tweet links directly to the bot, especially on mobile devices, without the need for public mentions or expensive API costs.
+While it served its purpose, as a _free user_, I encountered several limitations. The biggest inconvenience was the need to publicly mention the SaveToNotion Twitter bot in a reply to save a tweet or thread.
+
+{/* TODO: insert image of publicly mention the bot */}
+
+So, I built my own bookmarking tool to save tweets to Notion, tailored to my preferences. Using a Telegram bot as the client, it allows me to forward tweet links directly to the bot, especially on mobile devices, without the need for public mentions.
 
 ## Tech Stacks Used
 
-### Notion
+This project utilizes several tech stacks, divided into three repositories:
+backend, web application, and Telegram bot.
+
+### <Notion />Notion
 
 Stores all bookmarked tweets. Each tweet or thread is saved as an individual page in a Notion database with the following properties: Author, Tags, Tweet Date, Tweet Link, and Type (Tweet/Thread).
 
-### NestJS
+### <Nestjs />NestJS
 
 Powers the back-end, built with TypeScript for enhanced type safety. This project was my introduction to NestJS, offering a great learning experience.
 
@@ -46,11 +57,11 @@ Powers the back-end, built with TypeScript for enhanced type safety. This projec
 - **BullMQ**: Handles queue management for the scraping process, seamlessly integrated with NestJS.
 - **EventEmitter2**: Constructs SSE (Server-Sent Event) responses to send real-time updates to the client.
 
-### Next.js
+### <NextJs />Next.js
 
 Builds the web app and handles authentication using NextAuth. It also manages user data and acts as a proxy to communicate with the NestJS backend.
 
-### Telegram
+### <TelegramFilled />Telegram
 
 Functions as the client for submitting bookmark requests and receiving responses about bookmark status. Built using Telegraf.js, it provides a convenient interface for mobile users to forward tweet links effortlessly.
 
@@ -71,3 +82,5 @@ Say goodbye to the "Show more" button. Once saved to Notion, you can read a long
 ### Easily Organize and Share Your Bookmarks Collection
 
 Customize your own bookmarks viewer: group by tag, display as a collection, list, etc. Turn it into a public site that anyone can access. Share your bookmarked collection with friends, especially for sharing long threads with non-X users.
+
+{/* TODO: Start bookmarking: add notification card */}
