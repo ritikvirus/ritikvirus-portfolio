@@ -1,6 +1,5 @@
 import { Github } from '@icons/Github'
 import HeatMap, { type SVGProps } from '@uiw/react-heat-map'
-import Tooltip from '@uiw/react-tooltip'
 
 import { formatDate, getDateSuffix } from '@/lib/utils'
 import type { GithubContributionData } from '@/types'
@@ -13,22 +12,6 @@ const getDateProps = () => {
   sixMonthsAgo.setMonth(today.getMonth() - 6)
 
   return { startDate: sixMonthsAgo, endDate: today }
-}
-
-const renderRect: SVGProps['rectRender'] = (props, data) => {
-  const date = new Date(data.date)
-  const formattedDate =
-    date.toLocaleDateString('en-US', { day: 'numeric', month: 'long' }) +
-    getDateSuffix(date.getDate())
-
-  return (
-    <Tooltip
-      placement='top'
-      content={`${data.count || 'No'} contributions on ${formattedDate}`}
-    >
-      <rect {...props} />
-    </Tooltip>
-  )
 }
 
 interface Props extends GithubContributionData {}

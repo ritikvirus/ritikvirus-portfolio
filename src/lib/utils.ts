@@ -1,5 +1,5 @@
 import { type ClassValue, clsx } from 'clsx'
-import type { ClientResponse, InferRequestType } from 'hono/client'
+import type { ClientResponse } from 'hono/client'
 import type { StatusCode } from 'hono/utils/http-status'
 import { twMerge } from 'tailwind-merge'
 

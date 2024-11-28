@@ -4,7 +4,7 @@ import type { InferEntrySchema } from 'astro:content'
 interface Props
   extends Pick<InferEntrySchema<'projects'>, 'title' | 'heroImage'> {}
 
-const { heroImage, title } = Astro.props
+const { title } = Astro.props
 const [mainTitle, titleDescription] = title.split(':')
 ---
 

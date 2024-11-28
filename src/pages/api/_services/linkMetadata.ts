@@ -1,4 +1,3 @@
-import request from 'graphql-request'
 import ogs from 'open-graph-scraper'
 import type { SuccessResult } from 'open-graph-scraper/types'
 

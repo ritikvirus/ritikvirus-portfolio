@@ -41,7 +41,7 @@ const offsetEnd = hoverEffectOffsetEnd
     event.currentTarget.dispatchEvent(customEvent)
   }
 
-  let { hash: previousHash, pathname: previousPath } = window.location
+  let { pathname: previousPath } = window.location
   let isNavigating = false
 
   document.addEventListener('astro:page-load', () => {
@@ -50,7 +50,6 @@ const offsetEnd = hoverEffectOffsetEnd
       link.addEventListener('click', eventHandler)
     })
 
-    previousHash = window.location.hash
     previousPath = window.location.pathname
     isNavigating = false
   })
