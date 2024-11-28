@@ -61,7 +61,12 @@ module.exports = {
       },
       fontFamily: {
         sans: ['Switzer', 'sans'],
-        display: ['Work Sans', 'sans']
+        secondary: [
+          '"Fustat SemiBold", sans',
+          {
+            // fontFeatureSettings: '"ss03"'
+          }
+        ]
       },
       screens: {
         xs: '480px'

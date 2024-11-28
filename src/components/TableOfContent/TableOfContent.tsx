@@ -57,7 +57,7 @@ const TableOfContent = ({ headings, className }: Props) => {
   const groupedHeadings = groupHeadings(headings)
 
   return (
-    <div className={cn('font-heading !tracking-normal', className)}>
+    <div className={cn('font-display', className)}>
       <p className='text-lg font-medium text-zinc-200'>On this page</p>
       <ul className='mt-2 space-y-1.5 text-sm text-zinc-600'>
         {groupedHeadings.map((heading) => {

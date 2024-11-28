@@ -16,10 +16,6 @@
     text-decoration-color: theme(colors.zinc.400) !important;
   }
 
-  article > p a {
-    @apply article-link;
-  }
-
   .bg-primary-gradient {
     background-image: linear-gradient(
       to right,
@@ -28,10 +24,12 @@
     );
   }
 
+  .font-display {
+    @apply font-secondary tracking-normal;
+  }
+
   .font-heading {
-    @apply font-display tracking-tight;
-    font-feature-settings: 'ss06' 1;
-    word-spacing: -2px;
+    @apply font-secondary tracking-tight;
   }
 
   .link-hover-animation {
@@ -75,9 +73,10 @@
 }
 
 @font-face {
-  font-family: 'Work Sans';
-  src: url('/fonts/WorkSans[wght].ttf') format('truetype');
-  font-weight: 400 500;
+  font-family: 'Fustat SemiBold';
+  src: url('/fonts/Fustat-VariableFont_wght.ttf') format('truetype');
+  font-weight: 400 600;
+  font-display: swap;
   font-style: normal;
 }
 
