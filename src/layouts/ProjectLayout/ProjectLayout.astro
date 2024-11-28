@@ -44,7 +44,7 @@ const htmlTitle = title.replace(
   title={title.replace('\\n', ' ')}
   imageUrl={`${BASE_URL}/api/og/${slug}`}
   description={description}
-  class='!max-w-[1080px]'
+  class='!max-w-[1024px]'
 >
   <slot name='head' slot='head' />
   <TopOverlay />
@@ -79,9 +79,8 @@ const htmlTitle = title.replace(
       src={heroImage}
       alt='Bookmarked Notion page'
       wrapperProps={{ class: 'rounded-lg' }}
-      class='aspect-[1.5] w-full max-w-[1080px] xs:aspect-[2]'
+      class='aspect-[1.5] w-full xs:aspect-[2]'
       transition:name={getTransitionName(title, 'image')}
-      ambientMode
     />
   </section>
 
@@ -110,7 +109,7 @@ const htmlTitle = title.replace(
       }
     </article>
 
-    <aside class='w-60 shrink-0 space-y-8 max-[880px]:hidden'>
+    <aside class='w-60 shrink-0 space-y-8 max-lg:hidden'>
       <TableOfContent headings={headings} className='sticky top-32' />
     </aside>
   </section>

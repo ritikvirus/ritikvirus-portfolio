@@ -66,7 +66,7 @@ const TooltipContent = React.forwardRef<
   const {
     children,
     showArrow = true,
-    sideOffset = 16,
+    sideOffset = 12,
     className,
     ...restProps
   } = props
@@ -77,9 +77,9 @@ const TooltipContent = React.forwardRef<
         align='center'
         className={cn(
           // base
-          'max-w-80 select-none rounded-lg px-4 py-3 text-sm leading-relaxed tracking-wide shadow-md',
+          'max-w-96 select-none rounded-lg px-4 py-2 text-[0.9rem] leading-relaxed tracking-wide shadow-md',
           // text color
-          'text-zinc-300',
+          'text-zinc-400',
           // background color
           'bg-[var(--tooltip-color)]',
           // transition
@@ -138,7 +138,12 @@ const Tooltip = React.forwardRef<
             <Markdown
               options={{
                 overrides: {
-                  a: { props: { className: 'article-link', target: '_blank' } }
+                  a: {
+                    props: {
+                      className: 'text-emerald-400 hover:underline',
+                      target: '_blank'
+                    }
+                  }
                 }
               }}
             >
