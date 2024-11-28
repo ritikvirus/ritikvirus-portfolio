@@ -7,6 +7,7 @@ import github from './_services/github'
 import getLinkMetadata from './_services/linkMetadata'
 import getMonkeytypeData from './_services/monkeytype'
 import getSpotifyData from './_services/spotify'
+import getTweetContent from './_services/tweetContent'
 
 const app = new Hono()
   .basePath('/api')
@@ -33,6 +34,17 @@ const app = new Hono()
     c.json(await getSpotifyData(), 200, {
       'Cache-Control': 's-maxage=8, stale-while-revalidate=2'
     })
+  )
+  .get(
+    '/tweet-content/:id',
+    zValidator('param', z.object({ id: z.string() })),
+    async (c) => {
+      const { id } = c.req.valid('param')
+      return c.json(await getTweetContent(id), 200, {
+        'Cache-Control':
+          'max-age=86400, s-maxage=86400, stale-while-revalidate=600'
+      })
+    }
   )
 
 export const ALL: APIRoute = (context) => app.fetch(context.request)
