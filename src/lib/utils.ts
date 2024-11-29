@@ -11,6 +11,11 @@ export const getTransitionName = (name: string, key: string) => {
   return ` ${name.replace('\\n', ' ').replace(' ', '-')}-${key}`
 }
 
+export const truncate = (str: string | null, length: number) => {
+  if (!str || str.length <= length) return str
+  return `${str.slice(0, length - 3)}...`
+}
+
 // Append 'th', 'st', 'nd', or 'rd' for the day of the month
 export const getDateSuffix = (day: number) => {
   if (day > 3 && day < 21) return 'th' // Special case for 11th-13th

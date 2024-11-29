@@ -1,0 +1,46 @@
+---
+import { type EnrichedTweet, getMediaUrl, getMp4Video } from 'react-tweet'
+import type { MediaDetails } from 'react-tweet/api'
+
+import Image from '@/components/Image'
+
+interface Props {
+  tweet: EnrichedTweet
+  media: MediaDetails
+}
+
+const { media, tweet } = Astro.props
+---
+
+{
+  media.type === 'video' ? (
+    <video
+      class='rounded-lg border border-gray-200 drop-shadow-sm'
+      loop
+      width='2048px'
+      height='2048px'
+      autoplay
+      muted
+      playsinline
+    >
+      <source src={getMp4Video(media).url} type='video/mp4' />
+      Your browser does not support the video tag.
+    </video>
+  ) : media.type === 'animated_gif' ? (
+    <Image
+      alt={tweet.text}
+      width={2048}
+      height={media.original_info.height * (2048 / media.original_info.width)}
+      src={getMp4Video(media).url}
+      class='rounded-lg border border-gray-200 drop-shadow-sm'
+    />
+  ) : (
+    <Image
+      alt={tweet.text}
+      width={2048}
+      height={media.original_info.height * (2048 / media.original_info.width)}
+      src={getMediaUrl(media, 'small')}
+      class='rounded-lg border border-gray-200 drop-shadow-sm'
+    />
+  )
+}
