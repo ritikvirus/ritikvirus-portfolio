@@ -27,6 +27,7 @@ const {
   description,
   heroImage,
   title,
+  htmlTitle: _htmlTitle,
   headings,
   slug,
   updatedDate,
@@ -34,14 +35,14 @@ const {
   links
 } = Astro.props
 
-const htmlTitle = title.replace(
+const htmlTitle = _htmlTitle.replace(
   '\\n',
   "<br class='max-md:hidden' /><span class='md:hidden'>&nbsp;</span>"
 )
 ---
 
 <BaseLayout
-  title={title.replace('\\n', ' ')}
+  title={title}
   imageUrl={`${BASE_URL}/api/og/${slug}`}
   description={description}
   class='!max-w-[1024px]'
@@ -77,7 +78,8 @@ const htmlTitle = title.replace(
   <section class='mt-8 sm:mt-12'>
     <Image
       src={heroImage}
-      alt='Bookmarked Notion page'
+      alt={title}
+      title={title}
       wrapperProps={{ class: 'rounded-lg' }}
       class='aspect-[1.5] w-full xs:aspect-[2]'
       transition:name={getTransitionName(title, 'image')}

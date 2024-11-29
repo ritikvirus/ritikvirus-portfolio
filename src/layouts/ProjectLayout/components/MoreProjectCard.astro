@@ -2,10 +2,10 @@
 import type { InferEntrySchema } from 'astro:content'
 
 interface Props
-  extends Pick<InferEntrySchema<'projects'>, 'title' | 'heroImage'> {}
+  extends Pick<InferEntrySchema<'projects'>, 'htmlTitle' | 'heroImage'> {}
 
-const { title } = Astro.props
-const [mainTitle, titleDescription] = title.split(':')
+const { htmlTitle } = Astro.props
+const [mainTitle, subTitle] = htmlTitle.split(':')
 ---
 
 <div class='flex items-center gap-4 rounded-xl border border-slate-800 p-5'>
@@ -13,7 +13,7 @@ const [mainTitle, titleDescription] = title.split(':')
   <div class='space-y-1'>
     <p class='font-medium'>{mainTitle}</p>
     <p class='text-sm text-slate-400/80'>
-      {titleDescription.replace('\\n', ' ')}
+      {subTitle}
     </p>
   </div>
 </div>

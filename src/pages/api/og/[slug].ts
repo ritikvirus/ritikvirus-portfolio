@@ -85,7 +85,7 @@ const generateHtml = (
           type: 'div',
           props: {
             tw: 'text-6xl font-bold text-white mt-12 tracking-tight',
-            children: data.title.replace('\\n', ' '),
+            children: data.title,
             style: {
               fontFamily: 'Switzer Semi Bold'
             }

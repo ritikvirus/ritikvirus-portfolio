@@ -21,6 +21,7 @@ export const projects = defineCollection({
     z.object({
       year: z.number(),
       title: z.string(),
+      htmlTitle: z.string(),
       description: z.string(),
       heroImage: image(),
       readingTime: z.number().optional(),
