@@ -20,22 +20,26 @@ const { tweet } = Astro.props
         height={48}
         width={48}
         src={tweet.user.profile_image_url_https}
-        class='h-10 w-10 overflow-hidden rounded-full border border-transparent transition-all ease-in-out hover:scale-105 hover:border-gray-200 hover:shadow-md'
+        class='size-10'
+        wrapperProps={{
+          class:
+            'overflow-hidden rounded-full border border-transparent transition-all ease-in-out hover:scale-105 hover:border-zinc-200 hover:shadow-md'
+        }}
       />
     </a>
-    <div>
+    <div class='space-y-0.5 leading-none'>
       <a
         href={tweet.user.url}
         target='_blank'
         rel='noreferrer'
-        class='flex items-center font-semibold text-gray-900'
+        class='flex items-center font-medium text-zinc-200'
       >
         {truncate(tweet.user.name, 20)}
         {
           tweet.user.verified || tweet.user.is_blue_verified ? (
             <svg
               aria-label='Verified Account'
-              class='ml-1 inline h-4 w-4 text-blue-500'
+              class='ml-1 inline h-4 w-4 text-sky-500'
               viewBox='0 0 24 24'
             >
               <g fill='currentColor'>
@@ -50,7 +54,7 @@ const { tweet } = Astro.props
           href={tweet.user.url}
           target='_blank'
           rel='noreferrer'
-          class='text-sm text-gray-500 transition-all duration-75 hover:text-gray-900'
+          class='text-sm text-zinc-500 transition-all duration-75 hover:text-zinc-200'
         >
           @{truncate(tweet.user.screen_name, 16)}
         </a>
@@ -59,7 +63,7 @@ const { tweet } = Astro.props
           href={tweet.url}
           target='_blank'
           rel='noreferrer'
-          class='text-sm text-gray-500 transition-all duration-75 hover:text-gray-900'
+          class='text-sm text-zinc-500 transition-all duration-75 hover:text-zinc-200'
         >
           {
             new Date(tweet.created_at).toLocaleDateString('en-US', {
@@ -74,7 +78,7 @@ const { tweet } = Astro.props
   <a href={tweet.url} target='_blank' rel='noreferrer'>
     <span class='sr-only'>Link to tweet</span>
     <Twitter
-      className='h-5 w-5 text-[#3BA9EE] transition-all ease-in-out hover:scale-105'
+      className='size-6 text-zinc-200 transition-all ease-in-out hover:scale-110 max-xs:hidden'
     />
   </a>
 </div>

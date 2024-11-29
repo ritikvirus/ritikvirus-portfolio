@@ -15,12 +15,12 @@ const { media, tweet } = Astro.props
 {
   media.type === 'video' ? (
     <video
-      class='rounded-lg border border-gray-200 drop-shadow-sm'
-      loop
+      class='rounded-lg border border-zinc-700 drop-shadow-sm'
       width='2048px'
       height='2048px'
-      autoplay
+      loop
       muted
+      controls
       playsinline
     >
       <source src={getMp4Video(media).url} type='video/mp4' />
@@ -32,7 +32,9 @@ const { media, tweet } = Astro.props
       width={2048}
       height={media.original_info.height * (2048 / media.original_info.width)}
       src={getMp4Video(media).url}
-      class='rounded-lg border border-gray-200 drop-shadow-sm'
+      wrapperProps={{
+        class: 'rounded-lg border border-zinc-700 drop-shadow-sm'
+      }}
     />
   ) : (
     <Image
@@ -40,7 +42,9 @@ const { media, tweet } = Astro.props
       width={2048}
       height={media.original_info.height * (2048 / media.original_info.width)}
       src={getMediaUrl(media, 'small')}
-      class='rounded-lg border border-gray-200 drop-shadow-sm'
+      wrapperProps={{
+        class: 'rounded-lg border border-zinc-700 drop-shadow-sm'
+      }}
     />
   )
 }

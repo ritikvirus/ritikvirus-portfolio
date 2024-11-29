@@ -8,7 +8,7 @@ interface Props {
 
 const TweetText = ({ tweet }: Props) => {
   return (
-    <div className='mb-2 mt-4 truncate whitespace-pre-wrap text-[15px] text-gray-700'>
+    <div className='mb-2 mt-4 truncate whitespace-pre-wrap text-[15px] text-zinc-200'>
       {tweet.entities.map((item, i) => {
         switch (item.type) {
           case 'hashtag':

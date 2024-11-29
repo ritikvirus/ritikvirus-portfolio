@@ -21,7 +21,7 @@ const { class: className, sender, time, message, ...rest } = Astro.props
   >
     <slot />
   </div>
-  <div class='w-full space-y-1.5 overflow-hidden'>
+  <div class='w-full space-y-1 overflow-hidden'>
     <div class='flex justify-between'>
       <p class='text-sm font-medium leading-none text-black'>
         {sender}
@@ -31,7 +31,7 @@ const { class: className, sender, time, message, ...rest } = Astro.props
       </p>
     </div>
     <p
-      class='line-clamp-1 text-[13px] font-medium leading-none tracking-normal'
+      class='line-clamp-1 text-[13px] font-medium leading-[1.2] tracking-normal'
     >
       {message}
     </p>
