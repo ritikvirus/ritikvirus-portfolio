@@ -21,7 +21,7 @@ export default defineConfig({
 
   vite: {
     ssr: {
-      noExternal: ['path-to-regexp']
+      noExternal: ['path-to-regexp', 'react-tweet']
     }
   },
 
