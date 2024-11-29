@@ -1,6 +1,7 @@
 ---
 year: 2024
-title: 'Bookmarked: Your Go-To Tool for\nCurating Tweets in Notion'
+title: 'Bookmarked: Your Go-To Tool for Curating Tweets in Notion'
+htmlTitle: 'Bookmarked: Your Go-To Tool for\nCurating Tweets in Notion'
 description: 'A full-stack application that enables users to save tweets to Notion via Telegram bot.'
 heroImage: '../../assets/project_bookmarked_1.png'
 contributors:
@@ -22,8 +23,13 @@ import { Notion } from '@icons/Notion'
 import { TelegramFilled } from '@icons/TelegramFilled'
 
 import GithubCard from '@/components/GithubCard.astro'
+import Image from '@/components/Image/Image.astro'
 import LinkCard from '@/components/LinkCard.astro'
+import TweetCard from '@/components/TweetCard/TweetCard.astro'
 import { Tooltip } from '@/components/ui/tooltip'
+
+import image2 from '../../assets/project_bookmarked_2.png'
+import image3 from '../../assets/project_bookmarked_3.png'
 
 ## Project Overview
 
@@ -37,14 +43,17 @@ That's when I discovered Save to Notion, which was a game changer. It combined t
 
 While it served its purpose, as a _free user_, I encountered several limitations. The biggest inconvenience was the need to publicly mention the SaveToNotion Twitter bot in a reply to save a tweet or thread.
 
-{/* TODO: insert image of publicly mention the bot */}
+<TweetCard
+  tweetId='1660421340665458692'
+  id='embeddedTweet'
+  class='scroll-mt-24'
+/>
 
 So, I built my own bookmarking tool to save tweets to Notion, tailored to my preferences. Using a Telegram bot as the client, it allows me to forward tweet links directly to the bot, especially on mobile devices, without the need for public mentions.
 
-## Meet my NT Stack
+## Meet my NT Stacks: Nice Try, Right?
 
-This project utilizes several tech stacks, divided into three repositories:
-backend, web application, and Telegram bot.
+Notion, Next.js, NestJS, and Telegram divided into three repositories: backend, web application, and Telegram bot. We will see why I called it _nice try_ stacks.
 
 ### <Notion />Notion
 
@@ -56,7 +65,7 @@ Powers the back-end, built with TypeScript for enhanced type safety. This projec
 
 - **Puppeteer**: Utilized as a headless browser for web scraping.
 - **BullMQ**: Handles queue management for the scraping process, seamlessly integrated with NestJS.
-- **EventEmitter2**: Constructs SSE (Server-Sent Event) responses to send real-time updates to the client.
+- **EventEmitter2**: Constructs <Tooltip content='Server-Sent Events (SSE) allow servers to push real-time updates to the browser over a single HTTP connection.' client:only="react">SSE</Tooltip> responses to send real-time updates to the client.
 
 ### <NextJs />Next.js
 
@@ -74,14 +83,59 @@ No need to mention a Twitter bot publicly—just easily forward the tweet or thr
 
 ### Never Lose Your Bookmarked Tweet Again
 
-The image might get deleted if the author deletes their post, sets it to private, or deactivates their account, but not the text content. After successfully bookmarking a tweet, it will remain there forever unless you delete it manually.
+The image might get deleted if the author deletes their post, private or deactivates their account, but not the text content. After successfully bookmarking a tweet, it will remain there forever unless you delete it manually.
 
 ### Reading Experience
 
 Say goodbye to the "Show more" button. Once saved to Notion, you can read a long thread conveniently without having to press the "Show more" button to expand each tweet's full content.
 
+<div className='flex items-start gap-4 max-sm:flex-col'>
+  <div>
+    **From this**
+    <Image
+      src={image2}
+      alt='Tweet thread with "Show more" button to expand each tweet content'
+      title='Tweet thread with "Show more" button to expand each tweet content'
+      wrapperProps={{ class: 'not-prose -mt-2 rounded-md overflow-clip' }}
+      ambientMode
+    />
+  </div>
+  <div>
+    **to this**
+    <Image
+      src={image3}
+      alt='Bookmarked tweet thread with full content'
+      title='Bookmarked tweet thread with full content'
+      wrapperProps={{ class: 'not-prose -mt-2 rounded-md overflow-clip' }}
+      ambientMode
+    />
+  </div>
+</div>
+
 ### Easily Organize and Share Your Bookmarks Collection
 
-Customize your own bookmarks viewer: group by tag, display as a collection, list, etc. Turn it into a public site that anyone can access. Share your bookmarked collection with friends, especially for sharing long threads with non-X users.
+Customize how you view your bookmarked tweets. Organize them by tags, display them as a list or table, and explore a variety of options. Transform your collection into a public site that anyone can access. Share your bookmarks with friends, including long threads, even with those who don’t use Twitter—_no account needed to read them!_
+
+### Real-Time Bookmarking Process Updates
+
+Get live updates on the progress of which tweet is currently being scraped and how many tweets have been successfully processed. _Currently, this feature is only available on the web._
+
+## Challenges and How I Overcame Them
+
+During this project, I faced several challenges, both technical and non-technical, that tested my problem-solving skills and adaptability.
+
+### Twitter API Costs vs. Web Scraping: My Workaround
+
+As someone who can't justify paying for the Twitter API just for this personal project, I decided to try web scraping instead. At first, I was skeptical about this method. My initial approach was to scrape the HTML and manually parse it. To do so, I had to wait until the page fully loaded. Plus, I could only scrape one tweet at a time, which was very time-consuming.
+
+Then, I wondered if it would be possible to scrape the API response instead.
+
+> Turns out, it was!
+
+Fortunately, Puppeteer provides an interface to listen to network activity. This made the scraping process much faster since I didn’t have to wait for the entire page to load. The best part? The data was already structured in JSON format, so it required less effort to map compared to raw HTML.
+
+TMI, but there’s actually an easier way to get tweet data without web scraping, which I only discovered after finishing this project 🤡. You can check out this video for more details. I’ve already tried it and implemented it to embed [this tweet](#embeddedTweet). Well at least nice try right?
+
+<LinkCard url='https://youtu.be/HInd4QQrgKI?si=LfNlFmzug1DB2nUu' />
 
 {/* TODO: Start bookmarking: add notification card */}

@@ -3,20 +3,20 @@ import client from '@/lib/client'
 
 import Tweet from './Tweet.astro'
 
-interface Props {
-  id: string
+interface Props extends astroHTML.JSX.HTMLAttributes {
+  tweetId: string
 }
 
-const { id } = Astro.props
+const { tweetId, class: className, ...restProps } = Astro.props
 
 const response = await client.api['tweet-content'][':id'].$get({
-  param: { id }
+  param: { id: tweetId }
 })
 const data = response.status === 200 ? (await response.json()).tweet : null
 
 if (!data) return
 ---
 
-<div class='not-prose flex justify-center'>
+<div class:list={['not-prose flex justify-center', className]} {...restProps}>
   <Tweet tweet={data} />
 </div>
