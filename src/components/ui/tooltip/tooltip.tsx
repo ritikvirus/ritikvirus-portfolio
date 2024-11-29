@@ -22,6 +22,7 @@ interface TooltipProps
   showArrow?: boolean
   triggerAsChild?: boolean
   isMarkdownContent?: boolean
+  withUnderline?: boolean
 }
 
 type TooltipContentProps = Omit<
@@ -119,6 +120,7 @@ const Tooltip = React.forwardRef<
       onOpenChange,
       triggerAsChild = false,
       isMarkdownContent = false,
+      withUnderline,
       ...props
     }: TooltipProps,
     forwardedRef
@@ -131,7 +133,13 @@ const Tooltip = React.forwardRef<
         delayDuration={delayDuration}
       >
         <TooltipTrigger onClick={onClick} asChild={triggerAsChild}>
-          {children}
+          {withUnderline ? (
+            <span className='underline decoration-zinc-600 decoration-dashed underline-offset-2'>
+              {children}
+            </span>
+          ) : (
+            children
+          )}
         </TooltipTrigger>
         <TooltipContent ref={forwardedRef} {...props}>
           {isMarkdownContent ? (

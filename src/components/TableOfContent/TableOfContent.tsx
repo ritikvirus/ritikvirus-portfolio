@@ -61,7 +61,12 @@ const TableOfContent = ({ headings, className }: Props) => {
       <p className='font-display text-lg font-semibold text-zinc-200'>
         On this page
       </p>
-      <ul className='mt-2 space-y-1.5 text-[0.9rem] text-zinc-600'>
+      <ul
+        className={cn(
+          'mt-2 space-y-1.5 text-[0.9rem] text-zinc-600',
+          'scrollbar-color max-h-[640px] overflow-scroll'
+        )}
+      >
         {groupedHeadings.map((heading) => {
           if (!Array.isArray(heading)) {
             return <Heading key={heading.slug} {...heading} />

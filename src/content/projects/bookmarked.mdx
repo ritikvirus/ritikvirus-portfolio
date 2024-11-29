@@ -30,6 +30,7 @@ import { Tooltip } from '@/components/ui/tooltip'
 
 import image2 from '../../assets/project_bookmarked_2.png'
 import image3 from '../../assets/project_bookmarked_3.png'
+import image4 from '../../assets/project_bookmarked_4.png'
 
 ## Project Overview
 
@@ -65,7 +66,7 @@ Powers the back-end, built with TypeScript for enhanced type safety. This projec
 
 - **Puppeteer**: Utilized as a headless browser for web scraping.
 - **BullMQ**: Handles queue management for the scraping process, seamlessly integrated with NestJS.
-- **EventEmitter2**: Constructs <Tooltip content='Server-Sent Events (SSE) allow servers to push real-time updates to the browser over a single HTTP connection.' client:only="react">SSE</Tooltip> responses to send real-time updates to the client.
+- **EventEmitter2**: Constructs <Tooltip content='Server-Sent Events (SSE) allow servers to push real-time updates to the browser over a single HTTP connection.' withUnderline client:only="react">SSE</Tooltip> responses to send real-time updates to the client.
 
 ### <NextJs />Next.js
 
@@ -130,12 +131,88 @@ As someone who can't justify paying for the Twitter API just for this personal p
 
 Then, I wondered if it would be possible to scrape the API response instead.
 
-> Turns out, it was!
+> _Turns out, it was!_ &nbsp;🥳
 
 Fortunately, Puppeteer provides an interface to listen to network activity. This made the scraping process much faster since I didn’t have to wait for the entire page to load. The best part? The data was already structured in JSON format, so it required less effort to map compared to raw HTML.
 
-TMI, but there’s actually an easier way to get tweet data without web scraping, which I only discovered after finishing this project 🤡. You can check out this video for more details. I’ve already tried it and implemented it to embed [this tweet](#embeddedTweet). Well at least nice try right?
+TMI, there’s actually an easier way to get tweet data without web scraping, which I only discovered after finishing this project 🤡. You can check out [this video](https://youtu.be/HInd4QQrgKI?si=LfNlFmzug1DB2nUu) for more details. I’ve already tried it and used it to embed [this tweet](#embeddedTweet). Well, at least it was a nice try, right?
 
-<LinkCard url='https://youtu.be/HInd4QQrgKI?si=LfNlFmzug1DB2nUu' />
+{/* <LinkCard url='https://youtu.be/HInd4QQrgKI?si=LfNlFmzug1DB2nUu' /> */}
 
+### Vercel Free Plan limitations
+
+As mentioned [earlier](#nestjs), my Next.js app acts as a proxy for my backend, including forwarding SSE responses from the backend to the web client. To achieve this, the app must first consume the SSE response from the Nest.js backend. This process happens on the server side of the Next.js app, which runs on Node.js, before forwarding the SSE response to the client.
+
+<Image
+  src={image4}
+  alt='SSE response flow from the backend to the web client'
+  title='SSE response flow from the backend to the web client'
+  wrapperProps={{ class: 'not-prose -mt-2 rounded-md overflow-clip' }}
+/>
+
+Typically, consuming SSE happens directly in the browser using the [EventSource Web API](https://developer.mozilla.org/en-US/docs/Web/API/EventSource).
+
+> [And EventSource _does not exist on Node_](https://stackoverflow.com/questions/72934037/how-to-fix-eventsource-not-defined-error) &nbsp;🙃
+
+To address this limitation, this [EventSource](https://www.npmjs.com/package/eventsource) package allows EventSource to work in a Node.js environment. While this solution works perfectly in my local environment, it breaks when deployed to Vercel.
+
+The issue arises because Vercel's free plan <Tooltip content='Runs on the [Node.js runtime](https://vercel.com/docs/functions/runtimes#node.js), providing access to Node.js APIs, with configurable machine resources and dependencies for handling backend tasks.' isMarkdownContent withUnderline client:only="react">serverless functions</Tooltip> have a **60-second** connection timeout, meaning the SSE stream is forcibly closed after this duration. Although <Tooltip content='Executes at the network edge, closer to users, using the [Edge runtime](https://vercel.com/docs/functions/runtimes/edge-runtime). It supports a limited set of Node.js APIs.' isMarkdownContent withUnderline client:only="react">Edge Functions</Tooltip> do not have this limitation, they lack support for the EventSource package, as it requires a Node.js runtime.
+
+You can read more about it here.
+
+<LinkCard url='https://vercel.com/docs/functions#choosing-the-right-runtime' />
+
+To work around these limitations, I utilized a free VPS provided by my [GitHub Student](https://education.github.com/pack) Benefits to self-host the Next.js app. This allowed me to bypass Vercel's constraints. Setting up SSL, Nginx, and Docker was a steep learning curve, especially since I needed Docker to get Puppeteer (a headless browser) running on my VPS.
+
+> Why proxy the backend through the Next.js app?
+
+My Nest.js backend focuses exclusively on web scraping and does not have access to the database or user information. The authentication and user management are handled by the Next.js app using [Auth.js](https://authjs.dev/). For this reason, I enrich the payload on the server side of the Next.js app before sending it to the Nest.js backend.
+
+### The Road to Restarting My Project
+
+This project actually started in 2023, but I abandoned it for almost a year. The main reason? I hadn't found anyone who had built something exactly like what I had in mind. The idea existed only in my head, but the tutorial didn’t exist though—at least not one that matched what I was trying to do. Back then, I underestimated myself.
+
+Fortunately, I decided to revisit the project, though I wasn’t entirely sure why. Perhaps it was just a matter of giving myself another chance. I began by documenting the idea clearly to make it feel more real, then broke it down into smaller, manageable parts. This made it easier to explore and conduct research, and allowed me to compile tutorials from various sources.
+
+Building something totally new with an unfamiliar tech stack while working a 9-5 job was a real challenge. I pushed myself to work as efficiently as possible, hoping to free up enough time to continue working on the project. _Balancing work, personal life, and the demands of a side project taught me valuable lessons in time management and determination_.
+
+## Future Expansions
+
+### Speeding up the Bookmarking Process
+
+I plan to replace the current web scraping method with a faster one, especially the one I mentioned earlier. This improvement will not only speed up the bookmarking process but also enable video embedding in Notion—something that isn't possible with the current scraping approach.
+
+### Improving the Mobile Experience
+
+Using the Notion app on my 🥔 Android phone feels a bit sluggish. To improve this, I’ve developed a personal Bookmarked Android client using Jetpack Compose and Hono.js. I may share more about this development in the future.
+
+### Preserving Tweet Media
+
+I want to store tweet media externally so that even if the tweet is deleted or the author's account is deactivated, the media will still be accessible.
+
+## Demo
+
+<TweetCard tweetId='1849459930916630980' class='!justify-start' />
+
+## Repositories
+
+<div className='not-prose space-y-4'>
+  <GithubCard owner='jestsee' repository='bookmarked-api' />
+  <GithubCard owner='jestsee' repository='bookmarked-web' />
+  <GithubCard owner='jestsee' repository='bookmarked-telegram' />
+</div>
+
+## Outro
+
+This project has been an incredible learning experience. Every challenge I faced and overcame taught me something new. While there's still plenty of room for improvement, completing this project has boosted my confidence and made me even more excited to work on future side projects.
+
+## Start Bookmarking 🎉
+
+1. Clone the Template: Get started by cloning this [Notion template](https://jestsee.notion.site/6cf1b3b118f245869f90b705ce75aaaa?v=62adc39f47634a46b978a0a15c4dab8a).
+2. Create an Account: Head over to this [website](<(https://bookmarked.jestsee.com)>) and sign up.
+3. Connect Your Notion: Sign in and link your Notion account.
+4. Use the Telegram bot to bookmark tweets effortlessly.
+5. Start Bookmarking!
+
+I’d love to hear your thoughts on this project! Feel free to connect with me on [Twitter](https://x.com/jestseee). 😊
 {/* TODO: Start bookmarking: add notification card */}

@@ -57,6 +57,11 @@
     width: calc(100% - var(--offsetEnd, var(--offsetStart, 0px)));
   }
 
+  .scrollbar-color {
+    scrollbar-width: thin;
+    scrollbar-color: theme(colors.zinc.400) theme(colors.zinc.900);
+  }
+
   .text-primary-gradient {
     @apply bg-primary-gradient;
     background-clip: text;

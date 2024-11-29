@@ -72,6 +72,8 @@ const offsetEnd = hoverEffectOffsetEnd
   })
 </script>
 
+<style define:vars={{ offsetStart, offsetEnd }}></style>
+
 <a
   class:list={[
     'custom-link',
@@ -83,5 +85,3 @@ const offsetEnd = hoverEffectOffsetEnd
   ]}
   {...rest}><slot /></a
 >
-
-<style define:vars={{ offsetStart, offsetEnd }}></style>

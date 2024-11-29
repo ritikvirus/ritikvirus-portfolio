@@ -15,9 +15,8 @@ const TweetVideo = ({ src, poster }: Props) => {
   return (
     <div className='relative'>
       <video
-        className='rounded-lg border border-zinc-700 drop-shadow-sm'
-        width='2048px'
-        height='2048px'
+        className='max-h-[640px] rounded-lg border border-zinc-700 drop-shadow-sm'
+        height='640px'
         controls={!playButton}
         poster={poster}
         loop

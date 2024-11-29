@@ -30,7 +30,9 @@ module.exports = {
               fontWeight: '400'
             },
             blockquote: {
-              fontWeight: '400'
+              fontWeight: '400',
+              fontStyle: 'normal',
+              quotes: 'none'
             },
             strong: {
               fontWeight: '400'
@@ -40,6 +42,7 @@ module.exports = {
         sm: {
           css: {
             fontWeight: '400',
+            fontSize: '0.95rem',
             strong: {
               fontWeight: '500'
             }
