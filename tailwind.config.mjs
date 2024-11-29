@@ -29,14 +29,20 @@ module.exports = {
             a: {
               fontWeight: '400'
             },
+            blockquote: {
+              fontWeight: '400'
+            },
             strong: {
-              fontWeight: '500'
+              fontWeight: '400'
             }
           }
         },
         sm: {
           css: {
-            fontWeight: '400'
+            fontWeight: '400',
+            strong: {
+              fontWeight: '500'
+            }
           }
         }
       }),
