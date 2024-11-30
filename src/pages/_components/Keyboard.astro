@@ -18,7 +18,7 @@ const KEYS = [
     {
       KEYS.map(({ key, href, icon: Icon }) => (
         <a class='key-position' target='_blank' {...{ href }}>
-          <button class='key' data-key={key}>
+          <button aria-label={key} class='key' data-key={key}>
             <Icon />
           </button>
         </a>

@@ -24,7 +24,13 @@ const renderRect =
       getDateSuffix(date.getDate())
     const tileInfo = `${data.count || 'No'} contributions on ${formattedDate}`
 
-    return <rect onMouseEnter={() => handleMouseEnter(tileInfo)} {...props} />
+    return (
+      <rect
+        className='transition-all hover:brightness-125'
+        onMouseEnter={() => handleMouseEnter(tileInfo)}
+        {...props}
+      />
+    )
   }
 
 interface Props extends GithubContributionData {}
