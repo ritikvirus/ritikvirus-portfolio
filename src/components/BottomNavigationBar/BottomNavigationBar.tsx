@@ -92,6 +92,7 @@ const BottomNavigationBar = () => {
               key={name}
               href={href}
               onClick={() => setCurrentPath(href)}
+              aria-label={name}
             >
               <Icon className='size-6' />
               {firstSegment === href && (

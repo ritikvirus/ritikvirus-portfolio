@@ -78,7 +78,8 @@ const Dock = React.forwardRef<HTMLUListElement, DockProps>(
 
 Dock.displayName = 'Dock'
 
-export interface DockIconProps {
+export interface DockIconProps
+  extends Pick<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'aria-label'> {
   size?: number
   magnification?: number
   distance?: number

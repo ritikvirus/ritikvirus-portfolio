@@ -97,13 +97,13 @@ const FOOTER_CONTENTS: FooterContent[] = [
           <div class='flex gap-4 text-zinc-200'>
             {
               SOCIAL_MEDIAS.map(({ icon: Icon, href }) => (
-                <Link href={href} target='_blank'>
+                <Link href={href} target='_blank' aria-label='Social media'>
                   <Icon className='size-6' />
                 </Link>
               ))
             }
           </div>
-          <p class='text-xs text-zinc-500'>
+          <p class='text-xs text-zinc-400'>
             © 2024 Jesica. All rights reserved.
           </p>
         </div>
