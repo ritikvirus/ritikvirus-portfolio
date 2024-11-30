@@ -2,6 +2,10 @@
 import client from '@/lib/client'
 import { formatDateByTimeZone } from '@/lib/utils'
 
+interface Props {
+  class?: string
+}
+
 const response = await client.api.github['repo-info'][':owner'][
   ':repository'
 ].$get({
@@ -17,11 +21,13 @@ if (!data) return
 const date = new Date(data.pushedAt)
 
 const formattedDate = formatDateByTimeZone(date)
+
+const { class: className } = Astro.props
 ---
 
 {
   data ? (
-    <p class='text-xs text-zinc-400 min-[961px]:self-end'>
+    <p class:list={['text-xs min-[961px]:self-end', className]}>
       Last updated by Jesica <br class='xs:hidden' /> on {formattedDate} UTC+7
     </p>
   ) : (

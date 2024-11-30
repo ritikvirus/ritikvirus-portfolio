@@ -53,8 +53,8 @@ const TypingSpeed = (props: Props) => {
     >
       <p
         className={cn(
-          'absolute font-display text-[196px] font-extrabold text-transparent',
-          'left-1/2 top-0 -z-10 -translate-x-1/2 leading-none opacity-70',
+          'font-display absolute text-[196px] font-extrabold text-transparent',
+          'left-1/2 top-8 -z-10 -translate-x-1/2 leading-none opacity-70',
           'bg-gradient-to-b from-[#1E293B] to-[var(--card-background)] bg-clip-text'
         )}
       >

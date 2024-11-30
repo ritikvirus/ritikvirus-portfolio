@@ -75,17 +75,15 @@ const htmlTitle = _htmlTitle.replace(
     </div>
   </section>
 
-  <section class='mt-8 sm:mt-12'>
-    <Image
-      src={heroImage}
-      alt={title}
-      title={title}
-      wrapperProps={{ class: 'rounded-lg' }}
-      class='aspect-[1.5] w-full xs:aspect-[2]'
-      transition:name={getTransitionName(title, 'image')}
-      ambientMode
-    />
-  </section>
+  <Image
+    src={heroImage}
+    alt={title}
+    title={title}
+    wrapperProps={{ class: 'rounded-lg mt-8 sm:mt-12' }}
+    class='aspect-[1.5] w-full xs:aspect-[2]'
+    transition:name={getTransitionName(title, 'image')}
+    ambientMode
+  />
 
   <section class='mt-8 flex w-full gap-16 sm:mt-16'>
     <article
