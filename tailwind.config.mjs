@@ -31,7 +31,6 @@ module.exports = {
             },
             blockquote: {
               fontWeight: '400',
-              fontStyle: 'normal',
               quotes: 'none'
             },
             strong: {

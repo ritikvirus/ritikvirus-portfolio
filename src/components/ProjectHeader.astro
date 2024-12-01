@@ -3,26 +3,32 @@ import { Suitcase } from './icons/Suitcase'
 
 interface Props {
   class?: string
+  forHomePage?: boolean
 }
 
-const { class: className } = Astro.props
+const { class: className, forHomePage } = Astro.props
+
+const ProjectTitle = forHomePage ? 'h2' : 'h1'
+const ProjectDescription = forHomePage ? 'h3' : 'h2'
 ---
 
 <section class:list={['space-y-6', className]}>
   <div
-    class='flex w-fit items-center gap-2 rounded-full bg-shark-950/50 px-4 py-2 text-zinc-300'
+    class='flex w-fit items-center gap-2 rounded-full bg-emerald-950/75 px-4 py-2 text-emerald-300'
   >
     <Suitcase />
-    <h1 class='text-sm font-medium tracking-wide max-sm:text-xs'>Projects</h1>
+    <ProjectTitle class='text-sm font-medium tracking-wide max-sm:text-xs'
+      >Projects</ProjectTitle
+    >
   </div>
-  <h2
+  <ProjectDescription
     class='font-heading text-[clamp(2rem,7vw,3rem)] font-semibold leading-none'
   >
     Milestones in the <br /> learning journey
-  </h2>
-  <h3 class='text-zinc-400 max-md:text-sm'>
+  </ProjectDescription>
+  <p class='text-zinc-400 max-md:text-sm'>
     Each project marks a step forward, showcasing my growth and journey as a
     developer. <br class='max-md:hidden' /> Explore how I’ve tackled challenges and
     built solutions along the way.
-  </h3>
+  </p>
 </section>

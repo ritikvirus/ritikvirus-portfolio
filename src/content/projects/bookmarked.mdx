@@ -72,7 +72,7 @@ Powers the back-end, built with TypeScript for enhanced type safety. This projec
 
 ### <NextJs />Next.js
 
-Builds the web app and handles authentication using Auth.js. It also manages user data and acts as a proxy to communicate with the NestJS backend.
+Builds the web app and handles authentication using [Auth.js](https://authjs.dev/). It also manages user data and acts as a proxy to communicate with the NestJS backend.
 
 ### <TelegramFilled />Telegram
 
@@ -162,7 +162,7 @@ You can read more about it here.
 
 To work around these limitations, I utilized a free VPS provided by my [GitHub Student](https://education.github.com/pack) Benefits to self-host the Next.js app. This allowed me to bypass Vercel's constraints. Setting up SSL, Nginx, and Docker was a steep learning curve, especially since I needed Docker to get Puppeteer (a headless browser) running on my VPS.
 
-> Why proxy the backend through the server side of the Next.js app instead of accessing the data directly from the client side?
+_Why proxy the backend through the server side of the Next.js app instead of accessing the data directly from the client side?_
 
 My NestJS backend is dedicated solely to web scraping and saving data to Notion. It doesn’t handle database operations or user information. Authentication and user management are handled by the Next.js app using [Auth.js](https://authjs.dev/). To bridge this gap, I enrich the payload on the server side of the Next.js app with user-specific data before sending it to the NestJS backend.
 

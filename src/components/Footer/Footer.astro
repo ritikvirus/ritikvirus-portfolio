@@ -13,7 +13,7 @@ import LastUpdatedTime from './LastUpdatedTime.astro'
 const SOCIAL_MEDIAS = [
   { icon: GithubOutline, href: 'https://github.com/jestsee' },
   { icon: LinkedIn, href: 'https://www.linkedin.com/in/jestsee/' },
-  { icon: Gitlab, href: 'https://gitlab.informatika.org/jestsee' },
+  // { icon: Gitlab, href: 'https://gitlab.informatika.org/jestsee' },
   { icon: Scroll, href: '#' },
   { icon: Mail, href: '#' }
 ]
@@ -89,21 +89,20 @@ const FOOTER_CONTENTS: FooterContent[] = [
             <span class='mx-[2px]'>•</span> Jesica
           </p>
           <p class='text-[13px] text-zinc-500'>
-            A professional typer with passion for crafting <br /> unique creations
-            across the internet.
+            A dedicated problem-solver who thrives <br /> on learning and building.
           </p>
         </div>
         <div class='space-y-6'>
-          <div class='flex gap-4 text-zinc-200'>
+          <div class='flex gap-3 text-zinc-200'>
             {
               SOCIAL_MEDIAS.map(({ icon: Icon, href }) => (
                 <Link href={href} target='_blank' aria-label='Social media'>
-                  <Icon className='size-6' />
+                  <Icon className='size-5' />
                 </Link>
               ))
             }
           </div>
-          <p class='text-xs text-zinc-500'>
+          <p class='text-xs text-zinc-600'>
             © 2024 Jesica. All rights reserved.
           </p>
         </div>
@@ -140,7 +139,7 @@ const FOOTER_CONTENTS: FooterContent[] = [
             ))
           }
         </div>
-        <LastUpdatedTime class='text-zinc-500' />
+        <LastUpdatedTime class='text-zinc-600' />
       </div>
     </div>
   </div>
