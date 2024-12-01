@@ -10,14 +10,18 @@ interface Props extends HeadProps {
   class?: string
 }
 
-const { class: className, ...headProps } = Astro.props
+const {
+  class: className,
+  imageUrl = '/images/og_main.png',
+  ...headProps
+} = Astro.props
 ---
 
 <!doctype html>
 <html lang='en' class='dark'>
   <head>
     <link rel='sitemap' href='/sitemap-index.xml' />
-    <BaseHead {...headProps} />
+    <BaseHead imageUrl={imageUrl} {...headProps} />
     <ViewTransitions />
     <slot name='head' />
     <script
