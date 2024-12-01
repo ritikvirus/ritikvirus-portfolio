@@ -22,6 +22,6 @@ export const SOCIAL_MEDIA_DATA = [
   {
     name: 'Email',
     icon: Mail,
-    href: '#'
+    href: 'mailto:me@jestsee.com'
   }
 ]
