@@ -5,6 +5,7 @@ import { ViewTransitions } from 'astro:transitions'
 import BaseHead, { type Props as HeadProps } from '@/components/BaseHead.astro'
 import BottomNavigationBar from '@/components/BottomNavigationBar'
 import Footer from '@/components/Footer'
+import { BASE_URL } from '@/lib/baseUrl'
 
 interface Props extends HeadProps {
   class?: string
@@ -12,7 +13,7 @@ interface Props extends HeadProps {
 
 const {
   class: className,
-  imageUrl = '/images/og_main.png',
+  imageUrl = `${BASE_URL}/images/og_main.png`,
   ...headProps
 } = Astro.props
 ---
