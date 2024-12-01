@@ -1,9 +1,15 @@
 ---
 import { SOCIAL_MEDIA_DATA } from '@/components/socialMediaData'
+
+interface Props {
+  class?: string
+}
+
+const { class: className } = Astro.props
 ---
 
 <!-- keyboard source: https://codepen.io/HaydnComley/pen/yLdpLbJ -->
-<div class='flex items-start text-center max-xs:flex-col'>
+<div class:list={['flex items-start text-center max-xs:flex-col', className]}>
   <div class='board'>
     {
       SOCIAL_MEDIA_DATA.map(({ name, href, icon: Icon }) => (

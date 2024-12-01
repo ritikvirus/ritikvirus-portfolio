@@ -10,7 +10,8 @@ import Keyboard from '../_components/Keyboard.astro'
       'flex w-fit items-center rounded-full',
       'gap-3 py-1.5 pl-3 pr-4',
       'border border-zinc-600/75',
-      'bg-slate-950/25'
+      'bg-slate-950/25',
+      'animate-in'
     ]}
   >
     <div class='relative size-3'>
@@ -25,19 +26,51 @@ import Keyboard from '../_components/Keyboard.astro'
     </h3>
   </div>
   <h1
-    class='text-[clamp(2rem,7vw,3rem)] font-medium leading-[1.05] tracking-tight'
+    class='text-[clamp(2rem,7vw,3rem)] font-medium leading-[1.05] tracking-tight animate-in'
   >
     Hi, I’m Jesica. <br /> A software engineer.
   </h1>
-  <h2 class='mb-8 max-w-xl leading-relaxed text-slate-400 max-sm:text-sm'>
+  <h2
+    class='mb-8 max-w-xl leading-relaxed text-slate-400 animate-in max-sm:text-sm'
+  >
     Mainly working in the JavaScript ecosystem, I’m a dedicated problem-solver
     who thrives on learning and building.
   </h2>
-  <Keyboard />
+  <Keyboard class='animate-in' />
 </section>
 
 <style is:global>
   .drop-shadow-green {
     filter: drop-shadow(0px 0px 8px #59ff7e);
+  }
+
+  @keyframes fade-in-fwd {
+    0% {
+      -webkit-transform: translateZ(-80px) translateY(8px);
+      transform: translateZ(-80px) translateY(8px);
+      opacity: 0;
+    }
+    100% {
+      -webkit-transform: translate(0);
+      transform: translate(0);
+      opacity: 1;
+    }
+  }
+
+  .animate-in {
+    opacity: 0;
+    animation: fade-in-fwd 0.3s cubic-bezier(0.55, 0.085, 0.68, 0.53) forwards;
+  }
+
+  .animate-in:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+
+  .animate-in:nth-child(3) {
+    animation-delay: 0.4s;
+  }
+
+  .animate-in:nth-child(4) {
+    animation-delay: 0.6s;
   }
 </style>

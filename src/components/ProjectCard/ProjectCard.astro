@@ -13,9 +13,11 @@ interface Props
     'title' | 'year' | 'description' | 'heroImage'
   > {
   slug: string
+  disableTransition?: boolean
 }
 
-const { year, title, description, slug, heroImage } = Astro.props
+const { year, title, description, slug, heroImage, disableTransition } =
+  Astro.props
 
 const offsetEnd = '24px'
 ---
@@ -24,7 +26,9 @@ const offsetEnd = '24px'
   <Image
     src={heroImage}
     alt={title}
-    transition:name={getTransitionName(title, 'image')}
+    transition:name={!disableTransition
+      ? getTransitionName(title, 'image')
+      : undefined}
     class='aspect-[1.75] transition-all duration-800 group-hover:scale-105'
     wrapperProps={{ class: 'rounded-lg overflow-clip' }}
   />
@@ -33,7 +37,9 @@ const offsetEnd = '24px'
     <!-- should we use heading here? -->
     <h4
       class='font-display text-xl font-semibold !leading-[1.2] max-sm:text-lg'
-      transition:name={getTransitionName(title, 'title')}
+      transition:name={!disableTransition
+        ? getTransitionName(title, 'title')
+        : undefined}
     >
       {title}
     </h4>

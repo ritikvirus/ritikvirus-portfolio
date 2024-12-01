@@ -1,5 +1,6 @@
 ---
 import { ArrowOutward } from '@icons/ArrowOutward'
+import { X } from '@icons/X'
 
 import Link from '@/components/Link'
 
@@ -19,9 +20,9 @@ const FOOTER_CONTENTS: FooterContent[] = [
   {
     title: 'Me',
     links: [
-      { text: 'Blog', href: '#' },
+      { text: 'Blog', href: '/blog' },
       { text: 'Projects', href: '/projects' },
-      { text: 'Bookmarks', href: '#' }
+      { text: 'Bookmarks', href: '/bookmarks' }
     ]
   },
   {
@@ -35,7 +36,6 @@ const FOOTER_CONTENTS: FooterContent[] = [
   {
     title: 'Elsewhere',
     links: [
-      { text: 'Twitter', href: '#', withIcon: true },
       { text: 'Figma', href: '#', withIcon: true },
       { text: 'Codepen', href: '#', withIcon: true }
     ]
@@ -81,15 +81,26 @@ const FOOTER_CONTENTS: FooterContent[] = [
           </p>
         </div>
         <div class='space-y-6'>
-          <div class='flex gap-3 text-zinc-200'>
+          <ul class='flex gap-3 text-zinc-200'>
             {
               SOCIAL_MEDIA_DATA.map(({ icon: Icon, href, name }) => (
-                <Link href={href} target='_blank' aria-label={name}>
-                  <Icon className='size-5' />
-                </Link>
+                <li>
+                  <Link href={href} target='_blank' aria-label={name}>
+                    <Icon className='size-5' />
+                  </Link>
+                </li>
               ))
             }
-          </div>
+            <li>
+              <Link
+                href='https://twitter.com/jestseee'
+                target='_blank'
+                aria-label='twitter'
+              >
+                <X className='size-5' />
+              </Link>
+            </li>
+          </ul>
           <p class='text-xs text-zinc-600'>
             © 2024 Jesica. All rights reserved.
           </p>
