@@ -1,22 +1,10 @@
 ---
 import { ArrowOutward } from '@icons/ArrowOutward'
-import { GithubOutline } from '@icons/GithubOutline'
-import { Gitlab } from '@icons/Gitlab'
-import { LinkedIn } from '@icons/LinkedIn'
-import { Mail } from '@icons/Mail'
-import { Scroll } from '@icons/Scroll'
 
 import Link from '@/components/Link'
 
+import { SOCIAL_MEDIA_DATA } from '../socialMediaData'
 import LastUpdatedTime from './LastUpdatedTime.astro'
-
-const SOCIAL_MEDIAS = [
-  { icon: GithubOutline, href: 'https://github.com/jestsee' },
-  { icon: LinkedIn, href: 'https://www.linkedin.com/in/jestsee/' },
-  // { icon: Gitlab, href: 'https://gitlab.informatika.org/jestsee' },
-  { icon: Scroll, href: '#' },
-  { icon: Mail, href: '#' }
-]
 
 type FooterContent = {
   title: string
@@ -95,8 +83,8 @@ const FOOTER_CONTENTS: FooterContent[] = [
         <div class='space-y-6'>
           <div class='flex gap-3 text-zinc-200'>
             {
-              SOCIAL_MEDIAS.map(({ icon: Icon, href }) => (
-                <Link href={href} target='_blank' aria-label='Social media'>
+              SOCIAL_MEDIA_DATA.map(({ icon: Icon, href, name }) => (
+                <Link href={href} target='_blank' aria-label={name}>
                   <Icon className='size-5' />
                 </Link>
               ))

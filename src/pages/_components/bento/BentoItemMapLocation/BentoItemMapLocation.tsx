@@ -74,7 +74,7 @@ const BentoItemMapLocation = ({ className }: Props) => {
 
   return (
     // Make sure you set the height and width of the map container otherwise the map won't show
-    <div className='group relative h-full'>
+    <div className='group h-full'>
       <MapContainer
         ref={mapRef}
         zoom={MAX_ZOOM}
@@ -90,6 +90,7 @@ const BentoItemMapLocation = ({ className }: Props) => {
           'h-full min-h-full w-full',
           className
         )}
+        trackResize
       >
         <TileLayer
           url={MAP_URL}

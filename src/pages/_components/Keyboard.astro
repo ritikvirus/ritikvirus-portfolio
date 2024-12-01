@@ -1,24 +1,14 @@
 ---
-import { GithubOutline } from '@icons/GithubOutline'
-import { LinkedIn } from '@icons/LinkedIn'
-import { Mail } from '@icons/Mail'
-import { Scroll } from '@icons/Scroll'
-
-const KEYS = [
-  { key: 'KeyE', icon: GithubOutline, href: 'https://github.com/jestsee' },
-  { key: 'KeyS', icon: LinkedIn, href: 'https://www.linkedin.com/in/jestsee/' },
-  { key: 'KeyC', icon: Scroll, href: '#' },
-  { key: 'KeyR', icon: Mail, href: '#' }
-]
+import { SOCIAL_MEDIA_DATA } from '@/components/socialMediaData'
 ---
 
 <!-- keyboard source: https://codepen.io/HaydnComley/pen/yLdpLbJ -->
 <div class='flex items-start text-center max-xs:flex-col'>
   <div class='board'>
     {
-      KEYS.map(({ key, href, icon: Icon }) => (
+      SOCIAL_MEDIA_DATA.map(({ name, href, icon: Icon }) => (
         <a class='key-position' target='_blank' {...{ href }}>
-          <button aria-label={key} class='key' data-key={key}>
+          <button aria-label={name} class='key' data-key={name}>
             <Icon />
           </button>
         </a>
