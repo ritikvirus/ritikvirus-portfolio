@@ -6,12 +6,30 @@ import {
   type RemoteImageProps
 } from 'astro:assets'
 
+const alignClass = {
+  top: {
+    wrapper: 'bg-top',
+    image: 'object-top'
+  },
+  center: {
+    wrapper: 'bg-center',
+    image: 'object-center'
+  }
+}
+
 type Props = {
   wrapperProps?: astroHTML.JSX.HTMLAttributes
   ambientMode?: boolean
+  align?: keyof typeof alignClass
 } & (LocalImageProps | RemoteImageProps)
 
-const { class: className, wrapperProps, ambientMode, ...rest } = Astro.props
+const {
+  class: className,
+  wrapperProps,
+  ambientMode,
+  align = 'top',
+  ...rest
+} = Astro.props
 
 const blurryImage = await getImage({
   ...rest,
@@ -23,7 +41,8 @@ const { class: wrapperClass, ...restWrapperProps } = wrapperProps ?? {}
 
 <div
   class:list={[
-    'blur-load h-fit w-fit bg-cover bg-top',
+    'blur-load h-fit w-fit bg-cover',
+    alignClass[align].wrapper,
     { 'ambient-mode': ambientMode },
     wrapperClass
   ]}
@@ -31,7 +50,8 @@ const { class: wrapperClass, ...restWrapperProps } = wrapperProps ?? {}
 >
   <AstroImage
     class:list={[
-      'object-cover object-top',
+      'object-cover',
+      alignClass[align].image,
       'h-[inherit] max-h-[inherit] rounded-[inherit]',
       className
     ]}

@@ -26,6 +26,7 @@ const {
   year,
   description,
   heroImage,
+  heroImageAlign,
   title,
   htmlTitle: _htmlTitle,
   headings,
@@ -67,18 +68,20 @@ const htmlTitle = _htmlTitle.replace(
     <h3 class='mt-4 text-zinc-400 max-sm:text-sm'>
       {description}
     </h3>
-
-    <div
-      class='mt-4 flex gap-4 max-sm:flex-col-reverse sm:mt-6 sm:items-center sm:justify-between'
-    >
-      <Links links={links} />
-    </div>
+    {
+      links.length > 0 && (
+        <div class='mt-4 flex gap-4 max-sm:flex-col-reverse sm:mt-6 sm:items-center sm:justify-between'>
+          <Links links={links} />
+        </div>
+      )
+    }
   </section>
 
   <Image
     src={heroImage}
     alt={title}
     title={title}
+    align={heroImageAlign}
     wrapperProps={{ class: 'rounded-lg mt-8 sm:mt-12' }}
     class='aspect-[1.5] w-full xs:aspect-[2]'
     transition:name={getTransitionName(title, 'image')}

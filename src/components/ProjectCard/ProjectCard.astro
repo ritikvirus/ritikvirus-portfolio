@@ -10,14 +10,21 @@ import { ArrowRight } from '../icons/ArrowRight'
 interface Props
   extends Pick<
     InferEntrySchema<'projects'>,
-    'title' | 'year' | 'description' | 'heroImage'
+    'title' | 'year' | 'description' | 'heroImage' | 'heroImageAlign'
   > {
   slug: string
   disableTransition?: boolean
 }
 
-const { year, title, description, slug, heroImage, disableTransition } =
-  Astro.props
+const {
+  year,
+  title,
+  description,
+  slug,
+  heroImage,
+  heroImageAlign,
+  disableTransition
+} = Astro.props
 
 const offsetEnd = '24px'
 ---
@@ -26,6 +33,7 @@ const offsetEnd = '24px'
   <Image
     src={heroImage}
     alt={title}
+    align={heroImageAlign}
     transition:name={!disableTransition
       ? getTransitionName(title, 'image')
       : undefined}
