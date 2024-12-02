@@ -3,6 +3,8 @@
 // all pages through the use of the <BaseHead /> component.
 import '../styles/global.css'
 
+import { AstroFont } from 'astro-font'
+
 export interface Props {
   title?: string
   hideSuffix?: boolean
@@ -32,20 +34,37 @@ const title = `${_title}${!hideSuffix ? ' | jestsee.com' : ''}`
 <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
 <meta name='generator' content={Astro.generator} />
 
-<!-- Preload Font -->
-<link
-  rel='preload'
-  href='/fonts/Switzer-Variable.woff2'
-  as='font'
-  type='font/woff2'
-  crossorigin
-/>
-<link
-  rel='preload'
-  href='/fonts/Fustat-VariableFont_wght.ttf'
-  as='font'
-  type='font/ttf'
-  crossorigin
+<!-- Font -->
+<AstroFont
+  config={[
+    {
+      name: 'Switzer',
+      src: [
+        {
+          style: 'normal',
+          weight: '300 700',
+          path: '/fonts/Switzer-Variable.woff2'
+        }
+      ],
+      preload: true,
+      display: 'swap',
+      selector: 'body',
+      fallback: 'sans-serif'
+    },
+    {
+      name: 'Fustat SemiBold',
+      src: [
+        {
+          style: 'normal',
+          weight: '400 700',
+          path: '/fonts/Fustat-VariableFont_wght.ttf'
+        }
+      ],
+      preload: true,
+      display: 'swap',
+      fallback: 'sans-serif'
+    }
+  ]}
 />
 
 <!-- Canonical URL -->

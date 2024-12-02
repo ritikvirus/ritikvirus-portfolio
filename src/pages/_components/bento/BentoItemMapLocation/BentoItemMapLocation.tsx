@@ -92,7 +92,17 @@ const BentoItemMapLocation = ({ className }: Props) => {
         )}
         trackResize
       >
-        <TileLayer url={MAP_URL} zoomOffset={-1} minZoom={1} tileSize={512} />
+        <TileLayer
+          url={MAP_URL}
+          zoomOffset={-1}
+          minZoom={1}
+          tileSize={512}
+          eventHandlers={{
+            tileloadstart: (event) => {
+              event.tile.setAttribute('loading', 'lazy')
+            }
+          }}
+        />
       </MapContainer>
       <div className='absolute inset-0 flex items-center justify-center'>
         <div className='relative size-16'>

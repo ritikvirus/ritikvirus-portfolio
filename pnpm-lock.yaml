@@ -65,6 +65,9 @@ dependencies:
   astro:
     specifier: ^4.15.4
     version: 4.16.6(lightningcss@1.27.0)(terser@5.36.0)(typescript@5.6.3)
+  astro-font:
+    specifier: ^0.1.81
+    version: 0.1.81
   class-variance-authority:
     specifier: ^0.7.0
     version: 0.7.0
@@ -2711,6 +2714,10 @@ packages:
       - supports-color
       - typescript
     dev: true
+
+  /astro-font@0.1.81:
+    resolution: {integrity: sha512-rbrv/+ZSYdgyjBlhkAqfCjMxqqo6iEwnSo/rAdDt/POILsF0ChxMFhefIIzKEukrRGtVjEj1lrLRYk+AdV9scQ==}
+    dev: false
 
   /astro@4.16.6(lightningcss@1.27.0)(terser@5.36.0)(typescript@5.6.3):
     resolution: {integrity: sha512-LMMbjr+4aN26MOyJzTdjM+Y+srpAIkx7IX9IcdF3eHQLGr8PgkioZp+VQExRfioDIyA2HY6ottVg3QccTzJqYA==}
