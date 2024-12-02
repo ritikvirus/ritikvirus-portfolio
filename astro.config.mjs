@@ -8,6 +8,8 @@ import { defineConfig } from 'astro/config'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import rehypeSlug from 'rehype-slug'
 
+import playformCompress from '@playform/compress';
+
 // https://astro.build/config
 export default defineConfig({
   adapter: vercel(),
@@ -24,25 +26,20 @@ export default defineConfig({
     }
   },
 
-  integrations: [
-    mdx({
-      rehypePlugins: [
-        rehypeSlug,
-        [
-          rehypeAutolinkHeadings,
-          {
-            behavior: 'wrap',
-            headingProperties: {
-              class: 'article-heading'
-            }
+  integrations: [mdx({
+    rehypePlugins: [
+      rehypeSlug,
+      [
+        rehypeAutolinkHeadings,
+        {
+          behavior: 'wrap',
+          headingProperties: {
+            class: 'article-heading'
           }
-        ]
+        }
       ]
-    }),
-    sitemap(),
-    react(),
-    tailwind({
-      applyBaseStyles: false
-    })
-  ]
+    ]
+  }), sitemap(), react(), tailwind({
+    applyBaseStyles: false
+  }), playformCompress()]
 })
