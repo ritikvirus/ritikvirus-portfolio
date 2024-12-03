@@ -2,7 +2,7 @@ import { Github } from '@icons/Github'
 import HeatMap, { type SVGProps } from '@uiw/react-heat-map'
 import React from 'react'
 
-import { formatDate, getDateSuffix } from '@/lib/utils'
+import { formatDate, formatNumber, getDateSuffix } from '@/lib/utils'
 import type { GithubContributionData } from '@/types'
 
 import BentoBadge from '../BentoBadge'
@@ -22,7 +22,7 @@ const renderRect =
     const formattedDate =
       date.toLocaleDateString('en-US', { day: 'numeric', month: 'long' }) +
       getDateSuffix(date.getDate())
-    const tileInfo = `${data.count || 'No'} contributions on ${formattedDate}`
+    const tileInfo = `${formatNumber(data.count) || 'No'} contributions on ${formattedDate}`
 
     return (
       <rect
@@ -48,7 +48,7 @@ const BentoGithubActivity = (props: Props) => {
         <p className='line-clamp-1 text-sm'>
           {hoveredTile
             ? hoveredTile
-            : `${props.totalContributions ?? 'No'} contributions in the last year`}
+            : `${formatNumber(props.totalContributions) ?? 'No'} contributions in the last year`}
         </p>
       </div>
       <div className='w-full overflow-x-scroll'>

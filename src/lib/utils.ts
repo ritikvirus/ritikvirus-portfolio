@@ -48,6 +48,11 @@ export const formatDateByTimeZone = (date: Date) => {
   })
 }
 
+export const formatNumber = (value: number): string => {
+  const formatter = new Intl.NumberFormat('en-US')
+  return formatter.format(value)
+}
+
 export const fetcher =
   <T>(fn: () => Promise<ClientResponse<T, StatusCode, 'json'>>) =>
   () =>
