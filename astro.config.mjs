@@ -16,6 +16,11 @@ export default defineConfig({
   output: 'hybrid',
   site: 'https://jestsee.com',
 
+  prefetch: {
+    prefetchAll: true,
+    defaultStrategy: 'load'
+  },
+
   experimental: {
     serverIslands: true
   },
