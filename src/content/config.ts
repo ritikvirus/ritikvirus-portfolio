@@ -4,15 +4,16 @@ import { iconSchema } from './_icons'
 
 export const blog = defineCollection({
   type: 'content',
-  // Type-check frontmatter using a schema
-  schema: z.object({
-    title: z.string(),
-    description: z.string(),
-    // Transform string to Date object
-    pubDate: z.coerce.date(),
-    updatedDate: z.coerce.date().optional(),
-    heroImage: z.string().optional()
-  })
+  schema: ({ image }) =>
+    z.object({
+      title: z.string(),
+      description: z.string(),
+      heroImage: image(),
+      publishedDate: z.coerce.date(),
+      updatedDate: z.coerce.date().optional(),
+      readingTime: z.number().optional(),
+      wordsCount: z.number().optional()
+    })
 })
 
 export const projects = defineCollection({

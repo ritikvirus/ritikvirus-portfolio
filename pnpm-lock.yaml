@@ -68,6 +68,9 @@ dependencies:
   astro-font:
     specifier: ^0.1.81
     version: 0.1.81
+  astro-seo:
+    specifier: ^0.8.4
+    version: 0.8.4(prettier-plugin-astro@0.14.1)(prettier@3.3.3)(typescript@5.6.3)
   class-variance-authority:
     specifier: ^0.7.0
     version: 0.7.0
@@ -194,6 +197,23 @@ packages:
     dependencies:
       '@jridgewell/gen-mapping': 0.3.5
       '@jridgewell/trace-mapping': 0.3.25
+    dev: false
+
+  /@astrojs/check@0.5.10(prettier-plugin-astro@0.14.1)(prettier@3.3.3)(typescript@5.6.3):
+    resolution: {integrity: sha512-vliHXM9cu/viGeKiksUM4mXfO816ohWtawTl2ADPgTsd4nUMjFiyAl7xFZhF34yy4hq4qf7jvK1F2PlR3b5I5w==}
+    hasBin: true
+    peerDependencies:
+      typescript: ^5.0.0
+    dependencies:
+      '@astrojs/language-server': 2.15.3(prettier-plugin-astro@0.14.1)(prettier@3.3.3)(typescript@5.6.3)
+      chokidar: 3.6.0
+      fast-glob: 3.3.2
+      kleur: 4.1.5
+      typescript: 5.6.3
+      yargs: 17.7.2
+    transitivePeerDependencies:
+      - prettier
+      - prettier-plugin-astro
     dev: false
 
   /@astrojs/check@0.9.4(prettier-plugin-astro@0.14.1)(prettier@3.3.3)(typescript@5.6.3):
@@ -2717,6 +2737,16 @@ packages:
 
   /astro-font@0.1.81:
     resolution: {integrity: sha512-rbrv/+ZSYdgyjBlhkAqfCjMxqqo6iEwnSo/rAdDt/POILsF0ChxMFhefIIzKEukrRGtVjEj1lrLRYk+AdV9scQ==}
+    dev: false
+
+  /astro-seo@0.8.4(prettier-plugin-astro@0.14.1)(prettier@3.3.3)(typescript@5.6.3):
+    resolution: {integrity: sha512-Ou1vzQSXAxa0K8rtNtXNvSpYqOGEgMhh0immMxJeXmbVZac3UKCNWAoXWyOQDFYsZvBugCRSg0N1phBqPMVgCw==}
+    dependencies:
+      '@astrojs/check': 0.5.10(prettier-plugin-astro@0.14.1)(prettier@3.3.3)(typescript@5.6.3)
+    transitivePeerDependencies:
+      - prettier
+      - prettier-plugin-astro
+      - typescript
     dev: false
 
   /astro@4.16.6(lightningcss@1.27.0)(terser@5.36.0)(typescript@5.6.3):

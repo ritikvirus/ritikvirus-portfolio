@@ -2,36 +2,27 @@
 import Analytics from '@vercel/analytics/astro'
 import { ViewTransitions } from 'astro:transitions'
 
-import BaseHead, { type Props as HeadProps } from '@/components/BaseHead.astro'
+import BaseHead from '@/components/BaseHead.astro'
 import BottomNavigationBar from '@/components/BottomNavigationBar'
 import Footer from '@/components/Footer'
-import { BASE_URL } from '@/lib/baseUrl'
+import SEO from '@/components/SEO.astro'
 
-interface Props extends HeadProps {
+interface Props {
   class?: string
 }
 
-const {
-  class: className,
-  imageUrl = `${BASE_URL}/images/og_main.png`,
-  ...headProps
-} = Astro.props
+const { class: className } = Astro.props
 ---
 
 <!doctype html>
 <html lang='en' class='dark'>
   <head>
-    <link rel='sitemap' href='/sitemap-index.xml' />
-    <BaseHead imageUrl={imageUrl} {...headProps} />
+    <BaseHead />
     <ViewTransitions />
     <slot name='head' />
-    <script
-      is:inline
-      defer
-      type='text/partytown'
-      src='https://cloud.umami.is/script.js'
-      data-website-id='171092c9-481f-43cd-865f-97d8b52b886f'
-      data-domains='jestsee.com,www.jestsee.com'></script>
+    <slot name='seo'>
+      <SEO />
+    </slot>
   </head>
   <body class='flex min-h-screen flex-col items-center bg-zinc-950 text-white'>
     <slot name='decorator' />

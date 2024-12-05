@@ -6,6 +6,7 @@ import type { InferEntrySchema } from 'astro:content'
 
 import Image from '@/components/Image'
 import Link, { LinkArticle } from '@/components/Link'
+import SEO from '@/components/SEO.astro'
 import TableOfContent from '@/components/TableOfContent'
 import TopOverlay from '@/components/TopOverlay.astro'
 import ScrollProgressBar from '@/components/ui/scroll-progress-bar'
@@ -42,12 +43,14 @@ const htmlTitle = _htmlTitle.replace(
 )
 ---
 
-<BaseLayout
-  title={title}
-  imageUrl={`${BASE_URL}/api/og/${slug}`}
-  description={description}
-  class='!max-w-[1024px]'
->
+<BaseLayout class='!max-w-[1024px]'>
+  <SEO
+    title={title}
+    description={description}
+    imageUrl={`${BASE_URL}/api/og/${slug}`}
+    type='article'
+    slot='seo'
+  />
   <slot name='head' slot='head' />
   <TopOverlay />
   <ScrollProgressBar

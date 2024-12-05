@@ -1,17 +1,18 @@
 ---
 import { Construction } from '@icons/Construction'
 
+import SEO from '@/components/SEO.astro'
 import BaseLayout from '@/layouts/BaseLayout.astro'
 
 import Decorator from './_components/Decorator.astro'
 ---
 
-<BaseLayout
-  title='Under construction'
-  hideSuffix
-  description='This page is under construction'
-  class='text-center'
->
+<BaseLayout class='text-center'>
+  <SEO
+    title='Under construction'
+    description='This page is under construction'
+    slot='seo'
+  />
   <Decorator slot='decorator' />
   <section
     class='mt-16 flex min-h-[480px] flex-col items-center justify-center'
