@@ -1,6 +1,5 @@
 ---
 import Analytics from '@vercel/analytics/astro'
-import { ViewTransitions } from 'astro:transitions'
 
 import BaseHead from '@/components/BaseHead.astro'
 import BottomNavigationBar from '@/components/BottomNavigationBar'
@@ -18,7 +17,6 @@ const { class: className } = Astro.props
 <html lang='en' class='dark'>
   <head>
     <BaseHead />
-    <ViewTransitions />
     <slot name='head' />
     <slot name='seo'>
       <SEO />

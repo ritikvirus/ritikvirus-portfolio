@@ -34,9 +34,7 @@ const offsetEnd = '24px'
     src={heroImage}
     alt={title}
     align={heroImageAlign}
-    transition:name={!disableTransition
-      ? getTransitionName(title, 'image')
-      : undefined}
+    transition:name={getTransitionName(title, 'image')}
     class='aspect-[1.75] transition-all duration-800 group-hover:scale-105'
     wrapperProps={{ class: 'rounded-lg overflow-clip' }}
   />
@@ -45,9 +43,7 @@ const offsetEnd = '24px'
     <!-- should we use heading here? -->
     <h4
       class='font-display text-xl font-semibold !leading-[1.2] max-sm:text-lg'
-      transition:name={!disableTransition
-        ? getTransitionName(title, 'title')
-        : undefined}
+      transition:name={getTransitionName(title, 'title')}
     >
       {title}
     </h4>
