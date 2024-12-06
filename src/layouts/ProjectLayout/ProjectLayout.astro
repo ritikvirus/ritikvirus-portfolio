@@ -66,7 +66,6 @@ const htmlTitle = _htmlTitle.replace(
     <h1
       class='font-heading mt-4 text-[clamp(1.8rem,5vw,2.5rem)] font-bold leading-[1.25] sm:mt-6 md:leading-[1.1]'
       set:html={htmlTitle}
-      transition:name={getTransitionName(title, 'title')}
     />
     <h3 class='mt-4 text-zinc-400 max-sm:text-sm'>
       {description}
@@ -87,7 +86,6 @@ const htmlTitle = _htmlTitle.replace(
     align={heroImageAlign}
     wrapperProps={{ class: 'rounded-lg mt-8 sm:mt-12' }}
     class='aspect-[1.5] w-full xs:aspect-[2]'
-    transition:name={getTransitionName(title, 'image')}
     ambientMode
   />
 
@@ -226,7 +224,7 @@ const htmlTitle = _htmlTitle.replace(
   document.addEventListener('astro:page-load', handleHeadingIntersection)
 </script>
 
-<script is:inline>
+<!-- <script is:inline>
   document.addEventListener('astro:before-swap', (event) => {
     if (!event.viewTransition) return
 
@@ -234,4 +232,4 @@ const htmlTitle = _htmlTitle.replace(
       event.viewTransition.skipTransition()
     }
   })
-</script>
+</script> -->
