@@ -1,4 +1,6 @@
 ---
+import { getCustomTransition } from '@/lib/customTransition'
+
 import { Suitcase } from './icons/Suitcase'
 
 interface Props {
@@ -14,6 +16,7 @@ const ProjectDescription = forHomePage ? 'h3' : 'h2'
 
 <section class:list={['space-y-6', className]}>
   <div
+    transition:animate={getCustomTransition()}
     class='flex w-fit items-center gap-2 rounded-full bg-emerald-950/55 px-4 py-2 text-emerald-300'
   >
     <Suitcase />
@@ -22,11 +25,15 @@ const ProjectDescription = forHomePage ? 'h3' : 'h2'
     >
   </div>
   <ProjectDescription
+    transition:animate={getCustomTransition(0.1)}
     class='font-heading text-[clamp(2rem,7vw,3rem)] font-semibold leading-none'
   >
     Milestones in the <br /> learning journey
   </ProjectDescription>
-  <p class='text-zinc-400 max-md:text-sm'>
+  <p
+    class='text-zinc-400 max-md:text-sm'
+    transition:animate={getCustomTransition(0.2)}
+  >
     Each project marks a step forward, showcasing my growth and journey as a
     developer. <br class='max-md:hidden' /> Explore how I’ve tackled challenges and
     built solutions along the way.
