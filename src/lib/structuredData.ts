@@ -1,6 +1,8 @@
 import type { CollectionEntry } from 'astro:content'
 import type { Article, Person, WebSite, WithContext } from 'schema-dts'
 
+import { projectMetaData } from './metaData'
+
 export const mainWebsite: WithContext<WebSite> = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
@@ -15,8 +17,8 @@ export const projectWebsite: WithContext<WebSite> = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
   url: `${import.meta.env.SITE}/projects/`,
-  name: "Jesica's projects",
-  description: 'Milestones in the learning journey',
+  name: 'Projects',
+  description: projectMetaData.description,
   inLanguage: 'en_US'
 }
 

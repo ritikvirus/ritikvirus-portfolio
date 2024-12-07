@@ -3,6 +3,7 @@ import { ArrowOutward } from '@icons/ArrowOutward'
 import { X } from '@icons/X'
 
 import Link from '@/components/Link'
+import { mainMetaData } from '@/lib/metaData'
 
 import { SOCIAL_MEDIA_DATA } from '../socialMediaData'
 import LastUpdatedTime from './LastUpdatedTime.astro'
@@ -76,9 +77,10 @@ const FOOTER_CONTENTS: FooterContent[] = [
             <span class='tracking-widest'> 王安琪 </span>
             <span class='mx-[2px]'>•</span> Jesica
           </p>
-          <p class='text-[13px] text-zinc-500'>
-            A dedicated problem-solver who thrives <br /> on learning and building
-          </p>
+          <p
+            class='text-[13px] text-zinc-500'
+            set:html={mainMetaData.htmlDescription}
+          />
         </div>
         <div class='space-y-6'>
           <ul class='flex gap-3 text-zinc-200'>

@@ -2,6 +2,7 @@
 import { type Props as SEOProps, SEO as AstroSEO } from 'astro-seo'
 
 import { BASE_URL } from '@/lib/baseUrl'
+import { mainMetaData } from '@/lib/metaData'
 
 interface Props extends SEOProps {
   imageUrl?: string
@@ -11,10 +12,8 @@ interface Props extends SEOProps {
 const { props } = Astro
 
 const metaData = {
-  title: props.title ?? 'Jesica',
-  description:
-    props.description ??
-    'A dedicated problem-solver who thrives on learning and building.',
+  title: props.title ?? mainMetaData.title,
+  description: props.description ?? mainMetaData.description,
   image: props.imageUrl ?? `${BASE_URL}/images/og_main.png`
 }
 
