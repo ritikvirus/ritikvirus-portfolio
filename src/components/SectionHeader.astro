@@ -38,12 +38,12 @@ const Container = forHomePage ? 'div' : 'section'
   </div>
   <Description
     set:html={title}
-    transition:animate={getCustomTransition(0.1)}
+    transition:animate={getCustomTransition(0.05)}
     class='font-heading text-[clamp(2rem,7vw,3rem)] font-semibold leading-none'
   />
   <p
     class='text-zinc-400 max-md:text-sm'
-    transition:animate={getCustomTransition(0.2)}
+    transition:animate={getCustomTransition(0.1)}
     set:html={description}
   />
 </Container>
