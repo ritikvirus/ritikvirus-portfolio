@@ -6,7 +6,6 @@ import react from '@astrojs/react'
 import sitemap from '@astrojs/sitemap'
 import tailwind from '@astrojs/tailwind'
 import vercel from '@astrojs/vercel/serverless'
-import playformCompress from '@playform/compress'
 import { defineConfig } from 'astro/config'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import rehypeSlug from 'rehype-slug'
@@ -53,12 +52,18 @@ export default defineConfig({
         ]
       ]
     }),
+    (await import('@playform/compress')).default({
+      HTML: {
+        'html-minifier-terser': {
+          collapseWhitespace: false
+        }
+      }
+    }),
     sitemap(),
     react(),
     tailwind({
       applyBaseStyles: false
     }),
-    playformCompress(),
     partytown()
   ]
 })
