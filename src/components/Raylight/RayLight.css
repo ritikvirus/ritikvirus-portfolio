@@ -6,3 +6,12 @@
     hsla(216, 57%, 45%, 0.5) 100%
   );
 }
+
+.ray-light-secondary {
+  background-color: hsla(202, 56%, 31%, 0.25);
+  background-image: radial-gradient(
+    ellipse farthest-corner at center,
+    hsl(164, 39%, 53%) 0%,
+    hsla(202, 56%, 31%, 0.25) 55%
+  );
+}

@@ -26,7 +26,7 @@ const Description = forHomePage ? 'h3' : 'h2'
 const Container = forHomePage ? 'div' : 'section'
 ---
 
-<Container class:list={['space-y-6', className]}>
+<Container class:list={['space-y-8', className]}>
   <div
     transition:animate={getCustomTransition()}
     class='flex w-fit items-center gap-2 rounded-full bg-emerald-950/55 px-4 py-2 text-emerald-300'
@@ -39,7 +39,7 @@ const Container = forHomePage ? 'div' : 'section'
   <Description
     set:html={title}
     transition:animate={getCustomTransition(0.05)}
-    class='font-heading text-[clamp(2rem,7vw,3rem)] font-semibold leading-none'
+    class='font-heading text-[clamp(2rem,7vw,3.25rem)] font-semibold leading-none'
   />
   <p
     class='text-zinc-400 max-md:text-sm'

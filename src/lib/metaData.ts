@@ -49,7 +49,7 @@ const _projectMetaData: MetaDataInput = {
 export const projectMetaData: MetaData = metaDataSchema.parse(_projectMetaData)
 
 const _blogMetaData: MetaDataInput = {
-  title: 'Learning, Building, and{n}Growing as a Developer',
+  title: 'Learning, Building, and{nSm}Growing as a Developer',
   description:
     'Insights and experiences from my journey as a developer—exploring ideas,{nSm}overcoming challenges, and sharing lessons learned along the way.'
 }
