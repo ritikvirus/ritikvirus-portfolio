@@ -18,6 +18,7 @@
     1 100%
   );
   --ease: ease;
+  --nav: 'nav';
 }
 
 .nav {
@@ -28,6 +29,11 @@
 
   --width: 258;
   --bottom-nav-bar-offset: 32px;
+  view-transition-name: --nav;
+}
+
+::view-transition-group(--nav) {
+  z-index: 10;
 }
 
 @media (max-width: 480px) {

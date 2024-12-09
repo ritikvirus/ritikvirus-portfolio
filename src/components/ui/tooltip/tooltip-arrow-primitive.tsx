@@ -28,7 +28,7 @@ const TooltipArrowPrimitive = () => {
     }
   }, [])
 
-  return <Arrow ref={arrowRef} id='primitive-arrow' />
+  return <Arrow ref={arrowRef} id='primitive-arrow' className='opacity-0' />
 }
 
 export default TooltipArrowPrimitive
