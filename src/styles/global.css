@@ -100,3 +100,32 @@
     filter: blur(12px) opacity(0%);
   }
 }
+
+.tooltip-content {
+  --tooltip-color: theme('colors.zinc.900');
+  --tooltip-border-color: theme('colors.zinc.700');
+}
+
+[data-side='top'] svg {
+  bottom: -9px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+[data-side='bottom'] svg {
+  top: -9px;
+  left: 50%;
+  transform: translateX(-50%) rotate(180deg);
+}
+
+[data-side='left'] svg {
+  right: -20.25px;
+  top: 50%;
+  transform: translateY(-50%) rotate(-90deg);
+}
+
+[data-side='right'] svg {
+  left: -20.25px;
+  top: 50%;
+  transform: translateY(-50%) rotate(90deg);
+}
