@@ -1,7 +1,5 @@
 // Tremor Tooltip [v0.0.2]
 
-import './tooltip.css'
-
 import * as TooltipPrimitives from '@radix-ui/react-tooltip'
 import Markdown from 'markdown-to-jsx'
 import React from 'react'
@@ -9,6 +7,7 @@ import React from 'react'
 import { cn } from '@/lib/utils'
 
 import TooltipArrow from './tooltip-arrow'
+import TooltipArrowPrimitive from './tooltip-arrow-primitive'
 
 interface TooltipProps
   extends Omit<TooltipPrimitives.TooltipContentProps, 'content' | 'onClick'>,
@@ -71,6 +70,7 @@ const TooltipContent = React.forwardRef<
     className,
     ...restProps
   } = props
+
   return (
     <TooltipPrimitives.Portal>
       <TooltipPrimitives.Content
@@ -95,6 +95,7 @@ const TooltipContent = React.forwardRef<
         {...restProps}
       >
         {children}
+        {showArrow && <TooltipArrowPrimitive />}
         {showArrow && <TooltipArrow aria-hidden='true' />}
       </TooltipPrimitives.Content>
     </TooltipPrimitives.Portal>
