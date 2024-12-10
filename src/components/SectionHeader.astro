@@ -4,9 +4,9 @@ import type { SVGProps } from 'react'
 import { getCustomTransition } from '@/lib/customTransition'
 
 export interface Props {
+  icon: (props: SVGProps<SVGSVGElement>) => JSX.Element
   class?: string
   forHomePage?: boolean
-  icon: (props: SVGProps<SVGSVGElement>) => JSX.Element
   section: string
   htmlTitle: string
   htmlDescription: string
@@ -39,7 +39,12 @@ const Container = forHomePage ? 'div' : 'section'
   <Description
     set:html={title}
     transition:animate={getCustomTransition(0.05)}
-    class='font-heading text-[clamp(2rem,7vw,3.25rem)] font-semibold leading-none'
+    class:list={[
+      'font-heading font-semibold leading-none',
+      forHomePage
+        ? 'text-[clamp(2rem,7vw,3.2rem)]'
+        : 'text-[clamp(2rem,7vw,3.5rem)]'
+    ]}
   />
   <p
     class='text-zinc-400 max-md:text-sm'
