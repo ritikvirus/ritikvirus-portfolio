@@ -20,26 +20,26 @@ const { slug, title, description, heroImage } = Astro.props
     class='aspect-[1.5] transition-all duration-800 group-hover:scale-105'
     wrapperProps={{ class: 'rounded-lg overflow-clip max-w-[280px]' }}
   />
-  <div class='flex flex-col justify-between'>
+  <div class='flex w-full flex-col justify-between py-2'>
     <div class='font-light'>
-      <div class='space-x-1 text-zinc-300'>
+      <div class='space-x-1 text-zinc-400'>
         <span>September 23, 2024</span>
-        <!-- <span>•</span>
-        <span>15 mins read</span> -->
+        <span>•</span>
+        <span>15 min read</span>
       </div>
       <p class='font-display mt-3 text-xl font-semibold'>{title}</p>
       <p class='text-zinc-400'>{description}</p>
-      <ul class='mt-4 flex flex-wrap gap-2'>
-        {
-          ['zod', 'typescript'].map((item) => (
-            <li class='rounded bg-zinc-900 px-2 py-1 font-mono text-xs tracking-tight text-zinc-500'>
-              {item}
-            </li>
-          ))
-        }
-      </ul>
     </div>
-    <div class='flex justify-between'>
+    <ul class='flex flex-wrap gap-2'>
+      {
+        ['zod', 'typescript'].map((item) => (
+          <li class='rounded bg-zinc-900 px-2 py-1 font-mono text-xs tracking-tight text-zinc-500'>
+            {item}
+          </li>
+        ))
+      }
+    </ul>
+    <div class='flex items-center justify-between'>
       <span
         class='link-hover-animation group-hover:link-hovered-animation w-fit text-sm text-emerald-400'
         >Read more
@@ -51,4 +51,4 @@ const { slug, title, description, heroImage } = Astro.props
   </div>
 </Link>
 
-<style define:vars={{ offsetEnd: '26px' }}></style>
+<style define:vars={{ offsetEnd: '24px' }}></style>
