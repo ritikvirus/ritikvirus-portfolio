@@ -72,7 +72,7 @@ module.exports = {
       },
       fontFamily: {
         sans: ['Switzer', 'sans'],
-        mono: ['"Source Code Pro"', 'monospace'],
+        mono: ['"DM Mono"', 'monospace'],
         secondary: [
           '"Fustat SemiBold", sans',
           {
