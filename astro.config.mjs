@@ -19,7 +19,7 @@ if (process.argv[3] === '--node' || process.argv[4] === '--node') {
 // https://astro.build/config
 export default defineConfig({
   adapter,
-  output: 'hybrid',
+  output: 'static',
   site: 'https://jestsee.com',
 
   markdown: {
@@ -31,10 +31,6 @@ export default defineConfig({
   prefetch: {
     prefetchAll: true,
     defaultStrategy: 'load'
-  },
-
-  experimental: {
-    serverIslands: true
   },
 
   vite: {
