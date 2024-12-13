@@ -18,7 +18,7 @@ export const blog = defineCollection({
 })
 
 export const projects = defineCollection({
-  type: 'content',
+  loader: glob({ pattern: '**/[^_]*.mdx', base: './src/content/projects' }),
   schema: ({ image }) =>
     z
       .object({
