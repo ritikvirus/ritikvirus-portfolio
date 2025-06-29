@@ -1,7 +1,7 @@
 // @ts-check
 import mdx from '@astrojs/mdx'
 import node from '@astrojs/node'
-import partytown from '@astrojs/partytown'
+// import partytown from '@astrojs/partytown'
 import react from '@astrojs/react'
 import sitemap from '@astrojs/sitemap'
 import tailwind from '@astrojs/tailwind'
@@ -111,7 +111,8 @@ export default defineConfig({
     react(),
     tailwind({
       applyBaseStyles: false
-    }),
-    partytown()
+    })
+    // Temporarily disabled partytown due to cross-origin issues in WebContainer
+    // partytown()
   ]
 })
