@@ -16,11 +16,21 @@ const getTweetContent = async (id: string) => {
     token: getToken(id)
   }).toString()
 
-  const response = await fetch(URL + params)
+  try {
+    const response = await fetch(URL + params, {
+      // prevent long hangs in dev
+      signal: AbortSignal.timeout(9000)
+    })
 
-  const data = (await response.json()) as Tweet
+    if (!response.ok) {
+      return { tweet: null }
+    }
 
-  return { tweet: enrichTweet(data) }
+    const data = (await response.json()) as Tweet
+    return { tweet: enrichTweet(data) }
+  } catch {
+    return { tweet: null }
+  }
 }
 
 export default getTweetContent

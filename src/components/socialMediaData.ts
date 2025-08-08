@@ -7,21 +7,21 @@ export const SOCIAL_MEDIA_DATA = [
   {
     name: 'Github',
     icon: GithubOutline,
-    href: 'https://github.com/jestsee'
+    href: 'https://github.com/ritikvirus'
   },
   {
     name: 'LinkedIn',
     icon: LinkedIn,
-    href: 'https://linkedin.com/in/jestsee/'
+    href: 'https://www.linkedin.com/in/ritik-devops'
   },
   {
     name: 'Resume',
     icon: Scroll,
-    href: 'https://read.cv/jestsee'
+    href: 'https://www.linkedin.com/in/ritik-devops'
   },
   {
     name: 'Email',
     icon: Mail,
-    href: 'mailto:me@jestsee.com'
+    href: 'mailto:ritikvirus6@gmail.com'
   }
 ]

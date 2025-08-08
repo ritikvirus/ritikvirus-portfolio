@@ -1,6 +1,7 @@
 ---
 import { ArrowOutward } from '@icons/ArrowOutward'
 import { X } from '@icons/X'
+import { LinkedIn } from '@icons/LinkedIn'
 
 import Link from '@/components/Link'
 import { mainMetaData } from '@/lib/metaData'
@@ -20,7 +21,7 @@ type FooterContent = {
 
 const socialMediaData = [
   ...SOCIAL_MEDIA_DATA,
-  { icon: X, href: 'https://twitter.com/jestseee', name: 'twitter' }
+  { icon: LinkedIn, href: 'https://www.linkedin.com/in/ritik-devops', name: 'linkedin' }
 ]
 
 const FOOTER_CONTENTS: FooterContent[] = [
@@ -35,34 +36,15 @@ const FOOTER_CONTENTS: FooterContent[] = [
   {
     title: 'This site',
     links: [
-      {
-        text: 'Analytics',
-        href: 'https://us.umami.is/share/Fmo9fhCyJtinAbWP/jestsee.com',
-        inNewTab: true
-      },
+      // Analytics: add your own dashboard link if any
       { text: 'RSS', href: '/rss.xml', inNewTab: true },
-      {
-        text: 'Source code',
-        href: 'https://github.com/jestsee/jestsee.com',
-        inNewTab: true
-      }
+      { text: 'Source code', href: 'https://github.com/ritikvirus/ritikvirus-portfolio', inNewTab: true }
     ]
   },
   {
     title: 'Elsewhere',
     links: [
-      {
-        text: 'Bluesky',
-        href: 'https://bsky.app/profile/jestsee.com',
-        inNewTab: true,
-        withIcon: true
-      },
-      {
-        text: 'Monkeytype',
-        href: 'https://monkeytype.com/profile/jestsee_',
-        inNewTab: true,
-        withIcon: true
-      }
+      { text: 'LinkedIn', href: 'https://www.linkedin.com/in/ritik-devops', inNewTab: true, withIcon: true }
     ]
   }
 ]
@@ -97,10 +79,7 @@ const FOOTER_CONTENTS: FooterContent[] = [
     >
       <div class='space-y-24'>
         <div class='space-y-3'>
-          <p class='text-lg leading-none text-zinc-200'>
-            <span class='tracking-widest'> 王安琪 </span>
-            <span class='mx-[2px]'>•</span> Jesica
-          </p>
+          <p class='text-lg leading-none text-zinc-200'>Ritik</p>
           <p
             class='text-[13px] text-zinc-500'
             set:html={mainMetaData.htmlDescription}
@@ -124,7 +103,7 @@ const FOOTER_CONTENTS: FooterContent[] = [
             }
           </ul>
           <p class='text-xs text-zinc-500'>
-            &copy; {new Date().getFullYear()} Jesica. All rights reserved.
+            &copy; {new Date().getFullYear()} Ritik. All rights reserved.
           </p>
         </div>
       </div>

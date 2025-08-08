@@ -14,6 +14,10 @@ const getAccessToken = async (): Promise<AccessToken | null> => {
     const clientSecret = SPOTIFY_CLIENT_SECRET
     const refreshToken = SPOTIFY_REFRESH_TOKEN
 
+    if (!clientId || !clientSecret || !refreshToken) {
+      return null
+    }
+
     const basic = Buffer.from(`${clientId}:${clientSecret}`).toString('base64')
 
     const response = await fetch('https://accounts.spotify.com/api/token', {

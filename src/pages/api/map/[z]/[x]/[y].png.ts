@@ -20,6 +20,10 @@ export const GET: APIRoute = async ({ params }) => {
       statusText: 'Bad request'
     })
 
+  if (!MAPTILER_API_KEY) {
+    return new Response(null, { status: 204 })
+  }
+
   const response = await fetch(generateMapUrl({ z, x, y }))
   if (!response.ok) {
     return new Response('Error fetching tile', { status: response.status })

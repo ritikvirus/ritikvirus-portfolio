@@ -7,9 +7,9 @@ export const mainWebsite: WithContext<WebSite> = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
   url: import.meta.env.SITE,
-  name: 'Jesica - Personal Website',
+  name: 'Ritik - Personal Website',
   description:
-    'From Figma to TypeScript, I craft seamless web and mobile experiences as a software engineer, based in Jakarta, Indonesia.',
+    'DevOps/DevSecOps Engineer automating cloud infrastructure (AWS), Kubernetes, Docker, CI/CD, and security.',
   inLanguage: 'en_US'
 }
 
@@ -25,15 +25,11 @@ export const projectWebsite: WithContext<WebSite> = {
 export const personSchema: WithContext<Person> = {
   '@context': 'https://schema.org',
   '@type': 'Person',
-  name: 'Jesica',
-  url: 'https://jestsee.com',
+  name: 'Ritik',
+  url: 'https://www.linkedin.com/in/ritik-devops',
   // image: `${import.meta.env.SITE}${avatar.src}`,
-  sameAs: [
-    'https://www.twitter.com/jestseee',
-    'https://www.instagram.com/jest.see/',
-    'https://www.linkedin.com/in/jestsee/'
-  ],
-  jobTitle: 'Software engineer'
+  sameAs: ['https://www.linkedin.com/in/ritik-devops'],
+  jobTitle: 'DevOps Engineer'
   // worksFor: {
   //   '@type': 'Organization',
   //   name: 'Grafana',

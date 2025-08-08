@@ -1,7 +1,7 @@
-# jestsee.com
+# Ritik Portfolio
 
 A personal website showcasing my work, built with Astro.
-Check out the live website [here](https://jestsee.com).
+Check out my LinkedIn profile `https://www.linkedin.com/in/ritik-devops`.
 
 https://github.com/user-attachments/assets/a4e8c8a1-b901-477f-9768-f2acefa5de35
 

@@ -35,20 +35,24 @@ const getOgImageData = (data: SuccessResult['result']) => {
 }
 
 const getLinkMetadata = async (url: string): Promise<LinkMetadataResponse> => {
-  const data = await ogs({ url })
+  try {
+    const data = await ogs({ url, timeout: 8_000 as any })
 
-  if (data.error || !data.result) return { success: false }
+    if (data.error || !data.result) return { success: false }
 
-  return {
-    success: !!data.result.success,
-    title: data.result.twitterTitle ?? data.result.ogTitle,
-    description:
-      data.result.twitterDescription ?? data.result.ogDescription ?? '',
-    faviconUrl: data.result.favicon?.startsWith('/')
-      ? data.result.ogUrl + data.result.favicon
-      : data.result.favicon,
-    requestUrl: data.result.requestUrl,
-    image: getOgImageData(data.result)
+    return {
+      success: !!data.result.success,
+      title: data.result.twitterTitle ?? data.result.ogTitle,
+      description:
+        data.result.twitterDescription ?? data.result.ogDescription ?? '',
+      faviconUrl: data.result.favicon?.startsWith('/')
+        ? data.result.ogUrl + data.result.favicon
+        : data.result.favicon,
+      requestUrl: data.result.requestUrl,
+      image: getOgImageData(data.result)
+    }
+  } catch {
+    return { success: false }
   }
 }
 

@@ -20,7 +20,7 @@ if (process.argv[3] === '--node' || process.argv[4] === '--node') {
 export default defineConfig({
   adapter,
   output: 'static',
-  site: 'https://jestsee.com',
+  site: 'http://localhost:4321',
 
   markdown: {
     shikiConfig: {
@@ -37,27 +37,33 @@ export default defineConfig({
     schema: {
       MAPTILER_API_KEY: envField.string({
         context: 'server',
-        access: 'secret'
+        access: 'secret',
+        optional: true
       }),
       GITHUB_ACCESS_TOKEN: envField.string({
         context: 'server',
-        access: 'secret'
+        access: 'secret',
+        optional: true
       }),
       SPOTIFY_CLIENT_ID: envField.string({
         context: 'server',
-        access: 'secret'
+        access: 'secret',
+        optional: true
       }),
       SPOTIFY_CLIENT_SECRET: envField.string({
         context: 'server',
-        access: 'secret'
+        access: 'secret',
+        optional: true
       }),
       SPOTIFY_REFRESH_TOKEN: envField.string({
         context: 'server',
-        access: 'secret'
+        access: 'secret',
+        optional: true
       }),
       MONKEYTYPE_API_KEY: envField.string({
         context: 'server',
-        access: 'secret'
+        access: 'secret',
+        optional: true
       }),
 
       PUBLIC_VERCEL_ENV: envField.string({

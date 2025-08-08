@@ -14,8 +14,15 @@ const {
   ...rest
 } = Astro.props
 
+// Ensure width/height defaults to avoid MissingImageDimension for string src
+const normalizedRest: Record<string, any> = { ...rest }
+if (normalizedRest.width == null || normalizedRest.height == null) {
+  normalizedRest.width = 1200
+  normalizedRest.height = 630
+}
+
 const blurryImage = await getImage({
-  ...(rest as UnresolvedImageTransform),
+  ...(normalizedRest as UnresolvedImageTransform),
   width: 20
 })
 
@@ -38,7 +45,7 @@ const { class: wrapperClass, ...restWrapperProps } = wrapperProps ?? {}
       'h-[inherit] max-h-[inherit] rounded-[inherit]',
       className
     ]}
-    {...rest}
+    {...(normalizedRest as any)}
   />
 </div>
 

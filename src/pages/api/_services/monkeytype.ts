@@ -21,6 +21,9 @@ const mapResponse = (response: any) => {
 const getMonkeytypeData = async (): Promise<MonkeyTypeData> => {
   try {
     const API_KEY = MONKEYTYPE_API_KEY
+    if (!API_KEY) {
+      return { acc: 0, consistency: 0, language: 'english', time: 60, wpm: 0 }
+    }
     const response = await fetch(
       'https://api.monkeytype.com/users/personalBests?mode=time',
       { headers: { Authorization: `ApeKey ${API_KEY}` } }
