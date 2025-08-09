@@ -27,6 +27,8 @@ export default defineConfig({
   adapter,
   // Use SSR server output when building with Node or Cloudflare adapter; static otherwise
   output: isNode || isCF ? 'server' : 'static',
+  // Ensure base is always a string to avoid path helper errors in image endpoint injection
+  base: '/',
   // Use an image service compatible with the current runtime
   image: {
     service: {
