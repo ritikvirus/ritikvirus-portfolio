@@ -13,10 +13,9 @@ const response = await client.api['tweet-content'][':id'].$get({
   param: { id: tweetId }
 })
 const data = response.status === 200 ? (await response.json()).tweet : null
-
-if (!data) return
 ---
-
-<div class:list={['not-prose flex', className]} {...restProps}>
-  <Tweet tweet={data} />
-</div>
+{data ? (
+  <div class:list={['not-prose flex', className]} {...restProps}>
+    <Tweet tweet={data} />
+  </div>
+) : null}

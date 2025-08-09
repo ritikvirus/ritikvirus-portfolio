@@ -16,7 +16,7 @@ const BentoItemNowPlaying = ({ initialData }: Props) => {
     'spotify',
     fetcher(() => client.api.spotify.$get()),
     {
-      refreshInterval: 10000,
+      refreshInterval: 5000,
       fallbackData: initialData
     }
   )
@@ -24,10 +24,15 @@ const BentoItemNowPlaying = ({ initialData }: Props) => {
   // TODO: handle initial error
   if (error && !data) return <p>masok error {JSON.stringify(data, null, 2)}</p>
 
+  const href = data?.songUrl && data.songUrl.length > 0 ? data.songUrl : 'https://open.spotify.com/'
+
+  const hasImage = Boolean(data?.albumImageUrl)
+
   return (
     <a
-      href={data?.songUrl}
+      href={href}
       target='_blank'
+      rel='noreferrer noopener'
       className={cn(
         'group relative flex h-full items-center gap-x-6 rounded-3xl p-5',
         'max-lg:p-6 md:max-lg:flex-col md:max-lg:items-start md:max-lg:justify-between'
@@ -41,14 +46,23 @@ const BentoItemNowPlaying = ({ initialData }: Props) => {
         }}
       />
       <div className='aspect-square h-full rounded-xl bg-black p-3 max-lg:h-3/5 max-md:min-w-24'>
-        <div className='relative'>
-          <img
-            src={data?.albumImageUrl}
-            alt='Last Played Song'
-            className={cn('absolute aspect-square rounded-full', {
-              'animate-[spin_5s_linear_infinite]': data?.isPlaying
-            })}
-          />
+        <div className='relative flex h-full w-full items-center justify-center'>
+          {hasImage ? (
+            <img
+              src={data?.albumImageUrl}
+              alt='Last Played Song'
+              className={cn('absolute aspect-square rounded-full', {
+                'animate-[spin_5s_linear_infinite]': data?.isPlaying
+              })}
+            />
+          ) : (
+            <div
+              aria-hidden
+              className='flex aspect-square h-16 w-16 items-center justify-center rounded-full bg-zinc-800 text-zinc-400'
+            >
+              <Spotify className='size-6' />
+            </div>
+          )}
         </div>
       </div>
       <div className='w-full space-y-1 overflow-hidden tracking-wide'>

@@ -11,22 +11,14 @@ try {
   data = await getLastUpdatedTime('ritikvirus', 'ritikvirus-portfolio')
 } catch {}
 
-if (!data) return
-
 const date = new Date((data as any).pushedAt)
 
 const formattedDate = formatDateByTimeZone(date)
 
 const { class: className } = Astro.props
 ---
-
-{
-  data ? (
-    <p class:list={['text-xs min-[961px]:self-end', className]}>
-      Last updated by Ritik <br class='xs:hidden' /> on {formattedDate} UTC+7
-    </p>
-  ) : (
-    // TODO: handle error
-    <p>Something went wrong 😔</p>
-  )
-}
+{data ? (
+  <p class:list={['text-xs min-[961px]:self-end', className]}>
+    Last updated by Ritik <br class='xs:hidden' /> on {formattedDate} UTC+7
+  </p>
+) : null}
