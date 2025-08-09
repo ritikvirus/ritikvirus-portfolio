@@ -14,7 +14,7 @@ import rehypeSlug from 'rehype-slug'
 const isNode = process.argv.includes('--node')
 const isCF = process.argv.includes('--cloudflare') || process.env.CF_PAGES === '1'
 
-let adapter = vercel()
+let adapter = vercel({})
 if (isCF) {
   const cf = (await import('@astrojs/cloudflare')).default
   adapter = cf()

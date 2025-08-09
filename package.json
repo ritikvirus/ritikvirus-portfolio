@@ -2,6 +2,10 @@
   "name": "ritikvirus-portfolio",
   "type": "module",
   "version": "0.0.1",
+  "engines": {
+    "node": "20.x"
+  },
+  "packageManager": "pnpm@10.14.0",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
