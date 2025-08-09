@@ -46,9 +46,9 @@ const _mainMetaData: MetaDataInput = {
 export const mainMetaData = buildMetaData(_mainMetaData)
 
 const _projectMetaData: MetaDataInput = {
-  title: 'Milestones in the{n}learning journey',
+  title: 'Projects{nMd}Milestones in my learning journey',
   description:
-    'Each project marks a step forward, showcasing my growth and journey as a developer.{nMd}Explore how I’ve tackled challenges and built solutions along the way.'
+    'AI · DevOps · DevSecOps — Each project marks a step forward, showcasing growth in secure automation, cloud, and AI infrastructure.{nMd}Explore how I’ve tackled challenges and built solutions along the way.'
 }
 export const projectMetaData: MetaData = buildMetaData(_projectMetaData)
 

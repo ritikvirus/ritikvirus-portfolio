@@ -10,9 +10,14 @@ import { projectMetaData } from '@/lib/metaData'
 
 import Decorator from './_components/Decorator.astro'
 
-const projects = (await getCollection('projects')).filter(
-  (p) => !['bookmarked', 'bookmarked-android'].includes(p.id)
-)
+const projects = (await getCollection('projects'))
+  .filter((p) => !['bookmarked', 'bookmarked-android'].includes(p.id))
+  .sort((a, b) => {
+    const aDate = a.data.updatedDate ? new Date(a.data.updatedDate).getTime() : 0
+    const bDate = b.data.updatedDate ? new Date(b.data.updatedDate).getTime() : 0
+    if (aDate !== bDate) return bDate - aDate
+    return (b.data.year || 0) - (a.data.year || 0)
+  })
 ---
 
 <BaseLayout>
