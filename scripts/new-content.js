@@ -43,7 +43,7 @@ let frontmatter = ''
 if (type === 'page') {
   frontmatter = `---\ntitle: '${slug.replace(/-/g, ' ')}'\ndescription: 'Page description'\nupdatedDate: ${now}\n---\n\n# ${slug.replace(/-/g, ' ')}\n\nWrite your content here.\n`
 } else if (type === 'project') {
-  frontmatter = `---\nyear: ${new Date().getFullYear()}\ntitle: '${slug.replace(/-/g, ' ')}'\ndescription: 'Short project description'\nheroImage: '@assets/project_bookmarked_1.png'\nlinks: []\nupdatedDate: ${now}\n---\n\nProject details here.\n`
+  frontmatter = `---\nyear: ${new Date().getFullYear()}\ntitle: '${slug.replace(/-/g, ' ')}'\ndescription: 'Short project description'\nheroImage: '../../assets/qreate.png'\nlinks: []\nupdatedDate: ${now}\n---\n\nProject details here.\n`
 } else if (type === 'blog') {
   frontmatter = `---\ntitle: '${slug.replace(/-/g, ' ')}'\ndescription: 'Post description'\nheroImage: '/images/og_main.png'\npubDate: ${now}\nupdatedDate: ${now}\ntags: []\n---\n\nYour post starts here.\n`
 }
