@@ -1,13 +1,19 @@
 ---
 import Link from './Link'
 
-interface Props extends astroHTML.JSX.AnchorHTMLAttributes {}
+interface Props extends astroHTML.JSX.AnchorHTMLAttributes {
+  variant?: 'default' | 'compact'
+}
 
-const { class: className, ...rest } = Astro.props
+const props = Astro.props as Props
+const { class: className, variant = 'default', ...rest } = props
 ---
 
 <Link class={className} {...rest}>
-  <div class:list={'animated-button'}>
+  <div class:list={[
+    'animated-button',
+    variant === 'compact' && 'compact',
+  ]}>
     <svg
       aria-hidden='true'
       viewBox='0 0 24 24'
@@ -36,6 +42,8 @@ const { class: className, ...rest } = Astro.props
 <style>
   a {
     --color: ghostwhite;
+    display: inline-block;
+    flex-shrink: 0; /* don't let flex containers squeeze this link */
   }
 
   .animated-button {
@@ -43,23 +51,47 @@ const { class: className, ...rest } = Astro.props
     display: flex;
     align-items: center;
     gap: 4px;
-    padding: 12px 32px;
-    border: 4px solid;
-    border-color: transparent;
+  padding: 12px 32px;
+  /* Thicker border for the pill shape; visual outline via box-shadow */
+  border: 4px solid transparent;
     font-size: 0.875rem;
     background-color: inherit;
     border-radius: 100px;
     font-weight: 500;
     color: var(--color);
+    /* Bring back the default thin outline look */
     box-shadow: 0 0 0 1px var(--color);
     cursor: pointer;
     overflow: hidden;
+    white-space: nowrap; /* keep text on one line */
+    line-height: 1; /* tighter vertical rhythm */
     transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  /* Compact variant for extra-slim pills */
+  .animated-button.compact {
+    padding: 6px 16px;
+    font-size: clamp(0.8125rem, 0.76rem + 0.2vw, 0.875rem);
+    border-width: 1px; /* shape only; visual border comes from box-shadow */
+  }
+  .animated-button.compact svg {
+    width: 14px;
+  }
+  .animated-button.compact .text {
+    transform: translateX(-10px);
+  }
+
+  /* Responsive padding tweaks for compact variant */
+  @media (max-width: 640px) {
+    .animated-button.compact { padding: 6px 14px; }
+  }
+  @media (min-width: 1024px) {
+    .animated-button.compact { padding: 8px 18px; }
   }
 
   .animated-button svg {
     position: absolute;
-    width: 24px;
+  width: 24px;
     fill: var(--color);
     z-index: 9;
     transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
@@ -90,10 +122,12 @@ const { class: className, ...rest } = Astro.props
     position: relative;
     z-index: 1;
     transform: translateX(-12px);
+    line-height: 1; /* match container line-height */
     transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
   }
 
   .animated-button:hover {
+    /* Restore subtle ring expansion on hover like the default */
     box-shadow: 0 0 0 8px transparent;
     color: #212121;
     border-radius: 12px;
