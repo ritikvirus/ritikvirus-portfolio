@@ -10,16 +10,23 @@ import { defineConfig, envField } from 'astro/config'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import rehypeSlug from 'rehype-slug'
 
-let adapter = vercel()
+// Allow switching adapters via flags
+const isNode = process.argv.includes('--node')
+const isCF = process.argv.includes('--cloudflare') || process.env.CF_PAGES === '1'
 
-if (process.argv[3] === '--node' || process.argv[4] === '--node') {
+let adapter = vercel()
+if (isCF) {
+  const cf = (await import('@astrojs/cloudflare')).default
+  adapter = cf()
+} else if (isNode) {
   adapter = node({ mode: 'standalone' })
 }
 
 // https://astro.build/config
 export default defineConfig({
   adapter,
-  output: 'static',
+  // Use SSR server output when building with Node or Cloudflare adapter; static otherwise
+  output: isNode || isCF ? 'server' : 'static',
   // Use the production portfolio domain for absolute URLs and sitemap
   site: 'https://ritik.aidevops.in',
 

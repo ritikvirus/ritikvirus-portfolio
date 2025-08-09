@@ -1,0 +1,59 @@
+# syntax=docker/dockerfile:1.6
+
+########################################
+# 1) Builder: Install deps and build    #
+########################################
+FROM node:20-alpine AS deps
+WORKDIR /app
+
+# Native deps (sharp)
+RUN apk add --no-cache libc6-compat
+
+# Enable pnpm
+ENV COREPACK_ENABLE_DOWNLOAD_PROMPT=0
+RUN corepack enable
+
+COPY package.json pnpm-lock.yaml ./
+RUN --mount=type=cache,target=/root/.local/share/pnpm/store \
+    pnpm install --frozen-lockfile
+
+
+FROM node:20-alpine AS build
+WORKDIR /app
+ENV NODE_ENV=production
+ENV COREPACK_ENABLE_DOWNLOAD_PROMPT=0
+RUN corepack enable
+
+COPY --from=deps /app/node_modules ./node_modules
+COPY . .
+
+# Build SSR server output
+RUN --mount=type=cache,target=/root/.local/share/pnpm/store \
+    pnpm build:node
+
+
+########################################
+# 2) Runtime: Node server (non-root)    #
+########################################
+FROM node:20-alpine AS runner
+WORKDIR /app
+
+ENV NODE_ENV=production
+
+# Create unprivileged user
+RUN addgroup -g 10001 web && adduser -D -H -u 10001 -G web web
+USER web
+
+# Copy built server and assets
+COPY --from=build --chown=web:web /app/dist /app/dist
+
+# Expose default port used by astro preview --node (configurable)
+ENV PORT=8080
+EXPOSE 8080
+
+# Healthcheck using Node HTTP
+HEALTHCHECK --interval=30s --timeout=3s --start-period=10s --retries=3 \
+  CMD node -e "fetch('http://127.0.0.1:'+process.env.PORT).then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))"
+
+# Start the Node server build
+CMD ["node", "./dist/server/entry.mjs"]

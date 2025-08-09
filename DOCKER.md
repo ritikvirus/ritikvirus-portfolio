@@ -1,13 +1,20 @@
 # Docker: Production Build & Run
 
-This project includes a production-grade Docker setup:
+This project includes two production-grade Docker setups:
 
+- Static site image (Caddy) for pure static hosting
+  - Fast, tiny, immutable cache-friendly
+  - Use when you don't need server APIs
+- SSR site image (Node) for full functionality (APIs under /api)
+  - Uses Astro Node adapter
+  - Reads secrets from environment (e.g. Spotify/Monkeytype/GitHub)
+  
+Common features:
 - Multi-stage build with pnpm and cache mounts for fast, reproducible builds
-- Static serving with Caddy (non-root, unprivileged port)
-- Secure headers and asset caching
+- Secure headers and asset caching (static image)
 - Multi-architecture builds with Docker Buildx (linux/amd64, linux/arm64)
 
-## Quick start
+## Quick start (Static)
 
 Build and run locally (single-arch):
 
@@ -24,6 +31,28 @@ curl -sSf http://localhost:8080 | head -n 1
 ```
 
 Open http://localhost:8080
+
+## Quick start (SSR with APIs)
+
+Build and run the SSR image (serves /, /blog, and /api/* via Node):
+
+```sh
+# from repo root
+docker build -f Dockerfile.ssr -t ritikvirus/portfolio-ssr:local .
+docker run --rm -p 8080:8080 \
+  -e SPOTIFY_CLIENT_ID=... \
+  -e SPOTIFY_CLIENT_SECRET=... \
+  -e SPOTIFY_REFRESH_TOKEN=... \
+  -e MONKEYTYPE_API_KEY=... \
+  -e GITHUB_ACCESS_TOKEN=... \
+  --name portfolio-ssr-test ritikvirus/portfolio-ssr:local
+```
+
+Then:
+
+```sh
+curl -sSf http://localhost:8080/api/spotify | jq .
+```
 
 ## Build and push (Docker Hub)
 
@@ -129,6 +158,25 @@ Notes:
 - Container runs as non-root and listens on port 8080.
 - TLS is recommended at your ingress/LB. If you prefer in-container TLS, see the note above.
 - Adjust CSP in `Caddyfile` if you add third-party scripts/providers.
+
+For SSR image, the same hardening flags apply. Ensure required env vars are set:
+
+```sh
+docker run -d \
+  --name portfolio-ssr \
+  --restart unless-stopped \
+  -p 80:8080 \
+  --read-only \
+  --cap-drop ALL \
+  --security-opt no-new-privileges:true \
+  --tmpfs /tmp:rw,noexec,nosuid,size=64m \
+  -e SPOTIFY_CLIENT_ID=... \
+  -e SPOTIFY_CLIENT_SECRET=... \
+  -e SPOTIFY_REFRESH_TOKEN=... \
+  -e MONKEYTYPE_API_KEY=... \
+  -e GITHUB_ACCESS_TOKEN=... \
+  ritikvirus/portfolio-ssr:latest
+```
 
 ## CI publishing (optional)
 

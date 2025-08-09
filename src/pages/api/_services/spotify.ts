@@ -8,6 +8,11 @@ import queryString from 'query-string'
 const BASE_URL = 'https://api.spotify.com/v1/me/player'
 
 type AccessToken = { access_token: string }
+const toBase64 = (s: string) =>
+  typeof Buffer !== 'undefined'
+    ? Buffer.from(s).toString('base64')
+    : (globalThis as any).btoa(s)
+
 const getAccessToken = async (): Promise<AccessToken | null> => {
   try {
     const clientId = SPOTIFY_CLIENT_ID
@@ -18,7 +23,7 @@ const getAccessToken = async (): Promise<AccessToken | null> => {
       return null
     }
 
-    const basic = Buffer.from(`${clientId}:${clientSecret}`).toString('base64')
+  const basic = toBase64(`${clientId}:${clientSecret}`)
 
     const response = await fetch('https://accounts.spotify.com/api/token', {
       method: 'POST',
