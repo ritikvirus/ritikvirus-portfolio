@@ -51,7 +51,24 @@ export const projects = defineCollection({
       }))
 })
 
+export const pages = defineCollection({
+  loader: glob({ pattern: '**/[^_]*.mdx', base: './src/content/pages' }),
+  schema: () =>
+    z.object({
+      title: z.string(),
+      description: z.string(),
+      updatedDate: z.coerce.date().optional(),
+      // Person fields for About page SEO (optional)
+      name: z.string().optional(),
+      email: z.string().optional(),
+      telephone: z.string().optional(),
+      location: z.string().optional(),
+      sameAs: z.array(z.string()).optional().default([])
+    })
+})
+
 export const collections = {
   blog,
-  projects
+  projects,
+  pages
 }

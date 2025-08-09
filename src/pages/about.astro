@@ -1,27 +1,29 @@
 ---
+import { getEntry, render } from 'astro:content'
 import BaseLayout from '@/layouts/BaseLayout.astro'
 import SEO from '@/components/SEO.astro'
-
-const description = 'DevOps / DevSecOps / AI Infrastructure Engineer based in Delhi, India.'
+const pageEntry = await getEntry('pages', 'about')
+if (!pageEntry) {
+	throw new Error('About page content not found in content/pages/about.mdx')
+}
+const page = pageEntry
+const { Content } = await render(page as any)
+const description = page.data.description || 'About Ritik'
 const personJsonLd = {
 	'@context': 'https://schema.org',
 	'@type': 'Person',
-	name: 'Ritik',
+	name: page.data.name ?? 'Ritik',
 	jobTitle: 'DevOps / DevSecOps / AI Infrastructure Engineer',
 	url: 'https://www.linkedin.com/in/ritik-devops',
-	email: 'mailto:ritikvirus6@gmail.com',
-	telephone: '+91-8920279167',
-	address: {
-		'@type': 'PostalAddress',
-		addressLocality: 'Delhi',
-		addressCountry: 'IN'
-	},
-	sameAs: ['https://www.linkedin.com/in/ritik-devops']
+	email: `mailto:${page.data.email ?? 'ritikvirus6@gmail.com'}`,
+	telephone: page.data.telephone ?? '+91-8920279167',
+	address: { '@type': 'PostalAddress', addressLocality: 'Delhi', addressCountry: 'IN' },
+	sameAs: page.data.sameAs ?? ['https://www.linkedin.com/in/ritik-devops']
 }
 ---
 
 <BaseLayout>
-	<SEO title={`About | Ritik`} description={description} slot='seo' />
+			<SEO title={`${page.data.title || 'About Ritik'}`} description={description} slot='seo' />
 	<script
 		is:inline
 		type='application/ld+json'
@@ -30,94 +32,6 @@ const personJsonLd = {
 	/>
 
 	<section class='prose prose-invert max-w-none'>
-		<h1 class='font-display'>Ritik – DevOps / DevSecOps / AI Infrastructure Engineer</h1>
-		<p>Delhi, India · <a href='mailto:ritikvirus6@gmail.com'>ritikvirus6@gmail.com</a> · <a href='tel:+918920279167'>+91-8920279167</a></p>
-		<p>LinkedIn: <a href='https://www.linkedin.com/in/ritik-devops' rel='me' target='_blank'>linkedin.com/in/ritik-devops</a></p>
-
-		<h2>Professional Summary</h2>
-		<p>
-			DevOps and DevSecOps Engineer with 3+ years of hands-on experience building secure, scalable, and automated cloud infrastructure.
-			AWS-first architectures, Kubernetes and Docker orchestration, and Infrastructure as Code with Terraform. AI platform engineering for Stable Diffusion, ComfyUI, LoRA pipelines, and GPU workloads on RunPod and AWS.
-			Automation with n8n to orchestrate workflows and improve developer productivity.
-		</p>
-		<p>
-			Recognized for security remediation, secure CI/CD, and performance/cost optimization in AI/ML stacks. Recipient of the Technical Excellence Award 2024.
-		</p>
-
-		<h2>Core Skills & Tools</h2>
-		<h3>Cloud Infrastructure & Virtualization</h3>
-		<ul>
-			<li>AWS: EC2, VPC, EKS, IAM, Route53, S3, RDS, ECS, Lambda, CloudFront, CloudWatch</li>
-			<li>VMware ESXi, VPC networking, multi-AZ setups</li>
-		</ul>
-		<h3>Containers & Orchestration</h3>
-		<ul>
-			<li>Kubernetes (EKS), Docker, Helm, Nginx Ingress with SSL/TLS</li>
-			<li>Secure container isolation, RBAC, namespace segmentation</li>
-		</ul>
-		<h3>CI/CD & Automation</h3>
-		<ul>
-			<li>Jenkins, GitHub Actions, Git, pipeline as code</li>
-			<li>Automated deploys for AI workloads, blue-green deployments</li>
-		</ul>
-		<h3>Infrastructure as Code</h3>
-		<ul>
-			<li>Terraform modules for repeatable AWS provisioning</li>
-			<li>Boto3 automation scripts for EC2 lifecycle and Route53 DNS</li>
-		</ul>
-		<h3>AI/ML Infrastructure</h3>
-		<ul>
-			<li>Stable Diffusion, ComfyUI, LoRA training pipelines</li>
-			<li>GPU orchestration on AWS & RunPod</li>
-			<li>AI pipeline hardening, model deployment, and scaling</li>
-			<li>Workflow automation with n8n for AI data processing</li>
-		</ul>
-		<h3>Security & Monitoring</h3>
-		<ul>
-			<li>GuardDuty, WAF, KMS, Secrets Manager, MFA enforcement</li>
-			<li>Burp Suite, OWASP ZAP, Kali (Subfinder, Nikto, Nmap)</li>
-			<li>Grafana, Prometheus, CloudTrail</li>
-		</ul>
-		<h3>Programming & Scripting</h3>
-		<ul>
-			<li>Python (Flask APIs, Boto3 AWS automation), Bash scripting</li>
-		</ul>
-
-		<h2>Experience</h2>
-		<h3>DevOps Engineer – Aesthisia Datacenters (Sep 2022 – Present)</h3>
-		<ul>
-			<li>Automated AWS provisioning with Terraform and Boto3.</li>
-			<li>GPU-optimized AI environments for Stable Diffusion & ComfyUI.</li>
-			<li>Flask+Boto3 APIs for EC2 lifecycle & Route53, integrated with n8n.</li>
-			<li>Nginx Ingress with SSL/TLS; RBAC for namespace-level security.</li>
-			<li>Grafana + Prometheus observability; ~40% MTTR reduction.</li>
-			<li>Managed multi-project CI/CD with on-time delivery.</li>
-			<li>Technical Excellence Award 2024.</li>
-		</ul>
-
-		<h2>Key Projects</h2>
-		<ul>
-			<li><a href='/projects/thinkdiffusion/'>ThinkDiffusion – AI Inference Platform</a></li>
-			<li><a href='/projects/eggoz/'>Eggoz – EKS-based App Platform</a></li>
-			<li><a href='/projects/qreate-ai/'>QREATE AI – AI QR Code Generator</a></li>
-			<li><a href='/projects/calvary-temple/'>Calvary Temple – Kubernetes Deployment Pipeline</a></li>
-		</ul>
-
-		<h2>Security & Bug Hunting</h2>
-		<ul>
-			<li>RCE mitigation (ComfyUI plugin), storage quota enforcement, GPU credit exploit patch.</li>
-			<li>AWS credential leak response (MFA + rotation), DB leak containment for 5k+ users.</li>
-		</ul>
-
-		<h2>Certifications</h2>
-		<ul>
-			<li>Cloud Solutions Architect – Govt of India, MeitY (Silver)</li>
-			<li>O Level – NIELIT</li>
-			<li>Cyber Security Certification – CSFPC</li>
-			<li>State Certificate – Govt of NCT Delhi</li>
-		</ul>
-
-		<h2>Education</h2>
-		<p>BCA – Glocal University (2019–2022)</p>
+		<Content />
 	</section>
 </BaseLayout>
