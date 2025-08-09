@@ -31,6 +31,9 @@ COPY . .
 RUN --mount=type=cache,target=/root/.local/share/pnpm/store \
     pnpm build:node
 
+# Prune devDependencies to keep only production deps for runtime
+RUN pnpm prune --prod
+
 
 ########################################
 # 2) Runtime: Node server (non-root)    #
@@ -44,8 +47,10 @@ ENV NODE_ENV=production
 RUN addgroup -g 10001 web && adduser -D -H -u 10001 -G web web
 USER web
 
-# Copy built server and assets
+# Copy built server and assets + production dependencies
 COPY --from=build --chown=web:web /app/dist /app/dist
+COPY --from=build --chown=web:web /app/node_modules /app/node_modules
+COPY --from=build --chown=web:web /app/package.json /app/package.json
 
 # Expose default port used by astro preview --node (configurable)
 ENV PORT=8080
