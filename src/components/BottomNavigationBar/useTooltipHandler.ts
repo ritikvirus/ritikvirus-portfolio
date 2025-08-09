@@ -5,7 +5,7 @@ export const useTooltipHandler = (
 ) => {
   const tipX = useRef(0)
   const tipY = useRef(0)
-  const bounds = useRef<DOMRect>(null)
+  const bounds = useRef<DOMRect | null>(null)
 
   const setTipXY = () => {
     document.documentElement.style.setProperty(
