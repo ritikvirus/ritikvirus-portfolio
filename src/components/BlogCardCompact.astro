@@ -8,14 +8,14 @@ interface Props extends CollectionEntry<'blog'> {}
 
 const {
   id: slug,
-  data: { heroImage, title, pubDate, description }
+  data: { heroImage, heroDetailImage, title, pubDate, description }
 } = Astro.props
 ---
 
 <li class='w-[280px] shrink-0'>
   <Link href={`/blog/${slug}`} class='group block no-underline'>
     <Image
-      src={heroImage}
+      src={heroDetailImage ?? heroImage}
       alt={title}
       title={title}
       align='center'

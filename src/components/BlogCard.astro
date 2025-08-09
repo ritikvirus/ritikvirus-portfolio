@@ -11,7 +11,7 @@ interface Props extends CollectionEntry<'blog'> {}
 
 const {
   id: slug,
-  data: { heroImage, title, pubDate, description, tags },
+  data: { heroImage, heroDetailImage, title, pubDate, description, tags },
   body
 } = Astro.props
 
@@ -23,7 +23,7 @@ const { minutes } = calculateReadingTime(body!)
   class='group flex gap-8 border-t border-t-zinc-900 py-10 max-md:flex-col'
 >
   <Image
-    src={heroImage}
+  src={heroDetailImage ?? heroImage}
     alt={title}
     align='center'
     class='aspect-[2] transition-all duration-800 group-hover:scale-105 md:aspect-[1.5]'

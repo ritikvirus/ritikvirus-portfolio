@@ -10,6 +10,8 @@ export const blog = defineCollection({
       title: z.string(),
       description: z.string(),
       heroImage: z.string(),
+  heroDetailImage: z.string().optional(),
+  heroFit: z.enum(['cover', 'contain']).optional().default('cover'),
       tags: z.array(z.string()).optional().default([]),
       pubDate: z.coerce.date(),
       updatedDate: z.coerce.date().optional(),

@@ -15,4 +15,5 @@ export type CustomImageProps = {
   wrapperProps?: astroHTML.JSX.HTMLAttributes
   ambientMode?: boolean
   align?: keyof typeof alignClass
+  fit?: 'cover' | 'contain'
 } & (LocalImageProps | RemoteImageProps)

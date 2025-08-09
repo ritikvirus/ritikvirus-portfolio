@@ -27,6 +27,7 @@ const blurryImage = await getImage({
 })
 
 const { class: wrapperClass, ...restWrapperProps } = wrapperProps ?? {}
+const fit = (normalizedRest.fit ?? 'cover') as 'cover' | 'contain'
 ---
 
 <div
@@ -40,7 +41,7 @@ const { class: wrapperClass, ...restWrapperProps } = wrapperProps ?? {}
 >
   <AstroImage
     class:list={[
-      'object-cover',
+  fit === 'contain' ? 'object-contain' : 'object-cover',
       alignClass[align].image,
       'h-[inherit] max-h-[inherit] rounded-[inherit]',
       className

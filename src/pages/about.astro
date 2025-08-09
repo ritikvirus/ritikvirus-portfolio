@@ -1,5 +1,6 @@
 ---
 import { getEntry, render } from 'astro:content'
+import Link from '@/components/Link'
 import BaseLayout from '@/layouts/BaseLayout.astro'
 import SEO from '@/components/SEO.astro'
 const pageEntry = await getEntry('pages', 'about')
@@ -23,7 +24,7 @@ const personJsonLd = {
 ---
 
 <BaseLayout>
-			<SEO title={`${page.data.title || 'About Ritik'}`} description={description} slot='seo' />
+						<SEO title={`${page.data.title || 'About Ritik'}`} description={description} slot='seo' />
 	<script
 		is:inline
 		type='application/ld+json'
@@ -31,7 +32,41 @@ const personJsonLd = {
 		slot='head'
 	/>
 
-	<section class='prose prose-invert max-w-none'>
-		<Content />
-	</section>
+		<!-- Hero header: name, title, contact -->
+		<header class='mt-6 flex flex-col gap-3'>
+			<h1 class='font-heading text-[clamp(1.8rem,5vw,2.2rem)] font-semibold leading-tight'>
+				{page.data.name ?? 'Ritik'}
+			</h1>
+			<p class='text-zinc-300 max-w-prose'>
+				{page.data.description ?? 'DevOps / DevSecOps / AI Infrastructure Engineer'}
+			</p>
+			<ul class='mt-2 flex flex-wrap gap-4 text-sm text-zinc-400'>
+				{page.data.location && <li>{page.data.location}</li>}
+				{page.data.email && (
+					<li>
+						<Link href={`mailto:${page.data.email}`} class='!text-zinc-300'>
+							{page.data.email}
+						</Link>
+					</li>
+				)}
+				{page.data.telephone && (
+					<li>
+						<Link href={`tel:${page.data.telephone}`} class='!text-zinc-300'>
+							{page.data.telephone}
+						</Link>
+					</li>
+				)}
+				{(page.data.sameAs?.[0]) && (
+					<li>
+					<Link href={page.data.sameAs[0]} class='!text-zinc-300' target='_blank' rel='noopener noreferrer'>
+							LinkedIn
+						</Link>
+					</li>
+				)}
+			</ul>
+		</header>
+
+		<section class='prose prose-invert max-w-none mt-8'>
+			<Content />
+		</section>
 </BaseLayout>

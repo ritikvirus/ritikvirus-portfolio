@@ -28,6 +28,8 @@ const {
   title,
   description,
   heroImage,
+  heroDetailImage,
+  heroFit,
   pubDate,
   updatedDate,
   latestCommitUrl,
@@ -79,10 +81,11 @@ for (const p of [...related, ...latest]) {
   />
 
   <Image
-    src={heroImage}
+    src={heroDetailImage ?? heroImage}
     alt={title}
     title={title}
     align='center'
+    fit={heroFit ?? 'cover'}
     wrapperProps={{ class: 'max-w-[928px] lg:mt-12 lg:rounded-md' }}
     class='aspect-[2.5] w-full xs:aspect-[3.25]'
     inferSize

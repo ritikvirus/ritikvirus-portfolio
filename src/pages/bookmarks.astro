@@ -1,23 +1,27 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro'
 import SEO from '@/components/SEO.astro'
-import TweetCard from '@/components/TweetCard/TweetCard.astro'
+import BlogCard from '@/components/BlogCard.astro'
+import { getCollection, type CollectionEntry } from 'astro:content'
 
 const title = 'Bookmarks'
-const description = 'Curated tweets and threads that I find valuable.'
+const description = 'Latest articles I’m saving for you — the freshest posts from my blog.'
+
+const posts = (await getCollection('blog')).sort((a: CollectionEntry<'blog'>, b: CollectionEntry<'blog'>) =>
+	new Date(b.data.updatedDate || b.data.pubDate).getTime() -
+	new Date(a.data.updatedDate || a.data.pubDate).getTime()
+)
 ---
 
 <BaseLayout>
 	<SEO title={title} description={description} slot='seo' />
 
 	<section class='space-y-8'>
-		<h1 class='font-display text-3xl'>Bookmarks</h1>
-		<p class='text-slate-400'>A living collection of tweets and threads I keep for learning and reference.</p>
+		<h1 class='font-heading text-2xl font-semibold'>Bookmarks</h1>
+		<p class='text-zinc-400'>Always the latest from my blog — easy to revisit and share.</p>
 
-		<!-- Tip: add more TweetCard entries here by tweetId to grow this collection. -->
-		<div class='space-y-6'>
-			<TweetCard tweetId='1660421340665458692' />
-			<TweetCard tweetId='1849459930916630980' />
+		<div class='divide-y divide-zinc-900'>
+			{posts.map((p) => <BlogCard {...p} />)}
 		</div>
 	</section>
 </BaseLayout>
