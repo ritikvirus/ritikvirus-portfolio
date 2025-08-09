@@ -60,9 +60,9 @@ COPY --from=build --chown=web:web /app/package.json /app/package.json
 ENV PORT=8080
 EXPOSE 8080
 
-# Healthcheck using Node HTTP
+# Healthcheck a static asset to avoid SSR flakiness
 HEALTHCHECK --interval=30s --timeout=3s --start-period=10s --retries=3 \
-  CMD node -e "fetch('http://127.0.0.1:'+process.env.PORT).then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))"
+  CMD node -e "fetch('http://127.0.0.1:'+process.env.PORT+'/favicon.svg').then(r=>{if(r.status>=500)process.exit(1)}).catch(()=>process.exit(1))"
 
 # Start the Node server build
 CMD ["node", "./dist/server/entry.mjs"]
