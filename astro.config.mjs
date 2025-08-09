@@ -121,6 +121,16 @@ export default defineConfig({
   },
 
   vite: {
+    // Inject a tiny polyfill so React's scheduler (used by react-dom/server on edge)
+    // doesn't crash on Cloudflare Workers where MessageChannel may be undefined.
+    // This banner runs before any bundled code in each output chunk.
+    build: {
+      rollupOptions: {
+        output: {
+          banner: `(()=>{try{if(typeof globalThis.MessageChannel==='undefined'){class MC{constructor(){const port1={onmessage:null,start(){},close(){},postMessage:(d)=>setTimeout(()=>{try{port1.onmessage&&port1.onmessage({data:d})}catch{}})};const port2={start(){},close(){},postMessage:(d)=>setTimeout(()=>{try{port1.onmessage&&port1.onmessage({data:d})}catch{}})};this.port1=port1;this.port2=port2}};globalThis.MessageChannel=MC}}catch{}})();`
+        }
+      }
+    },
     ssr: {
       noExternal: ['path-to-regexp', 'react-tweet']
     }
