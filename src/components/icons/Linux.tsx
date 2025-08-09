@@ -1,0 +1,10 @@
+import type { SVGProps } from 'react'
+import { siLinux } from 'simple-icons'
+
+export function Linux(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg aria-hidden='true' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='1em' height='1em' {...props}>
+  <path fill='currentColor' d={siLinux.path} />
+    </svg>
+  )
+}
