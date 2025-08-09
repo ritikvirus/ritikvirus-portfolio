@@ -42,6 +42,10 @@ FROM node:20-alpine AS runner
 WORKDIR /app
 
 ENV NODE_ENV=production
+ENV HOST=0.0.0.0
+
+# Runtime dependencies for sharp (libc6-compat)
+RUN apk add --no-cache libc6-compat
 
 # Create unprivileged user
 RUN addgroup -g 10001 web && adduser -D -H -u 10001 -G web web
