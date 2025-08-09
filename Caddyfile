@@ -1,3 +1,11 @@
+{
+  admin off
+  storage file_system {
+    root /tmp/caddy
+  }
+  auto_https off
+}
+
 :{$PORT} {
   # Security headers
   header {
@@ -9,6 +17,9 @@
   Permissions-Policy "geolocation=(), camera=(), microphone=(), usb=(), payment=()"
     Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
   }
+
+  # Health endpoint for platforms expecting readiness checks
+  respond /healthz 200
 
   # Serve static files
   root * /srv

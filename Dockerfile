@@ -46,8 +46,11 @@ LABEL org.opencontainers.image.title="ritikvirus-portfolio" \
     org.opencontainers.image.source="https://github.com/ritikvirus/ritikvirus-portfolio" \
     org.opencontainers.image.licenses="MIT"
 
-# Use non-privileged port for security (no NET_BIND caps needed)
-ENV PORT=8080
+# Use non-privileged port; default 3000 to align with common PaaS expectations (overridable)
+ENV PORT=3000 \
+    XDG_CONFIG_HOME=/tmp/.config \
+    XDG_DATA_HOME=/tmp/.local/share \
+    XDG_CACHE_HOME=/tmp/.cache
 
 # Create a non-root runtime user
 RUN addgroup -g 10001 web && adduser -D -H -u 10001 -G web web
