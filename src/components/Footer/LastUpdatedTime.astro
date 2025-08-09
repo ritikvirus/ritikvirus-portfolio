@@ -6,18 +6,21 @@ interface Props {
   class?: string
 }
 
-let data = null
+let formattedDate: string | null = null
 try {
-  data = await getLastUpdatedTime('ritikvirus', 'ritikvirus-portfolio')
-} catch {}
-
-const date = new Date((data as any).pushedAt)
-
-const formattedDate = formatDateByTimeZone(date)
+  const data = await getLastUpdatedTime('ritikvirus', 'ritikvirus-portfolio')
+  const pushedAt = (data as any)?.pushedAt
+  if (pushedAt) {
+    const date = new Date(pushedAt)
+    formattedDate = formatDateByTimeZone(date)
+  }
+} catch {
+  // Ignore network errors at build time; omit the footer timestamp
+}
 
 const { class: className } = Astro.props
 ---
-{data ? (
+{formattedDate ? (
   <p class:list={['text-xs min-[961px]:self-end', className]}>
     Last updated by Ritik <br class='xs:hidden' /> on {formattedDate} UTC+7
   </p>

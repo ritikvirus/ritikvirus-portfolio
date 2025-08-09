@@ -1,0 +1,25 @@
+# Ignore everything not needed for build context
+**/.DS_Store
+**/node_modules
+**/.pnpm-store
+**/dist
+**/.vercel
+**/.git
+**/.gitignore
+**/.github
+**/coverage
+**/.cache
+**/.next
+**/.astro
+**/.vscode
+**/*.log
+
+# Local env and secrets
+.env
+.env.*
+!.env.example
+
+# Editor and OS files
+*.swp
+*.swo
+Thumbs.db
