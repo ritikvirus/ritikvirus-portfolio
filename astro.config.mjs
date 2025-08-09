@@ -121,6 +121,13 @@ export default defineConfig({
   },
 
   vite: {
+    resolve: {
+      alias: isCF
+        ? {
+            'react-dom/server': 'react-dom/server.edge'
+          }
+        : {}
+    },
     // Inject a tiny polyfill so React's scheduler (used by react-dom/server on edge)
     // doesn't crash on Cloudflare Workers where MessageChannel may be undefined.
     // This banner runs before any bundled code in each output chunk.
