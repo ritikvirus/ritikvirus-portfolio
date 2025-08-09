@@ -33,7 +33,6 @@ https://github.com/user-attachments/assets/a4e8c8a1-b901-477f-9768-f2acefa5de35
 
 To serve the built project locally, run the following command:
 
-
 ```sh
 pnpm preview
 ```
