@@ -144,7 +144,9 @@ export const GET: OGAPIRoute = async ({ props }) => {
 // This prevents dynamic generation of OG images, which could be abused.
 // Instead, OG images are generated only for existing articles during build time.
 export const getStaticPaths = (async () => {
-  const projects = await getCollection('projects')
+  const projects = (await getCollection('projects')).filter(
+    (p) => !['bookmarked', 'bookmarked-android'].includes(p.id)
+  )
   const blog = await getCollection('blog')
 
   return [...projects, ...blog].map((posts) => ({

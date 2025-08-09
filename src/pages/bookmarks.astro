@@ -1,5 +1,23 @@
 ---
-import UnderConstruction from './_components/UnderConstruction.astro'
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import SEO from '@/components/SEO.astro'
+import TweetCard from '@/components/TweetCard/TweetCard.astro'
+
+const title = 'Bookmarks'
+const description = 'Curated tweets and threads that I find valuable.'
 ---
 
-<UnderConstruction />
+<BaseLayout>
+	<SEO title={title} description={description} slot='seo' />
+
+	<section class='space-y-8'>
+		<h1 class='font-display text-3xl'>Bookmarks</h1>
+		<p class='text-slate-400'>A living collection of tweets and threads I keep for learning and reference.</p>
+
+		<!-- Tip: add more TweetCard entries here by tweetId to grow this collection. -->
+		<div class='space-y-6'>
+			<TweetCard tweetId='1660421340665458692' />
+			<TweetCard tweetId='1849459930916630980' />
+		</div>
+	</section>
+</BaseLayout>

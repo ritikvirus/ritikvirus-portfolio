@@ -10,7 +10,9 @@ import { projectMetaData } from '@/lib/metaData'
 
 import Decorator from './_components/Decorator.astro'
 
-const projects = await getCollection('projects')
+const projects = (await getCollection('projects')).filter(
+  (p) => !['bookmarked', 'bookmarked-android'].includes(p.id)
+)
 ---
 
 <BaseLayout>

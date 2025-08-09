@@ -1,0 +1,37 @@
+---
+year: 2024
+title: 'ThinkDiffusion – AI Inference Platform'
+description: 'Production-grade Stable Diffusion and ComfyUI inference with automated GPU environment provisioning, hardened security, and cost-aware operations.'
+# TODO: Update this thumbnail path to your own image under src/assets and keep the same relative format.
+# Example: '../../assets/project_thinkdiffusion.png'
+heroImage: '../../assets/project_bookmarked_1.png'
+links:
+  - name: 'Website'
+    icon: 'Web'
+    url: 'https://thinkdiffusion.com'
+---
+
+## Overview
+
+ThinkDiffusion is a scalable AI inference platform designed for high-quality image generation using Stable Diffusion and ComfyUI. I automated GPU environment provisioning and standardized pipelines for reliable, repeatable deployments.
+
+## My Role & Impact
+
+- Automated GPU infra with Flask + Terraform + Boto3 to cut setup time from hours to minutes.
+- Customized Stable Diffusion/ComfyUI pipelines for production reliability and performance.
+- Built secure CI/CD and environment isolation to minimize blast radius.
+- Implemented observability with Grafana + Prometheus to reduce MTTR by ~40%.
+
+## Security Highlights
+
+- Neutralized an RCE in a ComfyUI plugin via container sandboxing and RBAC.
+- Enforced storage quotas (100GB) platform-wide to prevent abuse.
+- Patched GPU credit exploit through API validation and policy hardening.
+
+## Tech Stack
+
+AWS (EC2/EKS, IAM, VPC), Docker, Kubernetes, Helm, Nginx Ingress, Terraform, Flask, Boto3, Grafana, Prometheus.
+
+## Outcome
+
+Hardened, automated, and observable AI inference platform with reliable performance and zero security incidents.

@@ -12,7 +12,9 @@ import { getProjectSchema, projectWebsite } from '@/lib/structuredData'
 interface Props extends InferGetStaticPropsType<typeof getStaticPaths> {}
 
 export const getStaticPaths = (async () => {
-  const projectEntries = await getCollection('projects')
+  const projectEntries = (await getCollection('projects')).filter(
+    (p) => !['bookmarked', 'bookmarked-android'].includes(p.id)
+  )
 
   return projectEntries.map((entry) => ({
     params: { id: entry.id },
