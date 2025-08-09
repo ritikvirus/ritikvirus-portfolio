@@ -31,7 +31,7 @@ const { class: wrapperClass, ...restWrapperProps } = wrapperProps ?? {}
 
 <div
   class:list={[
-    'blur-load h-fit w-fit bg-cover',
+    'blur-load h-fit w-full bg-cover',
     alignClass[align].wrapper,
     { 'ambient-mode': ambientMode },
     wrapperClass
@@ -45,6 +45,8 @@ const { class: wrapperClass, ...restWrapperProps } = wrapperProps ?? {}
       'h-[inherit] max-h-[inherit] rounded-[inherit]',
       className
     ]}
+    sizes={normalizedRest.sizes ?? '100vw'}
+    loading={normalizedRest.loading ?? 'lazy'}
     {...(normalizedRest as any)}
   />
 </div>
