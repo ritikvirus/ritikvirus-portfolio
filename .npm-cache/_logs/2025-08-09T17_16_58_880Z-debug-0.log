@@ -1,0 +1,23 @@
+0 verbose cli /usr/local/bin/node /opt/homebrew/lib/node_modules/npm/bin/npm-cli.js
+1 info using npm@10.9.2
+2 info using node@v22.13.1
+3 silly config load:file:/opt/homebrew/lib/node_modules/npm/npmrc
+4 silly config load:file:/Users/ritikvirus/Desktop/portfolio/Portfolio/ritikvirus-portfolio/.npmrc
+5 silly config load:file:/Users/ritikvirus/.npmrc
+6 silly config load:file:/opt/homebrew/etc/npmrc
+7 verbose title npm exec pnpm@10.14.0 build
+8 verbose argv "exec" "--yes" "--" "pnpm@10.14.0" "build"
+9 verbose logfile logs-max:10 dir:/Users/ritikvirus/Desktop/portfolio/Portfolio/ritikvirus-portfolio/.npm-cache/_logs/2025-08-09T17_16_58_880Z-
+10 verbose logfile /Users/ritikvirus/Desktop/portfolio/Portfolio/ritikvirus-portfolio/.npm-cache/_logs/2025-08-09T17_16_58_880Z-debug-0.log
+11 silly logfile done cleaning log files
+12 silly packumentCache heap:2197815296 maxSize:549453824 maxEntrySize:274726912
+13 http fetch GET 200 https://registry.npmjs.org/pnpm 121ms (cache revalidated)
+14 silly packumentCache heap:2197815296 maxSize:549453824 maxEntrySize:274726912
+15 silly packumentCache heap:2197815296 maxSize:549453824 maxEntrySize:274726912
+16 verbose shrinkwrap failed to load node_modules/.package-lock.json out of date, updated: node_modules
+17 verbose cwd /Users/ritikvirus/Desktop/portfolio/Portfolio/ritikvirus-portfolio
+18 verbose os Darwin 24.5.0
+19 verbose node v22.13.1
+20 verbose npm  v10.9.2
+21 verbose exit 0
+22 info ok

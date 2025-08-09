@@ -54,30 +54,35 @@ const getAccessTokenHeader = (accessToken: string) => {
 }
 
 const getNowPlayingResponse = async (accessToken: string) => {
-  return fetch(
-    `${BASE_URL}/currently-playing`,
-    getAccessTokenHeader(accessToken)
-  )
+  return fetch(`${BASE_URL}/currently-playing?market=from_token`, getAccessTokenHeader(accessToken))
 }
 
-const mapSpotifyData = (track: any) => {
-  if (!track || !track.external_urls || !track.name || !track.album || !track.artists) {
-    return {
-      songUrl: '',
-      title: 'No track available',
-      albumImageUrl: '',
-      artist: 'Unknown'
-    }
+const getPlayerResponse = async (accessToken: string) => {
+  return fetch(`${BASE_URL}?market=from_token`, getAccessTokenHeader(accessToken))
+}
+
+const mapSpotifyData = (item: any) => {
+  if (!item) {
+    return { songUrl: '', title: 'No track available', albumImageUrl: '', artist: 'Unknown' }
   }
 
-  return {
-    songUrl: track.external_urls.spotify as string,
-    title: track.name as string,
-    albumImageUrl: track.album.images?.[0]?.url || '',
-    artist: track.artists
-      .map((artist: { name: any }) => artist.name)
-      .join(', ') as string
+  // Episode (podcast)
+  if (item.type === 'episode' || item?.show) {
+    const img = item?.images?.[0]?.url || item?.show?.images?.[0]?.url || ''
+    const url = item?.external_urls?.spotify || item?.show?.external_urls?.spotify || ''
+    const title = item?.name || 'Unknown episode'
+    const artist = item?.show?.publisher || item?.show?.name || 'Podcast'
+    return { songUrl: url, title, albumImageUrl: img, artist }
   }
+
+  // Track (music)
+  const url = item?.external_urls?.spotify || ''
+  const title = item?.name || 'Unknown track'
+  const albumImageUrl = item?.album?.images?.[0]?.url || ''
+  const artist = Array.isArray(item?.artists)
+    ? item.artists.map((a: any) => a?.name).filter(Boolean).join(', ')
+    : 'Unknown'
+  return { songUrl: url, title, albumImageUrl, artist }
 }
 
 const getRecentlyPlayed = async (accessToken: string) => {
@@ -93,13 +98,14 @@ const getRecentlyPlayed = async (accessToken: string) => {
     }
 
     const data = await response.json()
-    
+
     if (!data.items || data.items.length === 0) {
       return { isPlaying: false, ...mapSpotifyData(null) }
     }
 
-    const { track } = data.items[0]
-    return { isPlaying: false, ...mapSpotifyData(track) }
+    const first = data.items[0]
+    const item = first.track || first.episode || first
+    return { isPlaying: false, ...mapSpotifyData(item) }
   } catch (error) {
     console.error('Error getting recently played:', error)
     return { isPlaying: false, ...mapSpotifyData(null) }
@@ -116,24 +122,27 @@ const getSpotifyData = async () => {
 
     const { access_token } = tokenData
 
-    const nowPlayingResponse = await getNowPlayingResponse(access_token)
-
-    if (nowPlayingResponse.status === 204) {
+    // First attempt
+    let resp = await getNowPlayingResponse(access_token)
+    if (resp.status === 204 || !resp.ok) {
+      // Second attempt via /me/player which often returns even when /currently-playing is 204
+      const playerResp = await getPlayerResponse(access_token)
+      if (playerResp.ok) {
+        const p = await playerResp.json()
+        if (p && p.item) {
+          return { isPlaying: Boolean(p.is_playing), ...mapSpotifyData(p.item) }
+        }
+      } else {
+        console.error('Spotify player error:', playerResp.status, playerResp.statusText)
+      }
       return getRecentlyPlayed(access_token)
     }
 
-    if (!nowPlayingResponse.ok) {
-      console.error('Spotify now playing error:', nowPlayingResponse.status, nowPlayingResponse.statusText)
-      return getRecentlyPlayed(access_token)
+    const data = await resp.json()
+    if (data?.item) {
+      return { isPlaying: Boolean(data.is_playing), ...mapSpotifyData(data.item) }
     }
-
-    const data = await nowPlayingResponse.json()
-    
-    if (!data.item) {
-      return getRecentlyPlayed(access_token)
-    }
-
-    return { isPlaying: true, ...mapSpotifyData(data.item) }
+    return getRecentlyPlayed(access_token)
   } catch (error) {
     console.error('Error getting Spotify data:', error)
     return { isPlaying: false, ...mapSpotifyData(null) }

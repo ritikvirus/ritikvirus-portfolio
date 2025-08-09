@@ -18,8 +18,8 @@ const zoomOptions: ZoomPanOptions = {
   easeLinearity: 0.25
 }
 
-const MAX_ZOOM = 12
-const MIN_ZOOM = 8
+const MAX_ZOOM = 17
+const MIN_ZOOM = 4
 
 const MAP_URL = '/api/map/{z}/{x}/{y}.png'
 
@@ -82,7 +82,7 @@ const BentoItemMapLocation = ({ className }: Props) => {
     <div className='group h-full'>
       <MapContainer
         ref={mapRef}
-        zoom={MAX_ZOOM}
+        zoom={14}
         center={[LATITUDE, LONGITUDE]}
         dragging={false}
         touchZoom={false} // Disables pinch-to-zoom on touch devices
@@ -99,9 +99,9 @@ const BentoItemMapLocation = ({ className }: Props) => {
       >
         <TileLayer
           url={MAP_URL}
-          zoomOffset={-1}
-          minZoom={1}
-          tileSize={512}
+          // Satellite tiles use 256px; MapTiler may return 256/512. Let Leaflet adapt.
+          // Avoid forced zoomOffset to preserve clarity.
+          minZoom={MIN_ZOOM}
           eventHandlers={{
             tileloadstart: (event) => {
               event.tile.setAttribute('loading', 'lazy')

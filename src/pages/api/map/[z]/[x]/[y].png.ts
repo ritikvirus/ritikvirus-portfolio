@@ -8,7 +8,13 @@ interface MapCoordinate {
 }
 
 const generateMapUrl = ({ z, x, y }: MapCoordinate): string => {
-  return `https://api.maptiler.com/maps/streets-v2-dark/${z}/${x}/${y}.png?key=${MAPTILER_API_KEY}`
+  if (MAPTILER_API_KEY) {
+    // Prefer satellite imagery when MapTiler key is available
+    return `https://api.maptiler.com/maps/satellite-v2/${z}/${x}/${y}.jpg?key=${MAPTILER_API_KEY}`
+  }
+  // Fallback to ESRI World Imagery (satellite) when no MapTiler key is configured.
+  // Please be mindful of usage policies for production traffic.
+  return `https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/${z}/${y}/${x}`
 }
 
 export const GET: APIRoute = async ({ params }) => {
@@ -20,11 +26,12 @@ export const GET: APIRoute = async ({ params }) => {
       statusText: 'Bad request'
     })
 
-  if (!MAPTILER_API_KEY) {
-    return new Response(null, { status: 204 })
-  }
+  const url = generateMapUrl({ z, x, y })
 
-  const response = await fetch(generateMapUrl({ z, x, y }))
+  const response = await fetch(url, {
+    // Identify ourselves politely esp. for third-party tile services
+    headers: { 'User-Agent': 'ritikvirus-portfolio/1.0 (contact: ritikvirus6@gmail.com)' }
+  })
   if (!response.ok) {
     return new Response('Error fetching tile', { status: response.status })
   }
