@@ -13,6 +13,7 @@ import rehypeSlug from 'rehype-slug'
 // Allow switching adapters via flags
 const isNode = process.argv.includes('--node')
 const isCF = process.argv.includes('--cloudflare') || process.env.CF_PAGES === '1'
+const isVercel = process.env.VERCEL === '1' || process.env.VERCEL === 'true'
 
 let adapter = vercel({})
 if (isCF) {
@@ -23,11 +24,11 @@ if (isCF) {
 }
 
 // https://astro.build/config
-console.log('[astro-config-flags]', { isCF, isNode })
+console.log('[astro-config-flags]', { isCF, isNode, isVercel })
 export default defineConfig({
   adapter,
   // Use SSR server output when building with Node or Cloudflare adapter; static otherwise
-  output: isNode || isCF ? 'server' : 'static',
+  output: isNode || isCF || isVercel ? 'server' : 'static',
   // Ensure base is always a string to avoid path helper errors in image endpoint injection
   base: '/',
   // Use an image service compatible with the current runtime
@@ -44,8 +45,8 @@ export default defineConfig({
         : 'astro/assets/endpoint/node'
     }
   },
-  // Use the production portfolio domain for absolute URLs and sitemap
-  site: 'https://ritik.aidevops.in',
+  // Use the production domain for absolute URLs and sitemap
+  site: 'https://aidevops.in',
 
   markdown: {
     shikiConfig: {
