@@ -27,6 +27,14 @@ export default defineConfig({
   adapter,
   // Use SSR server output when building with Node or Cloudflare adapter; static otherwise
   output: isNode || isCF ? 'server' : 'static',
+  // Use an image service compatible with the current runtime
+  image: {
+    service: {
+      entrypoint: isCF
+        ? 'astro/assets/services/squoosh'
+        : 'astro/assets/services/sharp'
+    }
+  },
   // Use the production portfolio domain for absolute URLs and sitemap
   site: 'https://ritik.aidevops.in',
 
