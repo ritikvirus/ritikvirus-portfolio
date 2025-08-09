@@ -53,8 +53,8 @@ const _projectMetaData: MetaDataInput = {
 export const projectMetaData: MetaData = buildMetaData(_projectMetaData)
 
 const _blogMetaData: MetaDataInput = {
-  title: 'Learning, Building, and{nSm}Documenting',
+  title: 'Learning, Automating, and{nSm}Documenting',
   description:
-    'Insights and experiences from my journey as a developer—exploring ideas,{nSm}overcoming challenges, and sharing lessons learned along the way.'
+    'Insights from my DevOps/DevSecOps & AI journey—cloud, CI/CD, security-by-default,{nSm}MLOps, and practical lessons from real-world automation.'
 }
 export const blogMetaData: MetaData = buildMetaData(_blogMetaData)

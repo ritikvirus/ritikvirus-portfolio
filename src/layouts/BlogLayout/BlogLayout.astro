@@ -9,6 +9,8 @@ import Image from '@/components/Image'
 import Link, { LinkArticle } from '@/components/Link'
 import SEO from '@/components/SEO.astro'
 import TableOfContent from '@/components/TableOfContent'
+import BlogCardCompact from '@/components/BlogCardCompact.astro'
+import { getCollection, type CollectionEntry } from 'astro:content'
 import ScrollProgressBar from '@/components/ui/scroll-progress-bar'
 import { BASE_URL } from '@/lib/baseUrl'
 import { formatDateByTimeZone } from '@/lib/utils'
@@ -32,6 +34,32 @@ const {
   tags,
   readingTime
 } = Astro.props
+
+const allPosts = await getCollection('blog')
+const excludeCurrent = allPosts.filter((p) => p.id !== id)
+
+const sortByDateDesc = (
+  a: CollectionEntry<'blog'>,
+  b: CollectionEntry<'blog'>
+) =>
+  new Date(b.data.updatedDate || b.data.pubDate).getTime() -
+  new Date(a.data.updatedDate || a.data.pubDate).getTime()
+
+const related = excludeCurrent
+  .filter((p) => (p.data.tags || []).some((t) => (tags || []).includes(t)))
+  .sort(sortByDateDesc)
+
+const latest = excludeCurrent.slice().sort(sortByDateDesc)
+
+const cap = 4
+const seen = new Set()
+const morePosts = []
+for (const p of [...related, ...latest]) {
+  if (seen.has(p.id)) continue
+  seen.add(p.id)
+  morePosts.push(p)
+  if (morePosts.length >= cap) break
+}
 ---
 
 <BaseLayout class='!max-w-[1024px]'>
@@ -119,16 +147,23 @@ const {
   </section>
 
   <section class='mt-16'>
-    <Link
-      href='/blog'
-      class='!text-zinc-200 !no-underline'
-      styled
-      hoverStyled
-      hoverEffectOffsetStart='24px'
-    >
-      <ArrowRight className='mr-2 inline-block size-4 -scale-x-100' />Explore
-      more articles</Link
-    >
+    {morePosts.length > 0 && (
+      <>
+        <h2 class='font-heading text-lg font-semibold text-zinc-200'>More articles</h2>
+        <ul class='mt-6 flex gap-6 overflow-x-auto pb-2 [scrollbar-width:none] [-ms-overflow-style:none]'>
+          {morePosts.map((p) => <BlogCardCompact {...p} />)}
+        </ul>
+        <Link
+          href='/blog'
+          class='mt-6 inline-flex !text-zinc-200 !no-underline'
+          styled
+          hoverStyled
+          hoverEffectOffsetStart='24px'
+        >
+          <ArrowRight className='mr-2 inline-block size-4 -scale-x-100' />Explore more articles</Link
+        >
+      </>
+    )}
   </section>
 </BaseLayout>
 
