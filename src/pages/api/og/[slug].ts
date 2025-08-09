@@ -113,25 +113,16 @@ export const GET: OGAPIRoute = async ({ request, props }) => {
   const bgUrl = new URL('/images/og_background.png', origin).toString()
   const html = generateHtml(data, bgUrl)
 
-  const mediumResp = await fetch(new URL('/fonts/Switzer-Medium.otf', origin))
-  const semiResp = await fetch(new URL('/fonts/Switzer-Semibold.otf', origin))
-  const SwitzerMedium = await mediumResp.arrayBuffer()
-  const SwitzerSemiBold = await semiResp.arrayBuffer()
+  // Use WOFF2 variable font to avoid OTF parsing issues in satori/@vercel/og
+  const varResp = await fetch(new URL('/fonts/Switzer-Variable.woff2', origin))
+  const SwitzerVariable = await varResp.arrayBuffer()
 
   return new ImageResponse(html, {
     width: 1200,
     height: 630,
     fonts: [
-      {
-        name: 'Switzer Semi Bold',
-  data: SwitzerSemiBold as ArrayBuffer,
-        style: 'normal'
-      },
-      {
-        name: 'Switzer Medium',
-  data: SwitzerMedium as ArrayBuffer,
-        style: 'normal'
-      }
+      { name: 'Switzer', data: SwitzerVariable as ArrayBuffer, weight: 500, style: 'normal' },
+      { name: 'Switzer', data: SwitzerVariable as ArrayBuffer, weight: 700, style: 'normal' }
     ]
   })
 }
@@ -151,4 +142,4 @@ export const getStaticPaths = (async () => {
   }))
 }) satisfies GetStaticPaths
 
-export const prerender = true
+export const prerender = false
