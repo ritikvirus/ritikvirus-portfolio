@@ -1,0 +1,51 @@
+---
+title: "What is ComfyUI? Origins, why it matters, and what you need to run it"
+description: "A friendly guide to ComfyUI: where it came from, why creators love it, and a practical checklist for getting started on your hardware."
+heroImage: "/images/og_background.png"
+tags: ["ComfyUI", "Stable Diffusion", "AI Art", "Workflows"]
+pubDate: 2025-08-09
+updatedDate: 2025-08-09
+---
+
+ComfyUI is a node‑based, visual workflow engine for Stable Diffusion. Instead of juggling command‑line flags or monolithic UIs, you snap nodes together—load a model, feed a prompt, wire up a scheduler, route to an upscaler—and press go. The graph is your recipe.
+
+## A short history
+
+- ComfyUI emerged from the open‑source Stable Diffusion community as a performance‑tuned, modular alternative to heavyweight UIs.
+- It grew fast because the graph abstraction made sharing complex pipelines simple: you don’t share screenshots—you share the actual workflow.
+- The ecosystem exploded with custom nodes, LoRA tools, ControlNet helpers, upscalers, and automation add‑ons.
+
+Note: Exact launch dates, maintainers, and release numbers change as the project evolves. Always check the official repo for the latest maintainers and releases.
+
+## Why people use ComfyUI
+
+- Precision control: Every step is visible and editable.
+- Reproducibility: A workflow file is a portable recipe.
+- Extensibility: Drop in custom nodes and models.
+- Performance: Efficient graph execution and caching.
+
+## What you need to run it (minimums)
+
+- GPU: 8 GB VRAM is a practical minimum for SD 1.5 workflows; 12 GB+ recommended for SDXL and heavier pipelines. CPU‑only is possible but very slow.
+- RAM: 16 GB system memory is comfortable; more for large batch sizes.
+- Storage: 20–40 GB for base models, LoRAs, and checkpoints grows quickly.
+- OS: Windows, Linux, or macOS; NVIDIA GPUs (CUDA) are the most common path.
+
+## Getting started fast
+
+1. Install Python 3.10+ and Git.
+2. Clone the ComfyUI repository and install requirements.
+3. Drop your models into the designated folders (checkpoints, VAE, LoRA).
+4. Launch the server; open the UI in your browser.
+5. Import a starter workflow and press Generate.
+
+## Use cases that shine
+
+- Batch asset generation for games and product shots.
+- Consistent style pipelines using LoRA/embeddings.
+- Inpainting/upscaling chains with control nodes.
+- Automated pipelines on render nodes (local or cloud like RunPod).
+
+## Final notes
+
+ComfyUI rewards tinkering. Start simple, then layer in nodes as you learn. Save and version your graphs—you’ll thank yourself later.
