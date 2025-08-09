@@ -7,7 +7,6 @@ import ProjectHeader from '@/components/ProjectHeader.astro'
 import { getCustomTransition } from '@/lib/customTransition'
 
 const projects = (await getCollection('projects'))
-  .filter((p) => !['bookmarked', 'bookmarked-android'].includes(p.id))
   .sort((a, b) => {
     const aDate = a.data.updatedDate ? new Date(a.data.updatedDate).getTime() : 0
     const bDate = b.data.updatedDate ? new Date(b.data.updatedDate).getTime() : 0
