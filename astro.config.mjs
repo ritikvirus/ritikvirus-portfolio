@@ -23,6 +23,7 @@ if (isCF) {
 }
 
 // https://astro.build/config
+console.log('[astro-config-flags]', { isCF, isNode })
 export default defineConfig({
   adapter,
   // Use SSR server output when building with Node or Cloudflare adapter; static otherwise
@@ -35,6 +36,12 @@ export default defineConfig({
       entrypoint: isCF
         ? 'astro/assets/services/squoosh'
         : 'astro/assets/services/sharp'
+    },
+    endpoint: {
+      route: '/_image',
+      entrypoint: isCF
+        ? 'astro/assets/endpoint/generic'
+        : 'astro/assets/endpoint/node'
     }
   },
   // Use the production portfolio domain for absolute URLs and sitemap
@@ -120,6 +127,49 @@ export default defineConfig({
   },
 
   integrations: [
+    // Force a compatible image config on Cloudflare (Workers)
+    {
+      name: 'fix-cloudflare-image-endpoint',
+      hooks: {
+        'astro:config:setup'({ config, updateConfig }) {
+          try {
+            if (isCF && typeof config?.image?.endpoint === 'string') {
+              updateConfig({
+                image: {
+                  ...config.image,
+                  service: { entrypoint: 'astro/assets/services/noop' },
+                  endpoint: {
+                    route: '/_image',
+                    entrypoint: 'astro/assets/endpoint/generic'
+                  }
+                }
+              })
+            }
+          } catch {}
+        }
+      }
+    },
+    {
+      name: 'debug-image-config-setup',
+      hooks: {
+        'astro:config:setup'({ config }) {
+          try {
+            console.log('[image-config:setup]', config?.image)
+          } catch {}
+        }
+      }
+    },
+    // Debug the resolved image config during build to trace endpoint values
+    {
+      name: 'debug-image-config',
+      hooks: {
+        'astro:config:done'({ config, logger }) {
+          try {
+            logger.info(`[image-config] ${JSON.stringify(config.image)}`)
+          } catch {}
+        }
+      }
+    },
     mdx({
       rehypePlugins: [
         rehypeSlug,

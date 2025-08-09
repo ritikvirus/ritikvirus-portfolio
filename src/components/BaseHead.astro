@@ -4,7 +4,6 @@
 import '../styles/global.css'
 
 import { ClientRouter } from 'astro:transitions'
-import { AstroFont } from 'astro-font'
 import { PRIMARY_SITE } from '@/lib/sites'
 ---
 
@@ -16,48 +15,28 @@ import { PRIMARY_SITE } from '@/lib/sites'
 <link rel='sitemap' href='/sitemap-index.xml' />
 
 
-<!-- Font -->
-<AstroFont
-  config={[
-    {
-      name: 'Switzer',
-      src: [
-        {
-          style: 'normal',
-          weight: '300 700',
-          path: '/fonts/Switzer-Variable.woff2'
-        }
-      ],
-      preload: true,
-      display: 'swap',
-      selector: 'body',
-      fallback: 'sans-serif'
-    },
-    {
-      name: 'Fustat SemiBold',
-      src: [
-        {
-          style: 'normal',
-          weight: '400 700',
-          path: '/fonts/Fustat-VariableFont_wght.ttf'
-        }
-      ],
-      preload: true,
-      display: 'swap',
-      fallback: 'sans-serif'
-    },
-    {
-      src: [],
-      name: 'DM Mono',
-      googleFontsURL:
-        'https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;1,300;1,400&display=swap',
-      preload: true,
-      display: 'swap',
-      selector: 'code',
-      fallback: 'monospace'
-    }
-  ]}
-/>
+<!-- Fonts -->
+<link rel="preload" href="/fonts/Switzer-Variable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/Fustat-VariableFont_wght.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;1,300;1,400&display=swap" />
+<style is:inline>
+  @font-face {
+    font-family: 'Switzer';
+    src: url('/fonts/Switzer-Variable.woff2') format('woff2');
+    font-weight: 300 700;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Fustat SemiBold';
+    src: url('/fonts/Fustat-VariableFont_wght.ttf') format('truetype');
+    font-weight: 400 700;
+    font-style: normal;
+    font-display: swap;
+  }
+  body { font-family: 'Switzer', system-ui, -apple-system, Segoe UI, Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans', sans-serif; }
+  code { font-family: 'DM Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace; }
+</style>
 
 <!-- Analytics script disabled by default. Add your own analytics ID and domain before enabling. -->
 <!--

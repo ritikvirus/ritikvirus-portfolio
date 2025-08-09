@@ -6,8 +6,6 @@ import type {
   InferGetStaticPropsType
 } from 'astro'
 import { type CollectionEntry, getCollection } from 'astro:content'
-import fs from 'fs'
-import path from 'path'
 import type { ReactElement } from 'react'
 
 type AllCollectionEntry = CollectionEntry<'projects' | 'blog'>
@@ -17,11 +15,10 @@ type OGAPIRoute = APIRoute<
   InferGetStaticParamsType<typeof getStaticPaths>
 >
 
-const generateHtml = (data: AllCollectionEntry['data']): ReactElement => {
-  const image = fs.readFileSync(
-    path.resolve(process.cwd(), 'public/images/og_background.png')
-  )
-
+const generateHtml = (
+  data: AllCollectionEntry['data'],
+  bgUrl: string
+): ReactElement => {
   return {
     key: 'html',
     type: 'div',
@@ -35,7 +32,7 @@ const generateHtml = (data: AllCollectionEntry['data']): ReactElement => {
           type: 'img',
           props: {
             tw: 'absolute left-0 top-0',
-            src: image.buffer,
+            src: bgUrl,
             width: 1200,
             height: 630
           }
@@ -108,19 +105,18 @@ const generateHtml = (data: AllCollectionEntry['data']): ReactElement => {
   }
 }
 
-export const GET: OGAPIRoute = async ({ props }) => {
+export const GET: OGAPIRoute = async ({ request, props }) => {
   const {
     posts: { data }
   } = props
-  const html = generateHtml(data)
+  const origin = new URL(request.url).origin
+  const bgUrl = new URL('/images/og_background.png', origin).toString()
+  const html = generateHtml(data, bgUrl)
 
-  const SwitzerMedium = fs.readFileSync(
-    path.resolve(process.cwd(), 'public/fonts/Switzer-Medium.otf')
-  )
-
-  const SwitzerSemiBold = fs.readFileSync(
-    path.resolve(process.cwd(), 'public/fonts/Switzer-Semibold.otf')
-  )
+  const mediumResp = await fetch(new URL('/fonts/Switzer-Medium.otf', origin))
+  const semiResp = await fetch(new URL('/fonts/Switzer-Semibold.otf', origin))
+  const SwitzerMedium = await mediumResp.arrayBuffer()
+  const SwitzerSemiBold = await semiResp.arrayBuffer()
 
   return new ImageResponse(html, {
     width: 1200,
@@ -128,12 +124,12 @@ export const GET: OGAPIRoute = async ({ props }) => {
     fonts: [
       {
         name: 'Switzer Semi Bold',
-        data: SwitzerSemiBold.buffer as ArrayBuffer,
+  data: SwitzerSemiBold as ArrayBuffer,
         style: 'normal'
       },
       {
         name: 'Switzer Medium',
-        data: SwitzerMedium.buffer as ArrayBuffer,
+  data: SwitzerMedium as ArrayBuffer,
         style: 'normal'
       }
     ]
