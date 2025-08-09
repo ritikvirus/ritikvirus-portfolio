@@ -2,11 +2,12 @@ import type { CollectionEntry } from 'astro:content'
 import type { Article, Person, WebSite, WithContext } from 'schema-dts'
 
 import { projectMetaData } from './metaData'
+import { PRIMARY_SITE, BLOG_SITE } from './sites'
 
 export const mainWebsite: WithContext<WebSite> = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
-  url: import.meta.env.SITE,
+  url: PRIMARY_SITE,
   name: 'Ritik - Personal Website',
   description:
     'DevOps/DevSecOps Engineer automating cloud infrastructure (AWS), Kubernetes, Docker, CI/CD, and security.',
@@ -16,7 +17,7 @@ export const mainWebsite: WithContext<WebSite> = {
 export const projectWebsite: WithContext<WebSite> = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
-  url: `${import.meta.env.SITE}/projects/`,
+  url: `${PRIMARY_SITE}/projects/`,
   name: 'Projects',
   description: projectMetaData.description,
   inLanguage: 'en_US'
@@ -42,10 +43,10 @@ export function getProjectSchema(post: CollectionEntry<'projects'>) {
     '@context': 'https://schema.org',
     '@type': 'Article',
     headline: post.data.title,
-    url: `${import.meta.env.SITE}/projects/${post.id}/`,
+    url: `${PRIMARY_SITE}/projects/${post.id}/`,
     image: {
       '@type': 'ImageObject',
-      url: `${import.meta.env.SITE}${post.data.heroImage.src}/`
+      url: `${PRIMARY_SITE}${post.data.heroImage.src}/`
     },
     description: post.data.description,
     // datePublished
@@ -53,4 +54,20 @@ export function getProjectSchema(post: CollectionEntry<'projects'>) {
     author: personSchema
   }
   return articleStructuredData
+}
+
+export function getBlogArticleSchema(post: CollectionEntry<'blog'>) {
+  const article: WithContext<Article> = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: post.data.title,
+    url: `${BLOG_SITE}/blog/${post.id}/`,
+    image: post.data.heroImage
+      ? { '@type': 'ImageObject', url: `${BLOG_SITE}${post.data.heroImage}` }
+      : undefined,
+    description: post.data.description,
+    publisher: personSchema,
+    author: personSchema
+  }
+  return article
 }

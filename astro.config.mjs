@@ -20,7 +20,8 @@ if (process.argv[3] === '--node' || process.argv[4] === '--node') {
 export default defineConfig({
   adapter,
   output: 'static',
-  site: 'http://localhost:4321',
+  // Use the production portfolio domain for absolute URLs and sitemap
+  site: 'https://ritik.aidevops.in',
 
   markdown: {
     shikiConfig: {
@@ -81,6 +82,16 @@ export default defineConfig({
         context: 'client',
         access: 'public',
         optional: true
+      }),
+      PUBLIC_PRIMARY_SITE: envField.string({
+        context: 'server',
+        access: 'public',
+        optional: true
+      }),
+      PUBLIC_BLOG_SITE: envField.string({
+        context: 'server',
+        access: 'public',
+        optional: true
       })
     }
   },
@@ -113,7 +124,9 @@ export default defineConfig({
         }
       }
     }),
-    sitemap(),
+    sitemap({
+      i18n: { defaultLocale: 'en', locales: { en: 'en' } }
+    }),
     react(),
     tailwind({
       applyBaseStyles: false

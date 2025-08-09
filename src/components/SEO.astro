@@ -1,7 +1,7 @@
 ---
 import { type Props as SEOProps, SEO as AstroSEO } from 'astro-seo'
 
-import { BASE_URL } from '@/lib/baseUrl'
+import { PRIMARY_SITE } from '@/lib/sites'
 import { mainMetaData } from '@/lib/metaData'
 
 interface Props extends SEOProps {
@@ -15,7 +15,7 @@ const { props } = Astro
 const metaData = {
   title: props.title ?? mainMetaData.title,
   description: props.description ?? mainMetaData.description,
-  image: props.imageUrl ?? `${BASE_URL}/images/og_main.png`
+  image: props.imageUrl ?? `${PRIMARY_SITE}/images/og_main.png`
 }
 
 const defaultProps: SEOProps = {
