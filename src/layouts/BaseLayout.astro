@@ -1,5 +1,6 @@
 ---
 import Analytics from '@vercel/analytics/astro'
+import SpeedInsights from '@vercel/speed-insights/astro'
 
 import BaseHead from '@/components/BaseHead.astro'
 import BottomNavigationBar from '@/components/BottomNavigationBar'
@@ -63,6 +64,7 @@ const { class: className } = Astro.props
     <BottomNavigationBar client:only='react' transition:persist='navbar' />
     <!-- Analytics temporarily disabled for privacy by default; enable with your account when deployed -->
     <!-- <Analytics /> -->
+  <SpeedInsights />
   </body>
 </html>
 
@@ -109,3 +111,5 @@ const { class: className } = Astro.props
     })
   })
 </script>
+
+ 

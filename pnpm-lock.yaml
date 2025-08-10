@@ -71,6 +71,9 @@ importers:
       '@vercel/og':
         specifier: ^0.6.4
         version: 0.6.4
+      '@vercel/speed-insights':
+        specifier: ^1.2.0
+        version: 1.2.0(react@18.3.1)
       '@vis.gl/react-google-maps':
         specifier: ^1.4.2
         version: 1.4.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -1719,6 +1722,29 @@ packages:
   '@vercel/og@0.6.4':
     resolution: {integrity: sha512-+IB8fYbVHEAtLfhCXSRS61Q/OfBJTaPCXhvGvXTBIUfs9lqZMDesZ2UnvKYbnEYHSMgCzBaj5BOq66iePl8mjw==}
     engines: {node: '>=16'}
+
+  '@vercel/speed-insights@1.2.0':
+    resolution: {integrity: sha512-y9GVzrUJ2xmgtQlzFP2KhVRoCglwfRQgjyfY607aU0hh0Un6d0OUyrJkjuAlsV18qR4zfoFPs/BiIj9YDS6Wzw==}
+    peerDependencies:
+      '@sveltejs/kit': ^1 || ^2
+      next: '>= 13'
+      react: ^18 || ^19 || ^19.0.0-rc
+      svelte: '>= 4'
+      vue: ^3
+      vue-router: ^4
+    peerDependenciesMeta:
+      '@sveltejs/kit':
+        optional: true
+      next:
+        optional: true
+      react:
+        optional: true
+      svelte:
+        optional: true
+      vue:
+        optional: true
+      vue-router:
+        optional: true
 
   '@vis.gl/react-google-maps@1.4.2':
     resolution: {integrity: sha512-Qkj69B/2p3qFRQRIHbtGiNZF5DOcYkkpBsF2aOsolmneRaO2reBjO+GGjBfE2s5iaMBz/ZvYH6cKbMpTybxuSw==}
@@ -6521,6 +6547,10 @@ snapshots:
       '@resvg/resvg-wasm': 2.4.0
       satori: 0.12.0
       yoga-wasm-web: 0.3.3
+
+  '@vercel/speed-insights@1.2.0(react@18.3.1)':
+    optionalDependencies:
+      react: 18.3.1
 
   '@vis.gl/react-google-maps@1.4.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
