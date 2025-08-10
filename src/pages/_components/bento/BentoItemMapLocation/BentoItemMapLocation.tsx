@@ -8,8 +8,9 @@ import { Minus } from '@/components/icons/Minus'
 import { Plus } from '@/components/icons/Plus'
 import { cn } from '@/lib/utils'
 
-const LATITUDE = 28.6139 // Delhi
-const LONGITUDE = 77.2090
+// Center on Shahbad Daulatpur (Delhi 110042), near Shahbad Dairy
+const LATITUDE = 28.7508
+const LONGITUDE = 77.1163
 
 const ZOOM_STEP = 2
 const zoomOptions: ZoomPanOptions = {
