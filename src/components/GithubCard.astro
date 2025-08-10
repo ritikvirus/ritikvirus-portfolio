@@ -17,10 +17,13 @@ dayjs.extend(relativeTime)
 
 const { owner, repository, class: className } = Astro.props
 
-const response = await client.api.github['repo-info'][':owner'][
-  ':repository'
-].$get({ param: { owner, repository } })
-const data = response.status === 200 ? await response.json() : null
+let data = null
+try {
+  const response = await client.api.github['repo-info'][':owner'][':repository'].$get({
+    param: { owner, repository }
+  })
+  data = response.ok ? await response.json() : null
+} catch {}
 // Guard against null when computing time
 const updatedTime = data ? dayjs(data.pushedAt).fromNow() : ''
 ---

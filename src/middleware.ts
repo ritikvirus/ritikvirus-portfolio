@@ -130,8 +130,36 @@ export const onRequest: MiddlewareHandler = async (context, next) => {
       })
     }
 
-    // Otherwise, return the original response
-    return response
+    // Add common security headers for all responses
+    try {
+      const headers = new Headers(response.headers)
+      headers.set('X-Content-Type-Options', 'nosniff')
+      headers.set('Referrer-Policy', 'strict-origin-when-cross-origin')
+      headers.set('X-Frame-Options', 'DENY')
+      headers.set('Permissions-Policy', 'geolocation=(), microphone=(), camera=()')
+      headers.set('Cross-Origin-Opener-Policy', 'same-origin')
+      headers.set('Cross-Origin-Resource-Policy', 'same-origin')
+
+      const isHttps = (() => {
+        try {
+          return new URL(request.url).protocol === 'https:'
+        } catch {
+          return false
+        }
+      })()
+      if (isHttps) {
+        headers.set('Strict-Transport-Security', 'max-age=31536000; includeSubDomains; preload')
+      }
+
+      return new Response(response.body, {
+        status: response.status,
+        statusText: response.statusText,
+        headers
+      })
+    } catch {
+      // Fallback to original response on any header mutation issue
+      return response
+    }
   } catch (err) {
     // Unexpected error — notify and show 500 page
     maybeNotifyDiscord(500, request, err).catch(() => {})

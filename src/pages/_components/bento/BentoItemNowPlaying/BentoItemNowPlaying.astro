@@ -3,16 +3,19 @@ import client from '@/lib/client'
 
 import BentoItemNowPlayingReact from './BentoItemNowPlaying'
 
-const initialData = await client.api.spotify
-  .$get()
-  .then((res) => res.json())
-  .catch(() => ({
-    isPlaying: false,
-    title: 'No track available',
-    albumImageUrl: '',
-    artist: 'Unknown',
-    songUrl: ''
-  }))
+let initialData = {
+  isPlaying: false,
+  title: 'No track available',
+  albumImageUrl: '',
+  artist: 'Unknown',
+  songUrl: ''
+}
+try {
+  const res = await client.api.spotify.$get()
+  if (res.ok) {
+    initialData = await res.json()
+  }
+} catch {}
 ---
 
 <BentoItemNowPlayingReact initialData={initialData} client:only='react' />

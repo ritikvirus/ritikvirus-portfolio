@@ -42,9 +42,8 @@ export const TypingDetail = ({
   )
 }
 
-interface Props extends MonkeyTypeData {}
-
-const TypingSpeed = (props: Props) => {
+// Relax prop typing for Astro client directives compatibility
+const TypingSpeed = (props: any) => {
   return (
     <a
       href='https://monkeytype.com/'

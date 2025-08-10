@@ -3,7 +3,11 @@ import client from '@/lib/client'
 
 import BentoItemTypingSpeedContent from './BentoItemTypingSpeedContent'
 
-const data = await client.api.monkeytype.$get().then((res) => res.json())
+let data = { acc: 0, consistency: 0, language: 'english', time: 60, wpm: 0 }
+try {
+  const res = await client.api.monkeytype.$get()
+  if (res.ok) data = await res.json()
+} catch {}
 
 Astro.response.headers.set('Cache-Control', 'public, max-age=86400')
 ---
