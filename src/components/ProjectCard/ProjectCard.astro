@@ -23,9 +23,10 @@ const { year, title, description, slug, heroImage, heroImageAlign } =
     src={heroImage}
     alt={title}
     align={heroImageAlign ?? 'center'}
-  class='w-full aspect-[1.75] max-sm:aspect-[1.4] transition-all duration-800 group-hover:scale-105'
-  sizes='(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw'
+    class='w-full aspect-[1.75] max-sm:aspect-[1.4] transition-all duration-800 group-hover:scale-105'
+    sizes='(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw'
     wrapperProps={{ class: 'rounded-lg overflow-clip w-full' }}
+    inferSize
   />
   <div class='flex flex-col gap-4'>
     <p>{year}</p>

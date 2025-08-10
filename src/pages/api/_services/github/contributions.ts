@@ -5,6 +5,10 @@ import { GetGithubContributions } from '@/lib/graphql'
 import type { GithubContributionData } from '@/types'
 
 const getGithubContributions = async (): Promise<GithubContributionData> => {
+  if (!GITHUB_ACCESS_TOKEN) {
+    throw new Error('Missing GITHUB_ACCESS_TOKEN')
+  }
+
   const response = await request({
     url: 'https://api.github.com/graphql',
     document: GetGithubContributions,

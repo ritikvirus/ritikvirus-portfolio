@@ -13,7 +13,8 @@ const github = new Hono()
         // Avoid caching zeros if token isn't configured during first deploy
         'Cache-Control': 'no-store'
       })
-    } catch {
+    } catch (e) {
+      console.error('Github contributions error:', e)
       return c.json({ lastPushedAt: 0, totalContributions: 0, contributions: [] }, 200)
     }
   })

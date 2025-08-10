@@ -24,10 +24,12 @@ const getMonkeytypeData = async (): Promise<MonkeyTypeData> => {
     if (!API_KEY || API_KEY.trim().length === 0) {
       return { acc: 0, consistency: 0, language: 'english', time: 60, wpm: 0 }
     }
-    const response = await fetch(
-      'https://api.monkeytype.com/users/personalBests?mode=time',
-      { headers: { Authorization: `ApeKey ${API_KEY}` } }
-    )
+    const response = await fetch('https://api.monkeytype.com/users/personalBests?mode=time', {
+      headers: { Authorization: `ApeKey ${API_KEY}` },
+      // Monkeytype sometimes blocks generic fetches; identify ourselves
+      // and avoid long hangs
+      signal: AbortSignal.timeout(10000)
+    })
 
     if (!response.ok) {
       console.error('Monkeytype API error:', response.status, response.statusText)

@@ -1,4 +1,5 @@
 import type { LocalImageProps, RemoteImageProps } from 'astro:assets'
+import type { UnresolvedImageTransform } from 'astro'
 
 export const alignClass = {
   top: {
@@ -16,4 +17,5 @@ export type CustomImageProps = {
   ambientMode?: boolean
   align?: keyof typeof alignClass
   fit?: 'cover' | 'contain'
-} & (LocalImageProps | RemoteImageProps)
+  inferSize?: boolean
+} & (LocalImageProps | RemoteImageProps | UnresolvedImageTransform)
