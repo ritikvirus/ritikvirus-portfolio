@@ -3,7 +3,7 @@ import client from '@/lib/client'
 
 import BentoGithubActivityChart from './BentoItemGithubActivityChart'
 
-let data = null
+let data: any = null
 try {
   const response = await client.api.github.contributions.$get()
   data = response.ok ? await response.json() : null

@@ -27,7 +27,8 @@ const app = new Hono()
   )
   .get('/monkeytype', async (c) =>
     c.json(await getMonkeytypeData(), 200, {
-      'Cache-Control': 's-maxage=43200, stale-while-revalidate=600'
+      // Use no-store to avoid caching empty results when env is missing/misconfigured
+      'Cache-Control': 'no-store'
     })
   )
   .get('/spotify', async (c) =>
