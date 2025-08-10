@@ -1,7 +1,7 @@
 import { GithubOutline } from '@icons/GithubOutline'
 import { LinkedIn } from '@icons/LinkedIn'
 import { Mail } from '@icons/Mail'
-import { Scroll } from '@icons/Scroll'
+import WhatsApp from '@icons/WhatsApp'
 
 export const SOCIAL_MEDIA_DATA = [
   {
@@ -15,9 +15,9 @@ export const SOCIAL_MEDIA_DATA = [
     href: 'https://www.linkedin.com/in/ritik-devops'
   },
   {
-    name: 'Resume',
-    icon: Scroll,
-    href: 'https://www.linkedin.com/in/ritik-devops'
+    name: 'WhatsApp',
+    icon: WhatsApp,
+    href: 'https://wa.me/918920279167?text=' + encodeURIComponent("Hey Ritik, I'm coming from your website"),
   },
   {
     name: 'Email',
