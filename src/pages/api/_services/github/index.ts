@@ -10,7 +10,8 @@ const github = new Hono()
   .get('/contributions', async (c) => {
     try {
       return c.json(await getGithubContributions(), 200, {
-        'Cache-Control': 's-maxage=3600, stale-while-revalidate=600'
+        // Avoid caching zeros if token isn't configured during first deploy
+        'Cache-Control': 'no-store'
       })
     } catch {
       return c.json({ lastPushedAt: 0, totalContributions: 0, contributions: [] }, 200)
@@ -41,7 +42,7 @@ const github = new Hono()
       try {
         const { owner, repository } = c.req.valid('param')
         return c.json(await getLastUpdatedTime(owner, repository), 200, {
-          'Cache-Control': 's-maxage=3600, stale-while-revalidate=600'
+          'Cache-Control': 'no-store'
         })
       } catch {
         return c.json(
