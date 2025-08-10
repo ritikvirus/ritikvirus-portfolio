@@ -125,7 +125,11 @@ export default defineConfig({
     resolve: {
       alias: isCF
         ? {
-            'react-dom/server': 'react-dom/server.edge'
+            // Use the browser-compatible server renderer shim on Workers
+            'react-dom/server': 'react-dom/server.browser',
+            'react-dom/server.edge': 'react-dom/server.browser',
+            // Stub @vercel/og on Cloudflare to avoid react-dom/server.edge export issues
+            '@vercel/og': '/src/lib/og-stub'
           }
         : {}
     },

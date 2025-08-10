@@ -106,6 +106,11 @@ const generateHtml = (
 }
 
 export const GET: OGAPIRoute = async ({ request, props }) => {
+  // Disable OG image generation on Cloudflare Workers due to react-dom/server.edge incompatibilities.
+  // Cloudflare build aliases '@vercel/og' to a stub to avoid build failures.
+  if (typeof globalThis?.navigator === 'object' && (globalThis as any).navigator?.userAgent?.includes('Cloudflare-Workers')) {
+    return new Response('OG generation not supported on Cloudflare', { status: 501 })
+  }
   const {
     posts: { data }
   } = props
