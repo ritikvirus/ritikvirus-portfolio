@@ -1,0 +1,120 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import BaseHead from '@/components/BaseHead.astro'
+import TrainingBookingForm from './_components/training/TrainingBookingForm'
+
+const trainingData = {
+  title: "DevOps Live Training",
+  description: "Master DevOps practices with hands-on live training sessions. Learn from industry experts with real-world projects and practical implementation.",
+  image: "/images/devops-training.png",
+  pricePerHour: 500,
+  features: [
+    "Live interactive sessions",
+    "Real-world project implementation", 
+    "Industry expert mentorship",
+    "Hands-on lab exercises",
+    "Certificate of completion",
+    "Lifetime access to recordings"
+  ]
+}
+---
+
+<BaseLayout>
+  <BaseHead slot="head" />
+  <title>DevOps Live Training | AI DevOps</title>
+  <meta name="description" content="Professional DevOps training with live sessions. Learn from industry experts with hands-on projects and practical implementation." slot="head" />
+  
+  <div class="min-h-screen py-16">
+    <!-- Hero Section -->
+    <section class="max-w-6xl mx-auto px-4 mb-16">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <h1 class="text-5xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+            {trainingData.title}
+          </h1>
+          <p class="text-xl text-gray-300 mb-8 leading-relaxed">
+            {trainingData.description}
+          </p>
+          
+          <div class="flex items-center gap-4 mb-8">
+            <div class="text-3xl font-bold text-green-400">
+              ₹{trainingData.pricePerHour}/hour
+            </div>
+            <div class="px-3 py-1 bg-green-900/30 border border-green-600/50 rounded-full text-green-300 text-sm">
+              Live Sessions
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-4 mb-8">
+            {trainingData.features.map((feature) => (
+              <div class="flex items-center gap-2 text-gray-300">
+                <div class="w-2 h-2 bg-green-400 rounded-full"></div>
+                <span class="text-sm">{feature}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+        
+        <div class="relative">
+          <img 
+            src={trainingData.image} 
+            alt="DevOps Training"
+            class="w-full rounded-2xl shadow-2xl"
+          />
+          <div class="absolute -top-4 -right-4 bg-gradient-to-r from-blue-500 to-purple-500 text-white px-4 py-2 rounded-full text-sm font-semibold">
+            Premium Training
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Training Details -->
+    <section class="max-w-4xl mx-auto px-4 mb-16">
+      <div class="bg-gray-900/50 border border-gray-700/50 rounded-2xl p-8">
+        <h2 class="text-3xl font-bold mb-6 text-center">Training Overview</h2>
+        
+        <div class="grid md:grid-cols-2 gap-8 mb-8">
+          <div>
+            <h3 class="text-xl font-semibold mb-4 text-blue-400">What You'll Learn</h3>
+            <ul class="space-y-2 text-gray-300">
+              <li>• CI/CD Pipeline Implementation</li>
+              <li>• Containerization with Docker</li>
+              <li>• Kubernetes Orchestration</li>
+              <li>• Infrastructure as Code</li>
+              <li>• Monitoring and Logging</li>
+              <li>• Cloud Platform Integration</li>
+            </ul>
+          </div>
+          
+          <div>
+            <h3 class="text-xl font-semibold mb-4 text-green-400">Training Format</h3>
+            <ul class="space-y-2 text-gray-300">
+              <li>• Live interactive sessions</li>
+              <li>• Hands-on lab exercises</li>
+              <li>• Real-world projects</li>
+              <li>• Q&A sessions</li>
+              <li>• Recorded session access</li>
+              <li>• 24/7 community support</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="bg-blue-900/20 border border-blue-600/30 rounded-lg p-6">
+          <h3 class="text-lg font-semibold mb-3 text-blue-200">Why Choose Our Training?</h3>
+          <p class="text-blue-200">
+            Our DevOps training is designed by industry experts with years of experience in implementing DevOps practices across various organizations. We focus on practical, hands-on learning that you can immediately apply in your workplace.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Booking Form -->
+    <section class="max-w-4xl mx-auto px-4">
+      <div class="bg-gray-900/50 border border-gray-700/50 rounded-2xl p-8">
+        <h2 class="text-3xl font-bold mb-8 text-center">Book Your Training Session</h2>
+        
+        <TrainingBookingForm client:load />
+      </div>
+    </section>
+  </div>
+</BaseLayout>

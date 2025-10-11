@@ -1,0 +1,198 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import SEO from '@/components/SEO.astro'
+
+const { txnId, data } = Astro.url.searchParams
+
+let bookingData = null
+if (data) {
+  try {
+    bookingData = JSON.parse(Buffer.from(data, 'base64').toString())
+  } catch (error) {
+    console.error('Failed to parse booking data:', error)
+  }
+}
+---
+
+<BaseLayout>
+  <SEO 
+    title="Booking Confirmation | AI DevOps Training" 
+    description="Your DevOps training booking has been confirmed. Thank you for choosing AI DevOps."
+    slot="seo"
+  />
+  
+  <div class="min-h-screen py-16">
+    <div class="max-w-4xl mx-auto px-4">
+      {bookingData ? (
+        <div class="space-y-8">
+          <!-- Success Header -->
+          <div class="text-center">
+            <div class="w-20 h-20 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-6">
+              <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+            </div>
+            <h1 class="text-4xl font-bold text-green-400 mb-4">Booking Confirmed!</h1>
+            <p class="text-xl text-gray-300">
+              Thank you for booking our DevOps training. Your session has been confirmed.
+            </p>
+          </div>
+
+          <!-- Booking Details -->
+          <div class="bg-gray-900/50 border border-gray-700/50 rounded-2xl p-8">
+            <h2 class="text-2xl font-bold mb-6 text-white">Booking Details</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+              <div class="space-y-4">
+                <div>
+                  <label class="block text-sm font-medium text-gray-400 mb-1">Transaction ID</label>
+                  <p class="text-white font-mono bg-gray-800 px-3 py-2 rounded">{txnId}</p>
+                </div>
+                
+                <div>
+                  <label class="block text-sm font-medium text-gray-400 mb-1">Training Duration</label>
+                  <p class="text-white">{bookingData.hours}h {bookingData.minutes}m</p>
+                </div>
+                
+                <div>
+                  <label class="block text-sm font-medium text-gray-400 mb-1">Amount Paid</label>
+                  <p class="text-green-400 text-xl font-bold">₹{bookingData.totalAmount}</p>
+                </div>
+              </div>
+              
+              <div class="space-y-4">
+                <div>
+                  <label class="block text-sm font-medium text-gray-400 mb-1">Name</label>
+                  <p class="text-white">{bookingData.name}</p>
+                </div>
+                
+                <div>
+                  <label class="block text-sm font-medium text-gray-400 mb-1">Email</label>
+                  <p class="text-white">{bookingData.email}</p>
+                </div>
+                
+                <div>
+                  <label class="block text-sm font-medium text-gray-400 mb-1">Phone</label>
+                  <p class="text-white">{bookingData.phone}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Next Steps -->
+          <div class="bg-blue-900/20 border border-blue-600/30 rounded-2xl p-8">
+            <h2 class="text-2xl font-bold mb-6 text-blue-200">What's Next?</h2>
+            
+            <div class="space-y-4">
+              <div class="flex items-start gap-4">
+                <div class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                  <span class="text-white text-sm font-bold">1</span>
+                </div>
+                <div>
+                  <h3 class="text-lg font-semibold text-blue-200 mb-2">Session Scheduling</h3>
+                  <p class="text-blue-300">
+                    Our team will contact you within 24 hours to schedule your training session at a convenient time.
+                  </p>
+                </div>
+              </div>
+              
+              <div class="flex items-start gap-4">
+                <div class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                  <span class="text-white text-sm font-bold">2</span>
+                </div>
+                <div>
+                  <h3 class="text-lg font-semibold text-blue-200 mb-2">Preparation</h3>
+                  <p class="text-blue-300">
+                    You'll receive an email with training materials and setup instructions before your session.
+                  </p>
+                </div>
+              </div>
+              
+              <div class="flex items-start gap-4">
+                <div class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                  <span class="text-white text-sm font-bold">3</span>
+                </div>
+                <div>
+                  <h3 class="text-lg font-semibold text-blue-200 mb-2">Live Training</h3>
+                  <p class="text-blue-300">
+                    Join your personalized training session with our DevOps experts for hands-on learning.
+                  </p>
+                </div>
+              </div>
+              
+              <div class="flex items-start gap-4">
+                <div class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                  <span class="text-white text-sm font-bold">4</span>
+                </div>
+                <div>
+                  <h3 class="text-lg font-semibold text-blue-200 mb-2">Certificate</h3>
+                  <p class="text-blue-300">
+                    Upon completion, you'll receive a certificate of completion for your training.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Contact Information -->
+          <div class="bg-gray-800/50 border border-gray-600/50 rounded-2xl p-8">
+            <h2 class="text-2xl font-bold mb-6 text-white">Need Help?</h2>
+            
+            <div class="grid md:grid-cols-2 gap-6">
+              <div>
+                <h3 class="text-lg font-semibold text-white mb-3">Contact Information</h3>
+                <div class="space-y-2 text-gray-300">
+                  <p><strong>Email:</strong> Contact us through our website</p>
+                  <p><strong>Phone:</strong> Available Monday - Friday (9:00 - 18:00)</p>
+                  <p><strong>Address:</strong> A-178 Shahbad Dairy, New Delhi, India</p>
+                </div>
+              </div>
+              
+              <div>
+                <h3 class="text-lg font-semibold text-white mb-3">Support</h3>
+                <div class="space-y-2 text-gray-300">
+                  <p>For any questions about your booking or training, please don't hesitate to reach out.</p>
+                  <p>We're here to ensure you have the best learning experience.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a 
+              href="/training" 
+              class="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold transition-colors text-center"
+            >
+              Book Another Session
+            </a>
+            <a 
+              href="/" 
+              class="px-6 py-3 bg-gray-700 hover:bg-gray-600 text-white rounded-lg font-semibold transition-colors text-center"
+            >
+              Back to Home
+            </a>
+          </div>
+        </div>
+      ) : (
+        <div class="text-center">
+          <div class="w-20 h-20 bg-red-500 rounded-full flex items-center justify-center mx-auto mb-6">
+            <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          </div>
+          <h1 class="text-4xl font-bold text-red-400 mb-4">Booking Not Found</h1>
+          <p class="text-xl text-gray-300 mb-8">
+            We couldn't find your booking details. Please contact support if you believe this is an error.
+          </p>
+          <a 
+            href="/training" 
+            class="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold transition-colors"
+          >
+            Book Training Session
+          </a>
+        </div>
+      )}
+    </div>
+  </div>
+</BaseLayout>

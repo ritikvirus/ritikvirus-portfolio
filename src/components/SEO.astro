@@ -5,6 +5,8 @@ import { PRIMARY_SITE } from '@/lib/sites'
 import { mainMetaData } from '@/lib/metaData'
 
 interface Props extends SEOProps {
+  title?: string
+  description?: string
   imageUrl?: string
   type?: 'article' | 'website' | 'profile'
   slot: 'seo'

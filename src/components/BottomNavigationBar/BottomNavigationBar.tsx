@@ -7,6 +7,7 @@ import { cn } from '@/lib/utils'
 import { Bookmarks } from '../icons/Bookmarks'
 import { Briefcase } from '../icons/Briefcase'
 import { ChatTeardropDots } from '../icons/ChatTeardrop'
+import { GraduationCap } from '../icons/GraduationCap'
 import { HandPalm } from '../icons/HandPalm'
 import { HandWaving } from '../icons/HandWaving'
 import { Dock, DockIcon } from '../ui/dock'
@@ -23,6 +24,11 @@ export const bottomNavigationItems = [
     name: 'Projects',
     icon: Briefcase,
     href: '/projects'
+  },
+  {
+    name: 'Training',
+    icon: GraduationCap,
+    href: '/training'
   },
   {
     name: 'Blog',
