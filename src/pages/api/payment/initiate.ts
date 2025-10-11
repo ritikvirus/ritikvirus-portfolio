@@ -24,7 +24,7 @@ function generateXVerifyHeader(base64Payload: string): string {
 }
 
 function generateTransactionId(): string {
-  return 'TXN_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9)
+  return 'TXN_' + Date.now() + '_' + Math.random().toString(36).substring(2, 11)
 }
 
 export const POST: APIRoute = async ({ request }) => {

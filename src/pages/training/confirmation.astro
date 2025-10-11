@@ -1,8 +1,9 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro'
-import SEO from '@/components/SEO.astro'
+import BaseHead from '@/components/BaseHead.astro'
 
-const { txnId, data } = Astro.url.searchParams
+const txnId = Astro.url.searchParams.get('txnId')
+const data = Astro.url.searchParams.get('data')
 
 let bookingData = null
 if (data) {
@@ -15,11 +16,9 @@ if (data) {
 ---
 
 <BaseLayout>
-  <SEO 
-    title="Booking Confirmation | AI DevOps Training" 
-    description="Your DevOps training booking has been confirmed. Thank you for choosing AI DevOps."
-    slot="seo"
-  />
+  <BaseHead slot="head" />
+  <title>Booking Confirmation | AI DevOps Training</title>
+  <meta name="description" content="Your DevOps training booking has been confirmed. Thank you for choosing AI DevOps." slot="head" />
   
   <div class="min-h-screen py-16">
     <div class="max-w-4xl mx-auto px-4">
