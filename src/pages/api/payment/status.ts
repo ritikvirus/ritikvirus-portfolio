@@ -1,10 +1,11 @@
 import type { APIRoute } from 'astro'
 import crypto from 'crypto'
-
-const PHONEPE_MERCHANT_ID = import.meta.env.PHONEPE_MERCHANT_ID || 'PGTESTPAYUAT'
-const PHONEPE_SALT_KEY = import.meta.env.PHONEPE_SALT_KEY || '099eb0cd-02cf-4e2a-8aca-3c6faf0e5d80'
-const PHONEPE_SALT_INDEX = import.meta.env.PHONEPE_SALT_INDEX || '1'
-const PHONEPE_BASE_URL = import.meta.env.PHONEPE_BASE_URL || 'https://api-preprod.phonepe.com/apis/pg-sandbox'
+import {
+  PHONEPE_MERCHANT_ID,
+  PHONEPE_SALT_KEY,
+  PHONEPE_SALT_INDEX,
+  PHONEPE_BASE_URL
+} from 'astro:env/server'
 
 function generateXVerifyHeader(base64Payload: string): string {
   const data = base64Payload + '/pg/v1/status' + PHONEPE_SALT_KEY

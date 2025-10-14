@@ -1,9 +1,9 @@
 import type { APIRoute } from 'astro'
 import crypto from 'crypto'
-
-const PHONEPE_SALT_KEY = import.meta.env.PHONEPE_SALT_KEY || '099eb0cd-02cf-4e2a-8aca-3c6faf0e5d80'
-const PHONEPE_SALT_INDEX = import.meta.env.PHONEPE_SALT_INDEX || '1'
-const GOOGLE_SHEETS_WEBHOOK_URL = import.meta.env.GOOGLE_SHEETS_WEBHOOK_URL
+import {
+  PHONEPE_SALT_KEY,
+  PHONEPE_SALT_INDEX
+} from 'astro:env/server'
 
 function verifyPhonePeResponse(response: string, xVerify: string): boolean {
   try {
@@ -18,36 +18,22 @@ function verifyPhonePeResponse(response: string, xVerify: string): boolean {
 }
 
 async function sendToGoogleSheets(bookingData: any) {
-  if (!GOOGLE_SHEETS_WEBHOOK_URL) {
-    console.log('Google Sheets webhook URL not configured, skipping data storage')
-    return
-  }
-
-  try {
-    const response = await fetch(GOOGLE_SHEETS_WEBHOOK_URL, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        timestamp: new Date().toISOString(),
-        name: bookingData.name,
-        email: bookingData.email,
-        phone: bookingData.phone,
-        hours: bookingData.hours,
-        minutes: bookingData.minutes,
-        totalAmount: bookingData.totalAmount,
-        transactionId: bookingData.transactionId,
-        status: 'completed'
-      })
-    })
-
-    if (!response.ok) {
-      console.error('Failed to send data to Google Sheets:', response.statusText)
-    }
-  } catch (error) {
-    console.error('Google Sheets integration error:', error)
-  }
+  // For now, we'll log the booking data
+  // In production, integrate with Google Sheets or database
+  console.log('Booking completed:', {
+    timestamp: new Date().toISOString(),
+    name: bookingData.name,
+    email: bookingData.email,
+    phone: bookingData.phone,
+    hours: bookingData.hours,
+    minutes: bookingData.minutes,
+    totalAmount: bookingData.totalAmount,
+    transactionId: bookingData.transactionId,
+    status: 'completed'
+  })
+  
+  // TODO: Implement Google Sheets integration
+  // You can use Google Sheets API or a webhook service like Zapier
 }
 
 export const POST: APIRoute = async ({ request }) => {

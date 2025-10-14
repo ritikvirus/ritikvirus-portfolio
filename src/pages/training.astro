@@ -1,120 +1,208 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro'
-import BaseHead from '@/components/BaseHead.astro'
-import TrainingBookingForm from './_components/training/TrainingBookingForm'
-
-const trainingData = {
-  title: "DevOps Live Training",
-  description: "Master DevOps practices with hands-on live training sessions. Learn from industry experts with real-world projects and practical implementation.",
-  image: "/images/devops-training.png",
-  pricePerHour: 500,
-  features: [
-    "Live interactive sessions",
-    "Real-world project implementation", 
-    "Industry expert mentorship",
-    "Hands-on lab exercises",
-    "Certificate of completion",
-    "Lifetime access to recordings"
-  ]
-}
+import SEO from '@/components/SEO.astro'
+import Image from '@/components/Image'
+import trainingHeroImage from '@/assets/DevOps_training_.png'
+import TrainingBookingForm from '@/components/TrainingBooking/TrainingBookingForm'
 ---
 
 <BaseLayout>
-  <BaseHead slot="head" />
-  <title>DevOps Live Training | AI DevOps</title>
-  <meta name="description" content="Professional DevOps training with live sessions. Learn from industry experts with hands-on projects and practical implementation." slot="head" />
+  <SEO 
+    title="DevOps Live Training | 1-on-1 Career Development Program" 
+    description="Expert DevOps live training sessions with real-world projects. AWS, Kubernetes, Docker, CI/CD automation. ₹500/hour flexible scheduling."
+    slot="seo"
+  />
   
-  <div class="min-h-screen py-16">
-    <!-- Hero Section -->
-    <section class="max-w-6xl mx-auto px-4 mb-16">
-      <div class="grid lg:grid-cols-2 gap-12 items-center">
-        <div>
-          <h1 class="text-5xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-            {trainingData.title}
+  <!-- Hero Section -->
+  <section class="relative py-16 md:py-24">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div class="space-y-6">
+          <h1 class="text-4xl md:text-6xl font-bold text-zinc-100 leading-tight">
+            DevOps Live Training
+            <span class="block text-emerald-400">1-on-1 Career Development</span>
           </h1>
-          <p class="text-xl text-gray-300 mb-8 leading-relaxed">
-            {trainingData.description}
+          <p class="text-xl text-zinc-400 leading-relaxed">
+            Expert mentorship · Real-world projects · Industry-proven techniques
           </p>
-          
-          <div class="flex items-center gap-4 mb-8">
-            <div class="text-3xl font-bold text-green-400">
-              ₹{trainingData.pricePerHour}/hour
-            </div>
-            <div class="px-3 py-1 bg-green-900/30 border border-green-600/50 rounded-full text-green-300 text-sm">
-              Live Sessions
-            </div>
+          <div class="flex items-center space-x-4">
+            <span class="text-3xl font-bold text-emerald-400">₹500/hour</span>
+            <span class="text-zinc-500">Flexible duration</span>
           </div>
-
-          <div class="grid grid-cols-2 gap-4 mb-8">
-            {trainingData.features.map((feature) => (
-              <div class="flex items-center gap-2 text-gray-300">
-                <div class="w-2 h-2 bg-green-400 rounded-full"></div>
-                <span class="text-sm">{feature}</span>
-              </div>
-            ))}
+          <div class="flex flex-col sm:flex-row gap-4">
+            <a href="#booking-form" class="inline-flex items-center justify-center px-8 py-4 bg-emerald-500 hover:bg-emerald-600 text-white font-semibold rounded-lg transition-colors">
+              Book Your Session
+            </a>
+            <a href="#features" class="inline-flex items-center justify-center px-8 py-4 border border-zinc-700 hover:border-zinc-600 text-zinc-300 font-semibold rounded-lg transition-colors">
+              Learn More
+            </a>
           </div>
         </div>
-        
         <div class="relative">
-          <img 
-            src={trainingData.image} 
-            alt="DevOps Training"
-            class="w-full rounded-2xl shadow-2xl"
+          <Image
+            src={trainingHeroImage}
+            alt="DevOps Training - Live 1-on-1 Sessions"
+            width={600}
+            height={400}
+            class="rounded-lg shadow-2xl"
           />
-          <div class="absolute -top-4 -right-4 bg-gradient-to-r from-blue-500 to-purple-500 text-white px-4 py-2 rounded-full text-sm font-semibold">
-            Premium Training
+          <div class="absolute -bottom-6 -left-6 bg-emerald-500 text-white px-6 py-3 rounded-lg font-semibold">
+            🚀 Live Training
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Training Details -->
-    <section class="max-w-4xl mx-auto px-4 mb-16">
-      <div class="bg-gray-900/50 border border-gray-700/50 rounded-2xl p-8">
-        <h2 class="text-3xl font-bold mb-6 text-center">Training Overview</h2>
+  <!-- Features Grid -->
+  <section id="features" class="py-16 bg-zinc-900/50">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-zinc-100 mb-4">
+          What You'll Learn
+        </h2>
+        <p class="text-xl text-zinc-400 max-w-3xl mx-auto">
+          Comprehensive DevOps skills with hands-on projects and real-world scenarios
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="bg-zinc-800/50 p-6 rounded-lg border border-zinc-700 hover:border-emerald-500/50 transition-colors">
+          <div class="text-emerald-400 text-3xl mb-4">☁️</div>
+          <h3 class="text-xl font-semibold text-zinc-100 mb-2">Cloud Platforms</h3>
+          <p class="text-zinc-400">AWS, Azure, GCP - Infrastructure as Code, EC2, S3, Lambda, VPC</p>
+        </div>
         
-        <div class="grid md:grid-cols-2 gap-8 mb-8">
-          <div>
-            <h3 class="text-xl font-semibold mb-4 text-blue-400">What You'll Learn</h3>
-            <ul class="space-y-2 text-gray-300">
-              <li>• CI/CD Pipeline Implementation</li>
-              <li>• Containerization with Docker</li>
-              <li>• Kubernetes Orchestration</li>
-              <li>• Infrastructure as Code</li>
-              <li>• Monitoring and Logging</li>
-              <li>• Cloud Platform Integration</li>
-            </ul>
-          </div>
+        <div class="bg-zinc-800/50 p-6 rounded-lg border border-zinc-700 hover:border-emerald-500/50 transition-colors">
+          <div class="text-emerald-400 text-3xl mb-4">🐳</div>
+          <h3 class="text-xl font-semibold text-zinc-100 mb-2">Containerization</h3>
+          <p class="text-zinc-400">Docker, Kubernetes, Podman - Container orchestration and management</p>
+        </div>
+        
+        <div class="bg-zinc-800/50 p-6 rounded-lg border border-zinc-700 hover:border-emerald-500/50 transition-colors">
+          <div class="text-emerald-400 text-3xl mb-4">🔄</div>
+          <h3 class="text-xl font-semibold text-zinc-100 mb-2">CI/CD Pipelines</h3>
+          <p class="text-zinc-400">Jenkins, GitHub Actions, GitLab CI, Azure DevOps automation</p>
+        </div>
+        
+        <div class="bg-zinc-800/50 p-6 rounded-lg border border-zinc-700 hover:border-emerald-500/50 transition-colors">
+          <div class="text-emerald-400 text-3xl mb-4">🛡️</div>
+          <h3 class="text-xl font-semibold text-zinc-100 mb-2">Security (DevSecOps)</h3>
+          <p class="text-zinc-400">Security scanning, vulnerability assessment, compliance automation</p>
+        </div>
+        
+        <div class="bg-zinc-800/50 p-6 rounded-lg border border-zinc-700 hover:border-emerald-500/50 transition-colors">
+          <div class="text-emerald-400 text-3xl mb-4">📊</div>
+          <h3 class="text-xl font-semibold text-zinc-100 mb-2">Monitoring & Logging</h3>
+          <p class="text-zinc-400">Prometheus, Grafana, ELK Stack, CloudWatch, application monitoring</p>
+        </div>
+        
+        <div class="bg-zinc-800/50 p-6 rounded-lg border border-zinc-700 hover:border-emerald-500/50 transition-colors">
+          <div class="text-emerald-400 text-3xl mb-4">⚡</div>
+          <h3 class="text-xl font-semibold text-zinc-100 mb-2">Infrastructure</h3>
+          <p class="text-zinc-400">Terraform, Ansible, CloudFormation, infrastructure automation</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Section -->
+  <section class="py-16">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto text-center">
+        <h2 class="text-3xl md:text-4xl font-bold text-zinc-100 mb-8">
+          Simple, Transparent Pricing
+        </h2>
+        
+        <div class="bg-gradient-to-r from-emerald-500/10 to-blue-500/10 p-8 rounded-xl border border-emerald-500/20">
+          <div class="text-6xl font-bold text-emerald-400 mb-4">₹500</div>
+          <div class="text-xl text-zinc-300 mb-6">per hour</div>
           
-          <div>
-            <h3 class="text-xl font-semibold mb-4 text-green-400">Training Format</h3>
-            <ul class="space-y-2 text-gray-300">
-              <li>• Live interactive sessions</li>
-              <li>• Hands-on lab exercises</li>
-              <li>• Real-world projects</li>
-              <li>• Q&A sessions</li>
-              <li>• Recorded session access</li>
-              <li>• 24/7 community support</li>
-            </ul>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
+            <div class="flex items-center space-x-3">
+              <div class="text-emerald-400">✓</div>
+              <span class="text-zinc-300">No hidden fees</span>
+            </div>
+            <div class="flex items-center space-x-3">
+              <div class="text-emerald-400">✓</div>
+              <span class="text-zinc-300">Pay as you learn</span>
+            </div>
+            <div class="flex items-center space-x-3">
+              <div class="text-emerald-400">✓</div>
+              <span class="text-zinc-300">Flexible scheduling</span>
+            </div>
+            <div class="flex items-center space-x-3">
+              <div class="text-emerald-400">✓</div>
+              <span class="text-zinc-300">1-on-1 mentorship</span>
+            </div>
+            <div class="flex items-center space-x-3">
+              <div class="text-emerald-400">✓</div>
+              <span class="text-zinc-300">Real-world projects</span>
+            </div>
+            <div class="flex items-center space-x-3">
+              <div class="text-emerald-400">✓</div>
+              <span class="text-zinc-300">Career guidance</span>
+            </div>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
 
-        <div class="bg-blue-900/20 border border-blue-600/30 rounded-lg p-6">
-          <h3 class="text-lg font-semibold mb-3 text-blue-200">Why Choose Our Training?</h3>
-          <p class="text-blue-200">
-            Our DevOps training is designed by industry experts with years of experience in implementing DevOps practices across various organizations. We focus on practical, hands-on learning that you can immediately apply in your workplace.
+  <!-- Booking Form Section -->
+  <section id="booking-form" class="py-16 bg-zinc-900/50">
+    <div class="container mx-auto px-4">
+      <div class="max-w-2xl mx-auto">
+        <div class="text-center mb-8">
+          <h2 class="text-3xl font-bold text-zinc-100 mb-4">
+            Book Your Training Session
+          </h2>
+          <p class="text-zinc-400">
+            Fill in your details and choose your preferred training duration
           </p>
         </div>
-      </div>
-    </section>
-
-    <!-- Booking Form -->
-    <section class="max-w-4xl mx-auto px-4">
-      <div class="bg-gray-900/50 border border-gray-700/50 rounded-2xl p-8">
-        <h2 class="text-3xl font-bold mb-8 text-center">Book Your Training Session</h2>
         
         <TrainingBookingForm client:load />
       </div>
-    </section>
-  </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="py-16">
+    <div class="container mx-auto px-4">
+      <div class="max-w-3xl mx-auto">
+        <h2 class="text-3xl font-bold text-zinc-100 text-center mb-12">
+          Frequently Asked Questions
+        </h2>
+        
+        <div class="space-y-6">
+          <div class="bg-zinc-800/50 p-6 rounded-lg border border-zinc-700">
+            <h3 class="text-xl font-semibold text-zinc-100 mb-2">How does the training work?</h3>
+            <p class="text-zinc-400">Each session is a live 1-on-1 video call where we work on real-world DevOps projects, solve problems together, and build your practical skills.</p>
+          </div>
+          
+          <div class="bg-zinc-800/50 p-6 rounded-lg border border-zinc-700">
+            <h3 class="text-xl font-semibold text-zinc-100 mb-2">What if I need to reschedule?</h3>
+            <p class="text-zinc-400">You can reschedule your session up to 24 hours in advance. We'll work together to find a convenient time.</p>
+          </div>
+          
+          <div class="bg-zinc-800/50 p-6 rounded-lg border border-zinc-700">
+            <h3 class="text-xl font-semibold text-zinc-100 mb-2">Do you provide certificates?</h3>
+            <p class="text-zinc-400">Yes, upon completion of training sessions, you'll receive a certificate of completion for your portfolio.</p>
+          </div>
+          
+          <div class="bg-zinc-800/50 p-6 rounded-lg border border-zinc-700">
+            <h3 class="text-xl font-semibold text-zinc-100 mb-2">What's your experience level?</h3>
+            <p class="text-zinc-400">I'm a DevOps/DevSecOps Engineer with expertise in AWS, Kubernetes, Docker, CI/CD, and security automation. I've worked on enterprise-level projects and can guide you through real-world scenarios.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </BaseLayout>
+
+<style>
+  .container {
+    max-width: 1200px;
+  }
+</style>

@@ -92,6 +92,38 @@ export default defineConfig({
         optional: true
       }),
 
+      // PhonePe Payment Integration
+      PHONEPE_CLIENT_ID: envField.string({
+        context: 'server',
+        access: 'secret',
+        optional: true
+      }),
+      PHONEPE_CLIENT_SECRET: envField.string({
+        context: 'server',
+        access: 'secret',
+        optional: true
+      }),
+      PHONEPE_MERCHANT_ID: envField.string({
+        context: 'server',
+        access: 'secret',
+        optional: true
+      }),
+      PHONEPE_SALT_KEY: envField.string({
+        context: 'server',
+        access: 'secret',
+        optional: true
+      }),
+      PHONEPE_SALT_INDEX: envField.string({
+        context: 'server',
+        access: 'secret',
+        optional: true
+      }),
+      PHONEPE_BASE_URL: envField.string({
+        context: 'server',
+        access: 'secret',
+        optional: true
+      }),
+
       PUBLIC_VERCEL_ENV: envField.string({
         context: 'client',
         access: 'public',

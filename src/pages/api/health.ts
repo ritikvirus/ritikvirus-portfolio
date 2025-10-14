@@ -4,7 +4,11 @@ import {
   MONKEYTYPE_API_KEY,
   SPOTIFY_CLIENT_ID,
   SPOTIFY_CLIENT_SECRET,
-  SPOTIFY_REFRESH_TOKEN
+  SPOTIFY_REFRESH_TOKEN,
+  PHONEPE_CLIENT_ID,
+  PHONEPE_CLIENT_SECRET,
+  PHONEPE_MERCHANT_ID,
+  PHONEPE_SALT_KEY
 } from 'astro:env/server'
 
 export const GET: APIRoute = ({ request }) => {
@@ -22,7 +26,8 @@ export const GET: APIRoute = ({ request }) => {
       githubToken: Boolean(GITHUB_ACCESS_TOKEN),
       monkeytypeKey: Boolean(MONKEYTYPE_API_KEY),
       spotifyClient: Boolean(SPOTIFY_CLIENT_ID && SPOTIFY_CLIENT_SECRET),
-      spotifyRefresh: Boolean(SPOTIFY_REFRESH_TOKEN)
+      spotifyRefresh: Boolean(SPOTIFY_REFRESH_TOKEN),
+      phonepeConfig: Boolean(PHONEPE_CLIENT_ID && PHONEPE_CLIENT_SECRET && PHONEPE_MERCHANT_ID && PHONEPE_SALT_KEY)
     }
   }
   return new Response(JSON.stringify(json, null, 2), {

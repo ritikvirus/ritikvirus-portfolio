@@ -1,11 +1,13 @@
 import type { APIRoute } from 'astro'
 import crypto from 'crypto'
-
-// Environment variables for PhonePe integration
-const PHONEPE_MERCHANT_ID = import.meta.env.PHONEPE_MERCHANT_ID || 'PGTESTPAYUAT'
-const PHONEPE_SALT_KEY = import.meta.env.PHONEPE_SALT_KEY || '099eb0cd-02cf-4e2a-8aca-3c6faf0e5d80'
-const PHONEPE_SALT_INDEX = import.meta.env.PHONEPE_SALT_INDEX || '1'
-const PHONEPE_BASE_URL = import.meta.env.PHONEPE_BASE_URL || 'https://api-preprod.phonepe.com/apis/pg-sandbox'
+import {
+  PHONEPE_CLIENT_ID,
+  PHONEPE_CLIENT_SECRET,
+  PHONEPE_MERCHANT_ID,
+  PHONEPE_SALT_KEY,
+  PHONEPE_SALT_INDEX,
+  PHONEPE_BASE_URL
+} from 'astro:env/server'
 
 interface BookingRequest {
   hours: number
@@ -29,13 +31,49 @@ function generateTransactionId(): string {
 
 export const POST: APIRoute = async ({ request }) => {
   try {
+    // Validate environment variables
+    if (!PHONEPE_MERCHANT_ID || !PHONEPE_SALT_KEY || !PHONEPE_CLIENT_ID || !PHONEPE_CLIENT_SECRET) {
+      console.error('PhonePe environment variables not configured')
+      return new Response(JSON.stringify({
+        success: false,
+        message: 'Payment service not configured'
+      }), {
+        status: 500,
+        headers: { 'Content-Type': 'application/json' }
+      })
+    }
+
     const body: BookingRequest = await request.json()
     
     // Validate required fields
-    if (!body.name || !body.email || !body.phone || !body.totalAmount) {
+    if (!body.name || !body.email || !body.phone || !body.totalAmount || body.totalAmount <= 0) {
       return new Response(JSON.stringify({
         success: false,
-        message: 'Missing required fields'
+        message: 'Missing or invalid required fields'
+      }), {
+        status: 400,
+        headers: { 'Content-Type': 'application/json' }
+      })
+    }
+
+    // Validate phone number format
+    const phoneRegex = /^[6-9]\d{9}$/
+    if (!phoneRegex.test(body.phone)) {
+      return new Response(JSON.stringify({
+        success: false,
+        message: 'Invalid phone number format'
+      }), {
+        status: 400,
+        headers: { 'Content-Type': 'application/json' }
+      })
+    }
+
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!emailRegex.test(body.email)) {
+      return new Response(JSON.stringify({
+        success: false,
+        message: 'Invalid email format'
       }), {
         status: 400,
         headers: { 'Content-Type': 'application/json' }

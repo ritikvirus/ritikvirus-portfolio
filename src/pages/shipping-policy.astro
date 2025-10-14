@@ -5,7 +5,7 @@ import SEO from '@/components/SEO.astro'
 
 <BaseLayout>
   <SEO 
-    title="Shipping & Delivery Policy | AI DevOps" 
+    title="Shipping Policy | AI DevOps" 
     description="Shipping and delivery policy for AI DevOps training services and digital products."
     slot="seo"
   />
@@ -14,112 +14,108 @@ import SEO from '@/components/SEO.astro'
     <h1 class="text-4xl font-bold mb-8">Shipping Policy</h1>
     
     <div class="space-y-6">
-      <h2 class="text-2xl font-semibold mt-8 mb-4">Digital Services Delivery</h2>
+      <p class="text-gray-300">
+        This shipping policy outlines the delivery terms for our training services and digital products offered through our Platform.
+      </p>
+
+      <h2 class="text-2xl font-semibold mt-8 mb-4">Digital Training Services</h2>
+      
+      <div class="bg-emerald-500/10 border border-emerald-500/20 rounded-lg p-6">
+        <h3 class="text-emerald-300 font-semibold mb-2">Live Training Sessions</h3>
+        <p class="text-emerald-200">
+          All our DevOps training sessions are conducted online via video conferencing platforms. There is no physical shipping involved.
+        </p>
+      </div>
+
+      <div class="space-y-4">
+        <h3 class="text-xl font-semibold text-zinc-200">Delivery Timeline:</h3>
+        <ul class="list-disc list-inside space-y-2 text-gray-300">
+          <li><strong>Session Scheduling:</strong> Within 24 hours of payment confirmation</li>
+          <li><strong>Calendar Invite:</strong> Sent immediately after scheduling</li>
+          <li><strong>Preparation Materials:</strong> Shared 48 hours before the session</li>
+          <li><strong>Session Recording:</strong> Available within 24 hours after completion</li>
+        </ul>
+      </div>
+
+      <h2 class="text-2xl font-semibold mt-8 mb-4">Digital Materials Delivery</h2>
       
       <div class="space-y-4">
         <p class="text-gray-300">
-          Since AI DevOps primarily provides digital training services and online courses, most of our services are delivered electronically through our platform. The orders for digital services are processed and delivered immediately upon successful payment confirmation.
+          For training sessions, we provide the following digital materials:
         </p>
+        
+        <ul class="list-disc list-inside space-y-2 text-gray-300">
+          <li><strong>Session Preparation Guide:</strong> Delivered via email 48 hours before training</li>
+          <li><strong>Training Materials:</strong> Shared during the live session via screen sharing</li>
+          <li><strong>Session Recording:</strong> Provided via secure link within 24 hours</li>
+          <li><strong>Certificate of Completion:</strong> Issued within 48 hours after session completion</li>
+          <li><strong>Follow-up Resources:</strong> Additional learning materials sent within 72 hours</li>
+        </ul>
+      </div>
 
-        <div class="bg-blue-900/20 border border-blue-600/30 rounded-lg p-4 my-6">
-          <h3 class="text-blue-200 font-semibold mb-2">Training Sessions</h3>
-          <p class="text-blue-200">
-            Live training sessions are scheduled and delivered through our online platform. You will receive confirmation details and meeting links via email immediately after booking confirmation.
+      <h2 class="text-2xl font-semibold mt-8 mb-4">Delivery Methods</h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bg-zinc-800/50 p-6 rounded-lg border border-zinc-700">
+          <h3 class="text-lg font-semibold text-zinc-100 mb-2">Email Delivery</h3>
+          <p class="text-zinc-400 text-sm">
+            All digital materials are delivered to the email address provided during booking. Please ensure your email is correct and check spam folders.
+          </p>
+        </div>
+        
+        <div class="bg-zinc-800/50 p-6 rounded-lg border border-zinc-700">
+          <h3 class="text-lg font-semibold text-zinc-100 mb-2">Secure Links</h3>
+          <p class="text-zinc-400 text-sm">
+            Session recordings and large files are shared via secure, time-limited links to protect your privacy and data security.
           </p>
         </div>
       </div>
 
-      <h2 class="text-2xl font-semibold mt-8 mb-4">Physical Products (If Applicable)</h2>
+      <h2 class="text-2xl font-semibold mt-8 mb-4">Technical Requirements</h2>
       
       <div class="space-y-4">
         <p class="text-gray-300">
-          In case of any physical products or materials, the orders are shipped through registered domestic courier companies and/or speed post only. Orders are shipped within 1 day from the date of the order and/or payment or as per the delivery date agreed at the time of order confirmation and delivering of the shipment, subject to courier company / post office norms.
+          To receive our training services, you need:
         </p>
-
-        <p class="text-gray-300">
-          Platform Owner shall not be liable for any delay in delivery by the courier company / postal authority. Delivery of all orders will be made to the address provided by the buyer at the time of purchase.
-        </p>
-
-        <p class="text-gray-300">
-          Delivery of our services will be confirmed on your email ID as specified at the time of registration. If there are any shipping cost(s) levied by the seller or the Platform Owner (as the case be), the same is not refundable.
-        </p>
-      </div>
-
-      <h2 class="text-2xl font-semibold mt-8 mb-4">Digital Content Delivery</h2>
-      
-      <div class="space-y-4">
-        <div class="bg-green-900/20 border border-green-600/30 rounded-lg p-4 my-6">
-          <h3 class="text-green-200 font-semibold mb-2">Training Materials</h3>
-          <p class="text-green-200 mb-2">Access to training materials is provided through:</p>
-          <ul class="list-disc list-inside space-y-1 text-green-200 ml-4">
-            <li>Online platform access immediately after payment</li>
-            <li>Downloadable resources and documentation</li>
-            <li>Video recordings of live sessions (where applicable)</li>
-            <li>Email delivery of course materials</li>
-          </ul>
-        </div>
-
-        <p class="text-gray-300">
-          Digital content is typically available immediately after successful payment processing. In case of any technical delays, our support team will ensure delivery within 24 hours of payment confirmation.
-        </p>
-      </div>
-
-      <h2 class="text-2xl font-semibold mt-8 mb-4">Delivery Timeline</h2>
-      
-      <div class="space-y-4">
-        <div class="bg-yellow-900/20 border border-yellow-600/30 rounded-lg p-4 my-6">
-          <h3 class="text-yellow-200 font-semibold mb-2">Service Delivery Schedule</h3>
-          <ul class="list-disc list-inside space-y-1 text-yellow-200 ml-4">
-            <li><strong>Digital Access:</strong> Immediate (within 15 minutes of payment)</li>
-            <li><strong>Training Session:</strong> As per scheduled time</li>
-            <li><strong>Course Materials:</strong> Within 24 hours of booking</li>
-            <li><strong>Certificates:</strong> Upon course completion</li>
-          </ul>
-        </div>
-      </div>
-
-      <h2 class="text-2xl font-semibold mt-8 mb-4">Delivery Confirmation</h2>
-      
-      <div class="space-y-4">
-        <p class="text-gray-300">
-          You will receive delivery confirmation via email for all services. This confirmation includes:
-        </p>
-
-        <ul class="list-disc list-inside space-y-2 text-gray-300 ml-4">
-          <li>Service access details and login credentials</li>
-          <li>Training session schedule and meeting links</li>
-          <li>Download links for course materials</li>
-          <li>Contact information for technical support</li>
-          <li>Instructions for accessing your purchased services</li>
+        
+        <ul class="list-disc list-inside space-y-2 text-gray-300">
+          <li>Stable internet connection (minimum 2 Mbps)</li>
+          <li>Computer/laptop with webcam and microphone</li>
+          <li>Updated web browser (Chrome, Firefox, Safari, or Edge)</li>
+          <li>Email access for receiving materials and links</li>
+          <li>Valid email address for all communications</li>
         </ul>
       </div>
 
-      <h2 class="text-2xl font-semibold mt-8 mb-4">Delivery Issues</h2>
+      <h2 class="text-2xl font-semibold mt-8 mb-4">Delivery Issues & Support</h2>
       
       <div class="space-y-4">
         <p class="text-gray-300">
-          If you do not receive your service access details within the specified time frame, please contact our support team immediately. We will investigate and resolve the issue promptly.
+          If you don't receive any materials within the specified timeframe:
         </p>
-
-        <div class="bg-red-900/20 border border-red-600/30 rounded-lg p-4 my-6">
-          <h3 class="text-red-200 font-semibold mb-2">Common Delivery Issues</h3>
-          <ul class="list-disc list-inside space-y-1 text-red-200 ml-4">
-            <li>Check your spam/junk email folder</li>
-            <li>Verify the email address provided during booking</li>
-            <li>Ensure payment has been processed successfully</li>
-            <li>Contact support if access links are not working</li>
-          </ul>
-        </div>
+        
+        <ul class="list-disc list-inside space-y-2 text-gray-300">
+          <li>Check your spam/junk email folder</li>
+          <li>Verify your email address is correct</li>
+          <li>Contact us immediately at <a href="mailto:ritikvirus6@gmail.com" class="text-emerald-400 hover:text-emerald-300">ritikvirus6@gmail.com</a></li>
+          <li>Provide your transaction ID for faster resolution</li>
+        </ul>
       </div>
 
-      <h2 class="text-2xl font-semibold mt-8 mb-4">Contact Information</h2>
+      <div class="bg-yellow-500/10 border border-yellow-500/20 rounded-lg p-4">
+        <h3 class="text-yellow-300 font-semibold mb-2">Important Note</h3>
+        <p class="text-yellow-200 text-sm">
+          Since all our services are digital and delivered online, there are no physical shipping charges or delivery fees. All delivery timelines mentioned above are in IST (Indian Standard Time).
+        </p>
+      </div>
+
+      <h2 class="text-2xl font-semibold mt-8 mb-4">Contact for Delivery Issues</h2>
       
-      <div class="bg-gray-800/50 border border-gray-600/30 rounded-lg p-4 my-6">
-        <p class="text-gray-300 mb-2"><strong>For delivery-related queries:</strong></p>
-        <p class="text-gray-300 mb-2"><strong>Company:</strong> AI DevOps</p>
-        <p class="text-gray-300 mb-2"><strong>Address:</strong> A-178 Shahbad Dairy, New Delhi, India</p>
-        <p class="text-gray-300 mb-2"><strong>Email:</strong> Contact us through the website</p>
-        <p class="text-gray-300"><strong>Phone:</strong> Available Monday - Friday (9:00 - 18:00)</p>
+      <div class="bg-blue-900/20 border border-blue-600/30 rounded-lg p-4">
+        <p class="text-blue-200 mb-2"><strong>Email:</strong> ritikvirus6@gmail.com</p>
+        <p class="text-blue-200 mb-2"><strong>Phone:</strong> +91 8920279167</p>
+        <p class="text-blue-200 mb-2"><strong>Response Time:</strong> Within 24 hours</p>
+        <p class="text-blue-200"><strong>Office Hours:</strong> Monday - Friday (9:00 - 18:00 IST)</p>
       </div>
 
       <p class="text-gray-300 text-sm mt-8">
