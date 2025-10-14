@@ -1,0 +1,189 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import SEO from '@/components/SEO.astro'
+---
+
+<BaseLayout>
+  <SEO 
+    title="PhonePe Integration Status | AI DevOps" 
+    description="Check PhonePe payment integration status and required credentials."
+    slot="seo"
+  />
+  
+  <div class="min-h-screen flex items-center justify-center py-16">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="space-y-8">
+        
+        <div class="text-center">
+          <h1 class="text-4xl font-bold text-zinc-100 mb-4">
+            PhonePe Integration Status
+          </h1>
+          <p class="text-xl text-zinc-400">
+            Check your PhonePe API credentials configuration
+          </p>
+        </div>
+
+        <!-- API Status Check -->
+        <div class="bg-zinc-800/50 border border-zinc-700 rounded-lg p-6">
+          <h2 class="text-2xl font-semibold text-zinc-100 mb-4">API Configuration Status</h2>
+          <div id="api-status" class="space-y-4">
+            <div class="flex items-center justify-between">
+              <span class="text-zinc-300">Loading...</span>
+              <div class="animate-spin rounded-full h-4 w-4 border-b-2 border-emerald-400"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Required Credentials -->
+        <div class="bg-zinc-800/50 border border-zinc-700 rounded-lg p-6">
+          <h2 class="text-2xl font-semibold text-zinc-100 mb-4">Required PhonePe Credentials</h2>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Client Credentials (You Have These) -->
+            <div class="space-y-3">
+              <h3 class="text-lg font-semibold text-emerald-400">✅ Client Credentials (You Have)</h3>
+              <div class="bg-emerald-500/10 border border-emerald-500/20 rounded-lg p-4">
+                <div class="space-y-2">
+                  <div class="flex justify-between">
+                    <span class="text-zinc-300">Client ID:</span>
+                    <span class="text-emerald-300 font-mono text-sm">SU2510131850256414659332</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-zinc-300">Client Secret:</span>
+                    <span class="text-emerald-300 font-mono text-sm">61c35513-3010-4ef3-9c3e-52ac2bdd2654</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Merchant Credentials (You Need These) -->
+            <div class="space-y-3">
+              <h3 class="text-lg font-semibold text-red-400">❌ Merchant Credentials (You Need)</h3>
+              <div class="bg-red-500/10 border border-red-500/20 rounded-lg p-4">
+                <div class="space-y-2">
+                  <div class="flex justify-between">
+                    <span class="text-zinc-300">Merchant ID:</span>
+                    <span class="text-red-300">Missing</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-zinc-300">Salt Key:</span>
+                    <span class="text-red-300">Missing</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-zinc-300">Salt Index:</span>
+                    <span class="text-red-300">Missing</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- How to Get Missing Credentials -->
+        <div class="bg-blue-500/10 border border-blue-500/20 rounded-lg p-6">
+          <h2 class="text-2xl font-semibold text-blue-300 mb-4">How to Get Missing Credentials</h2>
+          
+          <div class="space-y-4">
+            <div class="space-y-2">
+              <h3 class="text-lg font-semibold text-zinc-200">Step 1: Check PhonePe Business Portal</h3>
+              <p class="text-zinc-400">
+                Go to <a href="https://business.phonepe.com/dashboard" target="_blank" class="text-blue-400 hover:text-blue-300">PhonePe Business Portal</a> → Developer Settings → API Credentials
+              </p>
+            </div>
+
+            <div class="space-y-2">
+              <h3 class="text-lg font-semibold text-zinc-200">Step 2: Complete Business Verification</h3>
+              <p class="text-zinc-400">
+                Ensure your business is fully verified with all KYC documents and payment gateway approval
+              </p>
+            </div>
+
+            <div class="space-y-2">
+              <h3 class="text-lg font-semibold text-zinc-200">Step 3: Contact PhonePe Support</h3>
+              <div class="bg-zinc-900/50 rounded-lg p-4">
+                <p class="text-zinc-300 mb-2">Email: <a href="mailto:merchant.support@phonepe.com" class="text-blue-400">merchant.support@phonepe.com</a></p>
+                <p class="text-zinc-300 mb-2">Phone: <a href="tel:1800-419-9966" class="text-blue-400">1800-419-9966</a></p>
+                <p class="text-zinc-400 text-sm">
+                  Request: "Please provide my Merchant ID, Salt Key, and Salt Index for API integration"
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Current Status -->
+        <div class="bg-yellow-500/10 border border-yellow-500/20 rounded-lg p-6">
+          <h2 class="text-2xl font-semibold text-yellow-300 mb-4">Current Integration Status</h2>
+          <p class="text-zinc-300">
+            Your training booking system is ready, but payment processing is temporarily disabled until you get the missing PhonePe credentials.
+          </p>
+          <p class="text-zinc-400 text-sm mt-2">
+            Once you have all credentials, add them to your Vercel environment variables and the payment system will be fully functional.
+          </p>
+        </div>
+
+        <!-- Test Payment Button -->
+        <div class="text-center">
+          <button 
+            onclick="testPayment()" 
+            class="px-8 py-3 bg-emerald-500 hover:bg-emerald-600 text-white font-semibold rounded-lg transition-colors disabled:bg-zinc-700 disabled:cursor-not-allowed"
+            id="test-btn"
+          >
+            Test Payment Integration
+          </button>
+          <p class="text-zinc-500 text-sm mt-2">This will show you the current API status</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<script>
+  async function testPayment() {
+    const btn = document.getElementById('test-btn');
+    const statusDiv = document.getElementById('api-status');
+    
+    btn.disabled = true;
+    btn.textContent = 'Testing...';
+    
+    try {
+      const response = await fetch('/api/health');
+      const data = await response.json();
+      
+      statusDiv.innerHTML = `
+        <div class="space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="text-zinc-300">PhonePe Configuration:</span>
+            <span class="px-3 py-1 rounded-full text-xs font-semibold ${data.has?.phonepeConfig ? 'bg-emerald-500/20 text-emerald-300' : 'bg-red-500/20 text-red-300'}">
+              ${data.has?.phonepeConfig ? 'Configured' : 'Missing Credentials'}
+            </span>
+          </div>
+          <div class="flex items-center justify-between">
+            <span class="text-zinc-300">GitHub Integration:</span>
+            <span class="px-3 py-1 rounded-full text-xs font-semibold ${data.has?.githubToken ? 'bg-emerald-500/20 text-emerald-300' : 'bg-red-500/20 text-red-300'}">
+              ${data.has?.githubToken ? 'Active' : 'Not Configured'}
+            </span>
+          </div>
+          <div class="flex items-center justify-between">
+            <span class="text-zinc-300">Spotify Integration:</span>
+            <span class="px-3 py-1 rounded-full text-xs font-semibold ${data.has?.spotifyClient ? 'bg-emerald-500/20 text-emerald-300' : 'bg-red-500/20 text-red-300'}">
+              ${data.has?.spotifyClient ? 'Active' : 'Not Configured'}
+            </span>
+          </div>
+        </div>
+      `;
+    } catch (error) {
+      statusDiv.innerHTML = `
+        <div class="text-red-400">
+          Error checking API status: ${error.message}
+        </div>
+      `;
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Test Payment Integration';
+    }
+  }
+
+  // Auto-check on page load
+  testPayment();
+</script>

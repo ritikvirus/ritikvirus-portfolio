@@ -32,13 +32,34 @@ function generateTransactionId(): string {
 export const POST: APIRoute = async ({ request }) => {
   try {
     // Validate environment variables
-    if (!PHONEPE_MERCHANT_ID || !PHONEPE_SALT_KEY || !PHONEPE_CLIENT_ID || !PHONEPE_CLIENT_SECRET) {
-      console.error('PhonePe environment variables not configured')
+    if (!PHONEPE_CLIENT_ID || !PHONEPE_CLIENT_SECRET) {
+      console.error('PhonePe Client credentials not configured')
       return new Response(JSON.stringify({
         success: false,
-        message: 'Payment service not configured'
+        message: 'Payment service not configured - missing Client ID or Secret'
       }), {
         status: 500,
+        headers: { 'Content-Type': 'application/json' }
+      })
+    }
+
+    // Check if we have full merchant credentials for production
+    const hasFullCredentials = PHONEPE_MERCHANT_ID && PHONEPE_SALT_KEY
+    
+    if (!hasFullCredentials) {
+      console.log('Using PhonePe test mode - full merchant credentials not available')
+      // For now, return a test response until you get full credentials
+      return new Response(JSON.stringify({
+        success: false,
+        message: 'PhonePe integration pending - Merchant ID and Salt Key required. Please contact PhonePe support to get these credentials.',
+        debug: {
+          hasClientId: Boolean(PHONEPE_CLIENT_ID),
+          hasClientSecret: Boolean(PHONEPE_CLIENT_SECRET),
+          hasMerchantId: Boolean(PHONEPE_MERCHANT_ID),
+          hasSaltKey: Boolean(PHONEPE_SALT_KEY)
+        }
+      }), {
+        status: 503,
         headers: { 'Content-Type': 'application/json' }
       })
     }
