@@ -56,31 +56,31 @@ export default function TrainingBookingForm({ className = '' }: BookingFormProps
     }
   }
 
-  const validateField = (field: keyof BookingFormData, value: string | number): string | undefined => {
-    switch (field) {
-      case 'name':
-        if (!value || (value as string).trim().length < 2) {
-          return 'Name must be at least 2 characters'
-        }
-        break
-      case 'email':
-        if (!value || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value as string)) {
-          return 'Please enter a valid email address'
-        }
-        break
-      case 'phone':
-        if (!value || !/^[6-9]\d{9}$/.test(value as string)) {
-          return 'Please enter a valid 10-digit phone number'
-        }
-        break
-      case 'hours':
-        if (!value || (value as number) < 1 || (value as number) > 100) {
-          return 'Hours must be between 1 and 100'
-        }
-        break
-    }
-    return undefined
-  }
+  // const validateField = (field: keyof BookingFormData, value: string | number): string | undefined => {
+  //   switch (field) {
+  //     case 'name':
+  //       if (!value || (value as string).trim().length < 2) {
+  //         return 'Name must be at least 2 characters'
+  //       }
+  //       break
+  //     case 'email':
+  //       if (!value || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value as string)) {
+  //         return 'Please enter a valid email address'
+  //       }
+  //       break
+  //     case 'phone':
+  //       if (!value || !/^[6-9]\d{9}$/.test(value as string)) {
+  //         return 'Please enter a valid 10-digit phone number'
+  //       }
+  //       break
+  //     case 'hours':
+  //       if (!value || (value as number) < 1 || (value as number) > 100) {
+  //         return 'Hours must be between 1 and 100'
+  //       }
+  //       break
+  //   }
+  //   return undefined
+  // }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()

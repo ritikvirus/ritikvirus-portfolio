@@ -140,8 +140,10 @@ import SEO from '@/components/SEO.astro'
 
 <script>
   async function testPayment() {
-    const btn = document.getElementById('test-btn');
+    const btn = document.getElementById('test-btn') as HTMLButtonElement | null;
     const statusDiv = document.getElementById('api-status');
+    
+    if (!btn || !statusDiv) return;
     
     btn.disabled = true;
     btn.textContent = 'Testing...';
@@ -175,7 +177,7 @@ import SEO from '@/components/SEO.astro'
     } catch (error) {
       statusDiv.innerHTML = `
         <div class="text-red-400">
-          Error checking API status: ${error.message}
+          Error checking API status: ${error instanceof Error ? error.message : 'Unknown error'}
         </div>
       `;
     } finally {

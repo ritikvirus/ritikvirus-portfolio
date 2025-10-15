@@ -40,14 +40,19 @@ export const GET: APIRoute = async ({ url }) => {
     const xVerify = generateXVerifyHeader(base64Payload)
 
     // Make request to PhonePe status API
+    const headers: Record<string, string> = {
+      'Content-Type': 'application/json',
+      'X-VERIFY': xVerify,
+      'accept': 'application/json'
+    }
+    
+    if (PHONEPE_MERCHANT_ID) {
+      headers['X-MERCHANT-ID'] = PHONEPE_MERCHANT_ID
+    }
+
     const phonePeResponse = await fetch(`${PHONEPE_BASE_URL}/pg/v1/status/${PHONEPE_MERCHANT_ID}/${transactionId}`, {
       method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-VERIFY': xVerify,
-        'X-MERCHANT-ID': PHONEPE_MERCHANT_ID,
-        'accept': 'application/json'
-      }
+      headers
     })
 
     const phonePeResult = await phonePeResponse.json()
