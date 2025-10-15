@@ -36,8 +36,8 @@ While waiting for PhonePe response, add what you have:
 2. **Add these NOW:**
 
 ```bash
-PHONEPE_CLIENT_ID=SU2510131850256414659332
-PHONEPE_CLIENT_SECRET=61c35513-3010-4ef3-9c3e-52ac2bdd2654
+PHONEPE_CLIENT_ID=your_phonepe_client_id
+PHONEPE_CLIENT_SECRET=your_phonepe_client_secret
 PUBLIC_PRIMARY_SITE=https://aidevops.in
 PUBLIC_BLOG_SITE=https://aidevops.in
 ```
@@ -62,8 +62,8 @@ Then **Redeploy** again!
 ## 📊 Your Current Status
 
 ### ✅ You Have:
-- Client ID: `SU2510131850256414659332`
-- Client Secret: `61c35513-3010-4ef3-9c3e-52ac2bdd2654`
+- Client ID: `your_phonepe_client_id`
+- Client Secret: `your_phonepe_client_secret`
 - Complete working website
 - All policy pages ready
 - Training booking system ready

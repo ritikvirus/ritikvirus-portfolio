@@ -13,8 +13,8 @@
 - [x] Security implemented (all credentials server-side)
 
 ### ⏳ Phase 2: Get PhonePe Credentials (IN PROGRESS)
-- [x] Client ID received: `SU2510131850256414659332`
-- [x] Client Secret received: `61c35513-3010-4ef3-9c3e-52ac2bdd2654`
+- [x] Client ID received: `your_phonepe_client_id`
+- [x] Client Secret received: `your_phonepe_client_secret`
 - [ ] **ACTION REQUIRED:** Request Merchant ID from PhonePe
 - [ ] **ACTION REQUIRED:** Request Salt Key from PhonePe
 - [ ] **ACTION REQUIRED:** Get Salt Index from PhonePe
@@ -51,8 +51,8 @@ Once you have ALL credentials, go to Vercel:
 
 ```bash
 # PhonePe Credentials (Add ALL of these)
-PHONEPE_CLIENT_ID=SU2510131850256414659332
-PHONEPE_CLIENT_SECRET=61c35513-3010-4ef3-9c3e-52ac2bdd2654
+PHONEPE_CLIENT_ID=your_phonepe_client_id
+PHONEPE_CLIENT_SECRET=your_phonepe_client_secret
 PHONEPE_MERCHANT_ID=[Get from PhonePe Support]
 PHONEPE_SALT_KEY=[Get from PhonePe Support]
 PHONEPE_SALT_INDEX=1

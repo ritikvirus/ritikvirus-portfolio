@@ -23,8 +23,8 @@ I am writing to request my **Merchant ID** and **Salt Key** credentials required
 
 ## Current Credentials Available:
 I have already received the following credentials from the PhonePe Business Portal:
-- ✅ **Client ID:** SU2510131850256414659332
-- ✅ **Client Secret:** 61c35513-3010-4ef3-9c3e-52ac2bdd2654
+- ✅ **Client ID:** your_phonepe_client_id
+- ✅ **Client Secret:** your_phonepe_client_secret
 
 ## Required Credentials:
 To complete the PhonePe payment gateway integration, I need the following additional credentials:
@@ -94,7 +94,7 @@ Website: https://www.aidevops.in
 "Hello, I'm calling regarding my PhonePe Business account for AI DevOps. I have received my Client ID and Client Secret, but I need my Merchant ID and Salt Key to complete the payment gateway API integration. Can you please help me with this?"
 
 **Be Ready to Provide:**
-- Client ID: SU2510131850256414659332
+- Client ID: your_phonepe_client_id
 - Business name: AI DevOps
 - Website: www.aidevops.in
 - Registered email: ritikvirus6@gmail.com

@@ -13,8 +13,8 @@
 
 ```bash
 # Client Credentials (You have these)
-PHONEPE_CLIENT_ID=SU2510131850256414659332
-PHONEPE_CLIENT_SECRET=61c35513-3010-4ef3-9c3e-52ac2bdd2654
+PHONEPE_CLIENT_ID=your_phonepe_client_id
+PHONEPE_CLIENT_SECRET=your_phonepe_client_secret
 
 # Merchant Credentials (Request from PhonePe Support - see PHONEPE_EMAIL_TEMPLATE.md)
 PHONEPE_MERCHANT_ID=your_merchant_id_from_phonepe_support
@@ -88,11 +88,11 @@ MAPTILER_API_KEY=your_maptiler_api_key
    Click "Add New" and add each variable:
 
    **Name:** `PHONEPE_CLIENT_ID`  
-   **Value:** `SU2510131850256414659332`  
+   **Value:** `your_phonepe_client_id`  
    **Environment:** ✅ Production, ✅ Preview, ✅ Development
 
    **Name:** `PHONEPE_CLIENT_SECRET`  
-   **Value:** `61c35513-3010-4ef3-9c3e-52ac2bdd2654`  
+   **Value:** `your_phonepe_client_secret`  
    **Environment:** ✅ Production, ✅ Preview, ✅ Development
 
    **IMPORTANT:** After getting Merchant ID and Salt Key from PhonePe support, add:

@@ -38,14 +38,14 @@
 **Variable 1:**
 ```
 Name: PHONEPE_CLIENT_ID
-Value: SU2510131850256414659332
+Value: your_phonepe_client_id
 Environment: ✅ Production, ✅ Preview, ✅ Development
 ```
 
 **Variable 2:**
 ```
 Name: PHONEPE_CLIENT_SECRET
-Value: 61c35513-3010-4ef3-9c3e-52ac2bdd2654
+Value: your_phonepe_client_secret
 Environment: ✅ Production, ✅ Preview, ✅ Development
 ```
 
@@ -144,8 +144,8 @@ Business Details:
 - Phone: +91 8920279167
 
 Current Credentials (From Business Portal):
-- Client ID: SU2510131850256414659332
-- Client Secret: 61c35513-3010-4ef3-9c3e-52ac2bdd2654
+- Client ID: your_phonepe_client_id
+- Client Secret: your_phonepe_client_secret
 
 Questions:
 1. Are these credentials sufficient for payment gateway integration?
